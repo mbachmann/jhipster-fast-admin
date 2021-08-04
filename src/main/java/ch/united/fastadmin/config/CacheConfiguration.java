@@ -48,6 +48,18 @@ public class CacheConfiguration {
             createCache(cm, ch.united.fastadmin.domain.User.class.getName());
             createCache(cm, ch.united.fastadmin.domain.Authority.class.getName());
             createCache(cm, ch.united.fastadmin.domain.User.class.getName() + ".authorities");
+            createCache(cm, ch.united.fastadmin.domain.Region.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Country.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Location.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Department.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Department.class.getName() + ".employees");
+            createCache(cm, ch.united.fastadmin.domain.Task.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Task.class.getName() + ".jobs");
+            createCache(cm, ch.united.fastadmin.domain.Employee.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Employee.class.getName() + ".jobs");
+            createCache(cm, ch.united.fastadmin.domain.Job.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Job.class.getName() + ".tasks");
+            createCache(cm, ch.united.fastadmin.domain.JobHistory.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import ch.united.fastadmin.IntegrationTest;
 import ch.united.fastadmin.domain.User;
 import ch.united.fastadmin.repository.UserRepository;
+import ch.united.fastadmin.repository.search.UserSearchRepository;
 import ch.united.fastadmin.security.AuthoritiesConstants;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +33,14 @@ class PublicUserResourceIT {
 
     @Autowired
     private UserRepository userRepository;
+
+    /**
+     * This repository is mocked in the ch.united.fastadmin.repository.search test package.
+     *
+     * @see ch.united.fastadmin.repository.search.UserSearchRepositoryMockConfiguration
+     */
+    @Autowired
+    private UserSearchRepository mockUserSearchRepository;
 
     @Autowired
     private EntityManager em;

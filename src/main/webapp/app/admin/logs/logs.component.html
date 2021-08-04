@@ -1,16 +1,16 @@
 <div class="table-responsive" *ngIf="loggers">
-  <h2 id="logs-page-heading" jhiTranslate="logs.title" data-cy="logsPageHeading">Logs</h2>
+  <h2 id="logs-page-heading" jhlTranslate="logs.title" data-cy="logsPageHeading">Logs</h2>
 
-  <p jhiTranslate="logs.nbloggers" [translateValues]="{ total: loggers.length }">There are {{ loggers.length }} loggers.</p>
+  <p jhlTranslate="logs.nbloggers" [translateValues]="{ total: loggers.length }">There are {{ loggers.length }} loggers.</p>
 
-  <span jhiTranslate="logs.filter">Filter</span>
+  <span jhlTranslate="logs.filter">Filter</span>
   <input type="text" [(ngModel)]="filter" (ngModelChange)="filterAndSort()" class="form-control" />
 
   <table class="table table-sm table-striped table-bordered" aria-describedby="logs-page-heading">
     <thead>
-      <tr jhiSort [(predicate)]="orderProp" [(ascending)]="ascending" [callback]="filterAndSort.bind(this)">
-        <th jhiSortBy="name" scope="col"><span jhiTranslate="logs.table.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-        <th jhiSortBy="level" scope="col"><span jhiTranslate="logs.table.level">Level</span> <fa-icon icon="sort"></fa-icon></th>
+      <tr jhlSort [(predicate)]="orderProp" [(ascending)]="ascending" [callback]="filterAndSort.bind(this)">
+        <th jhlSortBy="name" scope="col"><span jhlTranslate="logs.table.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+        <th jhlSortBy="level" scope="col"><span jhlTranslate="logs.table.level">Level</span> <fa-icon icon="sort"></fa-icon></th>
       </tr>
     </thead>
 

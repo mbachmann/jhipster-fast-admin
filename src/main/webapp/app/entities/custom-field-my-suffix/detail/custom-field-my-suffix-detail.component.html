@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="customField">
+      <h2 data-cy="customFieldDetailsHeading"><span jhlTranslate="fastAdminApp.customField.detail.title">Custom Field</span></h2>
+
+      <hr />
+
+      <jhl-alert-error></jhl-alert-error>
+
+      <jhl-alert></jhl-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhlTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ customField.id }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.customField.domainResource">Domain Resource</span></dt>
+        <dd>
+          <span jhlTranslate="{{ 'fastAdminApp.DomainResource.' + customField.domainResource }}">{{ customField.domainResource }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.customField.key">Key</span></dt>
+        <dd>
+          <span>{{ customField.key }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.customField.name">Name</span></dt>
+        <dd>
+          <span>{{ customField.name }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.customField.value">Value</span></dt>
+        <dd>
+          <span>{{ customField.value }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.customField.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="customField.contact">
+            <a [routerLink]="['/contact-my-suffix', customField.contact?.id, 'view']">{{ customField.contact?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhlTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/custom-field-my-suffix', customField.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhlTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

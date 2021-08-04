@@ -1,0 +1,42 @@
+{
+  "name": "CustomField",
+  "fields": [
+    {
+      "fieldName": "domainResource",
+      "fieldType": "DomainResource",
+      "fieldValues": "AFFILIATE,CATALOG,CONTACTS,REMINDERS,PROFILE,BILLING,CREDIT_CARD,CREDIT,CONFIGURATION_RECEIVABLES,CONFIGURATION_PAYABLES,ORDER_CONFIMRATIONS,COSTS,CATEGORIES_PAYABLES,COST_UNITS,EFFORTS,EXPENSES,EXPORTS,INVOICES,LETTERS,NEWSLETTERS,NOTIFICATIONS,OFFERS,PROJECTS,DELIVERY_NOTES,ACTIVITES,CONFIGURATION_PROJECT_TIME,RIGHTS,MAILING_CENTER,TIME_REPORTING,UNITS,USERS"
+    },
+    {
+      "fieldName": "key",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "contact"
+    }
+  ],
+  "javadoc": "Additional information for a resource",
+  "entityTableName": "custom_field",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "mySuffix",
+  "changelogDate": "20210804195058"
+}

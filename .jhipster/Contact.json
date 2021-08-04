@@ -1,0 +1,177 @@
+{
+  "name": "Contact",
+  "fields": [
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "unique number"
+    },
+    {
+      "fieldName": "relation",
+      "fieldType": "ContactRelation",
+      "javadoc": "type of contact's relation; possible values: CL - Customer, CR - Creditor",
+      "fieldValues": "CUSTOMER (CL),CREDITOR (CR),TEAM (TE),OFFICIALS (OF),MEDICAL (ME),OTHERS (OT)"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "ContactType",
+      "javadoc": "type of contact; possible values: C - Company, P - Private",
+      "fieldValues": "COMPANY (M),PRIVATE (F)"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "GenderType",
+      "javadoc": "gender of contact (required for P type); possible values: M - Male, F - Female",
+      "fieldValues": "MALE (M),FEMALE (F),OTHER (O)"
+    },
+    {
+      "fieldName": "genderSalutationActive",
+      "fieldType": "Boolean",
+      "javadoc": "whether to show Mr./Ms. before contact name (for P type only)"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "name of contact"
+    },
+    {
+      "fieldName": "nameAddition",
+      "fieldType": "String",
+      "javadoc": "additional text for contact name"
+    },
+    {
+      "fieldName": "salutation",
+      "fieldType": "String",
+      "javadoc": "e.g. Dear Mr. Jones"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "javadoc": "contact phone number"
+    },
+    {
+      "fieldName": "fax",
+      "fieldType": "String",
+      "javadoc": "contact fax number"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "javadoc": "contact email address"
+    },
+    {
+      "fieldName": "website",
+      "fieldType": "String",
+      "javadoc": "contact website address"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "additional notes"
+    },
+    {
+      "fieldName": "communicationLanguage",
+      "fieldType": "String",
+      "javadoc": "main communication language"
+    },
+    {
+      "fieldName": "communicationChannel",
+      "fieldType": "String",
+      "javadoc": "possible values: U - No preference, E - Documents by e-mail, P - Documents by post"
+    },
+    {
+      "fieldName": "communicationNewsletter",
+      "fieldType": "String",
+      "javadoc": "possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted"
+    },
+    {
+      "fieldName": "currency",
+      "fieldType": "String",
+      "javadoc": "default currency"
+    },
+    {
+      "fieldName": "ebillAccountId",
+      "fieldType": "String",
+      "javadoc": "e-bill account identification number"
+    },
+    {
+      "fieldName": "vatIdentification",
+      "fieldType": "String",
+      "javadoc": "VAT identification number"
+    },
+    {
+      "fieldName": "vatRate",
+      "fieldType": "Double",
+      "javadoc": "default VAT rate ,"
+    },
+    {
+      "fieldName": "discountRate",
+      "fieldType": "Double",
+      "javadoc": "default discount rate"
+    },
+    {
+      "fieldName": "discountType",
+      "fieldType": "String",
+      "javadoc": "default discount type; possible valuesP - in %, A - Amount"
+    },
+    {
+      "fieldName": "paymentGrace",
+      "fieldType": "Integer",
+      "javadoc": "default payment deadline"
+    },
+    {
+      "fieldName": "hourlyRate",
+      "fieldType": "Double",
+      "javadoc": "cost per hour ,"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "when contact was created"
+    },
+    {
+      "fieldName": "mainAddressId",
+      "fieldType": "Integer",
+      "javadoc": "main address id"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "contact",
+      "relationshipName": "mainAddress",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "permission",
+      "otherEntityRelationshipName": "contact",
+      "relationshipName": "permissions"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "contactGroup",
+      "otherEntityRelationshipName": "contact",
+      "relationshipName": "groups"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customField",
+      "otherEntityRelationshipName": "contact",
+      "relationshipName": "customFields"
+    }
+  ],
+  "javadoc": "Contact",
+  "entityTableName": "contact",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "mySuffix",
+  "changelogDate": "20210804195057"
+}

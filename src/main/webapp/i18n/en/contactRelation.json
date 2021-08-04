@@ -1,0 +1,13 @@
+{
+  "fastAdminApp": {
+    "ContactRelation": {
+      "null": "",
+      "CUSTOMER": "CL",
+      "CREDITOR": "CR",
+      "TEAM": "TE",
+      "OFFICIALS": "OF",
+      "MEDICAL": "ME",
+      "OTHERS": "OT"
+    }
+  }
+}

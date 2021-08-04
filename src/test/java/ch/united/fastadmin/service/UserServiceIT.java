@@ -1,12 +1,16 @@
 package ch.united.fastadmin.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import ch.united.fastadmin.IntegrationTest;
 import ch.united.fastadmin.config.Constants;
 import ch.united.fastadmin.domain.User;
 import ch.united.fastadmin.repository.UserRepository;
+import ch.united.fastadmin.repository.search.UserSearchRepository;
 import ch.united.fastadmin.service.dto.AdminUserDTO;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -49,6 +53,14 @@ class UserServiceIT {
 
     @Autowired
     private UserService userService;
+
+    /**
+     * This repository is mocked in the ch.united.fastadmin.repository.search test package.
+     *
+     * @see ch.united.fastadmin.repository.search.UserSearchRepositoryMockConfiguration
+     */
+    @Autowired
+    private UserSearchRepository mockUserSearchRepository;
 
     @Autowired
     private AuditingHandler auditingHandler;
@@ -164,6 +176,9 @@ class UserServiceIT {
         userService.removeNotActivatedUsers();
         users = userRepository.findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(threeDaysAgo);
         assertThat(users).isEmpty();
+
+        // Verify Elasticsearch mock
+        verify(mockUserSearchRepository, times(1)).delete(user);
     }
 
     @Test
@@ -181,5 +196,8 @@ class UserServiceIT {
         userService.removeNotActivatedUsers();
         Optional<User> maybeDbUser = userRepository.findById(dbUser.getId());
         assertThat(maybeDbUser).contains(dbUser);
+
+        // Verify Elasticsearch mock
+        verify(mockUserSearchRepository, never()).delete(user);
     }
 }

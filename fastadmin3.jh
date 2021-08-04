@@ -1,0 +1,300 @@
+
+application {
+  config {
+    baseName fastAdmin,
+    applicationType monolith,
+    packageName ch.united.fastadmin,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular,
+    websocket spring-websocket,
+    testFrameworks	[cypress],
+    searchEngine elasticsearch,
+    nativeLanguage en,
+    languages	[en, de, fr],
+    jhiPrefix jhl,
+    devDatabaseType h2Memory,
+    cacheProvider ehcache,
+    dtoSuffix DTO
+  }
+  entities *
+}
+
+/**
+ * JHipster JDL model for myApp
+ */
+
+// ==============================
+// Entity definitions starts here
+// ==============================
+
+entity Region {
+    regionName String
+}
+
+entity Country {
+    countryName String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Location {
+    streetAddress String
+    postalCode String
+    city String
+    stateProvince String
+}
+
+entity Department {
+    departmentName String required
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity Task {
+    title String
+    description String
+}
+
+/**
+ * The Employee entity.
+ */
+entity Employee {
+    /**
+    * The firstname attribute.
+    */
+    firstName String
+    lastName String
+    email String
+    phoneNumber String
+    hireDate ZonedDateTime
+    salary Long
+    commissionPct Long
+}
+
+entity Job {
+    jobTitle String
+    minSalary Long
+    maxSalary Long
+}
+
+entity JobHistory {
+    startDate ZonedDateTime
+    endDate ZonedDateTime
+    language Language
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH
+}
+/** Contact  */
+entity Contact {
+   /** unique number */	
+   number String 
+   /** type of contact's relation; possible values: CL - Customer, CR - Creditor */
+   relation ContactRelation
+   /**type of contact; possible values: C - Company, P - Private */
+   type ContactType 
+   /** gender of contact (required for P type); possible values: M - Male, F - Female */
+   gender GenderType 
+   /**  whether to show Mr./Ms. before contact name (for P type only) */
+   genderSalutationActive Boolean
+   /** name of contact */
+   name String
+   /** additional text for contact name */
+   nameAddition String 
+   /** e.g. Dear Mr. Jones */
+   salutation String 
+   /** contact phone number  */
+   phone String 
+   /**  contact fax number */
+   fax String
+   /** contact email address */
+   email String 
+   /** contact website address */
+   website String 
+   /** additional notes */
+   notes String 
+   /** main communication language */
+   communicationLanguage String 
+   /** possible values: U - No preference, E - Documents by e-mail, P - Documents by post */
+   communicationChannel String 
+   /** possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted */
+   communicationNewsletter String 
+   /**  default currency */
+   currency String
+   /** e-bill account identification number */
+   ebillAccountId String 
+   /** VAT identification number */
+   vatIdentification String 
+   /**  default VAT rate , */
+   vatRate Double
+   /**  default discount rate */
+   discountRate Double
+   /** default discount type; possible valuesP - in %, A - Amount */
+   discountType String 
+   /**  default payment deadline */
+   paymentGrace Integer
+   /** cost per hour , */
+   hourlyRate Double 
+   /** when contact was created */
+   created ZonedDateTime 
+   /**  main address id */
+   mainAddressId Integer
+}
+
+/** Additional information for a resource */
+entity CustomField {
+  domainResource DomainResource 	
+  key   String
+  name  String
+  value String
+}
+
+enum ContactRelation {
+	CUSTOMER(CL), CREDITOR(CR), TEAM(TE), OFFICIALS(OF), MEDICAL(ME), OTHERS(OT)
+}
+
+enum ContactType {
+   COMPANY(M), PRIVATE(F)
+}
+
+enum GenderType {
+   MALE(M), FEMALE(F), OTHER(O)
+}
+
+/* Address information for a contact */
+entity ContactAddress {
+  /** whether it is a default contact's address */
+  defaultAddress Boolean required
+  /** country ISO2 code (eg. CH) */
+  country String required
+  /** the street of the address */
+  street String
+  /** number of apartment */
+  streetNo String
+  /** additional address information */
+  street2 String
+  /** postcode oder zip code */
+  postcode String
+  /** city */
+  city String
+  /** whether to hide this address on documents */
+  hideOnDocuments Boolean required
+  /** whether the address is a default postal address */
+  defaultPrepage Boolean required
+}
+
+entity ContactGroup {
+  name String required
+}
+
+/** actions that can be performed on an item (possible values: view, edit) */
+entity Permission {
+	new Boolean required
+	newAll Boolean required	
+	editOwn Boolean required
+	editAll Boolean required
+	viewOwn Boolean required
+	viewAll Boolean required	
+	manageOwn Boolean required
+	manageAll Boolean required	
+	domainResource DomainResource required
+}
+
+entity Role {
+	name String
+}
+
+enum DomainResource {
+	AFFILIATE,
+	CATALOG,
+	CONTACTS,
+	REMINDERS,
+	PROFILE,
+	BILLING,
+	CREDIT_CARD,
+	CREDIT,
+	CONFIGURATION_RECEIVABLES,
+	CONFIGURATION_PAYABLES,
+	ORDER_CONFIMRATIONS,
+	COSTS
+	CATEGORIES_PAYABLES,
+	COST_UNITS,
+	EFFORTS,
+	EXPENSES,
+	EXPORTS,
+	INVOICES,
+	LETTERS,
+	NEWSLETTERS,
+	NOTIFICATIONS,
+	OFFERS,
+	PROJECTS,
+	DELIVERY_NOTES,
+	ACTIVITES,
+	CONFIGURATION_PROJECT_TIME,
+	RIGHTS,
+	MAILING_CENTER,
+	TIME_REPORTING,
+	UNITS,
+	USERS
+}
+
+
+
+relationship ManyToMany {
+    Job{task(title)} to Task{job}
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+    Country{region} to Region
+    Location{country} to Country
+    Department{location} to Location
+    Employee{job} to Job
+    /**
+    * A relationship
+    */
+    Department{employee} to
+    /**
+    * Another side of the same relationship
+    */
+    Employee
+    Contact{permissions} to Permission
+    Contact{groups} to ContactGroup
+    Contact{customFields} to CustomField
+    ContactAddress{permissions} to Permission
+}
+
+relationship ManyToOne {
+    Employee{manager} to Employee
+    Permission{role} to Role
+}
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+    JobHistory{job} to Job,
+    JobHistory{department} to Department,
+    JobHistory{employee} to Employee
+    Contact{mainAddress} to ContactAddress
+}
+
+
+
+
+// =======
+// Options
+// =======
+
+// Set pagination options
+paginate JobHistory, Employee with infinite-scroll
+paginate Job with pagination
+
+dto * with mapstruct
+
+// Set service options to all 
+service all with serviceImpl 
+// Set an angular suffix
+angularSuffix * with mySuffix

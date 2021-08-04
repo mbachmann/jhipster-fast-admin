@@ -11,8 +11,8 @@ import { SortDirective } from './sort.directive';
   template: `
     <table>
       <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
-          <th jhiSortBy="name">ID<fa-icon [icon]="'sort'"></fa-icon></th>
+        <tr jhlSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
+          <th jhlSortBy="name">ID<fa-icon [icon]="'sort'"></fa-icon></th>
         </tr>
       </thead>
     </table>
@@ -52,7 +52,7 @@ describe('Directive: SortByDirective', () => {
     fixture.detectChanges();
 
     // THEN
-    expect(sortByDirective.jhiSortBy).toEqual('name');
+    expect(sortByDirective.jhlSortBy).toEqual('name');
     expect(component.predicate).toEqual('_score');
     expect(sortByDirective.iconComponent?.icon).toEqual('sort');
     expect(component.transition).toHaveBeenCalledTimes(0);
@@ -67,7 +67,7 @@ describe('Directive: SortByDirective', () => {
     fixture.detectChanges();
 
     // THEN
-    expect(sortByDirective.jhiSortBy).toEqual('name');
+    expect(sortByDirective.jhlSortBy).toEqual('name');
     expect(component.predicate).toEqual('id');
     expect(sortByDirective.iconComponent?.icon).toEqual('sort');
     expect(component.transition).toHaveBeenCalledTimes(0);
@@ -83,7 +83,7 @@ describe('Directive: SortByDirective', () => {
     fixture.detectChanges();
 
     // THEN
-    expect(sortByDirective.jhiSortBy).toEqual('name');
+    expect(sortByDirective.jhlSortBy).toEqual('name');
     expect(component.predicate).toEqual('name');
     expect(component.ascending).toEqual(true);
     expect(sortByDirective.iconComponent?.icon).toEqual(faSortUp.iconName);
@@ -102,7 +102,7 @@ describe('Directive: SortByDirective', () => {
     fixture.detectChanges();
 
     // THEN
-    expect(sortByDirective.jhiSortBy).toEqual('name');
+    expect(sortByDirective.jhlSortBy).toEqual('name');
     expect(component.predicate).toEqual('_score');
     expect(component.ascending).toEqual(true);
     expect(sortByDirective.iconComponent?.icon).toEqual('sort');

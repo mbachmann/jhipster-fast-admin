@@ -7,7 +7,7 @@ import { Account } from 'app/core/auth/account.model';
 import { LANGUAGES } from 'app/config/language.constants';
 
 @Component({
-  selector: 'jhi-settings',
+  selector: 'jhl-settings',
   templateUrl: './settings.component.html',
 })
 export class SettingsComponent implements OnInit {

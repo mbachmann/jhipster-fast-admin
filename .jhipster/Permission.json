@@ -1,0 +1,83 @@
+{
+  "name": "Permission",
+  "fields": [
+    {
+      "fieldName": "new",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "newAll",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "editOwn",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "editAll",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "viewOwn",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "viewAll",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "manageOwn",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "manageAll",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "domainResource",
+      "fieldType": "DomainResource",
+      "fieldValues": "AFFILIATE,CATALOG,CONTACTS,REMINDERS,PROFILE,BILLING,CREDIT_CARD,CREDIT,CONFIGURATION_RECEIVABLES,CONFIGURATION_PAYABLES,ORDER_CONFIMRATIONS,COSTS,CATEGORIES_PAYABLES,COST_UNITS,EFFORTS,EXPENSES,EXPORTS,INVOICES,LETTERS,NEWSLETTERS,NOTIFICATIONS,OFFERS,PROJECTS,DELIVERY_NOTES,ACTIVITES,CONFIGURATION_PROJECT_TIME,RIGHTS,MAILING_CENTER,TIME_REPORTING,UNITS,USERS",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "role",
+      "otherEntityRelationshipName": "permission",
+      "relationshipName": "role"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "permissions",
+      "relationshipName": "contact"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "permissions",
+      "relationshipName": "contactAddress"
+    }
+  ],
+  "javadoc": "actions that can be performed on an item (possible values: view, edit)",
+  "entityTableName": "permission",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "mySuffix",
+  "changelogDate": "20210804131855"
+}

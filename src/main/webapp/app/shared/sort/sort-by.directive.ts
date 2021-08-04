@@ -7,10 +7,10 @@ import { faSort, faSortDown, faSortUp, IconDefinition } from '@fortawesome/free-
 import { SortDirective } from './sort.directive';
 
 @Directive({
-  selector: '[jhiSortBy]',
+  selector: '[jhlSortBy]',
 })
 export class SortByDirective<T> implements AfterContentInit, OnDestroy {
-  @Input() jhiSortBy?: T;
+  @Input() jhlSortBy?: T;
 
   @ContentChild(FaIconComponent, { static: true })
   iconComponent?: FaIconComponent;
@@ -28,7 +28,7 @@ export class SortByDirective<T> implements AfterContentInit, OnDestroy {
 
   @HostListener('click')
   onClick(): void {
-    this.sort.sort(this.jhiSortBy);
+    this.sort.sort(this.jhlSortBy);
   }
 
   ngAfterContentInit(): void {
@@ -43,7 +43,7 @@ export class SortByDirective<T> implements AfterContentInit, OnDestroy {
   private updateIconDefinition(): void {
     if (this.iconComponent) {
       let icon: IconDefinition = this.sortIcon;
-      if (this.sort.predicate === this.jhiSortBy) {
+      if (this.sort.predicate === this.jhlSortBy) {
         icon = this.sort.ascending ? this.sortAscIcon : this.sortDescIcon;
       }
       this.iconComponent.icon = icon.iconName;

@@ -1,0 +1,109 @@
+<div>
+  <h2 id="page-heading" data-cy="RegionHeading">
+    <span jhlTranslate="fastAdminApp.region.home.title">Regions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhlTranslate="fastAdminApp.region.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-region-my-suffix"
+        [routerLink]="['/region-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhlTranslate="fastAdminApp.region.home.createLabel"> Create a new Region </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhl-alert-error></jhl-alert-error>
+
+  <jhl-alert></jhl-alert>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form name="searchForm" class="form-inline">
+        <div class="input-group w-100 mt-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="currentSearch"
+            id="currentSearch"
+            name="currentSearch"
+            placeholder="{{ 'fastAdminApp.region.home.search' | translate }}"
+          />
+
+          <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+            <fa-icon icon="search"></fa-icon>
+          </button>
+
+          <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="regions?.length === 0">
+    <span jhlTranslate="fastAdminApp.region.home.notFound">No regions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="regions && regions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhlTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhlTranslate="fastAdminApp.region.regionName">Region Name</span></th>
+          <th scope="col"><span jhlTranslate="fastAdminApp.region.country">Country</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let region of regions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/region-my-suffix', region.id, 'view']">{{ region.id }}</a>
+          </td>
+          <td>{{ region.regionName }}</td>
+          <td>
+            <div *ngIf="region.country">
+              <a [routerLink]="['/country-my-suffix', region.country?.id, 'view']">{{ region.country?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/region-my-suffix', region.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/region-my-suffix', region.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(region)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -8,7 +8,7 @@ import { SortDirective } from './sort.directive';
   template: `
     <table>
       <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)"></tr>
+        <tr jhlSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)"></tr>
       </thead>
     </table>
   `,

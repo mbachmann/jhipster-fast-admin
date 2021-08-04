@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fast-admin": {
+    "my-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -84,16 +84,16 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "fast-admin:build:development",
+            "browserTarget": "my-app:build:development",
             "proxyConfig": "./webpack/proxy.conf.js",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "fast-admin:build:production"
+              "browserTarget": "my-app:build:production"
             },
             "development": {
-              "browserTarget": "fast-admin:build:development"
+              "browserTarget": "my-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -107,7 +107,7 @@
       }
     }
   },
-  "defaultProject": "fast-admin",
+  "defaultProject": "my-app",
   "cli": {
     "packageManager": "npm"
   }

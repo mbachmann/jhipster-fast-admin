@@ -1,0 +1,112 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhl-custom-field-my-suffix-heading"
+        data-cy="CustomFieldCreateUpdateHeading"
+        jhlTranslate="fastAdminApp.customField.home.createOrEditLabel"
+      >
+        Create or edit a Custom Field
+      </h2>
+
+      <div>
+        <jhl-alert-error></jhl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhlTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.customField.domainResource" for="field_domainResource"
+            >Domain Resource</label
+          >
+          <select
+            class="form-control"
+            name="domainResource"
+            formControlName="domainResource"
+            id="field_domainResource"
+            data-cy="domainResource"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.DomainResource.null' | translate }}</option>
+            <option value="AFFILIATE">{{ 'fastAdminApp.DomainResource.AFFILIATE' | translate }}</option>
+            <option value="CATALOG">{{ 'fastAdminApp.DomainResource.CATALOG' | translate }}</option>
+            <option value="CONTACTS">{{ 'fastAdminApp.DomainResource.CONTACTS' | translate }}</option>
+            <option value="REMINDERS">{{ 'fastAdminApp.DomainResource.REMINDERS' | translate }}</option>
+            <option value="PROFILE">{{ 'fastAdminApp.DomainResource.PROFILE' | translate }}</option>
+            <option value="BILLING">{{ 'fastAdminApp.DomainResource.BILLING' | translate }}</option>
+            <option value="CREDIT_CARD">{{ 'fastAdminApp.DomainResource.CREDIT_CARD' | translate }}</option>
+            <option value="CREDIT">{{ 'fastAdminApp.DomainResource.CREDIT' | translate }}</option>
+            <option value="CONFIGURATION_RECEIVABLES">{{ 'fastAdminApp.DomainResource.CONFIGURATION_RECEIVABLES' | translate }}</option>
+            <option value="CONFIGURATION_PAYABLES">{{ 'fastAdminApp.DomainResource.CONFIGURATION_PAYABLES' | translate }}</option>
+            <option value="ORDER_CONFIMRATIONS">{{ 'fastAdminApp.DomainResource.ORDER_CONFIMRATIONS' | translate }}</option>
+            <option value="COSTS">{{ 'fastAdminApp.DomainResource.COSTS' | translate }}</option>
+            <option value="CATEGORIES_PAYABLES">{{ 'fastAdminApp.DomainResource.CATEGORIES_PAYABLES' | translate }}</option>
+            <option value="COST_UNITS">{{ 'fastAdminApp.DomainResource.COST_UNITS' | translate }}</option>
+            <option value="EFFORTS">{{ 'fastAdminApp.DomainResource.EFFORTS' | translate }}</option>
+            <option value="EXPENSES">{{ 'fastAdminApp.DomainResource.EXPENSES' | translate }}</option>
+            <option value="EXPORTS">{{ 'fastAdminApp.DomainResource.EXPORTS' | translate }}</option>
+            <option value="INVOICES">{{ 'fastAdminApp.DomainResource.INVOICES' | translate }}</option>
+            <option value="LETTERS">{{ 'fastAdminApp.DomainResource.LETTERS' | translate }}</option>
+            <option value="NEWSLETTERS">{{ 'fastAdminApp.DomainResource.NEWSLETTERS' | translate }}</option>
+            <option value="NOTIFICATIONS">{{ 'fastAdminApp.DomainResource.NOTIFICATIONS' | translate }}</option>
+            <option value="OFFERS">{{ 'fastAdminApp.DomainResource.OFFERS' | translate }}</option>
+            <option value="PROJECTS">{{ 'fastAdminApp.DomainResource.PROJECTS' | translate }}</option>
+            <option value="DELIVERY_NOTES">{{ 'fastAdminApp.DomainResource.DELIVERY_NOTES' | translate }}</option>
+            <option value="ACTIVITES">{{ 'fastAdminApp.DomainResource.ACTIVITES' | translate }}</option>
+            <option value="CONFIGURATION_PROJECT_TIME">{{ 'fastAdminApp.DomainResource.CONFIGURATION_PROJECT_TIME' | translate }}</option>
+            <option value="RIGHTS">{{ 'fastAdminApp.DomainResource.RIGHTS' | translate }}</option>
+            <option value="MAILING_CENTER">{{ 'fastAdminApp.DomainResource.MAILING_CENTER' | translate }}</option>
+            <option value="TIME_REPORTING">{{ 'fastAdminApp.DomainResource.TIME_REPORTING' | translate }}</option>
+            <option value="UNITS">{{ 'fastAdminApp.DomainResource.UNITS' | translate }}</option>
+            <option value="USERS">{{ 'fastAdminApp.DomainResource.USERS' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.customField.key" for="field_key">Key</label>
+          <input type="text" class="form-control" name="key" id="field_key" data-cy="key" formControlName="key" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.customField.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.customField.value" for="field_value">Value</label>
+          <input type="text" class="form-control" name="value" id="field_value" data-cy="value" formControlName="value" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.customField.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactMySuffixById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhlTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhlTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+id;new_all;edit_own;edit_all;view_own;view_all;manage_own;manage_all;domain_resource
+1;false;true;false;true;true;true;false;OFFERS
+2;false;false;true;false;true;true;false;NOTIFICATIONS
+3;false;false;false;false;false;true;false;EXPENSES
+4;true;true;false;true;true;true;true;ORDER_CONFIMRATIONS
+5;true;false;true;true;false;true;false;CATALOG
+6;true;true;true;false;false;false;true;MAILING_CENTER
+7;false;true;false;false;true;true;true;COSTS
+8;true;true;true;true;true;false;true;CONFIGURATION_PAYABLES
+9;false;true;false;true;true;true;true;CREDIT_CARD
+10;true;true;false;false;true;false;true;PROFILE

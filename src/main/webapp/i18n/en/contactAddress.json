@@ -1,0 +1,45 @@
+{
+  "fastAdminApp": {
+    "contactAddress": {
+      "home": {
+        "title": "Contact Addresses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Contact Address",
+        "createOrEditLabel": "Create or edit a Contact Address",
+        "search": "Search for Contact Address",
+        "notFound": "No Contact Addresses found"
+      },
+      "created": "A new Contact Address is created with identifier {{ param }}",
+      "updated": "A Contact Address is updated with identifier {{ param }}",
+      "deleted": "A Contact Address is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contact Address {{ id }}?"
+      },
+      "detail": {
+        "title": "Contact Address"
+      },
+      "id": "ID",
+      "defaultAddress": "Default Address",
+      "country": "Country",
+      "street": "Street",
+      "streetNo": "Street No",
+      "street2": "Street 2",
+      "postcode": "Postcode",
+      "city": "City",
+      "hideOnDocuments": "Hide On Documents",
+      "defaultPrepage": "Default Prepage",
+      "permissions": "Permissions",
+      "help": {
+        "defaultAddress": "whether it is a default contact&#39;s address",
+        "country": "country ISO2 code (eg. CH)",
+        "street": "the street of the address",
+        "streetNo": "number of apartment",
+        "street2": "additional address information",
+        "postcode": "postcode oder zip code",
+        "city": "city",
+        "hideOnDocuments": "whether to hide this address on documents",
+        "defaultPrepage": "whether the address is a default postal address"
+      }
+    }
+  }
+}

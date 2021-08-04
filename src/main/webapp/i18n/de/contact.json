@@ -1,0 +1,82 @@
+{
+  "fastAdminApp": {
+    "contact": {
+      "home": {
+        "title": "Contacts",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Contact erstellen",
+        "createOrEditLabel": "Contact erstellen oder bearbeiten",
+        "search": "Suche nach Contact",
+        "notFound": "Keine Contacts gefunden"
+      },
+      "created": "Contact erstellt mit ID {{ param }}",
+      "updated": "Contact aktualisiert mit ID {{ param }}",
+      "deleted": "Contact gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Contact {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Contact"
+      },
+      "id": "ID",
+      "number": "Number",
+      "relation": "Relation",
+      "type": "Type",
+      "gender": "Gender",
+      "genderSalutationActive": "Gender Salutation Active",
+      "name": "Name",
+      "nameAddition": "Name Addition",
+      "salutation": "Salutation",
+      "phone": "Phone",
+      "fax": "Fax",
+      "email": "Email",
+      "website": "Website",
+      "notes": "Notes",
+      "communicationLanguage": "Communication Language",
+      "communicationChannel": "Communication Channel",
+      "communicationNewsletter": "Communication Newsletter",
+      "currency": "Currency",
+      "ebillAccountId": "Ebill Account Id",
+      "vatIdentification": "Vat Identification",
+      "vatRate": "Vat Rate",
+      "discountRate": "Discount Rate",
+      "discountType": "Discount Type",
+      "paymentGrace": "Payment Grace",
+      "hourlyRate": "Hourly Rate",
+      "created": "Created",
+      "mainAddressId": "Main Address Id",
+      "mainAddress": "Main Address",
+      "permissions": "Permissions",
+      "groups": "Groups",
+      "customFields": "Custom Fields",
+      "help": {
+        "number": "unique number",
+        "relation": "type of contact&#39;s relation; possible values: CL - Customer, CR - Creditor",
+        "type": "type of contact; possible values: C - Company, P - Private",
+        "gender": "gender of contact (required for P type); possible values: M - Male, F - Female",
+        "genderSalutationActive": "whether to show Mr./Ms. before contact name (for P type only)",
+        "name": "name of contact",
+        "nameAddition": "additional text for contact name",
+        "salutation": "e.g. Dear Mr. Jones",
+        "phone": "contact phone number",
+        "fax": "contact fax number",
+        "email": "contact email address",
+        "website": "contact website address",
+        "notes": "additional notes",
+        "communicationLanguage": "main communication language",
+        "communicationChannel": "possible values: U - No preference, E - Documents by e-mail, P - Documents by post",
+        "communicationNewsletter": "possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted",
+        "currency": "default currency",
+        "ebillAccountId": "e-bill account identification number",
+        "vatIdentification": "VAT identification number",
+        "vatRate": "default VAT rate ,",
+        "discountRate": "default discount rate",
+        "discountType": "default discount type; possible valuesP - in %, A - Amount",
+        "paymentGrace": "default payment deadline",
+        "hourlyRate": "cost per hour ,",
+        "created": "when contact was created",
+        "mainAddressId": "main address id"
+      }
+    }
+  }
+}

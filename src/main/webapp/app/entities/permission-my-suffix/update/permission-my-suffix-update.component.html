@@ -1,0 +1,242 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhl-permission-my-suffix-heading"
+        data-cy="PermissionCreateUpdateHeading"
+        jhlTranslate="fastAdminApp.permission.home.createOrEditLabel"
+      >
+        Create or edit a Permission
+      </h2>
+
+      <div>
+        <jhl-alert-error></jhl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhlTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.newAll" for="field_newAll">New All</label>
+          <input type="checkbox" class="form-check" name="newAll" id="field_newAll" data-cy="newAll" formControlName="newAll" />
+          <div *ngIf="editForm.get('newAll')!.invalid && (editForm.get('newAll')!.dirty || editForm.get('newAll')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('newAll')?.errors?.required" jhlTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.editOwn" for="field_editOwn">Edit Own</label>
+          <input type="checkbox" class="form-check" name="editOwn" id="field_editOwn" data-cy="editOwn" formControlName="editOwn" />
+          <div *ngIf="editForm.get('editOwn')!.invalid && (editForm.get('editOwn')!.dirty || editForm.get('editOwn')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('editOwn')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.editAll" for="field_editAll">Edit All</label>
+          <input type="checkbox" class="form-check" name="editAll" id="field_editAll" data-cy="editAll" formControlName="editAll" />
+          <div *ngIf="editForm.get('editAll')!.invalid && (editForm.get('editAll')!.dirty || editForm.get('editAll')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('editAll')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.viewOwn" for="field_viewOwn">View Own</label>
+          <input type="checkbox" class="form-check" name="viewOwn" id="field_viewOwn" data-cy="viewOwn" formControlName="viewOwn" />
+          <div *ngIf="editForm.get('viewOwn')!.invalid && (editForm.get('viewOwn')!.dirty || editForm.get('viewOwn')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('viewOwn')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.viewAll" for="field_viewAll">View All</label>
+          <input type="checkbox" class="form-check" name="viewAll" id="field_viewAll" data-cy="viewAll" formControlName="viewAll" />
+          <div *ngIf="editForm.get('viewAll')!.invalid && (editForm.get('viewAll')!.dirty || editForm.get('viewAll')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('viewAll')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.manageOwn" for="field_manageOwn">Manage Own</label>
+          <input type="checkbox" class="form-check" name="manageOwn" id="field_manageOwn" data-cy="manageOwn" formControlName="manageOwn" />
+          <div *ngIf="editForm.get('manageOwn')!.invalid && (editForm.get('manageOwn')!.dirty || editForm.get('manageOwn')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('manageOwn')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.manageAll" for="field_manageAll">Manage All</label>
+          <input type="checkbox" class="form-check" name="manageAll" id="field_manageAll" data-cy="manageAll" formControlName="manageAll" />
+          <div *ngIf="editForm.get('manageAll')!.invalid && (editForm.get('manageAll')!.dirty || editForm.get('manageAll')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('manageAll')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.domainResource" for="field_domainResource"
+            >Domain Resource</label
+          >
+          <select
+            class="form-control"
+            name="domainResource"
+            formControlName="domainResource"
+            id="field_domainResource"
+            data-cy="domainResource"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.DomainResource.null' | translate }}</option>
+            <option value="AFFILIATE">{{ 'fastAdminApp.DomainResource.AFFILIATE' | translate }}</option>
+            <option value="CATALOG">{{ 'fastAdminApp.DomainResource.CATALOG' | translate }}</option>
+            <option value="CONTACTS">{{ 'fastAdminApp.DomainResource.CONTACTS' | translate }}</option>
+            <option value="REMINDERS">{{ 'fastAdminApp.DomainResource.REMINDERS' | translate }}</option>
+            <option value="PROFILE">{{ 'fastAdminApp.DomainResource.PROFILE' | translate }}</option>
+            <option value="BILLING">{{ 'fastAdminApp.DomainResource.BILLING' | translate }}</option>
+            <option value="CREDIT_CARD">{{ 'fastAdminApp.DomainResource.CREDIT_CARD' | translate }}</option>
+            <option value="CREDIT">{{ 'fastAdminApp.DomainResource.CREDIT' | translate }}</option>
+            <option value="CONFIGURATION_RECEIVABLES">{{ 'fastAdminApp.DomainResource.CONFIGURATION_RECEIVABLES' | translate }}</option>
+            <option value="CONFIGURATION_PAYABLES">{{ 'fastAdminApp.DomainResource.CONFIGURATION_PAYABLES' | translate }}</option>
+            <option value="ORDER_CONFIMRATIONS">{{ 'fastAdminApp.DomainResource.ORDER_CONFIMRATIONS' | translate }}</option>
+            <option value="COSTS">{{ 'fastAdminApp.DomainResource.COSTS' | translate }}</option>
+            <option value="CATEGORIES_PAYABLES">{{ 'fastAdminApp.DomainResource.CATEGORIES_PAYABLES' | translate }}</option>
+            <option value="COST_UNITS">{{ 'fastAdminApp.DomainResource.COST_UNITS' | translate }}</option>
+            <option value="EFFORTS">{{ 'fastAdminApp.DomainResource.EFFORTS' | translate }}</option>
+            <option value="EXPENSES">{{ 'fastAdminApp.DomainResource.EXPENSES' | translate }}</option>
+            <option value="EXPORTS">{{ 'fastAdminApp.DomainResource.EXPORTS' | translate }}</option>
+            <option value="INVOICES">{{ 'fastAdminApp.DomainResource.INVOICES' | translate }}</option>
+            <option value="LETTERS">{{ 'fastAdminApp.DomainResource.LETTERS' | translate }}</option>
+            <option value="NEWSLETTERS">{{ 'fastAdminApp.DomainResource.NEWSLETTERS' | translate }}</option>
+            <option value="NOTIFICATIONS">{{ 'fastAdminApp.DomainResource.NOTIFICATIONS' | translate }}</option>
+            <option value="OFFERS">{{ 'fastAdminApp.DomainResource.OFFERS' | translate }}</option>
+            <option value="PROJECTS">{{ 'fastAdminApp.DomainResource.PROJECTS' | translate }}</option>
+            <option value="DELIVERY_NOTES">{{ 'fastAdminApp.DomainResource.DELIVERY_NOTES' | translate }}</option>
+            <option value="ACTIVITES">{{ 'fastAdminApp.DomainResource.ACTIVITES' | translate }}</option>
+            <option value="CONFIGURATION_PROJECT_TIME">{{ 'fastAdminApp.DomainResource.CONFIGURATION_PROJECT_TIME' | translate }}</option>
+            <option value="RIGHTS">{{ 'fastAdminApp.DomainResource.RIGHTS' | translate }}</option>
+            <option value="MAILING_CENTER">{{ 'fastAdminApp.DomainResource.MAILING_CENTER' | translate }}</option>
+            <option value="TIME_REPORTING">{{ 'fastAdminApp.DomainResource.TIME_REPORTING' | translate }}</option>
+            <option value="UNITS">{{ 'fastAdminApp.DomainResource.UNITS' | translate }}</option>
+            <option value="USERS">{{ 'fastAdminApp.DomainResource.USERS' | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('domainResource')!.invalid && (editForm.get('domainResource')!.dirty || editForm.get('domainResource')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('domainResource')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.role" for="field_role">Role</label>
+          <select class="form-control" id="field_role" data-cy="role" name="role" formControlName="role">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="roleOption.id === editForm.get('role')!.value?.id ? editForm.get('role')!.value : roleOption"
+              *ngFor="let roleOption of rolesSharedCollection; trackBy: trackRoleMySuffixById"
+            >
+              {{ roleOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactMySuffixById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.contactAddress" for="field_contactAddress"
+            >Contact Address</label
+          >
+          <select
+            class="form-control"
+            id="field_contactAddress"
+            data-cy="contactAddress"
+            name="contactAddress"
+            formControlName="contactAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                contactAddressOption.id === editForm.get('contactAddress')!.value?.id
+                  ? editForm.get('contactAddress')!.value
+                  : contactAddressOption
+              "
+              *ngFor="let contactAddressOption of contactAddressesSharedCollection; trackBy: trackContactAddressMySuffixById"
+            >
+              {{ contactAddressOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhlTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhlTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

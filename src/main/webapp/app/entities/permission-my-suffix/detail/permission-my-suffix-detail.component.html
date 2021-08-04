@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="permission">
+      <h2 data-cy="permissionDetailsHeading"><span jhlTranslate="fastAdminApp.permission.detail.title">Permission</span></h2>
+
+      <hr />
+
+      <jhl-alert-error></jhl-alert-error>
+
+      <jhl-alert></jhl-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhlTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ permission.id }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.newAll">New All</span></dt>
+        <dd>
+          <span>{{ permission.newAll }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.editOwn">Edit Own</span></dt>
+        <dd>
+          <span>{{ permission.editOwn }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.editAll">Edit All</span></dt>
+        <dd>
+          <span>{{ permission.editAll }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.viewOwn">View Own</span></dt>
+        <dd>
+          <span>{{ permission.viewOwn }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.viewAll">View All</span></dt>
+        <dd>
+          <span>{{ permission.viewAll }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.manageOwn">Manage Own</span></dt>
+        <dd>
+          <span>{{ permission.manageOwn }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.manageAll">Manage All</span></dt>
+        <dd>
+          <span>{{ permission.manageAll }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.domainResource">Domain Resource</span></dt>
+        <dd>
+          <span jhlTranslate="{{ 'fastAdminApp.DomainResource.' + permission.domainResource }}">{{ permission.domainResource }}</span>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.role">Role</span></dt>
+        <dd>
+          <div *ngIf="permission.role">
+            <a [routerLink]="['/role-my-suffix', permission.role?.id, 'view']">{{ permission.role?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="permission.contact">
+            <a [routerLink]="['/contact-my-suffix', permission.contact?.id, 'view']">{{ permission.contact?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhlTranslate="fastAdminApp.permission.contactAddress">Contact Address</span></dt>
+        <dd>
+          <div *ngIf="permission.contactAddress">
+            <a [routerLink]="['/contact-address-my-suffix', permission.contactAddress?.id, 'view']">{{ permission.contactAddress?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhlTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/permission-my-suffix', permission.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhlTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+{
+  "name": "Owner",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "user name"
+    },
+    {
+      "fieldName": "surname",
+      "fieldType": "String",
+      "javadoc": "user surname"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "javadoc": "user email address"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "LanguageType",
+      "javadoc": "company communication language",
+      "fieldValues": "FRENCH (fr),ENGLISH (en),GERMAN (de)"
+    },
+    {
+      "fieldName": "companyName",
+      "fieldType": "String",
+      "javadoc": "company name"
+    },
+    {
+      "fieldName": "companyAddition",
+      "fieldType": "String",
+      "javadoc": "another company name line"
+    },
+    {
+      "fieldName": "companyCountry",
+      "fieldType": "String",
+      "javadoc": "company address: country (ISO2)"
+    },
+    {
+      "fieldName": "companyStreet",
+      "fieldType": "String",
+      "javadoc": "company address: street"
+    },
+    {
+      "fieldName": "companyStreetNo",
+      "fieldType": "String",
+      "javadoc": "company address: street number"
+    },
+    {
+      "fieldName": "companyStreet2",
+      "fieldType": "String",
+      "javadoc": "company address: another street line"
+    },
+    {
+      "fieldName": "companyPostcode",
+      "fieldType": "String",
+      "javadoc": "company address: postcode"
+    },
+    {
+      "fieldName": "companyCity",
+      "fieldType": "String",
+      "javadoc": "company address: city ,"
+    },
+    {
+      "fieldName": "companyPhone",
+      "fieldType": "String",
+      "javadoc": "phone number"
+    },
+    {
+      "fieldName": "companyFax",
+      "fieldType": "String",
+      "javadoc": "fax number"
+    },
+    {
+      "fieldName": "companyEmail",
+      "fieldType": "String",
+      "javadoc": "email address"
+    },
+    {
+      "fieldName": "companyWebsite",
+      "fieldType": "String",
+      "javadoc": "website URL"
+    },
+    {
+      "fieldName": "companyVatId",
+      "fieldType": "String",
+      "javadoc": "VAT/EU VAT ID no."
+    },
+    {
+      "fieldName": "companyCurrency",
+      "fieldType": "CurrencyType",
+      "javadoc": "default billing currency",
+      "fieldValues": "CHF,EUR,USD"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "owner",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "mySuffix",
+  "changelogDate": "20210805124344"
+}

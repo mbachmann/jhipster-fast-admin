@@ -1,0 +1,38 @@
+package ch.united.fastadmin.domain.enumeration;
+
+/**
+ * The DomainArea enumeration.
+ */
+public enum DomainArea {
+    AFFILIATE,
+    CATALOG,
+    CONTACTS,
+    REMINDERS,
+    PROFILE,
+    BILLING,
+    CREDIT_CARD,
+    CREDIT,
+    CONFIGURATION_RECEIVABLES,
+    CONFIGURATION_PAYABLES,
+    ORDER_CONFIMRATIONS,
+    COSTS,
+    CATEGORIES_PAYABLES,
+    COST_UNITS,
+    EFFORTS,
+    EXPENSES,
+    EXPORTS,
+    INVOICES,
+    LETTERS,
+    NEWSLETTERS,
+    NOTIFICATIONS,
+    OFFERS,
+    PROJECTS,
+    DELIVERY_NOTES,
+    ACTIVITES,
+    CONFIGURATION_PROJECT_TIME,
+    RIGHTS,
+    MAILING_CENTER,
+    TIME_REPORTING,
+    UNITS,
+    USERS,
+}

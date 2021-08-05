@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Contact.
+    -->
+    <changeSet id="20210805124345-1" author="jhipster">
+        <createTable tableName="contact" remarks="Contact">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="remote_id" type="integer" remarks="id of a remote system">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_contact__remote_id" />
+            </column>
+            <column name="number" type="varchar(255)" remarks="unique number">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_contact__number" />
+            </column>
+            <column name="type" type="varchar(255)" remarks="type of contact; possible values: C - Company, P - Private">
+                <constraints nullable="false" />
+            </column>
+            <column name="gender" type="varchar(255)" remarks="gender of contact (required for P type); possible values: M - Male, F - Female, O - Other">
+                <constraints nullable="false" />
+            </column>
+            <column name="gender_salutation_active" type="boolean" remarks="whether to show Mr./Ms. before contact name (for P type only)">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)" remarks="name of contact">
+                <constraints nullable="false" />
+            </column>
+            <column name="name_addition" type="varchar(255)" remarks="additional text for contact name">
+                <constraints nullable="true" />
+            </column>
+            <column name="salutation" type="varchar(255)" remarks="e.g. Dear Mr. Jones">
+                <constraints nullable="true" />
+            </column>
+            <column name="phone" type="varchar(255)" remarks="contact phone number">
+                <constraints nullable="true" />
+            </column>
+            <column name="fax" type="varchar(255)" remarks="contact fax number">
+                <constraints nullable="true" />
+            </column>
+            <column name="email" type="varchar(255)" remarks="contact email address">
+                <constraints nullable="true" />
+            </column>
+            <column name="website" type="varchar(255)" remarks="contact website address">
+                <constraints nullable="true" />
+            </column>
+            <column name="notes" type="varchar(255)" remarks="additional notes">
+                <constraints nullable="true" />
+            </column>
+            <column name="communication_language" type="varchar(255)" remarks="main communication language">
+                <constraints nullable="true" />
+            </column>
+            <column name="communication_channel" type="varchar(255)" remarks="possible values: U - No preference, E - Documents by e-mail, P - Documents by post">
+                <constraints nullable="true" />
+            </column>
+            <column name="communication_newsletter" type="varchar(255)" remarks="possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted">
+                <constraints nullable="true" />
+            </column>
+            <column name="currency" type="varchar(255)" remarks="default currency">
+                <constraints nullable="true" />
+            </column>
+            <column name="ebill_account_id" type="varchar(255)" remarks="e-bill account identification number">
+                <constraints nullable="true" />
+            </column>
+            <column name="vat_identification" type="varchar(255)" remarks="VAT identification number">
+                <constraints nullable="true" />
+            </column>
+            <column name="vat_rate" type="double" remarks="default VAT rate">
+                <constraints nullable="true" />
+            </column>
+            <column name="discount_rate" type="double" remarks="default discount rate">
+                <constraints nullable="true" />
+            </column>
+            <column name="discount_type" type="varchar(255)" remarks="default discount type; possible values P - in %, A - Amount">
+                <constraints nullable="true" />
+            </column>
+            <column name="payment_grace" type="integer" remarks="default payment deadline">
+                <constraints nullable="true" />
+            </column>
+            <column name="hourly_rate" type="double" remarks="cost per hour">
+                <constraints nullable="true" />
+            </column>
+            <column name="created" type="${datetimeType}" remarks="when contact was created">
+                <constraints nullable="true" />
+            </column>
+            <column name="main_address_id" type="integer" remarks="main address id">
+                <constraints nullable="true" />
+            </column>
+            <column name="main_address_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_contact__main_address_id" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="contact" columnName="created" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <changeSet id="20210805124345-1-relations" author="jhipster">
+
+        <createTable tableName="rel_contact__relations">
+            <column name="relations_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="contact_id, relations_id" tableName="rel_contact__relations"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210805124345-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/contact.csv"
+                  separator=";"
+                  tableName="contact">
+            <column name="id" type="numeric"/>
+            <column name="remote_id" type="numeric"/>
+            <column name="number" type="string"/>
+            <column name="type" type="string"/>
+            <column name="gender" type="string"/>
+            <column name="gender_salutation_active" type="boolean"/>
+            <column name="name" type="string"/>
+            <column name="name_addition" type="string"/>
+            <column name="salutation" type="string"/>
+            <column name="phone" type="string"/>
+            <column name="fax" type="string"/>
+            <column name="email" type="string"/>
+            <column name="website" type="string"/>
+            <column name="notes" type="string"/>
+            <column name="communication_language" type="string"/>
+            <column name="communication_channel" type="string"/>
+            <column name="communication_newsletter" type="string"/>
+            <column name="currency" type="string"/>
+            <column name="ebill_account_id" type="string"/>
+            <column name="vat_identification" type="string"/>
+            <column name="vat_rate" type="numeric"/>
+            <column name="discount_rate" type="numeric"/>
+            <column name="discount_type" type="string"/>
+            <column name="payment_grace" type="numeric"/>
+            <column name="hourly_rate" type="numeric"/>
+            <column name="created" type="${datetimeType}"/>
+            <column name="main_address_id" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

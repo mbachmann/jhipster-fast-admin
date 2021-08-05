@@ -1,0 +1,46 @@
+{
+  "fastAdminApp": {
+    "contactAddress": {
+      "home": {
+        "title": "ContactAddresses",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Contact Address",
+        "createOrEditLabel": "Créer ou éditer un Contact Address",
+        "search": "Recherche pour Contact Address",
+        "notFound": "Aucun Contact Address trouvé"
+      },
+      "created": "Un nouveau Contact Address a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Contact Address avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Contact Address avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Contact Address {{ id }} ?"
+      },
+      "detail": {
+        "title": "Contact Address"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "defaultAddress": "Default Address",
+      "country": "Country",
+      "street": "Street",
+      "streetNo": "Street No",
+      "street2": "Street 2",
+      "postcode": "Postcode",
+      "city": "City",
+      "hideOnDocuments": "Hide On Documents",
+      "defaultPrepage": "Default Prepage",
+      "help": {
+        "remoteId": "id of a remote system",
+        "defaultAddress": "whether it is a default contact&#39;s address",
+        "country": "country ISO2 code (eg. CH)",
+        "street": "the street of the address",
+        "streetNo": "number of apartment",
+        "street2": "additional address information",
+        "postcode": "postcode oder zip code",
+        "city": "city",
+        "hideOnDocuments": "whether to hide this address on documents",
+        "defaultPrepage": "whether the address is a default postal address"
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "ContactGroup",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "groups",
+      "relationshipName": "contact"
+    }
+  ],
+  "javadoc": "The group a contact belongs to",
+  "entityTableName": "contact_group",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "mySuffix",
+  "changelogDate": "20210805124349"
+}

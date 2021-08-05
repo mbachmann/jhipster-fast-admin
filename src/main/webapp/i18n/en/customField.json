@@ -1,0 +1,36 @@
+{
+  "fastAdminApp": {
+    "customField": {
+      "home": {
+        "title": "Custom Fields",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Custom Field",
+        "createOrEditLabel": "Create or edit a Custom Field",
+        "search": "Search for Custom Field",
+        "notFound": "No Custom Fields found"
+      },
+      "created": "A new Custom Field is created with identifier {{ param }}",
+      "updated": "A Custom Field is updated with identifier {{ param }}",
+      "deleted": "A Custom Field is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Custom Field {{ id }}?"
+      },
+      "detail": {
+        "title": "Custom Field"
+      },
+      "id": "ID",
+      "domainArea": "Domain Area",
+      "key": "Key",
+      "name": "Name",
+      "value": "Value",
+      "contact": "Contact",
+      "contactPerson": "Contact Person",
+      "help": {
+        "domainArea": "the custom field if for the domain resource",
+        "key": "the key to identify the custom field",
+        "name": "a name which appears on the dialog",
+        "value": "the value of the resourcce"
+      }
+    }
+  }
+}

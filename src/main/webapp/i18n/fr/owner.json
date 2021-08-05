@@ -1,0 +1,64 @@
+{
+  "fastAdminApp": {
+    "owner": {
+      "home": {
+        "title": "Owners",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Owner",
+        "createOrEditLabel": "Créer ou éditer un Owner",
+        "search": "Recherche pour Owner",
+        "notFound": "Aucun Owner trouvé"
+      },
+      "created": "Un nouveau Owner a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Owner avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Owner avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Owner {{ id }} ?"
+      },
+      "detail": {
+        "title": "Owner"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
+      "language": "Language",
+      "companyName": "Company Name",
+      "companyAddition": "Company Addition",
+      "companyCountry": "Company Country",
+      "companyStreet": "Company Street",
+      "companyStreetNo": "Company Street No",
+      "companyStreet2": "Company Street 2",
+      "companyPostcode": "Company Postcode",
+      "companyCity": "Company City",
+      "companyPhone": "Company Phone",
+      "companyFax": "Company Fax",
+      "companyEmail": "Company Email",
+      "companyWebsite": "Company Website",
+      "companyVatId": "Company Vat Id",
+      "companyCurrency": "Company Currency",
+      "help": {
+        "remoteId": "id of a remote system",
+        "name": "user name",
+        "surname": "user surname",
+        "email": "user email address",
+        "language": "company communication language",
+        "companyName": "company name",
+        "companyAddition": "another company name line",
+        "companyCountry": "company address: country (ISO2)",
+        "companyStreet": "company address: street",
+        "companyStreetNo": "company address: street number",
+        "companyStreet2": "company address: another street line",
+        "companyPostcode": "company address: postcode",
+        "companyCity": "company address: city ,",
+        "companyPhone": "phone number",
+        "companyFax": "fax number",
+        "companyEmail": "email address",
+        "companyWebsite": "website URL",
+        "companyVatId": "VAT/EU VAT ID no.",
+        "companyCurrency": "default billing currency"
+      }
+    }
+  }
+}

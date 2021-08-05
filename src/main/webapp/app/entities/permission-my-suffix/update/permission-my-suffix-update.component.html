@@ -1,0 +1,180 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhl-permission-my-suffix-heading"
+        data-cy="PermissionCreateUpdateHeading"
+        jhlTranslate="fastAdminApp.permission.home.createOrEditLabel"
+      >
+        Create or edit a Permission
+      </h2>
+
+      <div>
+        <jhl-alert-error></jhl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhlTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.permission.add"
+            for="field_add"
+            [ngbTooltip]="'fastAdminApp.permission.help.add' | translate"
+            >Add</label
+          >
+          <select class="form-control" name="add" formControlName="add" id="field_add" data-cy="add">
+            <option [ngValue]="null">{{ 'fastAdminApp.PermissionType.null' | translate }}</option>
+            <option value="NONE">{{ 'fastAdminApp.PermissionType.NONE' | translate }}</option>
+            <option value="OWN">{{ 'fastAdminApp.PermissionType.OWN' | translate }}</option>
+            <option value="ALL">{{ 'fastAdminApp.PermissionType.ALL' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('add')!.invalid && (editForm.get('add')!.dirty || editForm.get('add')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('add')?.errors?.required" jhlTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.permission.edit"
+            for="field_edit"
+            [ngbTooltip]="'fastAdminApp.permission.help.edit' | translate"
+            >Edit</label
+          >
+          <select class="form-control" name="edit" formControlName="edit" id="field_edit" data-cy="edit">
+            <option [ngValue]="null">{{ 'fastAdminApp.PermissionType.null' | translate }}</option>
+            <option value="NONE">{{ 'fastAdminApp.PermissionType.NONE' | translate }}</option>
+            <option value="OWN">{{ 'fastAdminApp.PermissionType.OWN' | translate }}</option>
+            <option value="ALL">{{ 'fastAdminApp.PermissionType.ALL' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('edit')!.invalid && (editForm.get('edit')!.dirty || editForm.get('edit')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('edit')?.errors?.required" jhlTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.permission.manage"
+            for="field_manage"
+            [ngbTooltip]="'fastAdminApp.permission.help.manage' | translate"
+            >Manage</label
+          >
+          <select class="form-control" name="manage" formControlName="manage" id="field_manage" data-cy="manage">
+            <option [ngValue]="null">{{ 'fastAdminApp.PermissionType.null' | translate }}</option>
+            <option value="NONE">{{ 'fastAdminApp.PermissionType.NONE' | translate }}</option>
+            <option value="OWN">{{ 'fastAdminApp.PermissionType.OWN' | translate }}</option>
+            <option value="ALL">{{ 'fastAdminApp.PermissionType.ALL' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('manage')!.invalid && (editForm.get('manage')!.dirty || editForm.get('manage')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('manage')?.errors?.required" jhlTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.permission.domainArea"
+            for="field_domainArea"
+            [ngbTooltip]="'fastAdminApp.permission.help.domainArea' | translate"
+            >Domain Area</label
+          >
+          <select class="form-control" name="domainArea" formControlName="domainArea" id="field_domainArea" data-cy="domainArea">
+            <option [ngValue]="null">{{ 'fastAdminApp.DomainArea.null' | translate }}</option>
+            <option value="AFFILIATE">{{ 'fastAdminApp.DomainArea.AFFILIATE' | translate }}</option>
+            <option value="CATALOG">{{ 'fastAdminApp.DomainArea.CATALOG' | translate }}</option>
+            <option value="CONTACTS">{{ 'fastAdminApp.DomainArea.CONTACTS' | translate }}</option>
+            <option value="REMINDERS">{{ 'fastAdminApp.DomainArea.REMINDERS' | translate }}</option>
+            <option value="PROFILE">{{ 'fastAdminApp.DomainArea.PROFILE' | translate }}</option>
+            <option value="BILLING">{{ 'fastAdminApp.DomainArea.BILLING' | translate }}</option>
+            <option value="CREDIT_CARD">{{ 'fastAdminApp.DomainArea.CREDIT_CARD' | translate }}</option>
+            <option value="CREDIT">{{ 'fastAdminApp.DomainArea.CREDIT' | translate }}</option>
+            <option value="CONFIGURATION_RECEIVABLES">{{ 'fastAdminApp.DomainArea.CONFIGURATION_RECEIVABLES' | translate }}</option>
+            <option value="CONFIGURATION_PAYABLES">{{ 'fastAdminApp.DomainArea.CONFIGURATION_PAYABLES' | translate }}</option>
+            <option value="ORDER_CONFIMRATIONS">{{ 'fastAdminApp.DomainArea.ORDER_CONFIMRATIONS' | translate }}</option>
+            <option value="COSTS">{{ 'fastAdminApp.DomainArea.COSTS' | translate }}</option>
+            <option value="CATEGORIES_PAYABLES">{{ 'fastAdminApp.DomainArea.CATEGORIES_PAYABLES' | translate }}</option>
+            <option value="COST_UNITS">{{ 'fastAdminApp.DomainArea.COST_UNITS' | translate }}</option>
+            <option value="EFFORTS">{{ 'fastAdminApp.DomainArea.EFFORTS' | translate }}</option>
+            <option value="EXPENSES">{{ 'fastAdminApp.DomainArea.EXPENSES' | translate }}</option>
+            <option value="EXPORTS">{{ 'fastAdminApp.DomainArea.EXPORTS' | translate }}</option>
+            <option value="INVOICES">{{ 'fastAdminApp.DomainArea.INVOICES' | translate }}</option>
+            <option value="LETTERS">{{ 'fastAdminApp.DomainArea.LETTERS' | translate }}</option>
+            <option value="NEWSLETTERS">{{ 'fastAdminApp.DomainArea.NEWSLETTERS' | translate }}</option>
+            <option value="NOTIFICATIONS">{{ 'fastAdminApp.DomainArea.NOTIFICATIONS' | translate }}</option>
+            <option value="OFFERS">{{ 'fastAdminApp.DomainArea.OFFERS' | translate }}</option>
+            <option value="PROJECTS">{{ 'fastAdminApp.DomainArea.PROJECTS' | translate }}</option>
+            <option value="DELIVERY_NOTES">{{ 'fastAdminApp.DomainArea.DELIVERY_NOTES' | translate }}</option>
+            <option value="ACTIVITES">{{ 'fastAdminApp.DomainArea.ACTIVITES' | translate }}</option>
+            <option value="CONFIGURATION_PROJECT_TIME">{{ 'fastAdminApp.DomainArea.CONFIGURATION_PROJECT_TIME' | translate }}</option>
+            <option value="RIGHTS">{{ 'fastAdminApp.DomainArea.RIGHTS' | translate }}</option>
+            <option value="MAILING_CENTER">{{ 'fastAdminApp.DomainArea.MAILING_CENTER' | translate }}</option>
+            <option value="TIME_REPORTING">{{ 'fastAdminApp.DomainArea.TIME_REPORTING' | translate }}</option>
+            <option value="UNITS">{{ 'fastAdminApp.DomainArea.UNITS' | translate }}</option>
+            <option value="USERS">{{ 'fastAdminApp.DomainArea.USERS' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('domainArea')!.invalid && (editForm.get('domainArea')!.dirty || editForm.get('domainArea')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('domainArea')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.role" for="field_role">Role</label>
+          <select class="form-control" id="field_role" data-cy="role" name="role" formControlName="role">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="roleOption.id === editForm.get('role')!.value?.id ? editForm.get('role')!.value : roleOption"
+              *ngFor="let roleOption of rolesSharedCollection; trackBy: trackRoleMySuffixById"
+            >
+              {{ roleOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.permission.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactMySuffixById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhlTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhlTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

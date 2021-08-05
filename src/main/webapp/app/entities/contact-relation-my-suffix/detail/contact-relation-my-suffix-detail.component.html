@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contactRelation">
+      <h2 data-cy="contactRelationDetailsHeading">
+        <span jhlTranslate="fastAdminApp.contactRelation.detail.title">Contact Relation</span>
+      </h2>
+
+      <hr />
+
+      <jhl-alert-error></jhl-alert-error>
+
+      <jhl-alert></jhl-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhlTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contactRelation.id }}</span>
+        </dd>
+        <dt>
+          <span
+            jhlTranslate="fastAdminApp.contactRelation.contactRelationType"
+            [ngbTooltip]="'fastAdminApp.contactRelation.help.contactRelationType' | translate"
+            >Contact Relation Type</span
+          >
+        </dt>
+        <dd>
+          <span jhlTranslate="{{ 'fastAdminApp.ContactRelationType.' + contactRelation.contactRelationType }}">{{
+            contactRelation.contactRelationType
+          }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhlTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact-relation-my-suffix', contactRelation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhlTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

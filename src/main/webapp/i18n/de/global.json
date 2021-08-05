@@ -7,6 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entitäten",
+        "ownerMySuffix": "Owner",
+        "contactMySuffix": "Contact",
+        "customFieldMySuffix": "Custom Field",
+        "contactRelationMySuffix": "Contact Relation",
+        "contactAddressMySuffix": "Contact Address",
+        "contactGroupMySuffix": "Contact Group",
+        "permissionMySuffix": "Permission",
+        "contactPersonMySuffix": "Contact Person",
+        "roleMySuffix": "Role",
+        "contactReminderMySuffix": "Contact Reminder",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

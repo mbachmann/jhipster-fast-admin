@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "CurrencyType": {
+      "null": "",
+      "CHF": "CHF",
+      "EUR": "EUR",
+      "USD": "USD"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "fastAdminApp": {
+    "contactPerson": {
+      "home": {
+        "title": "ContactPeople",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Contact Person",
+        "createOrEditLabel": "Créer ou éditer un Contact Person",
+        "search": "Recherche pour Contact Person",
+        "notFound": "Aucun Contact Person trouvé"
+      },
+      "created": "Un nouveau Contact Person a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Contact Person avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Contact Person avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Contact Person {{ id }} ?"
+      },
+      "detail": {
+        "title": "Contact Person"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "defaultPerson": "Default Person",
+      "name": "Name",
+      "surname": "Surname",
+      "gender": "Gender",
+      "email": "Email",
+      "phone": "Phone",
+      "department": "Department",
+      "salutation": "Salutation",
+      "showTitle": "Show Title",
+      "showDepartment": "Show Department",
+      "wantsNewsletter": "Wants Newsletter",
+      "customFields": "Custom Fields",
+      "help": {
+        "remoteId": "id of a remote system",
+        "defaultPerson": "whether it is a default contact&#39;s person",
+        "name": "the person first name",
+        "surname": "the person surname",
+        "gender": "gender of contact (required for P type); possible values: M - Male, F - Female, O - Other",
+        "email": "The person&#39;s eMail",
+        "phone": "the person&#39;s phone number",
+        "department": "the person&#39;s department",
+        "salutation": "e.g. Dear Mr. Jones",
+        "showTitle": "whether to show Mr/Ms before name",
+        "showDepartment": "whether to show department",
+        "wantsNewsletter": "whether person whishes to receive newsletter"
+      }
+    }
+  }
+}

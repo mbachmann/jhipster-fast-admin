@@ -1,0 +1,52 @@
+{
+  "name": "CustomField",
+  "fields": [
+    {
+      "fieldName": "domainArea",
+      "fieldType": "DomainArea",
+      "javadoc": "the custom field if for the domain resource",
+      "fieldValues": "AFFILIATE,CATALOG,CONTACTS,REMINDERS,PROFILE,BILLING,CREDIT_CARD,CREDIT,CONFIGURATION_RECEIVABLES,CONFIGURATION_PAYABLES,ORDER_CONFIMRATIONS,COSTS,CATEGORIES_PAYABLES,COST_UNITS,EFFORTS,EXPENSES,EXPORTS,INVOICES,LETTERS,NEWSLETTERS,NOTIFICATIONS,OFFERS,PROJECTS,DELIVERY_NOTES,ACTIVITES,CONFIGURATION_PROJECT_TIME,RIGHTS,MAILING_CENTER,TIME_REPORTING,UNITS,USERS"
+    },
+    {
+      "fieldName": "key",
+      "fieldType": "String",
+      "javadoc": "the key to identify the custom field"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "a name which appears on the dialog"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String",
+      "javadoc": "the value of the resourcce"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "contact"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactPerson",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "contactPerson"
+    }
+  ],
+  "javadoc": "Additional information for a resource",
+  "entityTableName": "custom_field",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "mySuffix",
+  "changelogDate": "20210805124346"
+}

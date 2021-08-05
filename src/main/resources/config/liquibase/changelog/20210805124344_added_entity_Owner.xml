@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Owner.
+    -->
+    <changeSet id="20210805124344-1" author="jhipster">
+        <createTable tableName="owner">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="remote_id" type="integer" remarks="id of a remote system">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_owner__remote_id" />
+            </column>
+            <column name="name" type="varchar(255)" remarks="user name">
+                <constraints nullable="true" />
+            </column>
+            <column name="surname" type="varchar(255)" remarks="user surname">
+                <constraints nullable="true" />
+            </column>
+            <column name="email" type="varchar(255)" remarks="user email address">
+                <constraints nullable="true" />
+            </column>
+            <column name="language" type="varchar(255)" remarks="company communication language">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_name" type="varchar(255)" remarks="company name">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_addition" type="varchar(255)" remarks="another company name line">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_country" type="varchar(255)" remarks="company address: country (ISO2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_street" type="varchar(255)" remarks="company address: street">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_street_no" type="varchar(255)" remarks="company address: street number">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_street_2" type="varchar(255)" remarks="company address: another street line">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_postcode" type="varchar(255)" remarks="company address: postcode">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_city" type="varchar(255)" remarks="company address: city ,">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_phone" type="varchar(255)" remarks="phone number">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_fax" type="varchar(255)" remarks="fax number">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_email" type="varchar(255)" remarks="email address">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_website" type="varchar(255)" remarks="website URL">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_vat_id" type="varchar(255)" remarks="VAT/EU VAT ID no.">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_currency" type="varchar(255)" remarks="default billing currency">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210805124344-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/owner.csv"
+                  separator=";"
+                  tableName="owner">
+            <column name="id" type="numeric"/>
+            <column name="remote_id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="surname" type="string"/>
+            <column name="email" type="string"/>
+            <column name="language" type="string"/>
+            <column name="company_name" type="string"/>
+            <column name="company_addition" type="string"/>
+            <column name="company_country" type="string"/>
+            <column name="company_street" type="string"/>
+            <column name="company_street_no" type="string"/>
+            <column name="company_street_2" type="string"/>
+            <column name="company_postcode" type="string"/>
+            <column name="company_city" type="string"/>
+            <column name="company_phone" type="string"/>
+            <column name="company_fax" type="string"/>
+            <column name="company_email" type="string"/>
+            <column name="company_website" type="string"/>
+            <column name="company_vat_id" type="string"/>
+            <column name="company_currency" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

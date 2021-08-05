@@ -1,0 +1,230 @@
+<div>
+  <h2 id="page-heading" data-cy="ContactHeading">
+    <span jhlTranslate="fastAdminApp.contact.home.title">Contacts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhlTranslate="fastAdminApp.contact.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contact-my-suffix"
+        [routerLink]="['/contact-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhlTranslate="fastAdminApp.contact.home.createLabel"> Create a new Contact </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhl-alert-error></jhl-alert-error>
+
+  <jhl-alert></jhl-alert>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form name="searchForm" class="form-inline">
+        <div class="input-group w-100 mt-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="currentSearch"
+            id="currentSearch"
+            name="currentSearch"
+            placeholder="{{ 'fastAdminApp.contact.home.search' | translate }}"
+          />
+
+          <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+            <fa-icon icon="search"></fa-icon>
+          </button>
+
+          <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contacts?.length === 0">
+    <span jhlTranslate="fastAdminApp.contact.home.notFound">No contacts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="contacts && contacts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhlSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhlSortBy="id"><span jhlTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhlSortBy="remoteId">
+            <span jhlTranslate="fastAdminApp.contact.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="number">
+            <span jhlTranslate="fastAdminApp.contact.number">Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="type"><span jhlTranslate="fastAdminApp.contact.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhlSortBy="gender">
+            <span jhlTranslate="fastAdminApp.contact.gender">Gender</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="genderSalutationActive">
+            <span jhlTranslate="fastAdminApp.contact.genderSalutationActive">Gender Salutation Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="name"><span jhlTranslate="fastAdminApp.contact.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhlSortBy="nameAddition">
+            <span jhlTranslate="fastAdminApp.contact.nameAddition">Name Addition</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="salutation">
+            <span jhlTranslate="fastAdminApp.contact.salutation">Salutation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="phone">
+            <span jhlTranslate="fastAdminApp.contact.phone">Phone</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="fax"><span jhlTranslate="fastAdminApp.contact.fax">Fax</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhlSortBy="email">
+            <span jhlTranslate="fastAdminApp.contact.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="website">
+            <span jhlTranslate="fastAdminApp.contact.website">Website</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="notes">
+            <span jhlTranslate="fastAdminApp.contact.notes">Notes</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="communicationLanguage">
+            <span jhlTranslate="fastAdminApp.contact.communicationLanguage">Communication Language</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="communicationChannel">
+            <span jhlTranslate="fastAdminApp.contact.communicationChannel">Communication Channel</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="communicationNewsletter">
+            <span jhlTranslate="fastAdminApp.contact.communicationNewsletter">Communication Newsletter</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="currency">
+            <span jhlTranslate="fastAdminApp.contact.currency">Currency</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="ebillAccountId">
+            <span jhlTranslate="fastAdminApp.contact.ebillAccountId">Ebill Account Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="vatIdentification">
+            <span jhlTranslate="fastAdminApp.contact.vatIdentification">Vat Identification</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="vatRate">
+            <span jhlTranslate="fastAdminApp.contact.vatRate">Vat Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="discountRate">
+            <span jhlTranslate="fastAdminApp.contact.discountRate">Discount Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="discountType">
+            <span jhlTranslate="fastAdminApp.contact.discountType">Discount Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="paymentGrace">
+            <span jhlTranslate="fastAdminApp.contact.paymentGrace">Payment Grace</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="hourlyRate">
+            <span jhlTranslate="fastAdminApp.contact.hourlyRate">Hourly Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="created">
+            <span jhlTranslate="fastAdminApp.contact.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="mainAddressId">
+            <span jhlTranslate="fastAdminApp.contact.mainAddressId">Main Address Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhlSortBy="mainAddress.id">
+            <span jhlTranslate="fastAdminApp.contact.mainAddress">Main Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contact-my-suffix', contact.id, 'view']">{{ contact.id }}</a>
+          </td>
+          <td>{{ contact.remoteId }}</td>
+          <td>{{ contact.number }}</td>
+          <td jhlTranslate="{{ 'fastAdminApp.ContactType.' + contact.type }}">{{ contact.type }}</td>
+          <td jhlTranslate="{{ 'fastAdminApp.GenderType.' + contact.gender }}">{{ contact.gender }}</td>
+          <td>{{ contact.genderSalutationActive }}</td>
+          <td>{{ contact.name }}</td>
+          <td>{{ contact.nameAddition }}</td>
+          <td>{{ contact.salutation }}</td>
+          <td>{{ contact.phone }}</td>
+          <td>{{ contact.fax }}</td>
+          <td>{{ contact.email }}</td>
+          <td>{{ contact.website }}</td>
+          <td>{{ contact.notes }}</td>
+          <td>{{ contact.communicationLanguage }}</td>
+          <td jhlTranslate="{{ 'fastAdminApp.CommunicationChannel.' + contact.communicationChannel }}">
+            {{ contact.communicationChannel }}
+          </td>
+          <td jhlTranslate="{{ 'fastAdminApp.CommunicationNewsletter.' + contact.communicationNewsletter }}">
+            {{ contact.communicationNewsletter }}
+          </td>
+          <td>{{ contact.currency }}</td>
+          <td>{{ contact.ebillAccountId }}</td>
+          <td>{{ contact.vatIdentification }}</td>
+          <td>{{ contact.vatRate }}</td>
+          <td>{{ contact.discountRate }}</td>
+          <td jhlTranslate="{{ 'fastAdminApp.DiscountRate.' + contact.discountType }}">{{ contact.discountType }}</td>
+          <td>{{ contact.paymentGrace }}</td>
+          <td>{{ contact.hourlyRate }}</td>
+          <td>{{ contact.created | formatMediumDatetime }}</td>
+          <td>{{ contact.mainAddressId }}</td>
+          <td>
+            <div *ngIf="contact.mainAddress">
+              <a [routerLink]="['/contact-address-my-suffix', contact.mainAddress?.id, 'view']">{{ contact.mainAddress?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contact-my-suffix', contact.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contact-my-suffix', contact.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contact)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="contacts && contacts.length > 0">
+    <div class="row justify-content-center">
+      <jhl-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhl-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<div>
+  <h2 id="page-heading" data-cy="PermissionHeading">
+    <span jhlTranslate="fastAdminApp.permission.home.title">Permissions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhlTranslate="fastAdminApp.permission.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-permission-my-suffix"
+        [routerLink]="['/permission-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhlTranslate="fastAdminApp.permission.home.createLabel"> Create a new Permission </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhl-alert-error></jhl-alert-error>
+
+  <jhl-alert></jhl-alert>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form name="searchForm" class="form-inline">
+        <div class="input-group w-100 mt-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="currentSearch"
+            id="currentSearch"
+            name="currentSearch"
+            placeholder="{{ 'fastAdminApp.permission.home.search' | translate }}"
+          />
+
+          <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+            <fa-icon icon="search"></fa-icon>
+          </button>
+
+          <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="permissions?.length === 0">
+    <span jhlTranslate="fastAdminApp.permission.home.notFound">No permissions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="permissions && permissions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhlTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhlTranslate="fastAdminApp.permission.add">Add</span></th>
+          <th scope="col"><span jhlTranslate="fastAdminApp.permission.edit">Edit</span></th>
+          <th scope="col"><span jhlTranslate="fastAdminApp.permission.manage">Manage</span></th>
+          <th scope="col"><span jhlTranslate="fastAdminApp.permission.domainArea">Domain Area</span></th>
+          <th scope="col"><span jhlTranslate="fastAdminApp.permission.role">Role</span></th>
+          <th scope="col"><span jhlTranslate="fastAdminApp.permission.contact">Contact</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let permission of permissions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/permission-my-suffix', permission.id, 'view']">{{ permission.id }}</a>
+          </td>
+          <td jhlTranslate="{{ 'fastAdminApp.PermissionType.' + permission.add }}">{{ permission.add }}</td>
+          <td jhlTranslate="{{ 'fastAdminApp.PermissionType.' + permission.edit }}">{{ permission.edit }}</td>
+          <td jhlTranslate="{{ 'fastAdminApp.PermissionType.' + permission.manage }}">{{ permission.manage }}</td>
+          <td jhlTranslate="{{ 'fastAdminApp.DomainArea.' + permission.domainArea }}">{{ permission.domainArea }}</td>
+          <td>
+            <div *ngIf="permission.role">
+              <a [routerLink]="['/role-my-suffix', permission.role?.id, 'view']">{{ permission.role?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="permission.contact">
+              <a [routerLink]="['/contact-my-suffix', permission.contact?.id, 'view']">{{ permission.contact?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/permission-my-suffix', permission.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/permission-my-suffix', permission.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(permission)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhlTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

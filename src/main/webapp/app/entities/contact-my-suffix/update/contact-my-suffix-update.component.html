@@ -1,0 +1,515 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhl-contact-my-suffix-heading"
+        data-cy="ContactCreateUpdateHeading"
+        jhlTranslate="fastAdminApp.contact.home.createOrEditLabel"
+      >
+        Create or edit a Contact
+      </h2>
+
+      <div>
+        <jhl-alert-error></jhl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhlTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.contact.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              jhlTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.number"
+            for="field_number"
+            [ngbTooltip]="'fastAdminApp.contact.help.number' | translate"
+            >Number</label
+          >
+          <input type="text" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+          <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.required" jhlTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.type"
+            for="field_type"
+            [ngbTooltip]="'fastAdminApp.contact.help.type' | translate"
+            >Type</label
+          >
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'fastAdminApp.ContactType.null' | translate }}</option>
+            <option value="COMPANY">{{ 'fastAdminApp.ContactType.COMPANY' | translate }}</option>
+            <option value="PRIVATE">{{ 'fastAdminApp.ContactType.PRIVATE' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" jhlTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.gender"
+            for="field_gender"
+            [ngbTooltip]="'fastAdminApp.contact.help.gender' | translate"
+            >Gender</label
+          >
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'fastAdminApp.GenderType.null' | translate }}</option>
+            <option value="MALE">{{ 'fastAdminApp.GenderType.MALE' | translate }}</option>
+            <option value="FEMALE">{{ 'fastAdminApp.GenderType.FEMALE' | translate }}</option>
+            <option value="OTHER">{{ 'fastAdminApp.GenderType.OTHER' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('gender')!.invalid && (editForm.get('gender')!.dirty || editForm.get('gender')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gender')?.errors?.required" jhlTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.genderSalutationActive"
+            for="field_genderSalutationActive"
+            [ngbTooltip]="'fastAdminApp.contact.help.genderSalutationActive' | translate"
+            >Gender Salutation Active</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="genderSalutationActive"
+            id="field_genderSalutationActive"
+            data-cy="genderSalutationActive"
+            formControlName="genderSalutationActive"
+          />
+          <div
+            *ngIf="
+              editForm.get('genderSalutationActive')!.invalid &&
+              (editForm.get('genderSalutationActive')!.dirty || editForm.get('genderSalutationActive')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('genderSalutationActive')?.errors?.required"
+              jhlTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.contact.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhlTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.nameAddition"
+            for="field_nameAddition"
+            [ngbTooltip]="'fastAdminApp.contact.help.nameAddition' | translate"
+            >Name Addition</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nameAddition"
+            id="field_nameAddition"
+            data-cy="nameAddition"
+            formControlName="nameAddition"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.salutation"
+            for="field_salutation"
+            [ngbTooltip]="'fastAdminApp.contact.help.salutation' | translate"
+            >Salutation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="salutation"
+            id="field_salutation"
+            data-cy="salutation"
+            formControlName="salutation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.phone"
+            for="field_phone"
+            [ngbTooltip]="'fastAdminApp.contact.help.phone' | translate"
+            >Phone</label
+          >
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.fax"
+            for="field_fax"
+            [ngbTooltip]="'fastAdminApp.contact.help.fax' | translate"
+            >Fax</label
+          >
+          <input type="text" class="form-control" name="fax" id="field_fax" data-cy="fax" formControlName="fax" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.email"
+            for="field_email"
+            [ngbTooltip]="'fastAdminApp.contact.help.email' | translate"
+            >Email</label
+          >
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.website"
+            for="field_website"
+            [ngbTooltip]="'fastAdminApp.contact.help.website' | translate"
+            >Website</label
+          >
+          <input type="text" class="form-control" name="website" id="field_website" data-cy="website" formControlName="website" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.notes"
+            for="field_notes"
+            [ngbTooltip]="'fastAdminApp.contact.help.notes' | translate"
+            >Notes</label
+          >
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.communicationLanguage"
+            for="field_communicationLanguage"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationLanguage' | translate"
+            >Communication Language</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="communicationLanguage"
+            id="field_communicationLanguage"
+            data-cy="communicationLanguage"
+            formControlName="communicationLanguage"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.communicationChannel"
+            for="field_communicationChannel"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationChannel' | translate"
+            >Communication Channel</label
+          >
+          <select
+            class="form-control"
+            name="communicationChannel"
+            formControlName="communicationChannel"
+            id="field_communicationChannel"
+            data-cy="communicationChannel"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.CommunicationChannel.null' | translate }}</option>
+            <option value="NO_PREFERENCE">{{ 'fastAdminApp.CommunicationChannel.NO_PREFERENCE' | translate }}</option>
+            <option value="BY_EMAIL">{{ 'fastAdminApp.CommunicationChannel.BY_EMAIL' | translate }}</option>
+            <option value="BY_POST">{{ 'fastAdminApp.CommunicationChannel.BY_POST' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.communicationNewsletter"
+            for="field_communicationNewsletter"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationNewsletter' | translate"
+            >Communication Newsletter</label
+          >
+          <select
+            class="form-control"
+            name="communicationNewsletter"
+            formControlName="communicationNewsletter"
+            id="field_communicationNewsletter"
+            data-cy="communicationNewsletter"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.CommunicationNewsletter.null' | translate }}</option>
+            <option value="SEND_ADDRESS_AND_CONTACTS">
+              {{ 'fastAdminApp.CommunicationNewsletter.SEND_ADDRESS_AND_CONTACTS' | translate }}
+            </option>
+            <option value="SEND_TO_MAIN_CONTACT_ONLY">
+              {{ 'fastAdminApp.CommunicationNewsletter.SEND_TO_MAIN_CONTACT_ONLY' | translate }}
+            </option>
+            <option value="NO_NEWS_LETTER">{{ 'fastAdminApp.CommunicationNewsletter.NO_NEWS_LETTER' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.currency"
+            for="field_currency"
+            [ngbTooltip]="'fastAdminApp.contact.help.currency' | translate"
+            >Currency</label
+          >
+          <input type="text" class="form-control" name="currency" id="field_currency" data-cy="currency" formControlName="currency" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.ebillAccountId"
+            for="field_ebillAccountId"
+            [ngbTooltip]="'fastAdminApp.contact.help.ebillAccountId' | translate"
+            >Ebill Account Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="ebillAccountId"
+            id="field_ebillAccountId"
+            data-cy="ebillAccountId"
+            formControlName="ebillAccountId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.vatIdentification"
+            for="field_vatIdentification"
+            [ngbTooltip]="'fastAdminApp.contact.help.vatIdentification' | translate"
+            >Vat Identification</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="vatIdentification"
+            id="field_vatIdentification"
+            data-cy="vatIdentification"
+            formControlName="vatIdentification"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.vatRate"
+            for="field_vatRate"
+            [ngbTooltip]="'fastAdminApp.contact.help.vatRate' | translate"
+            >Vat Rate</label
+          >
+          <input type="number" class="form-control" name="vatRate" id="field_vatRate" data-cy="vatRate" formControlName="vatRate" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.discountRate"
+            for="field_discountRate"
+            [ngbTooltip]="'fastAdminApp.contact.help.discountRate' | translate"
+            >Discount Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="discountRate"
+            id="field_discountRate"
+            data-cy="discountRate"
+            formControlName="discountRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.discountType"
+            for="field_discountType"
+            [ngbTooltip]="'fastAdminApp.contact.help.discountType' | translate"
+            >Discount Type</label
+          >
+          <select class="form-control" name="discountType" formControlName="discountType" id="field_discountType" data-cy="discountType">
+            <option [ngValue]="null">{{ 'fastAdminApp.DiscountRate.null' | translate }}</option>
+            <option value="IN_PERCENT">{{ 'fastAdminApp.DiscountRate.IN_PERCENT' | translate }}</option>
+            <option value="AMOUNT">{{ 'fastAdminApp.DiscountRate.AMOUNT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.paymentGrace"
+            for="field_paymentGrace"
+            [ngbTooltip]="'fastAdminApp.contact.help.paymentGrace' | translate"
+            >Payment Grace</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="paymentGrace"
+            id="field_paymentGrace"
+            data-cy="paymentGrace"
+            formControlName="paymentGrace"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.hourlyRate"
+            for="field_hourlyRate"
+            [ngbTooltip]="'fastAdminApp.contact.help.hourlyRate' | translate"
+            >Hourly Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="hourlyRate"
+            id="field_hourlyRate"
+            data-cy="hourlyRate"
+            formControlName="hourlyRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.created"
+            for="field_created"
+            [ngbTooltip]="'fastAdminApp.contact.help.created' | translate"
+            >Created</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contact.mainAddressId"
+            for="field_mainAddressId"
+            [ngbTooltip]="'fastAdminApp.contact.help.mainAddressId' | translate"
+            >Main Address Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="mainAddressId"
+            id="field_mainAddressId"
+            data-cy="mainAddressId"
+            formControlName="mainAddressId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhlTranslate="fastAdminApp.contact.mainAddress" for="field_mainAddress">Main Address</label>
+          <select class="form-control" id="field_mainAddress" data-cy="mainAddress" name="mainAddress" formControlName="mainAddress">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                contactAddressOption.id === editForm.get('mainAddress')!.value?.id
+                  ? editForm.get('mainAddress')!.value
+                  : contactAddressOption
+              "
+              *ngFor="let contactAddressOption of mainAddressesCollection; trackBy: trackContactAddressMySuffixById"
+            >
+              {{ contactAddressOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label jhlTranslate="fastAdminApp.contact.relations" for="field_relations">Relations</label>
+          <select class="form-control" id="field_relations" data-cy="relations" multiple name="relations" formControlName="relations">
+            <option
+              [ngValue]="getSelectedContactRelationMySuffix(contactRelationOption, editForm.get('relations')!.value)"
+              *ngFor="let contactRelationOption of contactRelationsSharedCollection; trackBy: trackContactRelationMySuffixById"
+            >
+              {{ contactRelationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhlTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhlTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

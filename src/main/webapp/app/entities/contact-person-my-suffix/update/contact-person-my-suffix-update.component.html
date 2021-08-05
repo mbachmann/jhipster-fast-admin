@@ -1,0 +1,219 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhl-contact-person-my-suffix-heading"
+        data-cy="ContactPersonCreateUpdateHeading"
+        jhlTranslate="fastAdminApp.contactPerson.home.createOrEditLabel"
+      >
+        Create or edit a Contact Person
+      </h2>
+
+      <div>
+        <jhl-alert-error></jhl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhlTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              jhlTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.defaultPerson"
+            for="field_defaultPerson"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.defaultPerson' | translate"
+            >Default Person</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultPerson"
+            id="field_defaultPerson"
+            data-cy="defaultPerson"
+            formControlName="defaultPerson"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.surname"
+            for="field_surname"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.surname' | translate"
+            >Surname</label
+          >
+          <input type="text" class="form-control" name="surname" id="field_surname" data-cy="surname" formControlName="surname" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.gender"
+            for="field_gender"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.gender' | translate"
+            >Gender</label
+          >
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'fastAdminApp.GenderType.null' | translate }}</option>
+            <option value="MALE">{{ 'fastAdminApp.GenderType.MALE' | translate }}</option>
+            <option value="FEMALE">{{ 'fastAdminApp.GenderType.FEMALE' | translate }}</option>
+            <option value="OTHER">{{ 'fastAdminApp.GenderType.OTHER' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.email"
+            for="field_email"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.email' | translate"
+            >Email</label
+          >
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.phone"
+            for="field_phone"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.phone' | translate"
+            >Phone</label
+          >
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.department"
+            for="field_department"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.department' | translate"
+            >Department</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="department"
+            id="field_department"
+            data-cy="department"
+            formControlName="department"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.salutation"
+            for="field_salutation"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.salutation' | translate"
+            >Salutation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="salutation"
+            id="field_salutation"
+            data-cy="salutation"
+            formControlName="salutation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.showTitle"
+            for="field_showTitle"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.showTitle' | translate"
+            >Show Title</label
+          >
+          <input type="checkbox" class="form-check" name="showTitle" id="field_showTitle" data-cy="showTitle" formControlName="showTitle" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.showDepartment"
+            for="field_showDepartment"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.showDepartment' | translate"
+            >Show Department</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="showDepartment"
+            id="field_showDepartment"
+            data-cy="showDepartment"
+            formControlName="showDepartment"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhlTranslate="fastAdminApp.contactPerson.wantsNewsletter"
+            for="field_wantsNewsletter"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.wantsNewsletter' | translate"
+            >Wants Newsletter</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="wantsNewsletter"
+            id="field_wantsNewsletter"
+            data-cy="wantsNewsletter"
+            formControlName="wantsNewsletter"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhlTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhlTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

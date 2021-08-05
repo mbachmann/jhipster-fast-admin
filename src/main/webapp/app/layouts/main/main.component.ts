@@ -7,7 +7,7 @@ import * as dayjs from 'dayjs';
 import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
-  selector: 'jhi-main',
+  selector: 'jhl-main',
   templateUrl: './main.component.html',
 })
 export class MainComponent implements OnInit {

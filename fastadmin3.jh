@@ -1,0 +1,373 @@
+/**
+ * JHipster JDL model for myApp
+ */
+application {
+  config {
+    baseName fastAdmin,
+    applicationType monolith,
+    packageName ch.united.fastadmin,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular,
+    websocket spring-websocket,
+    testFrameworks	[cypress],
+    searchEngine elasticsearch,
+    nativeLanguage en,
+    languages	[en, de, fr],
+    jhiPrefix jhl,
+    devDatabaseType h2Memory,
+    cacheProvider ehcache,
+    dtoSuffix DTO
+  }
+  entities *
+}
+
+// ==============================
+// Entity definitions starts here
+// ==============================
+
+
+enum LanguageType {
+    FRENCH(fr), ENGLISH(en), GERMAN(de)
+}
+
+enum CurrencyType {
+	CHF, EUR, USD
+}
+
+entity Owner {
+   /** id of a remote system */	
+
+   remoteId Integer	unique
+   /** user name */
+   name String 
+   /** user surname */
+   surname String  
+   /**  user email address  */
+   email String 
+   /** company communication language */
+   language LanguageType 
+   /** company name */
+   companyName String 
+   /** another company name line */
+   companyAddition String 
+   /** company address: country (ISO2) */
+   companyCountry String 
+   /** company address: street  */
+   companyStreet String 
+   /** company address: street number */
+   companyStreetNo String 
+   /** company address: another street line */
+   companyStreet2 String 
+   /**  company address: postcode */
+   companyPostcode String 
+   /** company address: city , */
+   companyCity String 
+   /** phone number */
+   companyPhone String 
+   /** fax number */
+   companyFax String
+   /** email address */
+   companyEmail String
+   /** website URL */
+   companyWebsite String
+   /**  VAT/EU VAT ID no.*/
+   companyVatId String
+   /**  default billing currency */
+   companyCurrency CurrencyType
+}
+
+/** Contact  */
+entity Contact {
+   /** id of a remote system */	
+   remoteId Integer	unique
+   /** unique number */	
+   number String required unique
+   /**type of contact; possible values: C - Company, P - Private */
+   type ContactType required
+   /** gender of contact (required for P type); possible values: M - Male, F - Female, O - Other */
+   gender GenderType required
+   /**  whether to show Mr./Ms. before contact name (for P type only) */
+   genderSalutationActive Boolean required
+   /** name of contact */
+   name String required
+   /** additional text for contact name */
+   nameAddition String 
+   /** e.g. Dear Mr. Jones */
+   salutation String 
+   /** contact phone number  */
+   phone String 
+   /**  contact fax number */
+   fax String
+   /** contact email address */
+   email String 
+   /** contact website address */
+   website String 
+   /** additional notes */
+   notes String 
+   /** main communication language */
+   communicationLanguage String 
+   /** possible values: U - No preference, E - Documents by e-mail, P - Documents by post */
+   communicationChannel CommunicationChannel 
+   /** possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted */
+   communicationNewsletter CommunicationNewsletter 
+   /**  default currency */
+   currency String
+   /** e-bill account identification number */
+   ebillAccountId String 
+   /** VAT identification number */
+   vatIdentification String 
+   /**  default VAT rate */
+   vatRate Double
+   /**  default discount rate */
+   discountRate Double
+   /** default discount type; possible values P - in %, A - Amount */
+   discountType DiscountRate 
+   /**  default payment deadline */
+   paymentGrace Integer
+   /** cost per hour */
+   hourlyRate Double 
+   /** when contact was created */
+   created ZonedDateTime 
+   /**  main address id */
+   mainAddressId Integer
+}
+
+/** Additional information for a resource */
+entity CustomField {
+  /** the custom field if for the domain resource */	
+  domainArea DomainArea
+  /** the key to identify the custom field */
+  key   String
+  /** a name which appears on the dialog */
+  name  String
+  /** the value of the resourcce */
+  value String
+}
+
+/** possible values: U - No preference, E - Documents by e-mail, P - Documents by post */
+enum CommunicationChannel {
+	NO_PREFERENCE(U),
+	BY_EMAIL(E),
+	BY_POST(P)
+}
+
+/** possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted */
+enum CommunicationNewsletter {
+	SEND_ADDRESS_AND_CONTACTS(A), SEND_TO_MAIN_CONTACT_ONLY(M), NO_NEWS_LETTER(N)
+}
+
+entity ContactRelation {
+	/** type of contact's relation; possible values: type of contact's relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others */ 
+   	contactRelationType ContactRelationType
+}
+
+/** type of contact's relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others */ 
+enum ContactRelationType {
+	CUSTOMER(CL), CREDITOR(CR), TEAM(TE), AUTORITY(AT), MEDICAL(ME), OTHERS(OT)
+}
+
+/** default discount type; possible values P - in %, A - Amount */
+enum DiscountRate {
+	IN_PERCENT(P), AMOUNT(A)
+}
+
+/**type of contact; possible values: C - Company, P - Private */
+enum ContactType {
+   COMPANY(M), PRIVATE(F)
+}
+/** gender of contact (required for P type); possible values: M - Male, F - Female, O - Other */
+enum GenderType {
+   MALE(M), FEMALE(F), OTHER(O)
+}
+
+/* Address information for a contact */
+entity ContactAddress {
+  /** id of a remote system */	
+  remoteId Integer	unique	
+  /** whether it is a default contact's address */
+  defaultAddress Boolean required
+  /** country ISO2 code (eg. CH) */
+  country String required
+  /** the street of the address */
+  street String
+  /** number of apartment */
+  streetNo String
+  /** additional address information */
+  street2 String
+  /** postcode oder zip code */
+  postcode String
+  /** city */
+  city String
+  /** whether to hide this address on documents */
+  hideOnDocuments Boolean required
+  /** whether the address is a default postal address */
+  defaultPrepage Boolean required
+}
+
+/** The group a contact belongs to */
+entity ContactGroup {
+  name String required
+}
+
+/** actions that can be performed on an item (possible values: view, edit) */
+entity Permission {
+	/** the use can add a new resource */
+	add PermissionType required	
+	/** the use can edit a resource */
+	edit PermissionType required 
+	/** the use can manage a resource */
+	manage PermissionType required
+	/** the permission is for the domain resource */
+	domainArea DomainArea required
+}
+
+enum PermissionType {
+	NONE, 
+	OWN, 
+	ALL
+}
+
+entity ContactPerson {
+    /** id of a remote system */	
+    remoteId Integer	unique	
+    /**  whether it is a default contact's person */
+    defaultPerson Boolean 
+    /** the person first name */
+    name String
+    /** the person surname */
+    surname String
+    /** gender of contact (required for P type); possible values: M - Male, F - Female, O - Other */
+    gender GenderType
+    /** The person's eMail */
+    email String
+    /**  the person's phone number */
+    phone String
+    /** the person's department*/
+    department String
+    /** e.g. Dear Mr. Jones */
+    salutation String
+    /** whether to show Mr/Ms before name */
+    showTitle Boolean
+    /**  whether to show department */
+    showDepartment Boolean
+    /** whether person whishes to receive newsletter  */
+    wantsNewsletter Boolean
+
+}
+
+entity Role {
+	name String
+}
+
+entity ContactReminder {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /**  id of a contact */
+    contactId Integer
+    /**  optional: name of a contact */
+    contactName String 
+    /** date and time of event that should be reminded (format: IOS8601) ,*/
+    dateTime ZonedDateTime
+    /** title of reminder */
+    title String
+    /**  description of reminder */
+    description String
+    /** value of interval in which reminder will be activated , /*/
+    intervalValue Integer
+    /** one of: ['hour','day','month'] */
+    intervalType IntervalType
+}
+
+/** one of: ['hour','day','month']  */
+enum IntervalType {
+	HOUR(hour),
+	DAY(day),
+	MONTH(month)
+}
+
+enum DomainArea {
+	AFFILIATE,
+	CATALOG,
+	CONTACTS,
+	REMINDERS,
+	PROFILE,
+	BILLING,
+	CREDIT_CARD,
+	CREDIT,
+	CONFIGURATION_RECEIVABLES,
+	CONFIGURATION_PAYABLES,
+	ORDER_CONFIMRATIONS,
+	COSTS
+	CATEGORIES_PAYABLES,
+	COST_UNITS,
+	EFFORTS,
+	EXPENSES,
+	EXPORTS,
+	INVOICES,
+	LETTERS,
+	NEWSLETTERS,
+	NOTIFICATIONS,
+	OFFERS,
+	PROJECTS,
+	DELIVERY_NOTES,
+	ACTIVITES,
+	CONFIGURATION_PROJECT_TIME,
+	RIGHTS,
+	MAILING_CENTER,
+	TIME_REPORTING,
+	UNITS,
+	USERS
+}
+
+relationship ManyToMany {
+   /** type of contact's relation; possible values: type of contact's relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others */ 
+   Contact{relations} to ContactRelation{contacts} 
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+
+    /** permission can be, edit or manage */
+    Contact{permissions} to Permission
+    /** contact group  */
+    Contact{groups} to ContactGroup
+    /** custom edit fields */
+    Contact{customFields} to CustomField
+    /** custom edit fields */    
+    ContactPerson{customFields} to CustomField
+
+}
+
+relationship ManyToOne {
+
+    Permission{role} to Role
+}
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+
+
+    Contact{mainAddress} to ContactAddress
+}
+
+
+
+
+// =======
+// Options
+// =======
+
+// Set pagination options
+paginate ContactAddress with infinite-scroll
+paginate Contact with pagination
+
+filter *
+
+dto * with mapstruct
+
+// Set service options to all 
+service all with serviceImpl 
+// Set an angular suffix
+angularSuffix * with mySuffix

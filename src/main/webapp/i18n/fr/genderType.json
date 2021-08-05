@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "GenderType": {
+      "null": "",
+      "MALE": "M",
+      "FEMALE": "F",
+      "OTHER": "O"
+    }
+  }
+}

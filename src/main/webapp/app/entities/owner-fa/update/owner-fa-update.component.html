@@ -1,0 +1,359 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="fa-owner-fa-heading" data-cy="OwnerCreateUpdateHeading" faTranslate="fastAdminApp.owner.home.createOrEditLabel">
+        Create or edit a Owner
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.owner.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.owner.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.surname"
+            for="field_surname"
+            [ngbTooltip]="'fastAdminApp.owner.help.surname' | translate"
+            >Surname</label
+          >
+          <input type="text" class="form-control" name="surname" id="field_surname" data-cy="surname" formControlName="surname" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.email"
+            for="field_email"
+            [ngbTooltip]="'fastAdminApp.owner.help.email' | translate"
+            >Email</label
+          >
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.language"
+            for="field_language"
+            [ngbTooltip]="'fastAdminApp.owner.help.language' | translate"
+            >Language</label
+          >
+          <select class="form-control" name="language" formControlName="language" id="field_language" data-cy="language">
+            <option [ngValue]="null">{{ 'fastAdminApp.LanguageType.null' | translate }}</option>
+            <option value="FRENCH">{{ 'fastAdminApp.LanguageType.FRENCH' | translate }}</option>
+            <option value="ENGLISH">{{ 'fastAdminApp.LanguageType.ENGLISH' | translate }}</option>
+            <option value="GERMAN">{{ 'fastAdminApp.LanguageType.GERMAN' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyName"
+            for="field_companyName"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyName' | translate"
+            >Company Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyName"
+            id="field_companyName"
+            data-cy="companyName"
+            formControlName="companyName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyAddition"
+            for="field_companyAddition"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyAddition' | translate"
+            >Company Addition</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyAddition"
+            id="field_companyAddition"
+            data-cy="companyAddition"
+            formControlName="companyAddition"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyCountry"
+            for="field_companyCountry"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyCountry' | translate"
+            >Company Country</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyCountry"
+            id="field_companyCountry"
+            data-cy="companyCountry"
+            formControlName="companyCountry"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyStreet"
+            for="field_companyStreet"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyStreet' | translate"
+            >Company Street</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyStreet"
+            id="field_companyStreet"
+            data-cy="companyStreet"
+            formControlName="companyStreet"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyStreetNo"
+            for="field_companyStreetNo"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyStreetNo' | translate"
+            >Company Street No</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyStreetNo"
+            id="field_companyStreetNo"
+            data-cy="companyStreetNo"
+            formControlName="companyStreetNo"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyStreet2"
+            for="field_companyStreet2"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyStreet2' | translate"
+            >Company Street 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyStreet2"
+            id="field_companyStreet2"
+            data-cy="companyStreet2"
+            formControlName="companyStreet2"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyPostcode"
+            for="field_companyPostcode"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyPostcode' | translate"
+            >Company Postcode</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyPostcode"
+            id="field_companyPostcode"
+            data-cy="companyPostcode"
+            formControlName="companyPostcode"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyCity"
+            for="field_companyCity"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyCity' | translate"
+            >Company City</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyCity"
+            id="field_companyCity"
+            data-cy="companyCity"
+            formControlName="companyCity"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyPhone"
+            for="field_companyPhone"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyPhone' | translate"
+            >Company Phone</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyPhone"
+            id="field_companyPhone"
+            data-cy="companyPhone"
+            formControlName="companyPhone"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyFax"
+            for="field_companyFax"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyFax' | translate"
+            >Company Fax</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyFax"
+            id="field_companyFax"
+            data-cy="companyFax"
+            formControlName="companyFax"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyEmail"
+            for="field_companyEmail"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyEmail' | translate"
+            >Company Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyEmail"
+            id="field_companyEmail"
+            data-cy="companyEmail"
+            formControlName="companyEmail"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyWebsite"
+            for="field_companyWebsite"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyWebsite' | translate"
+            >Company Website</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyWebsite"
+            id="field_companyWebsite"
+            data-cy="companyWebsite"
+            formControlName="companyWebsite"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyVatId"
+            for="field_companyVatId"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyVatId' | translate"
+            >Company Vat Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyVatId"
+            id="field_companyVatId"
+            data-cy="companyVatId"
+            formControlName="companyVatId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.owner.companyCurrency"
+            for="field_companyCurrency"
+            [ngbTooltip]="'fastAdminApp.owner.help.companyCurrency' | translate"
+            >Company Currency</label
+          >
+          <select
+            class="form-control"
+            name="companyCurrency"
+            formControlName="companyCurrency"
+            id="field_companyCurrency"
+            data-cy="companyCurrency"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.CurrencyType.null' | translate }}</option>
+            <option value="CHF">{{ 'fastAdminApp.CurrencyType.CHF' | translate }}</option>
+            <option value="EUR">{{ 'fastAdminApp.CurrencyType.EUR' | translate }}</option>
+            <option value="USD">{{ 'fastAdminApp.CurrencyType.USD' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

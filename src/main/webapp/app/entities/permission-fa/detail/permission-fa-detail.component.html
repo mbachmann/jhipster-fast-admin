@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="permission">
+      <h2 data-cy="permissionDetailsHeading"><span faTranslate="fastAdminApp.permission.detail.title">Permission</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ permission.id }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.permission.add" [ngbTooltip]="'fastAdminApp.permission.help.add' | translate">Add</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.PermissionType.' + permission.add }}">{{ permission.add }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.permission.edit" [ngbTooltip]="'fastAdminApp.permission.help.edit' | translate">Edit</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.PermissionType.' + permission.edit }}">{{ permission.edit }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.permission.manage" [ngbTooltip]="'fastAdminApp.permission.help.manage' | translate">Manage</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.PermissionType.' + permission.manage }}">{{ permission.manage }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.permission.domainArea" [ngbTooltip]="'fastAdminApp.permission.help.domainArea' | translate"
+            >Domain Area</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DomainArea.' + permission.domainArea }}">{{ permission.domainArea }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.permission.role">Role</span></dt>
+        <dd>
+          <div *ngIf="permission.role">
+            <a [routerLink]="['/role-fa', permission.role?.id, 'view']">{{ permission.role?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.permission.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="permission.contact">
+            <a [routerLink]="['/contact-fa', permission.contact?.id, 'view']">{{ permission.contact?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/permission-fa', permission.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

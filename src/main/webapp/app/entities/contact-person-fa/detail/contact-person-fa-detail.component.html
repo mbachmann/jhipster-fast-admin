@@ -1,0 +1,128 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contactPerson">
+      <h2 data-cy="contactPersonDetailsHeading"><span faTranslate="fastAdminApp.contactPerson.detail.title">Contact Person</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contactPerson.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.remoteId" [ngbTooltip]="'fastAdminApp.contactPerson.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.remoteId }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactPerson.defaultPerson"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.defaultPerson' | translate"
+            >Default Person</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.defaultPerson }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.name" [ngbTooltip]="'fastAdminApp.contactPerson.help.name' | translate">Name</span>
+        </dt>
+        <dd>
+          <span>{{ contactPerson.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.surname" [ngbTooltip]="'fastAdminApp.contactPerson.help.surname' | translate"
+            >Surname</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.surname }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.gender" [ngbTooltip]="'fastAdminApp.contactPerson.help.gender' | translate"
+            >Gender</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.GenderType.' + contactPerson.gender }}">{{ contactPerson.gender }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.email" [ngbTooltip]="'fastAdminApp.contactPerson.help.email' | translate"
+            >Email</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.email }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.phone" [ngbTooltip]="'fastAdminApp.contactPerson.help.phone' | translate"
+            >Phone</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.phone }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.department" [ngbTooltip]="'fastAdminApp.contactPerson.help.department' | translate"
+            >Department</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.department }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.salutation" [ngbTooltip]="'fastAdminApp.contactPerson.help.salutation' | translate"
+            >Salutation</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.salutation }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactPerson.showTitle" [ngbTooltip]="'fastAdminApp.contactPerson.help.showTitle' | translate"
+            >Show Title</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.showTitle }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactPerson.showDepartment"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.showDepartment' | translate"
+            >Show Department</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.showDepartment }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactPerson.wantsNewsletter"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.wantsNewsletter' | translate"
+            >Wants Newsletter</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactPerson.wantsNewsletter }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact-person-fa', contactPerson.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

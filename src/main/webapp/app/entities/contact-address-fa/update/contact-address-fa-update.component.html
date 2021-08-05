@@ -1,0 +1,223 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-contact-address-fa-heading"
+        data-cy="ContactAddressCreateUpdateHeading"
+        faTranslate="fastAdminApp.contactAddress.home.createOrEditLabel"
+      >
+        Create or edit a Contact Address
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.defaultAddress"
+            for="field_defaultAddress"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.defaultAddress' | translate"
+            >Default Address</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultAddress"
+            id="field_defaultAddress"
+            data-cy="defaultAddress"
+            formControlName="defaultAddress"
+          />
+          <div
+            *ngIf="
+              editForm.get('defaultAddress')!.invalid && (editForm.get('defaultAddress')!.dirty || editForm.get('defaultAddress')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('defaultAddress')?.errors?.required"
+              faTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.country"
+            for="field_country"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.country' | translate"
+            >Country</label
+          >
+          <input type="text" class="form-control" name="country" id="field_country" data-cy="country" formControlName="country" />
+          <div *ngIf="editForm.get('country')!.invalid && (editForm.get('country')!.dirty || editForm.get('country')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('country')?.errors?.required" faTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.street"
+            for="field_street"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.street' | translate"
+            >Street</label
+          >
+          <input type="text" class="form-control" name="street" id="field_street" data-cy="street" formControlName="street" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.streetNo"
+            for="field_streetNo"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.streetNo' | translate"
+            >Street No</label
+          >
+          <input type="text" class="form-control" name="streetNo" id="field_streetNo" data-cy="streetNo" formControlName="streetNo" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.street2"
+            for="field_street2"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.street2' | translate"
+            >Street 2</label
+          >
+          <input type="text" class="form-control" name="street2" id="field_street2" data-cy="street2" formControlName="street2" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.postcode"
+            for="field_postcode"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.postcode' | translate"
+            >Postcode</label
+          >
+          <input type="text" class="form-control" name="postcode" id="field_postcode" data-cy="postcode" formControlName="postcode" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.city"
+            for="field_city"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.city' | translate"
+            >City</label
+          >
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.hideOnDocuments"
+            for="field_hideOnDocuments"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.hideOnDocuments' | translate"
+            >Hide On Documents</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hideOnDocuments"
+            id="field_hideOnDocuments"
+            data-cy="hideOnDocuments"
+            formControlName="hideOnDocuments"
+          />
+          <div
+            *ngIf="
+              editForm.get('hideOnDocuments')!.invalid &&
+              (editForm.get('hideOnDocuments')!.dirty || editForm.get('hideOnDocuments')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('hideOnDocuments')?.errors?.required"
+              faTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.defaultPrepage"
+            for="field_defaultPrepage"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.defaultPrepage' | translate"
+            >Default Prepage</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultPrepage"
+            id="field_defaultPrepage"
+            data-cy="defaultPrepage"
+            formControlName="defaultPrepage"
+          />
+          <div
+            *ngIf="
+              editForm.get('defaultPrepage')!.invalid && (editForm.get('defaultPrepage')!.dirty || editForm.get('defaultPrepage')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('defaultPrepage')?.errors?.required"
+              faTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

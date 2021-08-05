@@ -1,0 +1,59 @@
+{
+  "name": "ContactReminder",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "contactId",
+      "fieldType": "Integer",
+      "javadoc": "id of a contact"
+    },
+    {
+      "fieldName": "contactName",
+      "fieldType": "String",
+      "javadoc": "optional: name of a contact"
+    },
+    {
+      "fieldName": "dateTime",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "date and time of event that should be reminded (format: IOS8601) ,"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "javadoc": "title of reminder"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "javadoc": "description of reminder"
+    },
+    {
+      "fieldName": "intervalValue",
+      "fieldType": "Integer",
+      "javadoc": "value of interval in which reminder will be activated , /"
+    },
+    {
+      "fieldName": "intervalType",
+      "fieldType": "IntervalType",
+      "javadoc": "one of: ['hour','day','month']",
+      "fieldValues": "HOUR (hour),DAY (day),MONTH (month)"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "contact_reminder",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210805131233"
+}

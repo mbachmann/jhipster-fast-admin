@@ -1,0 +1,72 @@
+{
+  "name": "ContactAddress",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "defaultAddress",
+      "fieldType": "Boolean",
+      "javadoc": "whether it is a default contact's address",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String",
+      "javadoc": "country ISO2 code (eg. CH)",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "street",
+      "fieldType": "String",
+      "javadoc": "the street of the address"
+    },
+    {
+      "fieldName": "streetNo",
+      "fieldType": "String",
+      "javadoc": "number of apartment"
+    },
+    {
+      "fieldName": "street2",
+      "fieldType": "String",
+      "javadoc": "additional address information"
+    },
+    {
+      "fieldName": "postcode",
+      "fieldType": "String",
+      "javadoc": "postcode oder zip code"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String",
+      "javadoc": "city"
+    },
+    {
+      "fieldName": "hideOnDocuments",
+      "fieldType": "Boolean",
+      "javadoc": "whether to hide this address on documents",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "defaultPrepage",
+      "fieldType": "Boolean",
+      "javadoc": "whether the address is a default postal address",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "contact_address",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210805131228"
+}

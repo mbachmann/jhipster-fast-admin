@@ -10,6 +10,7 @@ import ch.united.fastadmin.IntegrationTest;
 import ch.united.fastadmin.domain.Authority;
 import ch.united.fastadmin.domain.User;
 import ch.united.fastadmin.repository.UserRepository;
+import ch.united.fastadmin.repository.search.UserSearchRepository;
 import ch.united.fastadmin.security.AuthoritiesConstants;
 import ch.united.fastadmin.service.dto.AdminUserDTO;
 import ch.united.fastadmin.service.dto.UserDTO;
@@ -63,6 +64,14 @@ class UserResourceIT {
 
     @Autowired
     private UserRepository userRepository;
+
+    /**
+     * This repository is mocked in the ch.united.fastadmin.repository.search test package.
+     *
+     * @see ch.united.fastadmin.repository.search.UserSearchRepositoryMockConfiguration
+     */
+    @Autowired
+    private UserSearchRepository mockUserSearchRepository;
 
     @Autowired
     private UserMapper userMapper;
@@ -189,6 +198,7 @@ class UserResourceIT {
     void createUserWithExistingLogin() throws Exception {
         // Initialize the database
         userRepository.saveAndFlush(user);
+        mockUserSearchRepository.save(user);
         int databaseSizeBeforeCreate = userRepository.findAll().size();
 
         ManagedUserVM managedUserVM = new ManagedUserVM();
@@ -218,6 +228,7 @@ class UserResourceIT {
     void createUserWithExistingEmail() throws Exception {
         // Initialize the database
         userRepository.saveAndFlush(user);
+        mockUserSearchRepository.save(user);
         int databaseSizeBeforeCreate = userRepository.findAll().size();
 
         ManagedUserVM managedUserVM = new ManagedUserVM();
@@ -266,6 +277,8 @@ class UserResourceIT {
     void getUser() throws Exception {
         // Initialize the database
         userRepository.saveAndFlush(user);
+
+        mockUserSearchRepository.save(user);
 
         assertThat(cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).get(user.getLogin())).isNull();
 
@@ -388,6 +401,7 @@ class UserResourceIT {
     void updateUserExistingEmail() throws Exception {
         // Initialize the database with 2 users
         userRepository.saveAndFlush(user);
+        mockUserSearchRepository.save(user);
 
         User anotherUser = new User();
         anotherUser.setLogin("jhipster");
@@ -399,6 +413,7 @@ class UserResourceIT {
         anotherUser.setImageUrl("");
         anotherUser.setLangKey("en");
         userRepository.saveAndFlush(anotherUser);
+        mockUserSearchRepository.save(anotherUser);
 
         // Update the user
         User updatedUser = userRepository.findById(user.getId()).get();
@@ -431,6 +446,7 @@ class UserResourceIT {
     void updateUserExistingLogin() throws Exception {
         // Initialize the database
         userRepository.saveAndFlush(user);
+        mockUserSearchRepository.save(user);
 
         User anotherUser = new User();
         anotherUser.setLogin("jhipster");
@@ -442,6 +458,7 @@ class UserResourceIT {
         anotherUser.setImageUrl("");
         anotherUser.setLangKey("en");
         userRepository.saveAndFlush(anotherUser);
+        mockUserSearchRepository.save(anotherUser);
 
         // Update the user
         User updatedUser = userRepository.findById(user.getId()).get();

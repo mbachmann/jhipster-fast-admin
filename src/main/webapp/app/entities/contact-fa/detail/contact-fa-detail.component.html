@@ -1,0 +1,221 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contact">
+      <h2 data-cy="contactDetailsHeading"><span faTranslate="fastAdminApp.contact.detail.title">Contact</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contact.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.remoteId" [ngbTooltip]="'fastAdminApp.contact.help.remoteId' | translate">Remote Id</span>
+        </dt>
+        <dd>
+          <span>{{ contact.remoteId }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.number" [ngbTooltip]="'fastAdminApp.contact.help.number' | translate">Number</span></dt>
+        <dd>
+          <span>{{ contact.number }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.type" [ngbTooltip]="'fastAdminApp.contact.help.type' | translate">Type</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.ContactType.' + contact.type }}">{{ contact.type }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.gender" [ngbTooltip]="'fastAdminApp.contact.help.gender' | translate">Gender</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.GenderType.' + contact.gender }}">{{ contact.gender }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contact.genderSalutationActive"
+            [ngbTooltip]="'fastAdminApp.contact.help.genderSalutationActive' | translate"
+            >Gender Salutation Active</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.genderSalutationActive }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.name" [ngbTooltip]="'fastAdminApp.contact.help.name' | translate">Name</span></dt>
+        <dd>
+          <span>{{ contact.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.nameAddition" [ngbTooltip]="'fastAdminApp.contact.help.nameAddition' | translate"
+            >Name Addition</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.nameAddition }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.salutation" [ngbTooltip]="'fastAdminApp.contact.help.salutation' | translate"
+            >Salutation</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.salutation }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.phone" [ngbTooltip]="'fastAdminApp.contact.help.phone' | translate">Phone</span></dt>
+        <dd>
+          <span>{{ contact.phone }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.fax" [ngbTooltip]="'fastAdminApp.contact.help.fax' | translate">Fax</span></dt>
+        <dd>
+          <span>{{ contact.fax }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.email" [ngbTooltip]="'fastAdminApp.contact.help.email' | translate">Email</span></dt>
+        <dd>
+          <span>{{ contact.email }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.website" [ngbTooltip]="'fastAdminApp.contact.help.website' | translate">Website</span>
+        </dt>
+        <dd>
+          <span>{{ contact.website }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.notes" [ngbTooltip]="'fastAdminApp.contact.help.notes' | translate">Notes</span></dt>
+        <dd>
+          <span>{{ contact.notes }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contact.communicationLanguage"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationLanguage' | translate"
+            >Communication Language</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.communicationLanguage }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contact.communicationChannel"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationChannel' | translate"
+            >Communication Channel</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.CommunicationChannel.' + contact.communicationChannel }}">{{
+            contact.communicationChannel
+          }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contact.communicationNewsletter"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationNewsletter' | translate"
+            >Communication Newsletter</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.CommunicationNewsletter.' + contact.communicationNewsletter }}">{{
+            contact.communicationNewsletter
+          }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.currency" [ngbTooltip]="'fastAdminApp.contact.help.currency' | translate">Currency</span>
+        </dt>
+        <dd>
+          <span>{{ contact.currency }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.ebillAccountId" [ngbTooltip]="'fastAdminApp.contact.help.ebillAccountId' | translate"
+            >Ebill Account Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.ebillAccountId }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contact.vatIdentification"
+            [ngbTooltip]="'fastAdminApp.contact.help.vatIdentification' | translate"
+            >Vat Identification</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.vatIdentification }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.vatRate" [ngbTooltip]="'fastAdminApp.contact.help.vatRate' | translate">Vat Rate</span>
+        </dt>
+        <dd>
+          <span>{{ contact.vatRate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.discountRate" [ngbTooltip]="'fastAdminApp.contact.help.discountRate' | translate"
+            >Discount Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.discountRate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.discountType" [ngbTooltip]="'fastAdminApp.contact.help.discountType' | translate"
+            >Discount Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DiscountRate.' + contact.discountType }}">{{ contact.discountType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.paymentGrace" [ngbTooltip]="'fastAdminApp.contact.help.paymentGrace' | translate"
+            >Payment Grace</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.paymentGrace }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.hourlyRate" [ngbTooltip]="'fastAdminApp.contact.help.hourlyRate' | translate"
+            >Hourly Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.hourlyRate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.created" [ngbTooltip]="'fastAdminApp.contact.help.created' | translate">Created</span>
+        </dt>
+        <dd>
+          <span>{{ contact.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contact.mainAddressId" [ngbTooltip]="'fastAdminApp.contact.help.mainAddressId' | translate"
+            >Main Address Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contact.mainAddressId }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.contactMainAddress">Contact Main Address</span></dt>
+        <dd>
+          <div *ngIf="contact.contactMainAddress">
+            <a [routerLink]="['/contact-address-fa', contact.contactMainAddress?.id, 'view']">{{ contact.contactMainAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contact.relations">Relations</span></dt>
+        <dd>
+          <span *ngFor="let relations of contact.relations; let last = last">
+            <a [routerLink]="['/contact-relation-fa', relations?.id, 'view']">{{ relations.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact-fa', contact.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

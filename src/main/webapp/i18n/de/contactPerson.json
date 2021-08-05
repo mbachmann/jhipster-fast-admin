@@ -1,0 +1,51 @@
+{
+  "fastAdminApp": {
+    "contactPerson": {
+      "home": {
+        "title": "Contact People",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Contact Person erstellen",
+        "createOrEditLabel": "Contact Person erstellen oder bearbeiten",
+        "search": "Suche nach Contact Person",
+        "notFound": "Keine Contact People gefunden"
+      },
+      "created": "Contact Person erstellt mit ID {{ param }}",
+      "updated": "Contact Person aktualisiert mit ID {{ param }}",
+      "deleted": "Contact Person gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Contact Person {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Contact Person"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "defaultPerson": "Default Person",
+      "name": "Name",
+      "surname": "Surname",
+      "gender": "Gender",
+      "email": "Email",
+      "phone": "Phone",
+      "department": "Department",
+      "salutation": "Salutation",
+      "showTitle": "Show Title",
+      "showDepartment": "Show Department",
+      "wantsNewsletter": "Wants Newsletter",
+      "customFields": "Custom Fields",
+      "help": {
+        "remoteId": "id of a remote system",
+        "defaultPerson": "whether it is a default contact&#39;s person",
+        "name": "the person first name",
+        "surname": "the person surname",
+        "gender": "gender of contact (required for P type); possible values: M - Male, F - Female, O - Other",
+        "email": "The person&#39;s eMail",
+        "phone": "the person&#39;s phone number",
+        "department": "the person&#39;s department",
+        "salutation": "e.g. Dear Mr. Jones",
+        "showTitle": "whether to show Mr/Ms before name",
+        "showDepartment": "whether to show department",
+        "wantsNewsletter": "whether person whishes to receive newsletter"
+      }
+    }
+  }
+}

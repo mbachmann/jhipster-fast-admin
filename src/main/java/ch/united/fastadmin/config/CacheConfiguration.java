@@ -48,6 +48,22 @@ public class CacheConfiguration {
             createCache(cm, ch.united.fastadmin.domain.User.class.getName());
             createCache(cm, ch.united.fastadmin.domain.Authority.class.getName());
             createCache(cm, ch.united.fastadmin.domain.User.class.getName() + ".authorities");
+            createCache(cm, ch.united.fastadmin.domain.Owner.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Contact.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Contact.class.getName() + ".permissions");
+            createCache(cm, ch.united.fastadmin.domain.Contact.class.getName() + ".groups");
+            createCache(cm, ch.united.fastadmin.domain.Contact.class.getName() + ".customFields");
+            createCache(cm, ch.united.fastadmin.domain.Contact.class.getName() + ".relations");
+            createCache(cm, ch.united.fastadmin.domain.CustomField.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.ContactRelation.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.ContactRelation.class.getName() + ".contacts");
+            createCache(cm, ch.united.fastadmin.domain.ContactAddress.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.ContactGroup.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.Permission.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.ContactPerson.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.ContactPerson.class.getName() + ".customFields");
+            createCache(cm, ch.united.fastadmin.domain.Role.class.getName());
+            createCache(cm, ch.united.fastadmin.domain.ContactReminder.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

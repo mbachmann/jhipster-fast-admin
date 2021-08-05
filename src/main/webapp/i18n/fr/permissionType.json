@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "PermissionType": {
+      "null": "",
+      "NONE": "NONE",
+      "OWN": "OWN",
+      "ALL": "ALL"
+    }
+  }
+}

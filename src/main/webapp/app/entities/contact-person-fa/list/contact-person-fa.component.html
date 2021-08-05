@@ -1,0 +1,125 @@
+<div>
+  <h2 id="page-heading" data-cy="ContactPersonHeading">
+    <span faTranslate="fastAdminApp.contactPerson.home.title">Contact People</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.contactPerson.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contact-person-fa"
+        [routerLink]="['/contact-person-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" faTranslate="fastAdminApp.contactPerson.home.createLabel"> Create a new Contact Person </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form name="searchForm" class="form-inline">
+        <div class="input-group w-100 mt-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="currentSearch"
+            id="currentSearch"
+            name="currentSearch"
+            placeholder="{{ 'fastAdminApp.contactPerson.home.search' | translate }}"
+          />
+
+          <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+            <fa-icon icon="search"></fa-icon>
+          </button>
+
+          <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contactPeople?.length === 0">
+    <span faTranslate="fastAdminApp.contactPerson.home.notFound">No contactPeople found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="contactPeople && contactPeople.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.remoteId">Remote Id</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.defaultPerson">Default Person</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.name">Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.surname">Surname</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.gender">Gender</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.email">Email</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.phone">Phone</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.department">Department</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.salutation">Salutation</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.showTitle">Show Title</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.showDepartment">Show Department</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.contactPerson.wantsNewsletter">Wants Newsletter</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contactPerson of contactPeople; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contact-person-fa', contactPerson.id, 'view']">{{ contactPerson.id }}</a>
+          </td>
+          <td>{{ contactPerson.remoteId }}</td>
+          <td>{{ contactPerson.defaultPerson }}</td>
+          <td>{{ contactPerson.name }}</td>
+          <td>{{ contactPerson.surname }}</td>
+          <td faTranslate="{{ 'fastAdminApp.GenderType.' + contactPerson.gender }}">{{ contactPerson.gender }}</td>
+          <td>{{ contactPerson.email }}</td>
+          <td>{{ contactPerson.phone }}</td>
+          <td>{{ contactPerson.department }}</td>
+          <td>{{ contactPerson.salutation }}</td>
+          <td>{{ contactPerson.showTitle }}</td>
+          <td>{{ contactPerson.showDepartment }}</td>
+          <td>{{ contactPerson.wantsNewsletter }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contact-person-fa', contactPerson.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contact-person-fa', contactPerson.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contactPerson)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

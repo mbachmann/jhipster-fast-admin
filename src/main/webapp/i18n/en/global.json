@@ -7,6 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "ownerFa": "Owner",
+        "contactFa": "Contact",
+        "customFieldFa": "Custom Field",
+        "contactRelationFa": "Contact Relation",
+        "contactAddressFa": "Contact Address",
+        "contactGroupFa": "Contact Group",
+        "permissionFa": "Permission",
+        "contactPersonFa": "Contact Person",
+        "roleFa": "Role",
+        "contactReminderFa": "Contact Reminder",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

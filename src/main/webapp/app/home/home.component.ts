@@ -7,7 +7,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 
 @Component({
-  selector: 'jhi-home',
+  selector: 'fa-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

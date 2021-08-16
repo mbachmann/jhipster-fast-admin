@@ -1,0 +1,22 @@
+{
+  "name": "Permission",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "actions that can be performed on an item (possible values: view, edit)",
+  "entityTableName": "permission",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210816182752"
+}

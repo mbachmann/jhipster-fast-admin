@@ -1,0 +1,126 @@
+{
+  "name": "DocumentLetter",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "contactName",
+      "fieldType": "String",
+      "javadoc": "name of a contact"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "javadoc": "date of the letter"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "javadoc": "title of the document"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String",
+      "javadoc": "content of the document"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "DocumentLanguage",
+      "javadoc": "language; possible values: de, en, es, fr, it ,",
+      "fieldValues": "FRENCH (fr),ENGLISH (en),GERMAN (de),SPANISH (es),ITALIAN (it)"
+    },
+    {
+      "fieldName": "pageAmount",
+      "fieldType": "Integer",
+      "javadoc": "how many pages the document has"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "optional notes"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "LetterStatus",
+      "javadoc": "status of letter, possible values: DR - draft, S - sent, D - deleted (but still visible)",
+      "fieldValues": "DRAFT (DR),SENT (S),DELETED (D)"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customFieldValue",
+      "otherEntityRelationshipName": "documentLetter",
+      "javadoc": "custom edit fields",
+      "relationshipName": "customFields"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "documentFreeText",
+      "otherEntityRelationshipName": "documentLetter",
+      "javadoc": "the free texts belonging to this letter",
+      "relationshipName": "freeTexts"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "documentLetter",
+      "javadoc": "the letter contact",
+      "relationshipName": "contact"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "documentLetter",
+      "javadoc": "the optional contact address",
+      "relationshipName": "contactAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactPerson",
+      "otherEntityRelationshipName": "documentLetter",
+      "javadoc": "the optional contact person",
+      "relationshipName": "contactPerson"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "documentLetter",
+      "javadoc": "the optional postal address",
+      "relationshipName": "contactPrePageAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "layout",
+      "otherEntityRelationshipName": "documentLetter",
+      "javadoc": "the layout information for rendering",
+      "relationshipName": "layout"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "signature",
+      "otherEntityRelationshipName": "documentLetter",
+      "javadoc": "the related user signature",
+      "relationshipName": "layout"
+    }
+  ],
+  "entityTableName": "document_letter",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210816182730"
+}

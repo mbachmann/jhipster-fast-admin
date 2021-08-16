@@ -1,0 +1,104 @@
+{
+  "name": "Isr",
+  "fields": [
+    {
+      "fieldName": "default",
+      "fieldType": "Boolean",
+      "javadoc": "whether ISR is a default one"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "IsrType",
+      "javadoc": "SR type; possible values: ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, RIS - red inpayment slip, QR Code and QR Code with reference",
+      "fieldValues": "RIS (RIS),IBAN (IBAN),ISR (ISR),QR (QR),QRREF (QRREF)"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "IsrPosition",
+      "javadoc": "ISR position; possible values: A - additional page, F - first page, L - last page",
+      "fieldValues": "ADDITIONAL_PAGE (A),FIRST_PAGE (F),LAST_PAGE (L)"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "optional ISR name (for internal system use only)"
+    },
+    {
+      "fieldName": "bankName",
+      "fieldType": "String",
+      "javadoc": "Name of the bank"
+    },
+    {
+      "fieldName": "bankAddress",
+      "fieldType": "String",
+      "javadoc": "Address of the bank"
+    },
+    {
+      "fieldName": "recipientName",
+      "fieldType": "String",
+      "javadoc": "name of the recipient"
+    },
+    {
+      "fieldName": "recipientAddition",
+      "fieldType": "String",
+      "javadoc": "additional information of the recipient"
+    },
+    {
+      "fieldName": "recipientStreet",
+      "fieldType": "String",
+      "javadoc": "street of the recipient"
+    },
+    {
+      "fieldName": "recipientCity",
+      "fieldType": "String",
+      "javadoc": "city of the recipient"
+    },
+    {
+      "fieldName": "deliveryNumber",
+      "fieldType": "String",
+      "javadoc": "the number (BESR or REF)"
+    },
+    {
+      "fieldName": "iban",
+      "fieldType": "String",
+      "javadoc": "the IBAN account number"
+    },
+    {
+      "fieldName": "subscriberNumber",
+      "fieldType": "String",
+      "javadoc": "the subscriber number (Teilnehmernummer)"
+    },
+    {
+      "fieldName": "leftPrintAdjust",
+      "fieldType": "Double",
+      "javadoc": "left print adjust in mm"
+    },
+    {
+      "fieldName": "topPrintAdjust",
+      "fieldType": "Double",
+      "javadoc": "top print adjust in mm"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "ISR definition for ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, RIS - red inpayment slip, QR Code and QR Code with reference",
+  "entityTableName": "isr",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210816182741"
+}

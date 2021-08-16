@@ -1,0 +1,49 @@
+{
+  "name": "CostUnit",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "cost unit's (Kostenstelle) internal number"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "cost unit's name"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "javadoc": "cost unit's description"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "CostUnitType",
+      "javadoc": "cost unit's type: one of: ['P','U'] ,",
+      "fieldValues": "PRODUCTIVE (P),NOT_PRODUCTIVE (U)"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "cost_unit",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210816182743"
+}

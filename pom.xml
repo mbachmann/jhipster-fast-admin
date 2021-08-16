@@ -61,7 +61,6 @@
         <jaxb-runtime.version>2.3.3</jaxb-runtime.version>
         <archunit-junit5.version>0.19.0</archunit-junit5.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
         <!-- Plugin versions -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
@@ -84,7 +83,6 @@
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <jib-maven-plugin.version>3.1.1</jib-maven-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
-        <openapi-generator-maven-plugin.version>5.1.1</openapi-generator-maven-plugin.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
         <sonar-maven-plugin.version>3.9.0.2155</sonar-maven-plugin.version>
         <!-- jhipster-needle-maven-property -->
@@ -156,11 +154,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>${jackson-databind-nullable.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -390,14 +383,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <!--
-                    Plugin that provides API-first development using openapi-generator to
-                    generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition file
-                -->
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
             </plugin>
             <!-- jhipster-needle-maven-add-plugin -->
         </plugins>
@@ -811,35 +796,6 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <!--
-                        Plugin that provides API-first development using openapi-generator to
-                        generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition file
-                    -->
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <version>${openapi-generator-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
-                                <generatorName>spring</generatorName>
-                                <apiPackage>ch.united.fastadmin.web.api</apiPackage>
-                                <modelPackage>ch.united.fastadmin.service.api.dto</modelPackage>
-                                <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-                                <importMappings>Problem=org.zalando.problem.Problem</importMappings>
-                                <skipValidateSpec>false</skipValidateSpec>
-                                <configOptions>
-                                    <delegatePattern>true</delegatePattern>
-                                    <title>fast-admin</title>
-                                </configOptions>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>${sonar-maven-plugin.version}</version>
@@ -1213,22 +1169,31 @@
                                                 <ignore/>
                                             </action>
                                         </pluginExecution>
-                                        <pluginExecution>
-                                            <pluginExecutionFilter>
-                                                <groupId>org.openapitools</groupId>
-                                                <artifactId>openapi-generator-maven-plugin</artifactId>
-                                                <versionRange>${openapi-generator-maven-plugin.version}</versionRange>
-                                                <goals>
-                                                    <goal>generate</goal>
-                                                </goals>
-                                            </pluginExecutionFilter>
-                                            <action>
-                                                <ignore />
-                                            </action>
-                                        </pluginExecution>
                                     </pluginExecutions>
                                 </lifecycleMappingMetadata>
                             </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>e2e</id>
+            <build>
+                <finalName>e2e</finalName>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>repackage</id>
+                                    <goals>
+                                        <goal>repackage</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
                         </plugin>
                     </plugins>
                 </pluginManagement>

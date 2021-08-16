@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-contact-relation-fa-heading"
+        data-cy="ContactRelationCreateUpdateHeading"
+        faTranslate="fastAdminApp.contactRelation.home.createOrEditLabel"
+      >
+        Create or edit a Contact Relation
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactRelation.contactRelationType"
+            for="field_contactRelationType"
+            [ngbTooltip]="'fastAdminApp.contactRelation.help.contactRelationType' | translate"
+            >Contact Relation Type</label
+          >
+          <select
+            class="form-control"
+            name="contactRelationType"
+            formControlName="contactRelationType"
+            id="field_contactRelationType"
+            data-cy="contactRelationType"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.ContactRelationType.null' | translate }}</option>
+            <option value="CUSTOMER">{{ 'fastAdminApp.ContactRelationType.CUSTOMER' | translate }}</option>
+            <option value="CREDITOR">{{ 'fastAdminApp.ContactRelationType.CREDITOR' | translate }}</option>
+            <option value="TEAM">{{ 'fastAdminApp.ContactRelationType.TEAM' | translate }}</option>
+            <option value="AUTORITY">{{ 'fastAdminApp.ContactRelationType.AUTORITY' | translate }}</option>
+            <option value="MEDICAL">{{ 'fastAdminApp.ContactRelationType.MEDICAL' | translate }}</option>
+            <option value="OTHERS">{{ 'fastAdminApp.ContactRelationType.OTHERS' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

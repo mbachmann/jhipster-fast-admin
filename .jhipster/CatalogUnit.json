@@ -1,0 +1,62 @@
+{
+  "name": "CatalogUnit",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "Name of the Unit",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nameDe",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nameEn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nameFr",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nameIt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "scope",
+      "fieldType": "CatalogScope",
+      "javadoc": "scope, one of: s - service, p - product, a - all",
+      "fieldValues": "SERVICE (S),PRODUCT (P),ALL (A)"
+    },
+    {
+      "fieldName": "custom",
+      "fieldType": "Boolean",
+      "javadoc": "is unit a custom company unit (if not, it's a system unit)"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "System Units\\n\\n14  -         All\\n17  Credit    All\\n13  Flat      All\\n7  Item      Product\\n9  Litres    Product\\n16  Metres    Product\\n15  Minutes   All\\n8  kg        Product\\n12  km        All\\n10  m2        Product\\n11  m3        Product",
+  "entityTableName": "catalog_unit",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210816182726"
+}

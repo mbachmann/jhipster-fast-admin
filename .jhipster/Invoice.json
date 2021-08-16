@@ -1,0 +1,261 @@
+{
+  "name": "Invoice",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "document number",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "contactName",
+      "fieldType": "String",
+      "javadoc": "name of a contact"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "javadoc": "date of the document"
+    },
+    {
+      "fieldName": "due",
+      "fieldType": "LocalDate",
+      "javadoc": "due date of the invoice"
+    },
+    {
+      "fieldName": "periodFrom",
+      "fieldType": "LocalDate",
+      "javadoc": "service period from"
+    },
+    {
+      "fieldName": "periodTo",
+      "fieldType": "LocalDate",
+      "javadoc": "service period to"
+    },
+    {
+      "fieldName": "periodText",
+      "fieldType": "String",
+      "javadoc": "service/delivery"
+    },
+    {
+      "fieldName": "currency",
+      "fieldType": "Currency",
+      "javadoc": "currency (e.g. CHF, EUR)",
+      "fieldValues": "AED (AED),AFN (AFN),ALL (ALL),AMD (AMD),ANG (ANG),AOA (AOA),ARS (ARS),AUD (AUD),AWG (AWG),AZN (AZN),BAM (BAM),BBD (BBD),BDT (BDT),BGN (BGN),BHD (BHD),BIF (BIF),BMD (BMD),BND (BND),BOB (BOB),BOV (BOV),BRL (BRL),BSD (BSD),BTN (BTN),BWP (BWP),BYN (BYN),BYR (BYR),BZD (BZD),CAD (CAD),CDF (CDF),CHE (CHE),CHF (CHF),CHW (CHW),CLF (CLF),CLP (CLP),CNY (CNY),COP (COP),COU (COU),CRC (CRC),CUC (CUC),CUP (CUP),CVE (CVE),CZK (CZK),DJF (DJF),DKK (DKK),DOP (DOP),DZD (DZD),EGP (EGP),ERN (ERN),ETB (ETB),EUR (EUR),FJD (FJD),FKP (FKP),GBP (GBP),GEL (GEL),GHS (GHS),GIP (GIP),GMD (GMD),GNF (GNF),GTQ (GTQ),GYD (GYD),HKD (HKD),HNL (HNL),HRK (HRK),HTG (HTG),HUF (HUF),IDR (IDR),ILS (ILS),INR (INR),IQD (IQD),IRR (IRR),ISK (ISK),JMD (JMD),JOD (JOD),JPY (JPY),KES (KES),KGS (KGS),KHR (KHR),KMF (KMF),KPW (KPW),KRW (KRW),KWD (KWD),KYD (KYD),KZT (KZT),LAK (LAK),LBP (LBP),LKR (LKR),LRD (LRD),LSL (LSL),LYD (LYD),MAD (MAD),MDL (MDL),MGA (MGA),MKD (MKD),MMK (MMK),MNT (MNT),MOP (MOP),MRO (MRO),MUR (MUR),MVR (MVR),MWK (MWK),MXN (MXN),MXV (MXV),MYR (MYR),MZN (MZN),NAD (NAD),NGN (NGN),NIO (NIO),NOK (NOK),NPR (NPR),NZD (NZD),OMR (OMR),PAB (PAB),PEN (PEN),PGK (PGK),PHP (PHP),PKR (PKR),PLN (PLN),PYG (PYG),QAR (QAR),RON (RON),RSD (RSD),RUB (RUB),RWF (RWF),SAR (SAR),SBD (SBD),SCR (SCR),SDG (SDG),SEK (SEK),SGD (SGD),SHP (SHP),SLL (SLL),SOS (SOS),SRD (SRD),SSP (SSP),STD (STD),SYP (SYP),SZL (SZL),THB (THB),TJS (TJS),TMT (TMT),TND (TND),TOP (TOP),TRY (TRY),TTD (TTD),TWD (TWD),TZS (TZS),UAH (UAH),UGX (UGX),USD (USD),USN (USN),UYI (UYI),UYU (UYU),UZS (UZS),VEF (VEF),VND (VND),VUV (VUV),WST (WST),XAF (XAF),XAG (XAG),XAU (XAU),XBA (XBA),XBB (XBB),XBC (XBC),XBD (XBD),XCD (XCD),XDR (XDR),XFU (XFU),XOF (XOF),XPD (XPD),XPF (XPF),XPT (XPT),XSU (XSU),XTS (XTS),XUA (XUA),XXX (XXX),YER (YER),ZAR (ZAR),ZMW (ZMW)"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Double",
+      "javadoc": "total amount of the delivery note"
+    },
+    {
+      "fieldName": "vatIncluded",
+      "fieldType": "Boolean",
+      "javadoc": "whether prices in delivery note include VAT"
+    },
+    {
+      "fieldName": "discountRate",
+      "fieldType": "Double",
+      "javadoc": "optional discount rate"
+    },
+    {
+      "fieldName": "discountType",
+      "fieldType": "DiscountType",
+      "javadoc": "optional discount type; possible values: A - amount, P - in %",
+      "fieldValues": "IN_PERCENT (P),AMOUNT (A)"
+    },
+    {
+      "fieldName": "cashDiscountRate",
+      "fieldType": "Integer",
+      "javadoc": "cash discount value in %"
+    },
+    {
+      "fieldName": "cashDiscountDate",
+      "fieldType": "LocalDate",
+      "javadoc": "cash discount deadline date"
+    },
+    {
+      "fieldName": "totalPaid",
+      "fieldType": "Double",
+      "javadoc": "paid amount of the invoice"
+    },
+    {
+      "fieldName": "paidDate",
+      "fieldType": "String",
+      "javadoc": "date when invoice was fully paid"
+    },
+    {
+      "fieldName": "isrPosition",
+      "fieldType": "IsrPosition",
+      "javadoc": "ISR position; possible values: A - additional page, F - first page, L - last page",
+      "fieldValues": "ADDITIONAL_PAGE (A),FIRST_PAGE (F),LAST_PAGE (L)"
+    },
+    {
+      "fieldName": "isrReferenceNumber",
+      "fieldType": "String",
+      "javadoc": "ISR reference number"
+    },
+    {
+      "fieldName": "paymentLinkPaypal",
+      "fieldType": "Boolean",
+      "javadoc": "whether to print PayPal link on invoice"
+    },
+    {
+      "fieldName": "paymentLinkPaypalUrl",
+      "fieldType": "String",
+      "javadoc": "PayPal link URL"
+    },
+    {
+      "fieldName": "paymentLinkPostfinance",
+      "fieldType": "Boolean",
+      "javadoc": "whether to print PostFinance link on invoice"
+    },
+    {
+      "fieldName": "paymentLinkPostfinanceUrl",
+      "fieldType": "String",
+      "javadoc": "PostFinance link URL"
+    },
+    {
+      "fieldName": "paymentLinkPayrexx",
+      "fieldType": "Boolean",
+      "javadoc": "whether to print Payrexx link on invoice"
+    },
+    {
+      "fieldName": "paymentLinkPayrexxUrl",
+      "fieldType": "String",
+      "javadoc": "Payrexx link URL"
+    },
+    {
+      "fieldName": "paymentLinkSmartcommerce",
+      "fieldType": "Boolean",
+      "javadoc": "whether to print SmartCommerce link on invoice"
+    },
+    {
+      "fieldName": "paymentLinkSmartcommerceUrl",
+      "fieldType": "String",
+      "javadoc": "SmartCommerce link URL"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "DocumentLanguage",
+      "javadoc": "language; possible values: de, en, es, fr, it ,",
+      "fieldValues": "FRENCH (fr),ENGLISH (en),GERMAN (de),SPANISH (es),ITALIAN (it)"
+    },
+    {
+      "fieldName": "pageAmount",
+      "fieldType": "Integer",
+      "javadoc": "how many pages the document has"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "optional notes"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "InvoiceStatus",
+      "javadoc": "status of invoice, possible values: DR - draft, S - sent, P - paid,\\nPP - partially paid, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder,\\nR - reminder, DC - debt collection, C - cancelled, D - deleted (but still visible)",
+      "fieldValues": "DRAFT (DR),SENT (S),PAYED (P),PARTIALLY_PAID (PP),PAYMENT_REMINDER (R),FIRST_REMINDER (R1),SECOND_REMINDER (R2),THIRD_REMINDER (R3),DEBT_COLLECTION (DC),CANCELD (C),DELETED (D)"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "documentFreeText",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the free texts belonging to this document",
+      "relationshipName": "freeTexts"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "descriptiveDocumentText",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the title, introduction, condition texts belonging to this document",
+      "relationshipName": "texts"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "documentPosition",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the positions belonging to this document",
+      "relationshipName": "positions"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the letter contact",
+      "relationshipName": "contact"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the optional contact address",
+      "relationshipName": "contactAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactPerson",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the optional contact person",
+      "relationshipName": "contactPerson"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the optional postal address",
+      "relationshipName": "contactPrePageAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "layout",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the layout information for rendering",
+      "relationshipName": "layout"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "signature",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the related user signature",
+      "relationshipName": "layout"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "bankAccount",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the related bank account",
+      "relationshipName": "bankAccount"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "isr",
+      "otherEntityRelationshipName": "invoice",
+      "javadoc": "the related payment slip (red and orange valid until 30.09.2022)",
+      "relationshipName": "bankAccount"
+    }
+  ],
+  "entityTableName": "invoice",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210816182732"
+}

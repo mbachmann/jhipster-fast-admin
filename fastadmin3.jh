@@ -1,0 +1,1434 @@
+/**
+ * JHipster JDL model for myApp
+ */
+application {
+  config {
+    baseName fastAdmin,
+    applicationType monolith,
+    packageName ch.united.fastadmin,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular,
+    websocket spring-websocket,
+    testFrameworks	[cypress],
+    searchEngine false,
+    // searchEngine elasticsearch,
+    nativeLanguage en,
+    languages	[en, de, fr],
+    jhiPrefix fa,
+    devDatabaseType h2Memory,
+    cacheProvider ehcache,
+    dtoSuffix DTO
+  }
+  entities *
+}
+
+/*
+ * Available placeholders are:
+ * {N} - Continuous numbering
+ * {YYYY} - Current year, e.g. 2021
+ * {YY} - Current year, e.g. 21
+ * {MM} - Current month, e.g. 04
+ * {M} - Current month, e.g. 4
+ * {DD} - Current day, e.g. 03
+ * {D} - Current day, e.g. 3
+ * 
+ * 
+ * {N} - Fortlaufende Nummerierung
+ * {YYYY} - Aktuelles Jahr, z.B. 2021
+ * {YY} - Aktuelles Jahr, z.B. 21
+ * {MM} - Aktueller Monat, z.B. 04
+ * {M} - Aktueller Monat, z.B. 4
+ * {DD} - Aktueller Tag, z.B. 03
+ * {D} - Aktueller Tag, z.B. 3
+ * 
+ */
+
+// ==============================
+// Entity definitions starts here
+// ==============================
+
+
+/** language; possible values: de, en, fr */
+enum CompanyLanguage {
+    FRENCH(fr), ENGLISH(en), GERMAN(de)
+}
+
+
+enum CompanyCurrency {
+	CHF, EUR, USD
+}
+
+entity Owner {
+   /** id of a remote system */	
+
+   remoteId Integer	unique
+   /** user name */
+   name String 
+   /** user surname */
+   surname String  
+   /**  user email address  */
+   email String 
+   /** company communication language */
+   language CompanyLanguage 
+   /** company name */
+   companyName String 
+   /** another company name line */
+   companyAddition String 
+   /** company address: country (ISO2) */
+   companyCountry Country 
+   /** company address: street  */
+   companyStreet String 
+   /** company address: street number */
+   companyStreetNo String 
+   /** company address: another street line */
+   companyStreet2 String 
+   /**  company address: postcode */
+   companyPostcode String 
+   /** company address: city , */
+   companyCity String 
+   /** phone number */
+   companyPhone String 
+   /** fax number */
+   companyFax String
+   /** email address */
+   companyEmail String
+   /** website URL */
+   companyWebsite String
+   /**  VAT/EU VAT ID no.*/
+   companyVatId String
+   /**  default billing currency */
+   companyCurrency CompanyCurrency
+}
+
+// ==============================
+// Contact Entities
+// ==============================
+
+/** Contact  */
+entity Contact {
+   /** id of a remote system */	
+   remoteId Integer	unique
+   /** unique number */	
+   number String unique
+   /**type of contact; possible values: C - Company, P - Private */
+   type ContactType required
+   /** gender of contact (required for P type); possible values: M - Male, F - Female, O - Other */
+   gender GenderType required
+   /**  whether to show Mr./Ms. before contact name (for P type only) */
+   genderSalutationActive Boolean required
+   /** name of contact */
+   name String required
+   /** additional text for contact name (maiden name)*/
+   nameAddition String 
+   /** e.g. Dear Mr. Jones */
+   salutation String 
+   /** contact phone number  */
+   phone String 
+   /**  contact fax number */
+   fax String
+   /** contact email address */
+   email String 
+   /** contact website address */
+   website String 
+   /** additional notes */
+   notes String 
+   /** main communication language */
+   communicationLanguage String 
+   /** possible values: U - No preference, E - Documents by e-mail, P - Documents by post */
+   communicationChannel CommunicationChannel 
+   /** possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted */
+   communicationNewsletter CommunicationNewsletter 
+   /**  default currency */
+   currency Currency
+   /** e-bill account identification number */
+   ebillAccountId String 
+   /** VAT identification number */
+   vatIdentification String 
+   /**  default VAT rate */
+   vatRate Double
+   /**  default discount rate */
+   discountRate Double
+   /** default discount type; possible values P - in %, A - Amount */
+   discountType DiscountType 
+   /**  default payment deadline */
+   paymentGrace Integer
+   /** cost per hour */
+   hourlyRate Double 
+   /** when contact was created */
+   created ZonedDateTime 
+   /**  main address id */
+   mainAddressId Integer
+   /** contact birthday  */
+   birthDate LocalDate
+   /** contact birth place  */
+   birthPlace String
+   /** contact place of origin */
+   placeOfOrigin String
+   /** citizen of country 1 */
+   citizenCountry1 String
+   /** citizen of country 1 */
+   citizenCountry2 String
+   /** the social security number */
+   socialSecurityNumber String
+   /** hobbies and activities in free time */
+   hobbies String
+   /** day structure */
+   dailyWork String
+   /** attribute 1 */
+   contactAttribute01 String
+   /** image of contact */
+   avatar ImageBlob 
+   /** image type */
+   imageType String
+   /** is not active anymore */
+   inactiv Boolean
+}
+
+
+
+/** possible values: U - No preference, E - Documents by e-mail, P - Documents by post */
+enum CommunicationChannel {
+	NO_PREFERENCE(U),
+	BY_EMAIL(E),
+	BY_POST(P)
+}
+
+/** possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted */
+enum CommunicationNewsletter {
+	SEND_ADDRESS_AND_CONTACTS(A), SEND_TO_MAIN_CONTACT_ONLY(M), NO_NEWS_LETTER(N)
+}
+
+entity ContactRelation {
+	/** type of contact's relation; possible values: type of contact's relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others */ 
+   	contactRelationType ContactRelationType
+}
+
+/** type of contact's relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others */ 
+enum ContactRelationType {
+	CUSTOMER(CL), CREDITOR(CR), TEAM(TE), AUTORITY(AT), MEDICAL(ME), OTHERS(OT)
+}
+
+/** default discount type; possible values P - in %, A - Amount */
+enum DiscountType {
+	IN_PERCENT(P), AMOUNT(A)
+}
+
+/**type of contact; possible values: C - Company, P - Private */
+enum ContactType {
+   COMPANY(M), PRIVATE(F)
+}
+/** gender of contact (required for P type); possible values: M - Male, F - Female, O - Other */
+enum GenderType {
+   MALE(M), FEMALE(F), OTHER(O)
+}
+
+/* Address information for a contact */
+entity ContactAddress {
+    /** id of a remote system */	
+    remoteId Integer	unique	
+    /** whether it is a default contact's address */
+    defaultAddress Boolean required
+    /** country ISO2 code (eg. CH) */
+    country Country required
+    /** the street of the address */
+    street String
+    /** number of apartment */
+    streetNo String
+    /** additional address information (state) */
+    street2 String
+    /** post code oder zip code */
+    postcode String
+    /** city */
+    city String
+    /** whether to hide this address on documents */
+    hideOnDocuments Boolean required
+    /** whether the address is a default postal address */
+    defaultPrepage Boolean required
+    /** is not active anymore */
+    inactiv Boolean
+}
+
+/** The group a contact belongs to */
+entity ContactGroup {
+    /** id of a remote system */	
+    remoteId Integer	unique		
+	/** Name of the contact group */
+    name String required
+    /** how many contacts are assigned to this group , */
+    usage Integer
+}
+
+
+/** A person of the contact */
+entity ContactPerson {
+    /** id of a remote system */	
+    remoteId Integer	unique	
+    /**  whether it is a default contact's person */
+    defaultPerson Boolean 
+    /** the person first name */
+    name String
+    /** the person surname */
+    surname String
+    /** gender of contact (required for P type); possible values: M - Male, F - Female, O - Other */
+    gender GenderType
+    /** The person's eMail */
+    email String
+    /**  the person's phone number */
+    phone String
+    /** the person's department*/
+    department String
+    /** e.g. Dear Mr. Jones */
+    salutation String
+    /** whether to show Mr/Ms before name */
+    showTitle Boolean
+    /**  whether to show department */
+    showDepartment Boolean
+    /** whether person wishes to receive newsletter  */
+    wantsNewsletter Boolean
+    /** contact birthdate  */
+    birthDate LocalDate
+    /** contact birth place  */
+	birthPlace String
+	/** contact place of origin */
+	placeOfOrigin String
+	/** citizen of country 1 */
+    citizenCountry1 String
+    /** citizen of country 1 */
+    citizenCountry2 String
+    /** the social security number */
+	socialSecurityNumber String
+	/** hobbies and activities in freetime */
+	hobbies String
+	/** day structure */
+	dailyWork String
+	/** attribute 1 */
+	contactAttribute01 String
+	/** image of contact */
+	avatar ImageBlob 
+	/** image type */
+	imageType String
+	/** is not active anymore */
+	inactiv Boolean
+}
+
+
+/** Bank or Postfinance account of the Contact */
+entity ContactAccount{
+	/** id of a remote system */	
+    remoteId Integer unique	
+    /** whether it is a default contact's account , */
+    defaultAccount Boolean
+    /** type (possible values: IBAN, ISR) , */
+    type AccountType
+    /** IBAN or ISR number (depends on the type) */
+    number String
+    /** The BIC or SWIFT number */
+    bic String
+    /** internal description  */
+    description String
+    /** is not active anymore */
+	inactiv Boolean
+}
+
+/** /** SR type; possible values: ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, QR Code and QR Code with reference  */
+enum AccountType {
+   IBAN("IBAN"),
+    ISR("ISR"),
+    QR("QR"),
+    QRREF("QRREF")
+}
+
+
+entity ContactReminder {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /**  id of a contact */
+    contactId Integer
+    /**  optional: name of a contact */
+    contactName String 
+    /** date and time of event that should be reminded (format: IOS8601) ,*/
+    dateTime ZonedDateTime
+    /** title of reminder */
+    title String
+    /**  description of reminder */
+    description String
+    /** value of interval in which reminder will be activated , /*/
+    intervalValue Integer
+    /** one of: ['hour','day','month'] */
+    intervalType IntervalType
+    /** is not active anymore */
+	inactiv Boolean
+}
+
+/** one of: ['hour','day','month']  */
+enum IntervalType {
+	HOUR(hour),
+	DAY(day),
+	MONTH(month)
+}
+
+
+// ==============================
+// Configuration Entities
+// ==============================
+
+/** The owner company bank account */
+entity BankAccount {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /** whether it is a default bank account */
+    default Boolean
+    /** The account description */
+    description String
+    /** The Bank Name */
+    bankName String
+    /** Account Number  */
+    number String
+    /** IBAN Number  */
+    iban String
+    /** BIC/SWIFT Code */
+    bic String
+    /** bank’s postal account   */
+    postAccount String
+    /** one of: [active, inactive, requested] */
+    autoSync AutoSynch
+    /** [in, out, null (means no direction specified)] */
+    autoSyncDirection AutoSynchDirection
+    /** ISO currency name o */
+    currency Currency
+    /** is not active anymore */
+	inactiv Boolean
+
+}
+
+/** one of: [active, inactive, requested] */
+enum AutoSynch {
+	ACTIVE,
+	INACTIVE,
+	REQUESTED
+}
+
+/** [in, out, null (means no direction specified)] */
+enum AutoSynchDirection {
+	IN,
+	OUT
+}
+
+entity ExchangeRate {
+
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /** ISO currency name we are setting exchange from */
+    currencyFrom Currency
+    /** ISO currency name we are setting exchange to */
+    currencyTo Currency
+    /** exchange rate value */
+    rate Double
+     /** when contact was created */
+    created ZonedDateTime 
+    /** is not active anymore */
+	inactiv Boolean
+}
+
+
+
+// ==============================
+// Catalog Entities
+// ==============================
+
+/** Category for Products or Services */
+entity CatalogCategory {
+	/** id of a remote system */	
+    remoteId Integer	unique	    
+    /** Category name */
+    name String required
+    /** */
+    accountingAccountNumber String
+    /** how many catalog items are using this category  */
+    usage Integer
+    /** is not active anymore */
+	inactiv Boolean
+}
+
+/**
+ * System Units 
+ *
+ *  14  -         All
+ *  17  Credit    All
+ *  13  Flat      All
+ *   7  Item      Product
+ *   9  Litres    Product
+ *  16  Metres    Product
+ *  15  Minutes   All
+ *   8  kg        Product
+ *  12  km        All
+ *  10  m2        Product
+ *  11  m3        Product
+ */
+
+entity CatalogUnit {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+	/** Name of the Unit */
+    name String required
+    nameDe String
+    nameEn String
+    nameFr String
+    nameIt String
+    /** scope, one of: s - service, p - product, a - all  */
+    scope CatalogScope
+    /** is unit a custom company unit (if not, it's a system unit) */
+    custom Boolean
+    /** is not active anymore */
+	inactiv Boolean
+
+}
+
+/** scope, one of: s - service, p - product, a - all */
+enum CatalogScope {
+	SERVICE(S),
+	PRODUCT(P),
+	ALL(A)
+}
+
+/** Value added tax */
+entity Vat {
+	/** Name of the VAT */
+	name String
+    /** VAT Type percent, no_vat, free_input */   
+    vatType VatType
+    /** VAT is valid from */
+	validFrom LocalDate
+	/** VAT is valid until */
+	validUntil LocalDate
+	/** The VAT percent */
+	vatPercent Double
+	/** is not active anymore */
+	inactiv Boolean
+	/** replaced by */
+	newVatId Integer
+}
+
+/** The Vat Type; possible values are: P - Percent, N - Not VAT, F - Free Input */
+enum VatType {
+	PERCENT(P),
+	NO_VAT(N),
+	FREE_INPUT(F)
+}
+
+/** Standard Products */
+entity CatalogProduct {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /** Catalog Product Number */
+    number String 	unique	
+    /** Catalog Product Name */
+    name String required
+    /** Catalog Product Description */
+    description String
+    /** Catalog Product Notes */
+    notes String
+    /** Category Name */
+    categoryName String
+    /** The price includes MWST */
+    includingVat Boolean
+    /** The VAT Percent */
+    vat Double
+    /** The unit Name */
+    unitName String
+    /** The sales price of the product */
+    price Double
+    /** The purchase price of the product */
+    pricePurchase Double
+    /** Available Products in Inventory */
+    inventoryAvailable Double
+    /** Reserved Products in Inventory */
+    inventoryReserved Double
+    /** Default amount of products (Standard Menge) */
+    defaultAmount Integer
+    /* Created at */
+    created ZonedDateTime
+    /** is not active anymore */
+	inactiv Boolean
+}
+
+
+entity CatalogService {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /** Catalog Product Number */
+    number String 	unique	
+    /** Catalog Product Name */
+    name String required
+    /** Catalog Product Description */
+    description String
+    /** Catalog Product Notes */
+    notes String
+    /** Category Name */
+    categoryName String
+    /** The price includes MWST */
+    includingVat Boolean
+    /** The VAT Percent */
+    vat Double
+    /** The unit Name */
+    unitName String
+    /** The sales price of the product */
+    price Double
+    /** Default amount of products (Standard Menge) */    
+    defaultAmount Integer
+    /* Created at */
+    created ZonedDateTime
+    /** is not active anymore */
+	inactiv Boolean
+}
+
+// ==============================
+// Documents
+// ==============================
+
+
+entity DocumentLetter {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /** name of a contact */
+    contactName String
+    /** date of the letter */
+    date LocalDate
+    /**  title of the document */
+    title String
+    /** content of the document  */
+    content String
+    /** language; possible values: de, en, es, fr, it , */
+    language DocumentLanguage
+    /** how many pages the document has */
+    pageAmount Integer
+    /** optional notes */
+    notes String
+    /** status of letter, possible values: DR - draft, S - sent, D - deleted (but still visible) */
+    status LetterStatus
+    /* letter created at */
+    created ZonedDateTime
+}
+
+entity DeliveryNote {
+    /** id of a remote system */	
+    remoteId Integer	unique	
+    /** document number */
+    number String 	unique	
+    /** name of a contact */
+    contactName String
+    /** date of the document */
+    date LocalDate
+    /** service/delivery */
+    periodText String
+    /** currency (e.g. CHF, EUR)   */
+    currency Currency
+    /** total amount of the delivery note */
+    total Double
+    /** whether prices in delivery note include VAT */
+    vatIncluded Boolean
+    /** optional discount rate */ 
+    discountRate Double
+    /** optional discount type; possible values: A - amount, P - in %  */
+    discountType DiscountType
+    /** language; possible values: de, en, es, fr, it , */
+    language DocumentLanguage
+    /** how many pages the document has */
+    pageAmount Integer
+    /** optional notes */
+    notes String
+    /** status of delivery note, possible values: DR - draft, S - sent, B - billed, D - deleted (but still visible) */
+    status DeliveryNoteStatus
+    /* letter created at */
+    created ZonedDateTime
+}
+
+entity Invoice {
+    /** id of a remote system */	
+    remoteId Integer	unique	
+    /** document number */
+    number String	unique	
+    /** name of a contact */
+    contactName String
+    /** date of the document */
+    date LocalDate
+    /** due date of the invoice  */
+    due LocalDate
+    /** service period from */
+    periodFrom LocalDate
+    /** service period to */
+    periodTo LocalDate
+    /** service/delivery */
+    periodText String
+    /** currency (e.g. CHF, EUR)   */
+    currency Currency
+    /** total amount of the delivery note */
+    total Double
+    /** whether prices in delivery note include VAT */
+    vatIncluded Boolean
+    /** optional discount rate */ 
+    discountRate Double
+    /** optional discount type; possible values: A - amount, P - in %  */
+    discountType DiscountType
+    /** cash discount value in %  */
+    cashDiscountRate Integer
+    /**  cash discount deadline date */
+    cashDiscountDate LocalDate
+    /** paid amount of the invoice  */
+    totalPaid Double
+    /** date when invoice was fully paid */
+    paidDate String
+    /** ISR position; possible values: A - additional page, F - first page, L - last page  */
+    isrPosition IsrPosition
+    /**  ISR reference number */
+    isrReferenceNumber String
+    /** whether to print PayPal link on invoice  */
+    paymentLinkPaypal Boolean
+    /**  PayPal link URL  */
+    paymentLinkPaypalUrl String
+    /** whether to print PostFinance link on invoice */
+    paymentLinkPostfinance Boolean
+    /** PostFinance link URL */
+    paymentLinkPostfinanceUrl String
+    /** whether to print Payrexx link on invoice */
+    paymentLinkPayrexx Boolean
+    /** Payrexx link URL */
+    paymentLinkPayrexxUrl String
+    /** whether to print SmartCommerce link on invoice */
+    paymentLinkSmartcommerce Boolean
+    /** SmartCommerce link URL */
+    paymentLinkSmartcommerceUrl String
+    /** language; possible values: de, en, es, fr, it , */
+    language DocumentLanguage
+    /** how many pages the document has */
+    pageAmount Integer
+    /** optional notes */
+    notes String
+    /** status of invoice, possible values: DR - draft, S - sent, P - paid, 
+     *  PP - partially paid, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder, 
+     *   R - reminder, DC - debt collection, C - cancelled, D - deleted (but still visible) */
+    status InvoiceStatus
+    /* letter created at */
+    created ZonedDateTime
+}
+
+/** language; possible values: de, en, es, fr, it , */
+enum DocumentLanguage {
+    FRENCH(fr), ENGLISH(en), GERMAN(de), SPANISH(es), ITALIAN(it)
+}
+
+/** status of letter, possible values: DR - draft, S - sent, D - deleted (but still visible) */
+enum LetterStatus {
+	DRAFT(DR),
+	SENT(S),
+	DELETED(D)
+}
+
+/** status of delivery note, possible values: DR - draft, S - sent, B - billed, D - deleted (but still visible)  */
+enum DeliveryNoteStatus {
+	DRAFT(DR),
+	SENT(S),
+	BILLED(B),
+	DELETED(D)
+}
+
+
+/** free texts objects */
+entity DocumentFreeText {
+	/** displayed text */
+    text String
+    /** font size of displayed text (min: 1; max: 50) */
+    fontSize Integer
+    /** The x position of the free text */
+    positionX Double
+    /** The y position of the free text */
+    positionY Double
+    /**  which page text is displayed on */
+    pageNo Integer
+}
+
+
+/** free texts objects */
+entity FreeText {
+	/** displayed text */
+    text String
+    /** font size of displayed text (min: 1; max: 50) */
+    fontSize Integer
+    /** The x position of the free text */
+    positionX Double
+    /** The y position of the free text */
+    positionY Double
+    /**  which page text is displayed on */
+    pageNo Integer
+    /** language; possible values: de, en, es, fr, it , */
+    language DocumentLanguage
+}
+
+/** User Signatures for documents */
+entity Signature {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+	/** the image of the signature */
+	signatureImage ImageBlob
+	/** the width of the signature */
+	width Integer
+	/** the height of the signature */
+	heigth Integer
+	/** the user name of this signature */
+	userName String
+}
+
+/** the document Layout definition */
+entity Layout {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+}
+
+/** the document position */
+entity DocumentPosition {
+	/** position type; possible values: N - normal, T - text, PB - page break, H - header, SI - subtotal (incremental), SNI - subtotal (non incremental) */
+	type DocumentPositionType
+	/** position catalog type; possible values: P - product, S - service */
+    catalogType CatalogScope
+    /** catalog unique number */
+    number String
+    /** position name */
+    name String
+    /** position description */
+    description String
+    /**  price per unit; required for N type  */
+    price Double
+    /** VAT rate; required for N type */
+    vat Double
+    /** amount; required for N type */
+    amount Double
+    /** optional discount rate  */
+    discountRate Double
+    /** optional discount type; possible values:A - amount, P - percentage */
+    discountType DiscountType
+    /** total price */
+    total Double
+    /** whether to show only total on invoice */
+    showOnlyTotal Boolean
+}
+
+/** position type; possible values: N - normal, T - text, PB - page break, H - header, SI - subtotal (incremental), SNI - subtotal (non incremental) */
+enum DocumentPositionType {
+	NORMAL(N),
+	TEXT(T),
+	PAGE_BREAK(PB),
+	HEADER(H),
+	SUBTOTAL_INCREMENTAL(SI),
+	SUBTOTAL_NON_INCREMENTAL(SNI)
+}
+
+
+entity DescriptiveDocumentText {
+	
+   /** Document title text */
+   title String
+   /** Document introduction text */
+   introduction String
+   /** Document conditions text (z.B. Zahlungsbedinungen) */
+   conditions String
+   /** for invoice only*/
+   status DocumentInvoiceTextStatus
+}
+
+/** title, introduction and condition text */
+entity DocumentText {
+	
+   /** default text */
+   default Boolean
+   /** Document conditions text (z.B. Zahlungsbedingungen) */
+   text String
+   /** language; possible values: de, en, es, fr, it , */
+   language DocumentLanguage
+   /**  At which document position shall the text be used; possible values; T - Title, I - Introduction, D - Condition */
+   usage DocumentTextUsage
+   /** for invoice only */
+   status DocumentInvoiceTextStatus
+   /** which document type is the condition for; possible values: D - Document, E- Email */   
+   type DocumentTextType
+   /** which Receivable document is the information for; possible values: O - Offer, C - Order Confirmation, D - Delivery Note, I - Invoice */   
+   documentType DocumentTextDocumentType
+}
+
+/** Defining the workflow of the invoice with  R - payment reminder, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder */
+entity DocumentInvoiceWorkflow {
+	/** whether workflow is active */
+	active Boolean
+	/** status of a document that the workflow is for; possible values: R - payment reminder, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder */
+    status InvoiceWorkflowStatus
+    /**  how many days after due date action should be taken , */
+    overdueDays Integer
+    /**  action that should be taken; possible values: M - remind me, CE - remind contact by email, CP - remind contact by post */
+    action WorkflowAction
+    /** email address for reminding contact (valid only when action is CE) */
+    contactEmail String
+    /** post speed for reminding contact (valid only when action is CP); possible values: P - priority, E - economy */    
+    speed PostSpeed
+}
+
+/**  action that should be taken; possible values: M - remind me, CE - remind contact by email, CP - remind contact by post */
+enum WorkflowAction {
+	REMIND_ME(M),
+	REMIND_CONTACT_BY_EMAIL(CE),
+	REMIND_CONTACT_BY_POST(CP)
+}
+
+/** post speed for reminding contact (valid only when action is CP); possible values:P - priority, E - economy */
+enum PostSpeed {
+    PRIORIRY(P),
+    ECONOMY(E)	
+}
+
+/** ISR definition for ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, RIS - red inpayment slip, QR Code and QR Code with reference */
+entity Isr {
+    /** whether ISR is a default one */
+    default Boolean
+    /** SR type; possible values: ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, RIS - red inpayment slip, QR Code and QR Code with reference */
+    type IsrType
+    /** ISR position; possible values: A - additional page, F - first page, L - last page  */
+    position IsrPosition
+    /** optional ISR name (for internal system use only) */
+    name String
+    /** Name of the bank */
+    bankName String
+    /** Address of the bank */
+    bankAddress String
+    /** name of the recipient */
+    recipientName String
+    /** additional information of the recipient */
+    recipientAddition String
+    /** street of the recipient */
+    recipientStreet String
+     /** city of the recipient */
+    recipientCity String
+    /** the number (BESR or REF)*/
+    deliveryNumber String
+    /** the IBAN account number */
+    iban String
+    /** the subscriber number (Teilnehmernummer) */
+    subscriberNumber String
+    /** left print adjust in mm */
+    leftPrintAdjust Double
+    /** top print adjust in mm */
+    topPrintAdjust Double
+    /* Created at */
+    created ZonedDateTime
+    /** is not active anymore */
+	inactiv Boolean
+}
+
+/** SR type; possible values: ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, RIS - red inpayment slip, QR Code and QR Code with reference */
+enum IsrType {
+	RIS("RIS")
+   IBAN("IBAN"),
+    ISR("ISR"),
+    QR("QR"),
+    QRREF("QRREF")
+}
+
+/** ISR position; possible values: A - additional page, F - first page, L - last page  */
+enum IsrPosition {
+	ADDITIONAL_PAGE(A),
+	FIRST_PAGE(F),
+	LAST_PAGE(L)
+}
+
+
+/** status of a document that the texts are for; possible values:
+            D - default, R - payment reminder, R1 - 1st reminder, R2 - 2nd reminder,
+            R3 - 3rd reminder, DC - debt collection (Betreibung), RE - receipt */
+enum DocumentInvoiceTextStatus {
+	DEFAULT(D),
+	PAYMENT_REMINDER(R),
+	FIRST_REMINDER(R1),
+	SECOND_REMINDER(R2),
+	THIRD_REMINDER(R3),
+	DEBT_COLLECTION(DC),
+	RECEIPT(RE)
+}
+
+/** status of invoice, possible values: DR - draft, S - sent, P - paid, 
+ *  PP - partially paid, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder, 
+ *   R - reminder, DC - debt collection, C - cancelled, D - deleted (but still visible) */
+enum InvoiceStatus {
+	DRAFT(DR),
+	SENT(S),
+	PAYED(P),
+	PARTIALLY_PAID(PP)
+	PAYMENT_REMINDER(R),
+	FIRST_REMINDER(R1),
+	SECOND_REMINDER(R2),
+	THIRD_REMINDER(R3),
+	DEBT_COLLECTION(DC),
+	CANCELD(C),
+	DELETED(D)
+}
+
+
+/** At which document position shall the text be used; possible values; T - Title, I - Introduction, D - Condition */
+enum DocumentTextUsage {
+	TITLE(T),
+	INTRODUCTION(I),
+	CONDITION(C)
+}
+
+/** which document type is the condition for; possible values: D - Document, E- Email */
+enum DocumentTextType {
+	DOCUMENT(D),
+	EMAIL(E)
+}
+
+/** which Receivable document is the entry for; possible values: O - Offer, C - Order Confirmation, D - Delivery Note, I - Invoice    */
+enum DocumentTextDocumentType {
+	OFFER(O),
+	ORDER_CONFIRMATION(C),
+	DELIVERY_NOTE(D),
+	INVOICE(I)
+}
+
+/** status of a document that the workflow is for; possible values: R - payment reminder, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder */
+enum InvoiceWorkflowStatus {
+	PAYMENT_REMINDER(R),
+	FIRST_REMINDER(R1),
+	SECOND_REMINDER(R2),
+	THIRD_REMINDER(R3)
+}
+
+
+
+
+// ==============================
+// Project and Time Entities
+// ==============================
+
+/** Reporting Activity like consulting with an optional relation to a catalog service */
+entity Activity {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /** name of activity eg. Consulting*/
+    name String
+
+    /**use price defined in service catalog  */
+    useServicePrice Boolean
+    /** is not active anymore */
+	inactiv Boolean
+}
+
+entity CostUnit {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /** cost unit's (Kostenstelle) internal number */
+    number String
+    /** cost unit's name */
+    name String
+    /** cost unit's description */
+    description String
+    /**  cost unit's type: one of: ['P','U'] , */
+    type CostUnitType
+    /** is not active anymore */
+	inactiv Boolean
+
+}
+/**  cost unit's type: one of: ['P','U'] , */
+enum CostUnitType {
+	PRODUCTIVE(P)
+	NOT_PRODUCTIVE(U)
+}
+
+entity Effort {
+	/** id of a remote system */	
+    remoteId Integer	unique	
+    /**id of user , */
+    userId Integer
+    /** full name of user (optional) */
+    userName String
+    /**  type of assigned entity, one of: P - project, CU - cost unit, C - contact  */
+    entityType ReportingEntityType
+    /** assigned entity id , */
+    entityId Integer
+    /** duration of effort  */
+    duration Double
+    /** date of effort */
+    date  LocalDate
+    /**  full activity name (optional)*/
+    activityName String
+    /** notes to this effort */
+    notes  String
+    /** if effort has been invoiced already  */
+    isInvoiced Boolean
+    /** update at */
+    updated ZonedDateTime
+    /**  hourly rate of this effort */
+    hourlyRate Double
+}
+
+/**  type of assigned entity, one of: P - project, CU - cost unit, C - contact  */
+enum ReportingEntityType {
+	PROJECT(P),
+	COST_UNIT(CU),
+	CONTACT(C)
+}
+
+entity Project {
+	/** id of a remote system */	
+    remoteId Integer	unique		
+    /** project's internal number */
+    number String
+    /** related contact's name (optional) */
+    contactName String
+    /** project's name  */
+    name String required
+    /** project's description */
+    description String
+    /** project's start date */
+    startDate LocalDate required
+    /** project's estimated maximum effort (in hours) */
+    hoursEstimated Double
+    /** project's hourly rate */
+    hourlyRate Double
+    /** status to be set, on of:  ''O'' - open, ''C'' - closed, ''B'' - billed, ''P'' - pending' */
+    status ProjectStatus required
+    /** is not active anymore */
+    inactiv Boolean
+}
+
+/** status to be set, on of:  ''O'' - open, ''C'' - closed, ''B'' - billed, ''P'' - pending' */
+enum ProjectStatus {
+	OPEN(O),
+	CLOSED(C),
+	BILLED(B),
+	PENDING(P)
+}
+
+/** Working Hours of an ApplicationUser */
+entity WorkingHour {
+	/** id of a remote system */	
+    remoteId Integer	unique		
+    /** (optional): full name of user */
+    userName String
+    /** date of working hours time span */
+    date LocalDate
+    /** start of working hours time span (in HH:MM format) */
+    timeStart ZonedDateTime 
+    /** end of working hours time span (in HH:MM format) */
+    timeEnd ZonedDateTime 
+    /** date when working hours entity was created */
+    created ZonedDateTime
+}
+
+// ==============================
+// General Entities
+// ==============================
+
+/** Description of the Major Domain Objects */
+enum DomainArea {
+	CONTACTS,
+	LETTERS,
+	PRODUCTS,
+	SERVICES,
+	OFFERS,
+	PROJECTS,
+	DELIVERY_NOTES,
+    ORDER_CONFIRMATIONS,
+    INVOICES,
+    LETTERS,
+	USERS,
+	REPORTING
+}
+
+
+/** Inherits from the User Role */
+entity ApplicationRole {
+	name String
+}
+
+/** Inherits from the User */
+entity ApplicationUser {
+	/** short user name */
+  	shortCutName String required
+  	/** member since */
+	memberSince LocalDate
+    /** image of contact */
+    avatar ImageBlob 
+    /** image type */
+    imageType String
+    /** is not active anymore */
+    inactiv Boolean
+}
+
+/** Additional information for a resource */
+entity CustomFieldValue {
+
+    /** the key to identify the custom field */
+    key   String required	
+    /** a name which appears on the dialog */
+    name  String required	
+    /** the value of the resource */
+    value String
+}
+
+/** Additional information for a resource */
+entity CustomField {
+    /** the custom field if for the domain resource */	
+    domainArea DomainArea
+    /** the key to identify the custom field */
+    key   String required	
+    /** a name which appears on the dialog */
+    name  String required	
+    /** the value of the resource */
+    defaultValue String
+}
+
+
+/** actions that can be performed on an item (possible values: view, edit, manage) for own or all */
+entity ResourcePermission {
+	/** the use can add a new resource */
+	add PermissionType required	
+	/** the use can edit a resource */
+	edit PermissionType required 
+	/** the use can manage a resource */
+	manage PermissionType required
+	/** the permission is for the domain resource */
+	domainArea DomainArea required
+}
+
+/** actions that can be performed on an item (possible values: view, edit) */
+entity Permission {
+	name String
+}
+
+enum PermissionType {
+	NONE, 
+	OWN, 
+	ALL
+}
+
+enum Currency {
+    AED("AED"), AFN("AFN"), ALL("ALL"), AMD("AMD"), ANG("ANG"), AOA("AOA"), ARS("ARS"), AUD("AUD"), AWG("AWG"), AZN("AZN"), BAM("BAM"), BBD("BBD"),
+    BDT("BDT"), BGN("BGN"), BHD("BHD"), BIF("BIF"), BMD("BMD"), BND("BND"), BOB("BOB"), BOV("BOV"), BRL("BRL"), BSD("BSD"), BTN("BTN"), BWP("BWP"),
+    BYN("BYN"), BYR("BYR"), BZD("BZD"), CAD("CAD"), CDF("CDF"), CHE("CHE"), CHF("CHF"), CHW("CHW"), CLF("CLF"), CLP("CLP"), CNY("CNY"), COP("COP"),
+    COU("COU"), CRC("CRC"), CUC("CUC"), CUP("CUP"), CVE("CVE"), CZK("CZK"), DJF("DJF"), DKK("DKK"), DOP("DOP"), DZD("DZD"), EGP("EGP"), ERN("ERN"),
+    ETB("ETB"), EUR("EUR"), FJD("FJD"), FKP("FKP"), GBP("GBP"), GEL("GEL"), GHS("GHS"), GIP("GIP"), GMD("GMD"), GNF("GNF"), GTQ("GTQ"), GYD("GYD"),
+    HKD("HKD"), HNL("HNL"), HRK("HRK"), HTG("HTG"), HUF("HUF"), IDR("IDR"), ILS("ILS"), INR("INR"), IQD("IQD"), IRR("IRR"), ISK("ISK"), JMD("JMD"),
+    JOD("JOD"), JPY("JPY"), KES("KES"), KGS("KGS"), KHR("KHR"), KMF("KMF"), KPW("KPW"), KRW("KRW"), KWD("KWD"), KYD("KYD"), KZT("KZT"), LAK("LAK"),
+    LBP("LBP"), LKR("LKR"), LRD("LRD"), LSL("LSL"), LYD("LYD"), MAD("MAD"), MDL("MDL"), MGA("MGA"), MKD("MKD"), MMK("MMK"), MNT("MNT"), MOP("MOP"),
+    MRO("MRO"), MUR("MUR"), MVR("MVR"), MWK("MWK"), MXN("MXN"), MXV("MXV"), MYR("MYR"), MZN("MZN"), NAD("NAD"), NGN("NGN"), NIO("NIO"), NOK("NOK"),
+    NPR("NPR"), NZD("NZD"), OMR("OMR"), PAB("PAB"), PEN("PEN"), PGK("PGK"), PHP("PHP"), PKR("PKR"), PLN("PLN"), PYG("PYG"), QAR("QAR"), RON("RON"),
+    RSD("RSD"), RUB("RUB"), RWF("RWF"), SAR("SAR"), SBD("SBD"), SCR("SCR"), SDG("SDG"), SEK("SEK"), SGD("SGD"), SHP("SHP"), SLL("SLL"), SOS("SOS"),
+    SRD("SRD"), SSP("SSP"), STD("STD"), SYP("SYP"), SZL("SZL"), THB("THB"), TJS("TJS"), TMT("TMT"), TND("TND"), TOP("TOP"), TRY("TRY"), TTD("TTD"),
+    TWD("TWD"), TZS("TZS"), UAH("UAH"), UGX("UGX"), USD("USD"), USN("USN"), UYI("UYI"), UYU("UYU"), UZS("UZS"), VEF("VEF"), VND("VND"), VUV("VUV"),
+    WST("WST"), XAF("XAF"), XAG("XAG"), XAU("XAU"), XBA("XBA"), XBB("XBB"), XBC("XBC"), XBD("XBD"), XCD("XCD"), XDR("XDR"), XFU("XFU"), XOF("XOF"),
+    XPD("XPD"), XPF("XPF"), XPT("XPT"), XSU("XSU"), XTS("XTS"), XUA("XUA"), XXX("XXX"), YER("YER"), ZAR("ZAR"), ZMW("ZMW")
+}
+
+enum Country {
+	AD, AE, AF, AG, AI, AL, AM, AN, AO, AQ, AR, AS, AT, AU, AW, AZ, BA, BB, BD, BE, BF, BG, BH, BI, BJ, BL, BM, BN, BO, BR, BS, BT, BW, BY, BZ, CA, 
+    CC, CD, CF, CG, CH, CI, CK, CL, CM, CN, CO, CR, CU, CV, CX, CY, CZ, DE, DJ, DK, DM, DO, DZ, EC, EE, EG, ER, ES, ET, FI, FJ, FK, FM, FO, FR, GA, 
+    GB, GD, GE, GH, GI, GL, GM, GN, GQ, GR, GT, GU, GW, GY, HK, HN, HR, HT, HU, ID, IE, IL, IM, IN, IQ, IR, IS, IT, JM, JO, JP, KE, KG, KH, KI, KM, 
+    KN, KP, KR, KW, KY, KZ, LA, LB, LC, LI, LK, LR, LS, LT, LU, LV, LY, MA, MC, MD, ME, MF, MG, MH, MK, ML, MM, MN, MO, MP, MR, MS, MT, MU, MV, MW, 
+    MX, MY, MZ, NA, NC, NE, NG, NI, NL, NO, NP, NR, NU, NZ, OM, PA, PE, PF, PG, PH, PK, PL, PM, PN, PR, PT, PW, PY, QA, RO, RS, RU, RW, SA, SB, SC, 
+    SD, SE, SG, SH, SI, SK, SL, SM, SN, SO, SR, ST, SV, SY, SZ, TC, TD, TG, TH, TJ, TK, TL, TM, TN, TO, TR, TT, TV, TW, TZ, UA, UG, US, UY, UZ, VA, 
+    VC, VE, VG, VI, VN, VU, WF, WS, YE, YT, ZA, ZM, ZW    
+}
+
+// ==============================
+// Relationships
+// ==============================
+
+relationship ManyToMany {
+	
+   /** type of contact's relation; possible values: type of contact's relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others */ 
+   Contact{relations} to ContactRelation{contacts} 
+   /** contact groups  */
+   Contact{groups} to ContactGroup{contacts}
+}
+
+
+/** defining multiple OneToMany relationships with comments */
+relationship OneToMany {
+	
+    /** custom edit fields */
+    Contact{customFields} to CustomFieldValue
+    /** custom edit fields */    
+    ContactPerson{customFields} to CustomFieldValue
+    /** custom edit fields */    
+    Project{customFields} to CustomFieldValue
+    /** custom edit fields */    
+    CatalogProduct{customFields} to CustomFieldValue
+    /** custom edit fields */    
+    CatalogService{customFields} to CustomFieldValue       
+    /** custom edit fields */    
+    DocumentLetter{customFields} to CustomFieldValue       
+    /** custom edit fields */    
+    DeliveryNote{customFields} to CustomFieldValue            
+    
+    /** the free texts belonging to this letter */
+    DocumentLetter{freeTexts} to DocumentFreeText 
+    
+    /** the free texts belonging to this document */
+    DeliveryNote{freeTexts} to DocumentFreeText   
+    /** the title, introduction, condition texts belonging to this document */
+    DeliveryNote{texts} to DescriptiveDocumentText     
+    /** the positions belonging to this document */
+    DeliveryNote{positions} to DocumentPosition     
+    
+    /** the free texts belonging to this document */
+    Invoice{freeTexts} to DocumentFreeText     
+    /** the title, introduction, condition texts belonging to this document */
+    Invoice{texts} to DescriptiveDocumentText     
+    /** the positions belonging to this document */
+    Invoice{positions} to DocumentPosition     
+    
+}
+
+relationship ManyToOne {
+
+    /** The contact relation */
+    ContactAddress{contact} to Contact
+    /** The contact relation */
+    ContactAccount{contact} to Contact
+    /** The contact relation */
+    ContactReminder{contact} to Contact
+    /** The contact relation */
+    ContactPerson{contact} to Contact
+   
+    /** The category relation */   
+    CatalogProduct{category} to CatalogCategory
+    /** The unit relation */   
+    CatalogProduct{unit} to CatalogUnit
+    /** The vat relation */   
+    CatalogProduct{vat} to Vat
+    
+    /** The category relation */   
+    CatalogService{category} to CatalogCategory
+    /** The unit relation */   
+    CatalogService{unit} to CatalogUnit
+    /** The vat relation */   
+    CatalogService{vat} to Vat
+    
+    /** the letter contact */
+    DocumentLetter{contact} to Contact
+    /** the optional contact address */
+    DocumentLetter{contactAddress} to ContactAddress
+    /** the optional contact person */
+    DocumentLetter{contactPerson} to ContactPerson
+    /** the optional postal address */
+    DocumentLetter{contactPrePageAddress} to ContactAddress
+    /** the layout information for rendering */
+    DocumentLetter{layout} to Layout
+    /** the related user signature */
+    DocumentLetter{layout} to Signature
+    /** the related catalog unit */
+    DocumentPosition{unit} to CatalogUnit
+
+    /** the letter contact */
+    DeliveryNote{contact} to Contact
+    /** the optional contact address */
+    DeliveryNote{contactAddress} to ContactAddress
+    /** the optional contact person */
+    DeliveryNote{contactPerson} to ContactPerson
+    /** the optional postal address */
+    DeliveryNote{contactPrePageAddress} to ContactAddress
+    /** the layout information for rendering */
+    DeliveryNote{layout} to Layout
+    /** the related user signature */
+    DeliveryNote{layout} to Signature
+
+
+    /** the letter contact */
+    Invoice{contact} to Contact
+    /** the optional contact address */
+    Invoice{contactAddress} to ContactAddress
+    /** the optional contact person */
+    Invoice{contactPerson} to ContactPerson
+    /** the optional postal address */
+    Invoice{contactPrePageAddress} to ContactAddress
+    /** the layout information for rendering */
+    Invoice{layout} to Layout
+    /** the related user signature */
+    Invoice{layout} to Signature
+    /** the related bank account */
+    Invoice{bankAccount} to BankAccount
+    /** the related payment slip (red and orange valid until 30.09.2022) */
+    Invoice{bankAccount} to Isr
+    /** the signature belongs to the application user */
+    Signature{applicationUser} to ApplicationUser
+
+    /** The related activity to this effort */
+    Activity{activity} to CatalogService
+    /** The related activity to this effort */
+    Effort{activity} to Activity
+    /** The related contact to this project */
+    Project{contact} to Contact
+    /** The working hour booked from user */
+    WorkingHour{applicationUser} to ApplicationUser
+    /** The working hour has been booked to this effort */
+    WorkingHour{effort} to Effort
+    
+    /** The permission definition is for the application role */
+    ResourcePermission{role} to ApplicationRole
+    /** The permission definition is for the user */
+    ResourcePermission{applicationUser} to ApplicationUser
+    /** The descriptive custom field relates to the custom field definition */
+    CustomFieldValue{customField} to CustomField
+}
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+
+    Contact{contactMainAddress} to ContactAddress
+}
+
+
+
+
+// =======
+// Options
+// =======
+
+// Set pagination options for Contact
+paginate Contact with pagination
+paginate ContactReminder with pagination
+paginate ContactAddress with infinite-scroll
+paginate ContactPerson with infinite-scroll
+paginate ContactAccount with infinite-scroll 
+paginate ContactGroup with infinite-scroll 
+
+// Set pagination options for Catalog
+paginate Vat with infinite-scroll 
+paginate CatalogUnit with infinite-scroll 
+paginate CatalogService with pagination
+paginate CatalogProduct with pagination
+
+// Set pagination options for Document
+paginate DocumentLetter with pagination
+paginate DeliveryNote with pagination
+paginate Invoice with pagination
+
+// Set pagination options for Reporting
+paginate Project with pagination
+paginate WorkingHour with pagination
+paginate Effort with pagination
+paginate Activity with infinite-scroll 
+
+
+/** Filter definition */
+filter Contact
+filter ContactReminder
+filter Project
+filter WorkingHour
+filter CatalogService
+filter CatalogProduct
+
+
+dto * with mapstruct
+
+// Set service options to all 
+service * with serviceClass
+// Set an angular suffix
+angularSuffix * with fa

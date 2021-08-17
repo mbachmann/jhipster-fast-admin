@@ -1,0 +1,244 @@
+{
+  "name": "Contact",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "unique number",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "ContactType",
+      "javadoc": "type of contact; possible values: C - Company, P - Private",
+      "fieldValues": "COMPANY (M),PRIVATE (F)",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "GenderType",
+      "javadoc": "gender of contact (required for P type); possible values: M - Male, F - Female, O - Other",
+      "fieldValues": "MALE (M),FEMALE (F),OTHER (O)",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "genderSalutationActive",
+      "fieldType": "Boolean",
+      "javadoc": "whether to show Mr./Ms. before contact name (for P type only)",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "name of contact",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nameAddition",
+      "fieldType": "String",
+      "javadoc": "additional text for contact name (maiden name)"
+    },
+    {
+      "fieldName": "salutation",
+      "fieldType": "String",
+      "javadoc": "e.g. Dear Mr. Jones"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "javadoc": "contact phone number"
+    },
+    {
+      "fieldName": "fax",
+      "fieldType": "String",
+      "javadoc": "contact fax number"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "javadoc": "contact email address"
+    },
+    {
+      "fieldName": "website",
+      "fieldType": "String",
+      "javadoc": "contact website address"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "additional notes"
+    },
+    {
+      "fieldName": "communicationLanguage",
+      "fieldType": "String",
+      "javadoc": "main communication language"
+    },
+    {
+      "fieldName": "communicationChannel",
+      "fieldType": "CommunicationChannel",
+      "javadoc": "possible values: U - No preference, E - Documents by e-mail, P - Documents by post",
+      "fieldValues": "NO_PREFERENCE (U),BY_EMAIL (E),BY_POST (P)"
+    },
+    {
+      "fieldName": "communicationNewsletter",
+      "fieldType": "CommunicationNewsletter",
+      "javadoc": "possible values: A - Send to main e-mail address and contacts, M - Only send to main e-mail address, N - No newsletter wanted",
+      "fieldValues": "SEND_ADDRESS_AND_CONTACTS (A),SEND_TO_MAIN_CONTACT_ONLY (M),NO_NEWS_LETTER (N)"
+    },
+    {
+      "fieldName": "currency",
+      "fieldType": "Currency",
+      "javadoc": "default currency",
+      "fieldValues": "AED (AED),AFN (AFN),ALL (ALL),AMD (AMD),ANG (ANG),AOA (AOA),ARS (ARS),AUD (AUD),AWG (AWG),AZN (AZN),BAM (BAM),BBD (BBD),BDT (BDT),BGN (BGN),BHD (BHD),BIF (BIF),BMD (BMD),BND (BND),BOB (BOB),BOV (BOV),BRL (BRL),BSD (BSD),BTN (BTN),BWP (BWP),BYN (BYN),BYR (BYR),BZD (BZD),CAD (CAD),CDF (CDF),CHE (CHE),CHF (CHF),CHW (CHW),CLF (CLF),CLP (CLP),CNY (CNY),COP (COP),COU (COU),CRC (CRC),CUC (CUC),CUP (CUP),CVE (CVE),CZK (CZK),DJF (DJF),DKK (DKK),DOP (DOP),DZD (DZD),EGP (EGP),ERN (ERN),ETB (ETB),EUR (EUR),FJD (FJD),FKP (FKP),GBP (GBP),GEL (GEL),GHS (GHS),GIP (GIP),GMD (GMD),GNF (GNF),GTQ (GTQ),GYD (GYD),HKD (HKD),HNL (HNL),HRK (HRK),HTG (HTG),HUF (HUF),IDR (IDR),ILS (ILS),INR (INR),IQD (IQD),IRR (IRR),ISK (ISK),JMD (JMD),JOD (JOD),JPY (JPY),KES (KES),KGS (KGS),KHR (KHR),KMF (KMF),KPW (KPW),KRW (KRW),KWD (KWD),KYD (KYD),KZT (KZT),LAK (LAK),LBP (LBP),LKR (LKR),LRD (LRD),LSL (LSL),LYD (LYD),MAD (MAD),MDL (MDL),MGA (MGA),MKD (MKD),MMK (MMK),MNT (MNT),MOP (MOP),MRO (MRO),MUR (MUR),MVR (MVR),MWK (MWK),MXN (MXN),MXV (MXV),MYR (MYR),MZN (MZN),NAD (NAD),NGN (NGN),NIO (NIO),NOK (NOK),NPR (NPR),NZD (NZD),OMR (OMR),PAB (PAB),PEN (PEN),PGK (PGK),PHP (PHP),PKR (PKR),PLN (PLN),PYG (PYG),QAR (QAR),RON (RON),RSD (RSD),RUB (RUB),RWF (RWF),SAR (SAR),SBD (SBD),SCR (SCR),SDG (SDG),SEK (SEK),SGD (SGD),SHP (SHP),SLL (SLL),SOS (SOS),SRD (SRD),SSP (SSP),STD (STD),SYP (SYP),SZL (SZL),THB (THB),TJS (TJS),TMT (TMT),TND (TND),TOP (TOP),TRY (TRY),TTD (TTD),TWD (TWD),TZS (TZS),UAH (UAH),UGX (UGX),USD (USD),USN (USN),UYI (UYI),UYU (UYU),UZS (UZS),VEF (VEF),VND (VND),VUV (VUV),WST (WST),XAF (XAF),XAG (XAG),XAU (XAU),XBA (XBA),XBB (XBB),XBC (XBC),XBD (XBD),XCD (XCD),XDR (XDR),XFU (XFU),XOF (XOF),XPD (XPD),XPF (XPF),XPT (XPT),XSU (XSU),XTS (XTS),XUA (XUA),XXX (XXX),YER (YER),ZAR (ZAR),ZMW (ZMW)"
+    },
+    {
+      "fieldName": "ebillAccountId",
+      "fieldType": "String",
+      "javadoc": "e-bill account identification number"
+    },
+    {
+      "fieldName": "vatIdentification",
+      "fieldType": "String",
+      "javadoc": "VAT identification number"
+    },
+    {
+      "fieldName": "vatRate",
+      "fieldType": "Double",
+      "javadoc": "default VAT rate"
+    },
+    {
+      "fieldName": "discountRate",
+      "fieldType": "Double",
+      "javadoc": "default discount rate"
+    },
+    {
+      "fieldName": "discountType",
+      "fieldType": "DiscountType",
+      "javadoc": "default discount type; possible values P - in %, A - Amount",
+      "fieldValues": "IN_PERCENT (P),AMOUNT (A)"
+    },
+    {
+      "fieldName": "paymentGrace",
+      "fieldType": "Integer",
+      "javadoc": "default payment deadline"
+    },
+    {
+      "fieldName": "hourlyRate",
+      "fieldType": "Double",
+      "javadoc": "cost per hour"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "when contact was created"
+    },
+    {
+      "fieldName": "mainAddressId",
+      "fieldType": "Integer",
+      "javadoc": "main address id"
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "LocalDate",
+      "javadoc": "contact birthday"
+    },
+    {
+      "fieldName": "birthPlace",
+      "fieldType": "String",
+      "javadoc": "contact birth place"
+    },
+    {
+      "fieldName": "placeOfOrigin",
+      "fieldType": "String",
+      "javadoc": "contact place of origin"
+    },
+    {
+      "fieldName": "citizenCountry1",
+      "fieldType": "String",
+      "javadoc": "citizen of country 1"
+    },
+    {
+      "fieldName": "citizenCountry2",
+      "fieldType": "String",
+      "javadoc": "citizen of country 1"
+    },
+    {
+      "fieldName": "socialSecurityNumber",
+      "fieldType": "String",
+      "javadoc": "the social security number"
+    },
+    {
+      "fieldName": "hobbies",
+      "fieldType": "String",
+      "javadoc": "hobbies and activities in free time"
+    },
+    {
+      "fieldName": "dailyWork",
+      "fieldType": "String",
+      "javadoc": "day structure"
+    },
+    {
+      "fieldName": "contactAttribute01",
+      "fieldType": "String",
+      "javadoc": "attribute 1"
+    },
+    {
+      "fieldName": "avatar",
+      "fieldType": "byte[]",
+      "javadoc": "image of contact",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "imageType",
+      "fieldType": "String",
+      "javadoc": "image type"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customFieldValue",
+      "otherEntityRelationshipName": "contact",
+      "javadoc": "custom edit fields",
+      "relationshipName": "customFields"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "contactRelation",
+      "otherEntityRelationshipName": "contacts",
+      "javadoc": "type of contact's relation; possible values: type of contact's relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others",
+      "relationshipName": "relations",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "contactGroup",
+      "otherEntityRelationshipName": "contacts",
+      "javadoc": "contact groups",
+      "relationshipName": "groups",
+      "ownerSide": true
+    }
+  ],
+  "javadoc": "Contact",
+  "entityTableName": "contact",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817135740"
+}

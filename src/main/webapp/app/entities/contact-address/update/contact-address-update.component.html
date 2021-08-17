@@ -1,0 +1,478 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-contact-address-heading"
+        data-cy="ContactAddressCreateUpdateHeading"
+        faTranslate="fastAdminApp.contactAddress.home.createOrEditLabel"
+      >
+        Create or edit a Contact Address
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.defaultAddress"
+            for="field_defaultAddress"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.defaultAddress' | translate"
+            >Default Address</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultAddress"
+            id="field_defaultAddress"
+            data-cy="defaultAddress"
+            formControlName="defaultAddress"
+          />
+          <div
+            *ngIf="
+              editForm.get('defaultAddress')!.invalid && (editForm.get('defaultAddress')!.dirty || editForm.get('defaultAddress')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('defaultAddress')?.errors?.required"
+              faTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.country"
+            for="field_country"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.country' | translate"
+            >Country</label
+          >
+          <select class="form-control" name="country" formControlName="country" id="field_country" data-cy="country">
+            <option [ngValue]="null">{{ 'fastAdminApp.Country.null' | translate }}</option>
+            <option value="AD">{{ 'fastAdminApp.Country.AD' | translate }}</option>
+            <option value="AE">{{ 'fastAdminApp.Country.AE' | translate }}</option>
+            <option value="AF">{{ 'fastAdminApp.Country.AF' | translate }}</option>
+            <option value="AG">{{ 'fastAdminApp.Country.AG' | translate }}</option>
+            <option value="AI">{{ 'fastAdminApp.Country.AI' | translate }}</option>
+            <option value="AL">{{ 'fastAdminApp.Country.AL' | translate }}</option>
+            <option value="AM">{{ 'fastAdminApp.Country.AM' | translate }}</option>
+            <option value="AN">{{ 'fastAdminApp.Country.AN' | translate }}</option>
+            <option value="AO">{{ 'fastAdminApp.Country.AO' | translate }}</option>
+            <option value="AQ">{{ 'fastAdminApp.Country.AQ' | translate }}</option>
+            <option value="AR">{{ 'fastAdminApp.Country.AR' | translate }}</option>
+            <option value="AS">{{ 'fastAdminApp.Country.AS' | translate }}</option>
+            <option value="AT">{{ 'fastAdminApp.Country.AT' | translate }}</option>
+            <option value="AU">{{ 'fastAdminApp.Country.AU' | translate }}</option>
+            <option value="AW">{{ 'fastAdminApp.Country.AW' | translate }}</option>
+            <option value="AZ">{{ 'fastAdminApp.Country.AZ' | translate }}</option>
+            <option value="BA">{{ 'fastAdminApp.Country.BA' | translate }}</option>
+            <option value="BB">{{ 'fastAdminApp.Country.BB' | translate }}</option>
+            <option value="BD">{{ 'fastAdminApp.Country.BD' | translate }}</option>
+            <option value="BE">{{ 'fastAdminApp.Country.BE' | translate }}</option>
+            <option value="BF">{{ 'fastAdminApp.Country.BF' | translate }}</option>
+            <option value="BG">{{ 'fastAdminApp.Country.BG' | translate }}</option>
+            <option value="BH">{{ 'fastAdminApp.Country.BH' | translate }}</option>
+            <option value="BI">{{ 'fastAdminApp.Country.BI' | translate }}</option>
+            <option value="BJ">{{ 'fastAdminApp.Country.BJ' | translate }}</option>
+            <option value="BL">{{ 'fastAdminApp.Country.BL' | translate }}</option>
+            <option value="BM">{{ 'fastAdminApp.Country.BM' | translate }}</option>
+            <option value="BN">{{ 'fastAdminApp.Country.BN' | translate }}</option>
+            <option value="BO">{{ 'fastAdminApp.Country.BO' | translate }}</option>
+            <option value="BR">{{ 'fastAdminApp.Country.BR' | translate }}</option>
+            <option value="BS">{{ 'fastAdminApp.Country.BS' | translate }}</option>
+            <option value="BT">{{ 'fastAdminApp.Country.BT' | translate }}</option>
+            <option value="BW">{{ 'fastAdminApp.Country.BW' | translate }}</option>
+            <option value="BY">{{ 'fastAdminApp.Country.BY' | translate }}</option>
+            <option value="BZ">{{ 'fastAdminApp.Country.BZ' | translate }}</option>
+            <option value="CA">{{ 'fastAdminApp.Country.CA' | translate }}</option>
+            <option value="CC">{{ 'fastAdminApp.Country.CC' | translate }}</option>
+            <option value="CD">{{ 'fastAdminApp.Country.CD' | translate }}</option>
+            <option value="CF">{{ 'fastAdminApp.Country.CF' | translate }}</option>
+            <option value="CG">{{ 'fastAdminApp.Country.CG' | translate }}</option>
+            <option value="CH">{{ 'fastAdminApp.Country.CH' | translate }}</option>
+            <option value="CI">{{ 'fastAdminApp.Country.CI' | translate }}</option>
+            <option value="CK">{{ 'fastAdminApp.Country.CK' | translate }}</option>
+            <option value="CL">{{ 'fastAdminApp.Country.CL' | translate }}</option>
+            <option value="CM">{{ 'fastAdminApp.Country.CM' | translate }}</option>
+            <option value="CN">{{ 'fastAdminApp.Country.CN' | translate }}</option>
+            <option value="CO">{{ 'fastAdminApp.Country.CO' | translate }}</option>
+            <option value="CR">{{ 'fastAdminApp.Country.CR' | translate }}</option>
+            <option value="CU">{{ 'fastAdminApp.Country.CU' | translate }}</option>
+            <option value="CV">{{ 'fastAdminApp.Country.CV' | translate }}</option>
+            <option value="CX">{{ 'fastAdminApp.Country.CX' | translate }}</option>
+            <option value="CY">{{ 'fastAdminApp.Country.CY' | translate }}</option>
+            <option value="CZ">{{ 'fastAdminApp.Country.CZ' | translate }}</option>
+            <option value="DE">{{ 'fastAdminApp.Country.DE' | translate }}</option>
+            <option value="DJ">{{ 'fastAdminApp.Country.DJ' | translate }}</option>
+            <option value="DK">{{ 'fastAdminApp.Country.DK' | translate }}</option>
+            <option value="DM">{{ 'fastAdminApp.Country.DM' | translate }}</option>
+            <option value="DO">{{ 'fastAdminApp.Country.DO' | translate }}</option>
+            <option value="DZ">{{ 'fastAdminApp.Country.DZ' | translate }}</option>
+            <option value="EC">{{ 'fastAdminApp.Country.EC' | translate }}</option>
+            <option value="EE">{{ 'fastAdminApp.Country.EE' | translate }}</option>
+            <option value="EG">{{ 'fastAdminApp.Country.EG' | translate }}</option>
+            <option value="ER">{{ 'fastAdminApp.Country.ER' | translate }}</option>
+            <option value="ES">{{ 'fastAdminApp.Country.ES' | translate }}</option>
+            <option value="ET">{{ 'fastAdminApp.Country.ET' | translate }}</option>
+            <option value="FI">{{ 'fastAdminApp.Country.FI' | translate }}</option>
+            <option value="FJ">{{ 'fastAdminApp.Country.FJ' | translate }}</option>
+            <option value="FK">{{ 'fastAdminApp.Country.FK' | translate }}</option>
+            <option value="FM">{{ 'fastAdminApp.Country.FM' | translate }}</option>
+            <option value="FO">{{ 'fastAdminApp.Country.FO' | translate }}</option>
+            <option value="FR">{{ 'fastAdminApp.Country.FR' | translate }}</option>
+            <option value="GA">{{ 'fastAdminApp.Country.GA' | translate }}</option>
+            <option value="GB">{{ 'fastAdminApp.Country.GB' | translate }}</option>
+            <option value="GD">{{ 'fastAdminApp.Country.GD' | translate }}</option>
+            <option value="GE">{{ 'fastAdminApp.Country.GE' | translate }}</option>
+            <option value="GH">{{ 'fastAdminApp.Country.GH' | translate }}</option>
+            <option value="GI">{{ 'fastAdminApp.Country.GI' | translate }}</option>
+            <option value="GL">{{ 'fastAdminApp.Country.GL' | translate }}</option>
+            <option value="GM">{{ 'fastAdminApp.Country.GM' | translate }}</option>
+            <option value="GN">{{ 'fastAdminApp.Country.GN' | translate }}</option>
+            <option value="GQ">{{ 'fastAdminApp.Country.GQ' | translate }}</option>
+            <option value="GR">{{ 'fastAdminApp.Country.GR' | translate }}</option>
+            <option value="GT">{{ 'fastAdminApp.Country.GT' | translate }}</option>
+            <option value="GU">{{ 'fastAdminApp.Country.GU' | translate }}</option>
+            <option value="GW">{{ 'fastAdminApp.Country.GW' | translate }}</option>
+            <option value="GY">{{ 'fastAdminApp.Country.GY' | translate }}</option>
+            <option value="HK">{{ 'fastAdminApp.Country.HK' | translate }}</option>
+            <option value="HN">{{ 'fastAdminApp.Country.HN' | translate }}</option>
+            <option value="HR">{{ 'fastAdminApp.Country.HR' | translate }}</option>
+            <option value="HT">{{ 'fastAdminApp.Country.HT' | translate }}</option>
+            <option value="HU">{{ 'fastAdminApp.Country.HU' | translate }}</option>
+            <option value="ID">{{ 'fastAdminApp.Country.ID' | translate }}</option>
+            <option value="IE">{{ 'fastAdminApp.Country.IE' | translate }}</option>
+            <option value="IL">{{ 'fastAdminApp.Country.IL' | translate }}</option>
+            <option value="IM">{{ 'fastAdminApp.Country.IM' | translate }}</option>
+            <option value="IN">{{ 'fastAdminApp.Country.IN' | translate }}</option>
+            <option value="IQ">{{ 'fastAdminApp.Country.IQ' | translate }}</option>
+            <option value="IR">{{ 'fastAdminApp.Country.IR' | translate }}</option>
+            <option value="IS">{{ 'fastAdminApp.Country.IS' | translate }}</option>
+            <option value="IT">{{ 'fastAdminApp.Country.IT' | translate }}</option>
+            <option value="JM">{{ 'fastAdminApp.Country.JM' | translate }}</option>
+            <option value="JO">{{ 'fastAdminApp.Country.JO' | translate }}</option>
+            <option value="JP">{{ 'fastAdminApp.Country.JP' | translate }}</option>
+            <option value="KE">{{ 'fastAdminApp.Country.KE' | translate }}</option>
+            <option value="KG">{{ 'fastAdminApp.Country.KG' | translate }}</option>
+            <option value="KH">{{ 'fastAdminApp.Country.KH' | translate }}</option>
+            <option value="KI">{{ 'fastAdminApp.Country.KI' | translate }}</option>
+            <option value="KM">{{ 'fastAdminApp.Country.KM' | translate }}</option>
+            <option value="KN">{{ 'fastAdminApp.Country.KN' | translate }}</option>
+            <option value="KP">{{ 'fastAdminApp.Country.KP' | translate }}</option>
+            <option value="KR">{{ 'fastAdminApp.Country.KR' | translate }}</option>
+            <option value="KW">{{ 'fastAdminApp.Country.KW' | translate }}</option>
+            <option value="KY">{{ 'fastAdminApp.Country.KY' | translate }}</option>
+            <option value="KZ">{{ 'fastAdminApp.Country.KZ' | translate }}</option>
+            <option value="LA">{{ 'fastAdminApp.Country.LA' | translate }}</option>
+            <option value="LB">{{ 'fastAdminApp.Country.LB' | translate }}</option>
+            <option value="LC">{{ 'fastAdminApp.Country.LC' | translate }}</option>
+            <option value="LI">{{ 'fastAdminApp.Country.LI' | translate }}</option>
+            <option value="LK">{{ 'fastAdminApp.Country.LK' | translate }}</option>
+            <option value="LR">{{ 'fastAdminApp.Country.LR' | translate }}</option>
+            <option value="LS">{{ 'fastAdminApp.Country.LS' | translate }}</option>
+            <option value="LT">{{ 'fastAdminApp.Country.LT' | translate }}</option>
+            <option value="LU">{{ 'fastAdminApp.Country.LU' | translate }}</option>
+            <option value="LV">{{ 'fastAdminApp.Country.LV' | translate }}</option>
+            <option value="LY">{{ 'fastAdminApp.Country.LY' | translate }}</option>
+            <option value="MA">{{ 'fastAdminApp.Country.MA' | translate }}</option>
+            <option value="MC">{{ 'fastAdminApp.Country.MC' | translate }}</option>
+            <option value="MD">{{ 'fastAdminApp.Country.MD' | translate }}</option>
+            <option value="ME">{{ 'fastAdminApp.Country.ME' | translate }}</option>
+            <option value="MF">{{ 'fastAdminApp.Country.MF' | translate }}</option>
+            <option value="MG">{{ 'fastAdminApp.Country.MG' | translate }}</option>
+            <option value="MH">{{ 'fastAdminApp.Country.MH' | translate }}</option>
+            <option value="MK">{{ 'fastAdminApp.Country.MK' | translate }}</option>
+            <option value="ML">{{ 'fastAdminApp.Country.ML' | translate }}</option>
+            <option value="MM">{{ 'fastAdminApp.Country.MM' | translate }}</option>
+            <option value="MN">{{ 'fastAdminApp.Country.MN' | translate }}</option>
+            <option value="MO">{{ 'fastAdminApp.Country.MO' | translate }}</option>
+            <option value="MP">{{ 'fastAdminApp.Country.MP' | translate }}</option>
+            <option value="MR">{{ 'fastAdminApp.Country.MR' | translate }}</option>
+            <option value="MS">{{ 'fastAdminApp.Country.MS' | translate }}</option>
+            <option value="MT">{{ 'fastAdminApp.Country.MT' | translate }}</option>
+            <option value="MU">{{ 'fastAdminApp.Country.MU' | translate }}</option>
+            <option value="MV">{{ 'fastAdminApp.Country.MV' | translate }}</option>
+            <option value="MW">{{ 'fastAdminApp.Country.MW' | translate }}</option>
+            <option value="MX">{{ 'fastAdminApp.Country.MX' | translate }}</option>
+            <option value="MY">{{ 'fastAdminApp.Country.MY' | translate }}</option>
+            <option value="MZ">{{ 'fastAdminApp.Country.MZ' | translate }}</option>
+            <option value="NA">{{ 'fastAdminApp.Country.NA' | translate }}</option>
+            <option value="NC">{{ 'fastAdminApp.Country.NC' | translate }}</option>
+            <option value="NE">{{ 'fastAdminApp.Country.NE' | translate }}</option>
+            <option value="NG">{{ 'fastAdminApp.Country.NG' | translate }}</option>
+            <option value="NI">{{ 'fastAdminApp.Country.NI' | translate }}</option>
+            <option value="NL">{{ 'fastAdminApp.Country.NL' | translate }}</option>
+            <option value="NO">{{ 'fastAdminApp.Country.NO' | translate }}</option>
+            <option value="NP">{{ 'fastAdminApp.Country.NP' | translate }}</option>
+            <option value="NR">{{ 'fastAdminApp.Country.NR' | translate }}</option>
+            <option value="NU">{{ 'fastAdminApp.Country.NU' | translate }}</option>
+            <option value="NZ">{{ 'fastAdminApp.Country.NZ' | translate }}</option>
+            <option value="OM">{{ 'fastAdminApp.Country.OM' | translate }}</option>
+            <option value="PA">{{ 'fastAdminApp.Country.PA' | translate }}</option>
+            <option value="PE">{{ 'fastAdminApp.Country.PE' | translate }}</option>
+            <option value="PF">{{ 'fastAdminApp.Country.PF' | translate }}</option>
+            <option value="PG">{{ 'fastAdminApp.Country.PG' | translate }}</option>
+            <option value="PH">{{ 'fastAdminApp.Country.PH' | translate }}</option>
+            <option value="PK">{{ 'fastAdminApp.Country.PK' | translate }}</option>
+            <option value="PL">{{ 'fastAdminApp.Country.PL' | translate }}</option>
+            <option value="PM">{{ 'fastAdminApp.Country.PM' | translate }}</option>
+            <option value="PN">{{ 'fastAdminApp.Country.PN' | translate }}</option>
+            <option value="PR">{{ 'fastAdminApp.Country.PR' | translate }}</option>
+            <option value="PT">{{ 'fastAdminApp.Country.PT' | translate }}</option>
+            <option value="PW">{{ 'fastAdminApp.Country.PW' | translate }}</option>
+            <option value="PY">{{ 'fastAdminApp.Country.PY' | translate }}</option>
+            <option value="QA">{{ 'fastAdminApp.Country.QA' | translate }}</option>
+            <option value="RO">{{ 'fastAdminApp.Country.RO' | translate }}</option>
+            <option value="RS">{{ 'fastAdminApp.Country.RS' | translate }}</option>
+            <option value="RU">{{ 'fastAdminApp.Country.RU' | translate }}</option>
+            <option value="RW">{{ 'fastAdminApp.Country.RW' | translate }}</option>
+            <option value="SA">{{ 'fastAdminApp.Country.SA' | translate }}</option>
+            <option value="SB">{{ 'fastAdminApp.Country.SB' | translate }}</option>
+            <option value="SC">{{ 'fastAdminApp.Country.SC' | translate }}</option>
+            <option value="SD">{{ 'fastAdminApp.Country.SD' | translate }}</option>
+            <option value="SE">{{ 'fastAdminApp.Country.SE' | translate }}</option>
+            <option value="SG">{{ 'fastAdminApp.Country.SG' | translate }}</option>
+            <option value="SH">{{ 'fastAdminApp.Country.SH' | translate }}</option>
+            <option value="SI">{{ 'fastAdminApp.Country.SI' | translate }}</option>
+            <option value="SK">{{ 'fastAdminApp.Country.SK' | translate }}</option>
+            <option value="SL">{{ 'fastAdminApp.Country.SL' | translate }}</option>
+            <option value="SM">{{ 'fastAdminApp.Country.SM' | translate }}</option>
+            <option value="SN">{{ 'fastAdminApp.Country.SN' | translate }}</option>
+            <option value="SO">{{ 'fastAdminApp.Country.SO' | translate }}</option>
+            <option value="SR">{{ 'fastAdminApp.Country.SR' | translate }}</option>
+            <option value="ST">{{ 'fastAdminApp.Country.ST' | translate }}</option>
+            <option value="SV">{{ 'fastAdminApp.Country.SV' | translate }}</option>
+            <option value="SY">{{ 'fastAdminApp.Country.SY' | translate }}</option>
+            <option value="SZ">{{ 'fastAdminApp.Country.SZ' | translate }}</option>
+            <option value="TC">{{ 'fastAdminApp.Country.TC' | translate }}</option>
+            <option value="TD">{{ 'fastAdminApp.Country.TD' | translate }}</option>
+            <option value="TG">{{ 'fastAdminApp.Country.TG' | translate }}</option>
+            <option value="TH">{{ 'fastAdminApp.Country.TH' | translate }}</option>
+            <option value="TJ">{{ 'fastAdminApp.Country.TJ' | translate }}</option>
+            <option value="TK">{{ 'fastAdminApp.Country.TK' | translate }}</option>
+            <option value="TL">{{ 'fastAdminApp.Country.TL' | translate }}</option>
+            <option value="TM">{{ 'fastAdminApp.Country.TM' | translate }}</option>
+            <option value="TN">{{ 'fastAdminApp.Country.TN' | translate }}</option>
+            <option value="TO">{{ 'fastAdminApp.Country.TO' | translate }}</option>
+            <option value="TR">{{ 'fastAdminApp.Country.TR' | translate }}</option>
+            <option value="TT">{{ 'fastAdminApp.Country.TT' | translate }}</option>
+            <option value="TV">{{ 'fastAdminApp.Country.TV' | translate }}</option>
+            <option value="TW">{{ 'fastAdminApp.Country.TW' | translate }}</option>
+            <option value="TZ">{{ 'fastAdminApp.Country.TZ' | translate }}</option>
+            <option value="UA">{{ 'fastAdminApp.Country.UA' | translate }}</option>
+            <option value="UG">{{ 'fastAdminApp.Country.UG' | translate }}</option>
+            <option value="US">{{ 'fastAdminApp.Country.US' | translate }}</option>
+            <option value="UY">{{ 'fastAdminApp.Country.UY' | translate }}</option>
+            <option value="UZ">{{ 'fastAdminApp.Country.UZ' | translate }}</option>
+            <option value="VA">{{ 'fastAdminApp.Country.VA' | translate }}</option>
+            <option value="VC">{{ 'fastAdminApp.Country.VC' | translate }}</option>
+            <option value="VE">{{ 'fastAdminApp.Country.VE' | translate }}</option>
+            <option value="VG">{{ 'fastAdminApp.Country.VG' | translate }}</option>
+            <option value="VI">{{ 'fastAdminApp.Country.VI' | translate }}</option>
+            <option value="VN">{{ 'fastAdminApp.Country.VN' | translate }}</option>
+            <option value="VU">{{ 'fastAdminApp.Country.VU' | translate }}</option>
+            <option value="WF">{{ 'fastAdminApp.Country.WF' | translate }}</option>
+            <option value="WS">{{ 'fastAdminApp.Country.WS' | translate }}</option>
+            <option value="YE">{{ 'fastAdminApp.Country.YE' | translate }}</option>
+            <option value="YT">{{ 'fastAdminApp.Country.YT' | translate }}</option>
+            <option value="ZA">{{ 'fastAdminApp.Country.ZA' | translate }}</option>
+            <option value="ZM">{{ 'fastAdminApp.Country.ZM' | translate }}</option>
+            <option value="ZW">{{ 'fastAdminApp.Country.ZW' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('country')!.invalid && (editForm.get('country')!.dirty || editForm.get('country')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('country')?.errors?.required" faTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.street"
+            for="field_street"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.street' | translate"
+            >Street</label
+          >
+          <input type="text" class="form-control" name="street" id="field_street" data-cy="street" formControlName="street" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.streetNo"
+            for="field_streetNo"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.streetNo' | translate"
+            >Street No</label
+          >
+          <input type="text" class="form-control" name="streetNo" id="field_streetNo" data-cy="streetNo" formControlName="streetNo" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.street2"
+            for="field_street2"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.street2' | translate"
+            >Street 2</label
+          >
+          <input type="text" class="form-control" name="street2" id="field_street2" data-cy="street2" formControlName="street2" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.postcode"
+            for="field_postcode"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.postcode' | translate"
+            >Postcode</label
+          >
+          <input type="text" class="form-control" name="postcode" id="field_postcode" data-cy="postcode" formControlName="postcode" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.city"
+            for="field_city"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.city' | translate"
+            >City</label
+          >
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.hideOnDocuments"
+            for="field_hideOnDocuments"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.hideOnDocuments' | translate"
+            >Hide On Documents</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="hideOnDocuments"
+            id="field_hideOnDocuments"
+            data-cy="hideOnDocuments"
+            formControlName="hideOnDocuments"
+          />
+          <div
+            *ngIf="
+              editForm.get('hideOnDocuments')!.invalid &&
+              (editForm.get('hideOnDocuments')!.dirty || editForm.get('hideOnDocuments')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('hideOnDocuments')?.errors?.required"
+              faTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.defaultPrepage"
+            for="field_defaultPrepage"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.defaultPrepage' | translate"
+            >Default Prepage</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultPrepage"
+            id="field_defaultPrepage"
+            data-cy="defaultPrepage"
+            formControlName="defaultPrepage"
+          />
+          <div
+            *ngIf="
+              editForm.get('defaultPrepage')!.invalid && (editForm.get('defaultPrepage')!.dirty || editForm.get('defaultPrepage')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('defaultPrepage')?.errors?.required"
+              faTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAddress.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.contactAddress.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

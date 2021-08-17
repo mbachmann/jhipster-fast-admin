@@ -1,0 +1,157 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-contact-account-heading"
+        data-cy="ContactAccountCreateUpdateHeading"
+        faTranslate="fastAdminApp.contactAccount.home.createOrEditLabel"
+      >
+        Create or edit a Contact Account
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAccount.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAccount.defaultAccount"
+            for="field_defaultAccount"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.defaultAccount' | translate"
+            >Default Account</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultAccount"
+            id="field_defaultAccount"
+            data-cy="defaultAccount"
+            formControlName="defaultAccount"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAccount.type"
+            for="field_type"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.type' | translate"
+            >Type</label
+          >
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'fastAdminApp.AccountType.null' | translate }}</option>
+            <option value="IBAN">{{ 'fastAdminApp.AccountType.IBAN' | translate }}</option>
+            <option value="ISR">{{ 'fastAdminApp.AccountType.ISR' | translate }}</option>
+            <option value="QR">{{ 'fastAdminApp.AccountType.QR' | translate }}</option>
+            <option value="QRREF">{{ 'fastAdminApp.AccountType.QRREF' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAccount.number"
+            for="field_number"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.number' | translate"
+            >Number</label
+          >
+          <input type="text" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAccount.bic"
+            for="field_bic"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.bic' | translate"
+            >Bic</label
+          >
+          <input type="text" class="form-control" name="bic" id="field_bic" data-cy="bic" formControlName="bic" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAccount.description"
+            for="field_description"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.description' | translate"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactAccount.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.contactAccount.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

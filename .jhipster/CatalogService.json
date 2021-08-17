@@ -1,0 +1,112 @@
+{
+  "name": "CatalogService",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "Catalog Product Number",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "Catalog Product Name",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "javadoc": "Catalog Product Description"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "Catalog Product Notes"
+    },
+    {
+      "fieldName": "categoryName",
+      "fieldType": "String",
+      "javadoc": "Category Name"
+    },
+    {
+      "fieldName": "includingVat",
+      "fieldType": "Boolean",
+      "javadoc": "The price includes MWST"
+    },
+    {
+      "fieldName": "vat",
+      "fieldType": "Double",
+      "javadoc": "The VAT Percent"
+    },
+    {
+      "fieldName": "unitName",
+      "fieldType": "String",
+      "javadoc": "The unit Name"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double",
+      "javadoc": "The sales price of the product"
+    },
+    {
+      "fieldName": "defaultAmount",
+      "fieldType": "Integer",
+      "javadoc": "Default amount of products (Standard Menge)"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customFieldValue",
+      "otherEntityRelationshipName": "catalogService",
+      "javadoc": "custom edit fields",
+      "relationshipName": "customFields"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "catalogCategory",
+      "otherEntityRelationshipName": "catalogService",
+      "javadoc": "The category relation",
+      "relationshipName": "category"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "catalogUnit",
+      "otherEntityRelationshipName": "catalogService",
+      "javadoc": "The unit relation",
+      "relationshipName": "unit"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "valueAddedTax",
+      "otherEntityRelationshipName": "catalogService",
+      "javadoc": "The vat relation",
+      "relationshipName": "valueAddedTax"
+    }
+  ],
+  "entityTableName": "catalog_service",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817135753"
+}

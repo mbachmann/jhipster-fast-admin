@@ -1,0 +1,32 @@
+{
+  "fastAdminApp": {
+    "contactGroup": {
+      "home": {
+        "title": "Contact Groups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Contact Group",
+        "createOrEditLabel": "Create or edit a Contact Group",
+        "notFound": "No Contact Groups found"
+      },
+      "created": "A new Contact Group is created with identifier {{ param }}",
+      "updated": "A Contact Group is updated with identifier {{ param }}",
+      "deleted": "A Contact Group is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contact Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Contact Group"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "name": "Name",
+      "usage": "Usage",
+      "contacts": "Contacts",
+      "help": {
+        "remoteId": "id of a remote system",
+        "name": "Name of the contact group",
+        "usage": "how many contacts are assigned to this group ,"
+      }
+    }
+  }
+}

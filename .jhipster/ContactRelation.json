@@ -1,0 +1,30 @@
+{
+  "name": "ContactRelation",
+  "fields": [
+    {
+      "fieldName": "contactRelationType",
+      "fieldType": "ContactRelationType",
+      "javadoc": "type of contact's relation; possible values: type of contact's relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others",
+      "fieldValues": "CUSTOMER (CL),CREDITOR (CR),TEAM (TE),AUTORITY (AT),MEDICAL (ME),OTHERS (OT)"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "relations",
+      "relationshipName": "contacts",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "contact_relation",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817135741"
+}

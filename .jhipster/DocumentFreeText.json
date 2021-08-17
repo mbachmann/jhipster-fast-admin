@@ -1,0 +1,73 @@
+{
+  "name": "DocumentFreeText",
+  "fields": [
+    {
+      "fieldName": "text",
+      "fieldType": "String",
+      "javadoc": "displayed text"
+    },
+    {
+      "fieldName": "fontSize",
+      "fieldType": "Integer",
+      "javadoc": "font size of displayed text (min: 1; max: 50)"
+    },
+    {
+      "fieldName": "positionX",
+      "fieldType": "Double",
+      "javadoc": "The x position of the free text"
+    },
+    {
+      "fieldName": "positionY",
+      "fieldType": "Double",
+      "javadoc": "The y position of the free text"
+    },
+    {
+      "fieldName": "pageNo",
+      "fieldType": "Integer",
+      "javadoc": "which page text is displayed on"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "documentLetter",
+      "otherEntityRelationshipName": "freeTexts",
+      "relationshipName": "documentLetter"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "deliveryNote",
+      "otherEntityRelationshipName": "freeTexts",
+      "relationshipName": "deliveryNote"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "invoice",
+      "otherEntityRelationshipName": "freeTexts",
+      "relationshipName": "invoice"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "offer",
+      "otherEntityRelationshipName": "freeTexts",
+      "relationshipName": "offer"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "orderConfirmation",
+      "otherEntityRelationshipName": "freeTexts",
+      "relationshipName": "orderConfirmation"
+    }
+  ],
+  "javadoc": "free texts objects",
+  "entityTableName": "document_free_text",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817135759"
+}

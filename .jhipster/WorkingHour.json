@@ -1,0 +1,63 @@
+{
+  "name": "WorkingHour",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String",
+      "javadoc": "(optional): full name of user"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "javadoc": "date of working hours time span"
+    },
+    {
+      "fieldName": "timeStart",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "start of working hours time span (in HH:MM format)"
+    },
+    {
+      "fieldName": "timeEnd",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "end of working hours time span (in HH:MM format)"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "date when working hours entity was created"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "workingHour",
+      "javadoc": "The working hour booked from user",
+      "relationshipName": "applicationUser"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "effort",
+      "otherEntityRelationshipName": "workingHour",
+      "javadoc": "The working hour has been booked to this effort",
+      "relationshipName": "effort"
+    }
+  ],
+  "javadoc": "Working Hours of an ApplicationUser",
+  "entityTableName": "working_hour",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817135812"
+}

@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="valueAddedTax">
+      <h2 data-cy="valueAddedTaxDetailsHeading"><span faTranslate="fastAdminApp.valueAddedTax.detail.title">Value Added Tax</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ valueAddedTax.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.valueAddedTax.name" [ngbTooltip]="'fastAdminApp.valueAddedTax.help.name' | translate">Name</span>
+        </dt>
+        <dd>
+          <span>{{ valueAddedTax.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.valueAddedTax.vatType" [ngbTooltip]="'fastAdminApp.valueAddedTax.help.vatType' | translate"
+            >Vat Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.VatType.' + valueAddedTax.vatType }}">{{ valueAddedTax.vatType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.valueAddedTax.validFrom" [ngbTooltip]="'fastAdminApp.valueAddedTax.help.validFrom' | translate"
+            >Valid From</span
+          >
+        </dt>
+        <dd>
+          <span>{{ valueAddedTax.validFrom | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.valueAddedTax.validUntil" [ngbTooltip]="'fastAdminApp.valueAddedTax.help.validUntil' | translate"
+            >Valid Until</span
+          >
+        </dt>
+        <dd>
+          <span>{{ valueAddedTax.validUntil | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.valueAddedTax.vatPercent" [ngbTooltip]="'fastAdminApp.valueAddedTax.help.vatPercent' | translate"
+            >Vat Percent</span
+          >
+        </dt>
+        <dd>
+          <span>{{ valueAddedTax.vatPercent }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.valueAddedTax.inactiv" [ngbTooltip]="'fastAdminApp.valueAddedTax.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ valueAddedTax.inactiv }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.valueAddedTax.newVatId" [ngbTooltip]="'fastAdminApp.valueAddedTax.help.newVatId' | translate"
+            >New Vat Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ valueAddedTax.newVatId }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/value-added-tax', valueAddedTax.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

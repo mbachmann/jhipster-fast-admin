@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "AutoSynch": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "INACTIVE": "INACTIVE",
+      "REQUESTED": "REQUESTED"
+    }
+  }
+}

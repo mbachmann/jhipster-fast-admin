@@ -1,0 +1,124 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="bankAccount">
+      <h2 data-cy="bankAccountDetailsHeading"><span faTranslate="fastAdminApp.bankAccount.detail.title">Bank Account</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ bankAccount.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.remoteId" [ngbTooltip]="'fastAdminApp.bankAccount.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ bankAccount.remoteId }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.bankAccount.defaultBankAccount"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.defaultBankAccount' | translate"
+            >Default Bank Account</span
+          >
+        </dt>
+        <dd>
+          <span>{{ bankAccount.defaultBankAccount }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.description" [ngbTooltip]="'fastAdminApp.bankAccount.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ bankAccount.description }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.bankName" [ngbTooltip]="'fastAdminApp.bankAccount.help.bankName' | translate"
+            >Bank Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ bankAccount.bankName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.number" [ngbTooltip]="'fastAdminApp.bankAccount.help.number' | translate"
+            >Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ bankAccount.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.iban" [ngbTooltip]="'fastAdminApp.bankAccount.help.iban' | translate">Iban</span>
+        </dt>
+        <dd>
+          <span>{{ bankAccount.iban }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.bankAccount.bic" [ngbTooltip]="'fastAdminApp.bankAccount.help.bic' | translate">Bic</span></dt>
+        <dd>
+          <span>{{ bankAccount.bic }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.postAccount" [ngbTooltip]="'fastAdminApp.bankAccount.help.postAccount' | translate"
+            >Post Account</span
+          >
+        </dt>
+        <dd>
+          <span>{{ bankAccount.postAccount }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.autoSync" [ngbTooltip]="'fastAdminApp.bankAccount.help.autoSync' | translate"
+            >Auto Sync</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.AutoSynch.' + bankAccount.autoSync }}">{{ bankAccount.autoSync }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.bankAccount.autoSyncDirection"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.autoSyncDirection' | translate"
+            >Auto Sync Direction</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.AutoSynchDirection.' + bankAccount.autoSyncDirection }}">{{
+            bankAccount.autoSyncDirection
+          }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.currency" [ngbTooltip]="'fastAdminApp.bankAccount.help.currency' | translate"
+            >Currency</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Currency.' + bankAccount.currency }}">{{ bankAccount.currency }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.bankAccount.inactiv" [ngbTooltip]="'fastAdminApp.bankAccount.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ bankAccount.inactiv }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/bank-account', bankAccount.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

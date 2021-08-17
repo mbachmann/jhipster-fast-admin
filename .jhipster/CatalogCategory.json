@@ -1,0 +1,43 @@
+{
+  "name": "CatalogCategory",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "Category name",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountingAccountNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "usage",
+      "fieldType": "Integer",
+      "javadoc": "how many catalog items are using this category"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "Category for Products or Services",
+  "entityTableName": "catalog_category",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817135749"
+}

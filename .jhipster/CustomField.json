@@ -1,0 +1,41 @@
+{
+  "name": "CustomField",
+  "fields": [
+    {
+      "fieldName": "domainArea",
+      "fieldType": "DomainArea",
+      "javadoc": "the custom field if for the domain resource",
+      "fieldValues": "CONTACTS,LETTERS,PRODUCTS,SERVICES,OFFERS,PROJECTS,DELIVERY_NOTES,ORDER_CONFIRMATIONS,INVOICES,USERS,REPORTING"
+    },
+    {
+      "fieldName": "key",
+      "fieldType": "String",
+      "javadoc": "the key to identify the custom field",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "a name which appears on the dialog",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "defaultValue",
+      "fieldType": "String",
+      "javadoc": "the value of the resource"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "Additional information for a resource",
+  "entityTableName": "custom_field",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210817121857"
+}

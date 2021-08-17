@@ -1,0 +1,128 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contactAddress">
+      <h2 data-cy="contactAddressDetailsHeading"><span faTranslate="fastAdminApp.contactAddress.detail.title">Contact Address</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contactAddress.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAddress.remoteId" [ngbTooltip]="'fastAdminApp.contactAddress.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.remoteId }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactAddress.defaultAddress"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.defaultAddress' | translate"
+            >Default Address</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.defaultAddress }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAddress.country" [ngbTooltip]="'fastAdminApp.contactAddress.help.country' | translate"
+            >Country</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Country.' + contactAddress.country }}">{{ contactAddress.country }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAddress.street" [ngbTooltip]="'fastAdminApp.contactAddress.help.street' | translate"
+            >Street</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.street }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAddress.streetNo" [ngbTooltip]="'fastAdminApp.contactAddress.help.streetNo' | translate"
+            >Street No</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.streetNo }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAddress.street2" [ngbTooltip]="'fastAdminApp.contactAddress.help.street2' | translate"
+            >Street 2</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.street2 }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAddress.postcode" [ngbTooltip]="'fastAdminApp.contactAddress.help.postcode' | translate"
+            >Postcode</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.postcode }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAddress.city" [ngbTooltip]="'fastAdminApp.contactAddress.help.city' | translate"
+            >City</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.city }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactAddress.hideOnDocuments"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.hideOnDocuments' | translate"
+            >Hide On Documents</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.hideOnDocuments }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactAddress.defaultPrepage"
+            [ngbTooltip]="'fastAdminApp.contactAddress.help.defaultPrepage' | translate"
+            >Default Prepage</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.defaultPrepage }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAddress.inactiv" [ngbTooltip]="'fastAdminApp.contactAddress.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAddress.inactiv }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contactAddress.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="contactAddress.contact">
+            <a [routerLink]="['/contact-fa', contactAddress.contact?.id, 'view']">{{ contactAddress.contact?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact-address-fa', contactAddress.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

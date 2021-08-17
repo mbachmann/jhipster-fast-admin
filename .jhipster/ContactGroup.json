@@ -1,0 +1,43 @@
+{
+  "name": "ContactGroup",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "Name of the contact group",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "usage",
+      "fieldType": "Integer",
+      "javadoc": "how many contacts are assigned to this group ,"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "groups",
+      "relationshipName": "contacts",
+      "ownerSide": false
+    }
+  ],
+  "javadoc": "The group a contact belongs to",
+  "entityTableName": "contact_group",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210817121824"
+}

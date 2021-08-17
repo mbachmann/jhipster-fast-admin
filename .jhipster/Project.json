@@ -1,0 +1,82 @@
+{
+  "name": "Project",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "project's internal number"
+    },
+    {
+      "fieldName": "contactName",
+      "fieldType": "String",
+      "javadoc": "related contact's name (optional)"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "project's name",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "javadoc": "project's description"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate",
+      "javadoc": "project's start date",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "hoursEstimated",
+      "fieldType": "Double",
+      "javadoc": "project's estimated maximum effort (in hours)"
+    },
+    {
+      "fieldName": "hourlyRate",
+      "fieldType": "Double",
+      "javadoc": "project's hourly rate"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ProjectStatus",
+      "javadoc": "status to be set, on of:  ''O'' - open, ''C'' - closed, ''B'' - billed, ''P'' - pending'",
+      "fieldValues": "OPEN (O),CLOSED (C),BILLED (B),PENDING (P)",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customFieldValue",
+      "otherEntityRelationshipName": "project",
+      "javadoc": "custom edit fields",
+      "relationshipName": "customFields"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "project",
+      "javadoc": "The related contact to this project",
+      "relationshipName": "contact"
+    }
+  ],
+  "entityTableName": "project",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210817121852"
+}

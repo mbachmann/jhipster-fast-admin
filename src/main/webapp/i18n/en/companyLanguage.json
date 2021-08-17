@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "CompanyLanguage": {
+      "null": "",
+      "FRENCH": "fr",
+      "ENGLISH": "en",
+      "GERMAN": "de"
+    }
+  }
+}

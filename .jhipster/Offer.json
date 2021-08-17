@@ -1,0 +1,182 @@
+{
+  "name": "Offer",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "document number",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "contactName",
+      "fieldType": "String",
+      "javadoc": "name of a contact"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "javadoc": "date of the document"
+    },
+    {
+      "fieldName": "validUntil",
+      "fieldType": "LocalDate",
+      "javadoc": "date that offer is valid until"
+    },
+    {
+      "fieldName": "periodText",
+      "fieldType": "String",
+      "javadoc": "service/delivery"
+    },
+    {
+      "fieldName": "currency",
+      "fieldType": "Currency",
+      "javadoc": "currency (e.g. CHF, EUR)",
+      "fieldValues": "AED (AED),AFN (AFN),ALL (ALL),AMD (AMD),ANG (ANG),AOA (AOA),ARS (ARS),AUD (AUD),AWG (AWG),AZN (AZN),BAM (BAM),BBD (BBD),BDT (BDT),BGN (BGN),BHD (BHD),BIF (BIF),BMD (BMD),BND (BND),BOB (BOB),BOV (BOV),BRL (BRL),BSD (BSD),BTN (BTN),BWP (BWP),BYN (BYN),BYR (BYR),BZD (BZD),CAD (CAD),CDF (CDF),CHE (CHE),CHF (CHF),CHW (CHW),CLF (CLF),CLP (CLP),CNY (CNY),COP (COP),COU (COU),CRC (CRC),CUC (CUC),CUP (CUP),CVE (CVE),CZK (CZK),DJF (DJF),DKK (DKK),DOP (DOP),DZD (DZD),EGP (EGP),ERN (ERN),ETB (ETB),EUR (EUR),FJD (FJD),FKP (FKP),GBP (GBP),GEL (GEL),GHS (GHS),GIP (GIP),GMD (GMD),GNF (GNF),GTQ (GTQ),GYD (GYD),HKD (HKD),HNL (HNL),HRK (HRK),HTG (HTG),HUF (HUF),IDR (IDR),ILS (ILS),INR (INR),IQD (IQD),IRR (IRR),ISK (ISK),JMD (JMD),JOD (JOD),JPY (JPY),KES (KES),KGS (KGS),KHR (KHR),KMF (KMF),KPW (KPW),KRW (KRW),KWD (KWD),KYD (KYD),KZT (KZT),LAK (LAK),LBP (LBP),LKR (LKR),LRD (LRD),LSL (LSL),LYD (LYD),MAD (MAD),MDL (MDL),MGA (MGA),MKD (MKD),MMK (MMK),MNT (MNT),MOP (MOP),MRO (MRO),MUR (MUR),MVR (MVR),MWK (MWK),MXN (MXN),MXV (MXV),MYR (MYR),MZN (MZN),NAD (NAD),NGN (NGN),NIO (NIO),NOK (NOK),NPR (NPR),NZD (NZD),OMR (OMR),PAB (PAB),PEN (PEN),PGK (PGK),PHP (PHP),PKR (PKR),PLN (PLN),PYG (PYG),QAR (QAR),RON (RON),RSD (RSD),RUB (RUB),RWF (RWF),SAR (SAR),SBD (SBD),SCR (SCR),SDG (SDG),SEK (SEK),SGD (SGD),SHP (SHP),SLL (SLL),SOS (SOS),SRD (SRD),SSP (SSP),STD (STD),SYP (SYP),SZL (SZL),THB (THB),TJS (TJS),TMT (TMT),TND (TND),TOP (TOP),TRY (TRY),TTD (TTD),TWD (TWD),TZS (TZS),UAH (UAH),UGX (UGX),USD (USD),USN (USN),UYI (UYI),UYU (UYU),UZS (UZS),VEF (VEF),VND (VND),VUV (VUV),WST (WST),XAF (XAF),XAG (XAG),XAU (XAU),XBA (XBA),XBB (XBB),XBC (XBC),XBD (XBD),XCD (XCD),XDR (XDR),XFU (XFU),XOF (XOF),XPD (XPD),XPF (XPF),XPT (XPT),XSU (XSU),XTS (XTS),XUA (XUA),XXX (XXX),YER (YER),ZAR (ZAR),ZMW (ZMW)"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Double",
+      "javadoc": "total amount of the delivery note"
+    },
+    {
+      "fieldName": "vatIncluded",
+      "fieldType": "Boolean",
+      "javadoc": "whether prices in delivery note include VAT"
+    },
+    {
+      "fieldName": "discountRate",
+      "fieldType": "Double",
+      "javadoc": "optional discount rate"
+    },
+    {
+      "fieldName": "discountType",
+      "fieldType": "DiscountType",
+      "javadoc": "optional discount type; possible values: A - amount, P - in %",
+      "fieldValues": "IN_PERCENT (P),AMOUNT (A)"
+    },
+    {
+      "fieldName": "acceptOnline",
+      "fieldType": "Boolean",
+      "javadoc": "whether offer can be accepted online"
+    },
+    {
+      "fieldName": "acceptOnlineUrl",
+      "fieldType": "String",
+      "javadoc": "generated URL for accepting the offer online"
+    },
+    {
+      "fieldName": "acceptOnlineStatus",
+      "fieldType": "OfferAcceptOnlineStatus",
+      "javadoc": "status of offer's acceptance; possible values: A - accepted, D - declined, U - unknown",
+      "fieldValues": "ACCEPTED (A),DECLINED (D),UNKNOWN (U)"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "DocumentLanguage",
+      "javadoc": "language; possible values: de, en, es, fr, it ,",
+      "fieldValues": "FRENCH (fr),ENGLISH (en),GERMAN (de),SPANISH (es),ITALIAN (it)"
+    },
+    {
+      "fieldName": "pageAmount",
+      "fieldType": "Integer",
+      "javadoc": "how many pages the document has"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "optional notes"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "OfferStatus",
+      "javadoc": "status of offer, possible values: DR - draft, S - sent, DE - declined, A - accepted, B - billed, D - deleted (but still visible)",
+      "fieldValues": "DRAFT (DR),SENT (S),BILLED (B),DELETED (D)"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "documentFreeText",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the free texts belonging to this document",
+      "relationshipName": "freeTexts"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "descriptiveDocumentText",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the title, introduction, condition texts belonging to this document",
+      "relationshipName": "texts"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "documentPosition",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the positions belonging to this document",
+      "relationshipName": "positions"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the document contact",
+      "relationshipName": "contact"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the optional contact address",
+      "relationshipName": "contactAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactPerson",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the optional contact person",
+      "relationshipName": "contactPerson"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the optional postal address",
+      "relationshipName": "contactPrePageAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "layout",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the layout information for rendering",
+      "relationshipName": "layout"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "signature",
+      "otherEntityRelationshipName": "offer",
+      "javadoc": "the related user signature",
+      "relationshipName": "layout"
+    }
+  ],
+  "entityTableName": "offer",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210817121838"
+}

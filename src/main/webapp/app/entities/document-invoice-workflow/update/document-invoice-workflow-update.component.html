@@ -1,0 +1,133 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-document-invoice-workflow-heading"
+        data-cy="DocumentInvoiceWorkflowCreateUpdateHeading"
+        faTranslate="fastAdminApp.documentInvoiceWorkflow.home.createOrEditLabel"
+      >
+        Create or edit a Document Invoice Workflow
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.active"
+            for="field_active"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.active' | translate"
+            >Active</label
+          >
+          <input type="checkbox" class="form-check" name="active" id="field_active" data-cy="active" formControlName="active" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.status"
+            for="field_status"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.status' | translate"
+            >Status</label
+          >
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'fastAdminApp.InvoiceWorkflowStatus.null' | translate }}</option>
+            <option value="PAYMENT_REMINDER">{{ 'fastAdminApp.InvoiceWorkflowStatus.PAYMENT_REMINDER' | translate }}</option>
+            <option value="FIRST_REMINDER">{{ 'fastAdminApp.InvoiceWorkflowStatus.FIRST_REMINDER' | translate }}</option>
+            <option value="SECOND_REMINDER">{{ 'fastAdminApp.InvoiceWorkflowStatus.SECOND_REMINDER' | translate }}</option>
+            <option value="THIRD_REMINDER">{{ 'fastAdminApp.InvoiceWorkflowStatus.THIRD_REMINDER' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.overdueDays"
+            for="field_overdueDays"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.overdueDays' | translate"
+            >Overdue Days</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="overdueDays"
+            id="field_overdueDays"
+            data-cy="overdueDays"
+            formControlName="overdueDays"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.action"
+            for="field_action"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.action' | translate"
+            >Action</label
+          >
+          <select class="form-control" name="action" formControlName="action" id="field_action" data-cy="action">
+            <option [ngValue]="null">{{ 'fastAdminApp.WorkflowAction.null' | translate }}</option>
+            <option value="REMIND_ME">{{ 'fastAdminApp.WorkflowAction.REMIND_ME' | translate }}</option>
+            <option value="REMIND_CONTACT_BY_EMAIL">{{ 'fastAdminApp.WorkflowAction.REMIND_CONTACT_BY_EMAIL' | translate }}</option>
+            <option value="REMIND_CONTACT_BY_POST">{{ 'fastAdminApp.WorkflowAction.REMIND_CONTACT_BY_POST' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.contactEmail"
+            for="field_contactEmail"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.contactEmail' | translate"
+            >Contact Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactEmail"
+            id="field_contactEmail"
+            data-cy="contactEmail"
+            formControlName="contactEmail"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.speed"
+            for="field_speed"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.speed' | translate"
+            >Speed</label
+          >
+          <select class="form-control" name="speed" formControlName="speed" id="field_speed" data-cy="speed">
+            <option [ngValue]="null">{{ 'fastAdminApp.PostSpeed.null' | translate }}</option>
+            <option value="PRIORIRY">{{ 'fastAdminApp.PostSpeed.PRIORIRY' | translate }}</option>
+            <option value="ECONOMY">{{ 'fastAdminApp.PostSpeed.ECONOMY' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

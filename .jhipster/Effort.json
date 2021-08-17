@@ -1,0 +1,86 @@
+{
+  "name": "Effort",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "userId",
+      "fieldType": "Integer",
+      "javadoc": "id of user ,"
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String",
+      "javadoc": "full name of user (optional)"
+    },
+    {
+      "fieldName": "entityType",
+      "fieldType": "ReportingEntityType",
+      "javadoc": "type of assigned entity, one of: P - project, CU - cost unit, C - contact",
+      "fieldValues": "PROJECT (P),COST_UNIT (CU),CONTACT (C)"
+    },
+    {
+      "fieldName": "entityId",
+      "fieldType": "Integer",
+      "javadoc": "assigned entity id ,"
+    },
+    {
+      "fieldName": "duration",
+      "fieldType": "Double",
+      "javadoc": "duration of effort"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "javadoc": "date of effort"
+    },
+    {
+      "fieldName": "activityName",
+      "fieldType": "String",
+      "javadoc": "full activity name (optional)"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "notes to this effort"
+    },
+    {
+      "fieldName": "isInvoiced",
+      "fieldType": "Boolean",
+      "javadoc": "if effort has been invoiced already"
+    },
+    {
+      "fieldName": "updated",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "update at"
+    },
+    {
+      "fieldName": "hourlyRate",
+      "fieldType": "Double",
+      "javadoc": "hourly rate of this effort"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "reportingActivity",
+      "otherEntityRelationshipName": "effort",
+      "javadoc": "The related activity to this effort",
+      "relationshipName": "activity"
+    }
+  ],
+  "entityTableName": "effort",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817151559"
+}

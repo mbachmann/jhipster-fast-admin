@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "LetterStatus": {
+      "null": "",
+      "DRAFT": "DR",
+      "SENT": "S",
+      "DELETED": "D"
+    }
+  }
+}

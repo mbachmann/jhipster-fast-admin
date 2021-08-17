@@ -1,0 +1,75 @@
+{
+  "fastAdminApp": {
+    "contactPerson": {
+      "home": {
+        "title": "Contact People",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Contact Person",
+        "createOrEditLabel": "Create or edit a Contact Person",
+        "notFound": "No Contact People found"
+      },
+      "created": "A new Contact Person is created with identifier {{ param }}",
+      "updated": "A Contact Person is updated with identifier {{ param }}",
+      "deleted": "A Contact Person is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contact Person {{ id }}?"
+      },
+      "detail": {
+        "title": "Contact Person"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "defaultPerson": "Default Person",
+      "name": "Name",
+      "surname": "Surname",
+      "gender": "Gender",
+      "email": "Email",
+      "phone": "Phone",
+      "department": "Department",
+      "salutation": "Salutation",
+      "showTitle": "Show Title",
+      "showDepartment": "Show Department",
+      "wantsNewsletter": "Wants Newsletter",
+      "birthDate": "Birth Date",
+      "birthPlace": "Birth Place",
+      "placeOfOrigin": "Place Of Origin",
+      "citizenCountry1": "Citizen Country 1",
+      "citizenCountry2": "Citizen Country 2",
+      "socialSecurityNumber": "Social Security Number",
+      "hobbies": "Hobbies",
+      "dailyWork": "Daily Work",
+      "contactAttribute01": "Contact Attribute 01",
+      "avatar": "Avatar",
+      "imageType": "Image Type",
+      "inactiv": "Inactiv",
+      "customFields": "Custom Fields",
+      "contact": "Contact",
+      "help": {
+        "remoteId": "id of a remote system",
+        "defaultPerson": "whether it is a default contact&#39;s person",
+        "name": "the person first name",
+        "surname": "the person surname",
+        "gender": "gender of contact (required for P type); possible values: M - Male, F - Female, O - Other",
+        "email": "The person&#39;s eMail",
+        "phone": "the person&#39;s phone number",
+        "department": "the person&#39;s department",
+        "salutation": "e.g. Dear Mr. Jones",
+        "showTitle": "whether to show Mr/Ms before name",
+        "showDepartment": "whether to show department",
+        "wantsNewsletter": "whether person wishes to receive newsletter",
+        "birthDate": "contact birthdate",
+        "birthPlace": "contact birth place",
+        "placeOfOrigin": "contact place of origin",
+        "citizenCountry1": "citizen of country 1",
+        "citizenCountry2": "citizen of country 1",
+        "socialSecurityNumber": "the social security number",
+        "hobbies": "hobbies and activities in freetime",
+        "dailyWork": "day structure",
+        "contactAttribute01": "attribute 1",
+        "avatar": "image of contact",
+        "imageType": "image type",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

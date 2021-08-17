@@ -1,0 +1,49 @@
+{
+  "fastAdminApp": {
+    "bankAccount": {
+      "home": {
+        "title": "BankAccounts",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Bank Account",
+        "createOrEditLabel": "Créer ou éditer un Bank Account",
+        "notFound": "Aucun Bank Account trouvé"
+      },
+      "created": "Un nouveau Bank Account a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Bank Account avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Bank Account avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Bank Account {{ id }} ?"
+      },
+      "detail": {
+        "title": "Bank Account"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "defaultBankAccount": "Default Bank Account",
+      "description": "Description",
+      "bankName": "Bank Name",
+      "number": "Number",
+      "iban": "Iban",
+      "bic": "Bic",
+      "postAccount": "Post Account",
+      "autoSync": "Auto Sync",
+      "autoSyncDirection": "Auto Sync Direction",
+      "currency": "Currency",
+      "inactiv": "Inactiv",
+      "help": {
+        "remoteId": "id of a remote system",
+        "defaultBankAccount": "whether it is a default bank account",
+        "description": "The account description",
+        "bankName": "The Bank Name",
+        "number": "Account Number",
+        "iban": "IBAN Number",
+        "bic": "BIC/SWIFT Code",
+        "postAccount": "bank’s postal account",
+        "autoSync": "one of: [active, inactive, requested]",
+        "autoSyncDirection": "[in, out, null (means no direction specified)]",
+        "currency": "ISO currency name o",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "ApplicationRole",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "Inherits from the User Role",
+  "entityTableName": "application_role",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817151603"
+}

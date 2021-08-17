@@ -1,0 +1,279 @@
+<div>
+  <h2 id="page-heading" data-cy="InvoiceHeading">
+    <span faTranslate="fastAdminApp.invoice.home.title">Invoices</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.invoice.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-invoice"
+        [routerLink]="['/invoice/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.invoice.home.createLabel"> Create a new Invoice </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="invoices?.length === 0">
+    <span faTranslate="fastAdminApp.invoice.home.notFound">No invoices found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="invoices && invoices.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.invoice.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="number">
+            <span faTranslate="fastAdminApp.invoice.number">Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactName">
+            <span faTranslate="fastAdminApp.invoice.contactName">Contact Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="date"><span faTranslate="fastAdminApp.invoice.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="due"><span faTranslate="fastAdminApp.invoice.due">Due</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="periodFrom">
+            <span faTranslate="fastAdminApp.invoice.periodFrom">Period From</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="periodTo">
+            <span faTranslate="fastAdminApp.invoice.periodTo">Period To</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="periodText">
+            <span faTranslate="fastAdminApp.invoice.periodText">Period Text</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="currency">
+            <span faTranslate="fastAdminApp.invoice.currency">Currency</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="total"><span faTranslate="fastAdminApp.invoice.total">Total</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="vatIncluded">
+            <span faTranslate="fastAdminApp.invoice.vatIncluded">Vat Included</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="discountRate">
+            <span faTranslate="fastAdminApp.invoice.discountRate">Discount Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="discountType">
+            <span faTranslate="fastAdminApp.invoice.discountType">Discount Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="cashDiscountRate">
+            <span faTranslate="fastAdminApp.invoice.cashDiscountRate">Cash Discount Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="cashDiscountDate">
+            <span faTranslate="fastAdminApp.invoice.cashDiscountDate">Cash Discount Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="totalPaid">
+            <span faTranslate="fastAdminApp.invoice.totalPaid">Total Paid</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paidDate">
+            <span faTranslate="fastAdminApp.invoice.paidDate">Paid Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="isrPosition">
+            <span faTranslate="fastAdminApp.invoice.isrPosition">Isr Position</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="isrReferenceNumber">
+            <span faTranslate="fastAdminApp.invoice.isrReferenceNumber">Isr Reference Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentLinkPaypal">
+            <span faTranslate="fastAdminApp.invoice.paymentLinkPaypal">Payment Link Paypal</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentLinkPaypalUrl">
+            <span faTranslate="fastAdminApp.invoice.paymentLinkPaypalUrl">Payment Link Paypal Url</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentLinkPostfinance">
+            <span faTranslate="fastAdminApp.invoice.paymentLinkPostfinance">Payment Link Postfinance</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentLinkPostfinanceUrl">
+            <span faTranslate="fastAdminApp.invoice.paymentLinkPostfinanceUrl">Payment Link Postfinance Url</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentLinkPayrexx">
+            <span faTranslate="fastAdminApp.invoice.paymentLinkPayrexx">Payment Link Payrexx</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentLinkPayrexxUrl">
+            <span faTranslate="fastAdminApp.invoice.paymentLinkPayrexxUrl">Payment Link Payrexx Url</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentLinkSmartcommerce">
+            <span faTranslate="fastAdminApp.invoice.paymentLinkSmartcommerce">Payment Link Smartcommerce</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentLinkSmartcommerceUrl">
+            <span faTranslate="fastAdminApp.invoice.paymentLinkSmartcommerceUrl">Payment Link Smartcommerce Url</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="language">
+            <span faTranslate="fastAdminApp.invoice.language">Language</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="pageAmount">
+            <span faTranslate="fastAdminApp.invoice.pageAmount">Page Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="notes"><span faTranslate="fastAdminApp.invoice.notes">Notes</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="status">
+            <span faTranslate="fastAdminApp.invoice.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="created">
+            <span faTranslate="fastAdminApp.invoice.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contact.id">
+            <span faTranslate="fastAdminApp.invoice.contact">Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactAddress.id">
+            <span faTranslate="fastAdminApp.invoice.contactAddress">Contact Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactPerson.id">
+            <span faTranslate="fastAdminApp.invoice.contactPerson">Contact Person</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactPrePageAddress.id">
+            <span faTranslate="fastAdminApp.invoice.contactPrePageAddress">Contact Pre Page Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="layout.id">
+            <span faTranslate="fastAdminApp.invoice.layout">Layout</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="signature.id">
+            <span faTranslate="fastAdminApp.invoice.signature">Signature</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="bankAccount.id">
+            <span faTranslate="fastAdminApp.invoice.bankAccount">Bank Account</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="isr.id"><span faTranslate="fastAdminApp.invoice.isr">Isr</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of invoices; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/invoice', invoice.id, 'view']">{{ invoice.id }}</a>
+          </td>
+          <td>{{ invoice.remoteId }}</td>
+          <td>{{ invoice.number }}</td>
+          <td>{{ invoice.contactName }}</td>
+          <td>{{ invoice.date | formatMediumDate }}</td>
+          <td>{{ invoice.due | formatMediumDate }}</td>
+          <td>{{ invoice.periodFrom | formatMediumDate }}</td>
+          <td>{{ invoice.periodTo | formatMediumDate }}</td>
+          <td>{{ invoice.periodText }}</td>
+          <td faTranslate="{{ 'fastAdminApp.Currency.' + invoice.currency }}">{{ invoice.currency }}</td>
+          <td>{{ invoice.total }}</td>
+          <td>{{ invoice.vatIncluded }}</td>
+          <td>{{ invoice.discountRate }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DiscountType.' + invoice.discountType }}">{{ invoice.discountType }}</td>
+          <td>{{ invoice.cashDiscountRate }}</td>
+          <td>{{ invoice.cashDiscountDate | formatMediumDate }}</td>
+          <td>{{ invoice.totalPaid }}</td>
+          <td>{{ invoice.paidDate }}</td>
+          <td faTranslate="{{ 'fastAdminApp.IsrPosition.' + invoice.isrPosition }}">{{ invoice.isrPosition }}</td>
+          <td>{{ invoice.isrReferenceNumber }}</td>
+          <td>{{ invoice.paymentLinkPaypal }}</td>
+          <td>{{ invoice.paymentLinkPaypalUrl }}</td>
+          <td>{{ invoice.paymentLinkPostfinance }}</td>
+          <td>{{ invoice.paymentLinkPostfinanceUrl }}</td>
+          <td>{{ invoice.paymentLinkPayrexx }}</td>
+          <td>{{ invoice.paymentLinkPayrexxUrl }}</td>
+          <td>{{ invoice.paymentLinkSmartcommerce }}</td>
+          <td>{{ invoice.paymentLinkSmartcommerceUrl }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + invoice.language }}">{{ invoice.language }}</td>
+          <td>{{ invoice.pageAmount }}</td>
+          <td>{{ invoice.notes }}</td>
+          <td faTranslate="{{ 'fastAdminApp.InvoiceStatus.' + invoice.status }}">{{ invoice.status }}</td>
+          <td>{{ invoice.created | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="invoice.contact">
+              <a [routerLink]="['/contact', invoice.contact?.id, 'view']">{{ invoice.contact?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="invoice.contactAddress">
+              <a [routerLink]="['/contact-address', invoice.contactAddress?.id, 'view']">{{ invoice.contactAddress?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="invoice.contactPerson">
+              <a [routerLink]="['/contact-person', invoice.contactPerson?.id, 'view']">{{ invoice.contactPerson?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="invoice.contactPrePageAddress">
+              <a [routerLink]="['/contact-address', invoice.contactPrePageAddress?.id, 'view']">{{ invoice.contactPrePageAddress?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="invoice.layout">
+              <a [routerLink]="['/layout', invoice.layout?.id, 'view']">{{ invoice.layout?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="invoice.signature">
+              <a [routerLink]="['/signature', invoice.signature?.id, 'view']">{{ invoice.signature?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="invoice.bankAccount">
+              <a [routerLink]="['/bank-account', invoice.bankAccount?.id, 'view']">{{ invoice.bankAccount?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="invoice.isr">
+              <a [routerLink]="['/isr', invoice.isr?.id, 'view']">{{ invoice.isr?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/invoice', invoice.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/invoice', invoice.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(invoice)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="invoices && invoices.length > 0">
+    <div class="row justify-content-center">
+      <fa-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></fa-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

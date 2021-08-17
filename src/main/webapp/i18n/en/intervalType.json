@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "IntervalType": {
+      "null": "",
+      "HOUR": "hour",
+      "DAY": "day",
+      "MONTH": "month"
+    }
+  }
+}

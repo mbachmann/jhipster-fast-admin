@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contactReminder">
+      <h2 data-cy="contactReminderDetailsHeading"><span faTranslate="fastAdminApp.contactReminder.detail.title">Contact Reminder</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contactReminder.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactReminder.remoteId" [ngbTooltip]="'fastAdminApp.contactReminder.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactReminder.remoteId }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactReminder.contactName"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.contactName' | translate"
+            >Contact Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactReminder.contactName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactReminder.dateTime" [ngbTooltip]="'fastAdminApp.contactReminder.help.dateTime' | translate"
+            >Date Time</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactReminder.dateTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactReminder.title" [ngbTooltip]="'fastAdminApp.contactReminder.help.title' | translate"
+            >Title</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactReminder.title }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactReminder.description"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactReminder.description }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactReminder.intervalValue"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.intervalValue' | translate"
+            >Interval Value</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactReminder.intervalValue }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactReminder.intervalType"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.intervalType' | translate"
+            >Interval Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.IntervalType.' + contactReminder.intervalType }}">{{ contactReminder.intervalType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactReminder.inactiv" [ngbTooltip]="'fastAdminApp.contactReminder.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactReminder.inactiv }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contactReminder.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="contactReminder.contact">
+            <a [routerLink]="['/contact', contactReminder.contact?.id, 'view']">{{ contactReminder.contact?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact-reminder', contactReminder.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

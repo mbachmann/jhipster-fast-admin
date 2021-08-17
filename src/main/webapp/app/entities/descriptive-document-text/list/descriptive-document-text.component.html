@@ -1,0 +1,114 @@
+<div>
+  <h2 id="page-heading" data-cy="DescriptiveDocumentTextHeading">
+    <span faTranslate="fastAdminApp.descriptiveDocumentText.home.title">Descriptive Document Texts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.descriptiveDocumentText.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-descriptive-document-text"
+        [routerLink]="['/descriptive-document-text/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.descriptiveDocumentText.home.createLabel"> Create a new Descriptive Document Text </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="descriptiveDocumentTexts?.length === 0">
+    <span faTranslate="fastAdminApp.descriptiveDocumentText.home.notFound">No descriptiveDocumentTexts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="descriptiveDocumentTexts && descriptiveDocumentTexts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.descriptiveDocumentText.title">Title</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.descriptiveDocumentText.introduction">Introduction</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.descriptiveDocumentText.conditions">Conditions</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.descriptiveDocumentText.status">Status</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.descriptiveDocumentText.deliveryNote">Delivery Note</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.descriptiveDocumentText.invoice">Invoice</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.descriptiveDocumentText.offer">Offer</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.descriptiveDocumentText.orderConfirmation">Order Confirmation</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let descriptiveDocumentText of descriptiveDocumentTexts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/descriptive-document-text', descriptiveDocumentText.id, 'view']">{{ descriptiveDocumentText.id }}</a>
+          </td>
+          <td>{{ descriptiveDocumentText.title }}</td>
+          <td>{{ descriptiveDocumentText.introduction }}</td>
+          <td>{{ descriptiveDocumentText.conditions }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentInvoiceTextStatus.' + descriptiveDocumentText.status }}">
+            {{ descriptiveDocumentText.status }}
+          </td>
+          <td>
+            <div *ngIf="descriptiveDocumentText.deliveryNote">
+              <a [routerLink]="['/delivery-note', descriptiveDocumentText.deliveryNote?.id, 'view']">{{
+                descriptiveDocumentText.deliveryNote?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="descriptiveDocumentText.invoice">
+              <a [routerLink]="['/invoice', descriptiveDocumentText.invoice?.id, 'view']">{{ descriptiveDocumentText.invoice?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="descriptiveDocumentText.offer">
+              <a [routerLink]="['/offer', descriptiveDocumentText.offer?.id, 'view']">{{ descriptiveDocumentText.offer?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="descriptiveDocumentText.orderConfirmation">
+              <a [routerLink]="['/order-confirmation', descriptiveDocumentText.orderConfirmation?.id, 'view']">{{
+                descriptiveDocumentText.orderConfirmation?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/descriptive-document-text', descriptiveDocumentText.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/descriptive-document-text', descriptiveDocumentText.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(descriptiveDocumentText)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "fastAdminApp": {
+    "DeliveryNoteStatus": {
+      "null": "",
+      "DRAFT": "DR",
+      "SENT": "S",
+      "BILLED": "B",
+      "DELETED": "D"
+    }
+  }
+}

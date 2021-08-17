@@ -1,0 +1,184 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-contact-reminder-heading"
+        data-cy="ContactReminderCreateUpdateHeading"
+        faTranslate="fastAdminApp.contactReminder.home.createOrEditLabel"
+      >
+        Create or edit a Contact Reminder
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactReminder.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactReminder.contactName"
+            for="field_contactName"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.contactName' | translate"
+            >Contact Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactName"
+            id="field_contactName"
+            data-cy="contactName"
+            formControlName="contactName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactReminder.dateTime"
+            for="field_dateTime"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.dateTime' | translate"
+            >Date Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateTime"
+              data-cy="dateTime"
+              type="datetime-local"
+              class="form-control"
+              name="dateTime"
+              formControlName="dateTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactReminder.title"
+            for="field_title"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.title' | translate"
+            >Title</label
+          >
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactReminder.description"
+            for="field_description"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.description' | translate"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactReminder.intervalValue"
+            for="field_intervalValue"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.intervalValue' | translate"
+            >Interval Value</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="intervalValue"
+            id="field_intervalValue"
+            data-cy="intervalValue"
+            formControlName="intervalValue"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactReminder.intervalType"
+            for="field_intervalType"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.intervalType' | translate"
+            >Interval Type</label
+          >
+          <select class="form-control" name="intervalType" formControlName="intervalType" id="field_intervalType" data-cy="intervalType">
+            <option [ngValue]="null">{{ 'fastAdminApp.IntervalType.null' | translate }}</option>
+            <option value="HOUR">{{ 'fastAdminApp.IntervalType.HOUR' | translate }}</option>
+            <option value="DAY">{{ 'fastAdminApp.IntervalType.DAY' | translate }}</option>
+            <option value="MONTH">{{ 'fastAdminApp.IntervalType.MONTH' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactReminder.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.contactReminder.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.contactReminder.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

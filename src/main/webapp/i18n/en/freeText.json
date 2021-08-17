@@ -1,0 +1,37 @@
+{
+  "fastAdminApp": {
+    "freeText": {
+      "home": {
+        "title": "Free Texts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Free Text",
+        "createOrEditLabel": "Create or edit a Free Text",
+        "notFound": "No Free Texts found"
+      },
+      "created": "A new Free Text is created with identifier {{ param }}",
+      "updated": "A Free Text is updated with identifier {{ param }}",
+      "deleted": "A Free Text is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Free Text {{ id }}?"
+      },
+      "detail": {
+        "title": "Free Text"
+      },
+      "id": "ID",
+      "text": "Text",
+      "fontSize": "Font Size",
+      "positionX": "Position X",
+      "positionY": "Position Y",
+      "pageNo": "Page No",
+      "language": "Language",
+      "help": {
+        "text": "displayed text",
+        "fontSize": "font size of displayed text (min: 1; max: 50)",
+        "positionX": "The x position of the free text",
+        "positionY": "The y position of the free text",
+        "pageNo": "which page text is displayed on",
+        "language": "language; possible values: de, en, es, fr, it ,"
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="signature">
+      <h2 data-cy="signatureDetailsHeading"><span faTranslate="fastAdminApp.signature.detail.title">Signature</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ signature.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.signature.remoteId" [ngbTooltip]="'fastAdminApp.signature.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ signature.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.signature.signatureImage" [ngbTooltip]="'fastAdminApp.signature.help.signatureImage' | translate"
+            >Signature Image</span
+          >
+        </dt>
+        <dd>
+          <div *ngIf="signature.signatureImage">
+            <a (click)="openFile(signature.signatureImage, signature.signatureImageContentType)">
+              <img
+                [src]="'data:' + signature.signatureImageContentType + ';base64,' + signature.signatureImage"
+                style="max-width: 100%"
+                alt="signature image"
+              />
+            </a>
+            {{ signature.signatureImageContentType }}, {{ byteSize(signature.signatureImage) }}
+          </div>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.signature.width" [ngbTooltip]="'fastAdminApp.signature.help.width' | translate">Width</span>
+        </dt>
+        <dd>
+          <span>{{ signature.width }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.signature.heigth" [ngbTooltip]="'fastAdminApp.signature.help.heigth' | translate">Heigth</span>
+        </dt>
+        <dd>
+          <span>{{ signature.heigth }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.signature.userName" [ngbTooltip]="'fastAdminApp.signature.help.userName' | translate"
+            >User Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ signature.userName }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.signature.applicationUser">Application User</span></dt>
+        <dd>
+          <div *ngIf="signature.applicationUser">
+            <a [routerLink]="['/application-user', signature.applicationUser?.id, 'view']">{{ signature.applicationUser?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/signature', signature.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

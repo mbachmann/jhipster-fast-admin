@@ -1,0 +1,40 @@
+{
+  "fastAdminApp": {
+    "documentFreeText": {
+      "home": {
+        "title": "Document Free Texts",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Document Free Text erstellen",
+        "createOrEditLabel": "Document Free Text erstellen oder bearbeiten",
+        "notFound": "Keine Document Free Texts gefunden"
+      },
+      "created": "Document Free Text erstellt mit ID {{ param }}",
+      "updated": "Document Free Text aktualisiert mit ID {{ param }}",
+      "deleted": "Document Free Text gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Document Free Text {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Document Free Text"
+      },
+      "id": "ID",
+      "text": "Text",
+      "fontSize": "Font Size",
+      "positionX": "Position X",
+      "positionY": "Position Y",
+      "pageNo": "Page No",
+      "documentLetter": "Document Letter",
+      "deliveryNote": "Delivery Note",
+      "invoice": "Invoice",
+      "offer": "Offer",
+      "orderConfirmation": "Order Confirmation",
+      "help": {
+        "text": "displayed text",
+        "fontSize": "font size of displayed text (min: 1; max: 50)",
+        "positionX": "The x position of the free text",
+        "positionY": "The y position of the free text",
+        "pageNo": "which page text is displayed on"
+      }
+    }
+  }
+}

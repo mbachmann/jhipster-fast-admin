@@ -1,0 +1,57 @@
+{
+  "name": "DocumentText",
+  "fields": [
+    {
+      "fieldName": "defaultText",
+      "fieldType": "Boolean",
+      "javadoc": "default text"
+    },
+    {
+      "fieldName": "text",
+      "fieldType": "String",
+      "javadoc": "Document conditions text (z.B. Zahlungsbedingungen)"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "DocumentLanguage",
+      "javadoc": "language; possible values: de, en, es, fr, it ,",
+      "fieldValues": "FRENCH (fr),ENGLISH (en),GERMAN (de),SPANISH (es),ITALIAN (it)"
+    },
+    {
+      "fieldName": "usage",
+      "fieldType": "DocumentTextUsage",
+      "javadoc": "At which document position shall the text be used; possible values; T - Title, I - Introduction, D - Condition",
+      "fieldValues": "TITLE (T),INTRODUCTION (I),CONDITION (C)"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "DocumentInvoiceTextStatus",
+      "javadoc": "for invoice only",
+      "fieldValues": "DEFAULT (D),PAYMENT_REMINDER (R),FIRST_REMINDER (R1),SECOND_REMINDER (R2),THIRD_REMINDER (R3),DEBT_COLLECTION (DC),RECEIPT (RE)"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "DocumentTextType",
+      "javadoc": "which document type is the condition for; possible values: D - Document, E- Email",
+      "fieldValues": "DOCUMENT (D),EMAIL (E)"
+    },
+    {
+      "fieldName": "documentType",
+      "fieldType": "DocumentTextDocumentType",
+      "javadoc": "which Receivable document is the information for; possible values: O - Offer, C - Order Confirmation, D - Delivery Note, I - Invoice",
+      "fieldValues": "OFFER (O),ORDER_CONFIRMATION (C),DELIVERY_NOTE (D),INVOICE (I)"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "title, introduction and condition text",
+  "entityTableName": "document_text",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817151555"
+}

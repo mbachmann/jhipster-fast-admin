@@ -1,0 +1,12 @@
+{
+  "fastAdminApp": {
+    "DocumentLanguage": {
+      "null": "",
+      "FRENCH": "fr",
+      "ENGLISH": "en",
+      "GERMAN": "de",
+      "SPANISH": "es",
+      "ITALIAN": "it"
+    }
+  }
+}

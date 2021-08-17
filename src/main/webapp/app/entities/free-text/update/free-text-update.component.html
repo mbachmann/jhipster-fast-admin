@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="fa-free-text-heading" data-cy="FreeTextCreateUpdateHeading" faTranslate="fastAdminApp.freeText.home.createOrEditLabel">
+        Create or edit a Free Text
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.freeText.text"
+            for="field_text"
+            [ngbTooltip]="'fastAdminApp.freeText.help.text' | translate"
+            >Text</label
+          >
+          <input type="text" class="form-control" name="text" id="field_text" data-cy="text" formControlName="text" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.freeText.fontSize"
+            for="field_fontSize"
+            [ngbTooltip]="'fastAdminApp.freeText.help.fontSize' | translate"
+            >Font Size</label
+          >
+          <input type="number" class="form-control" name="fontSize" id="field_fontSize" data-cy="fontSize" formControlName="fontSize" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.freeText.positionX"
+            for="field_positionX"
+            [ngbTooltip]="'fastAdminApp.freeText.help.positionX' | translate"
+            >Position X</label
+          >
+          <input type="number" class="form-control" name="positionX" id="field_positionX" data-cy="positionX" formControlName="positionX" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.freeText.positionY"
+            for="field_positionY"
+            [ngbTooltip]="'fastAdminApp.freeText.help.positionY' | translate"
+            >Position Y</label
+          >
+          <input type="number" class="form-control" name="positionY" id="field_positionY" data-cy="positionY" formControlName="positionY" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.freeText.pageNo"
+            for="field_pageNo"
+            [ngbTooltip]="'fastAdminApp.freeText.help.pageNo' | translate"
+            >Page No</label
+          >
+          <input type="number" class="form-control" name="pageNo" id="field_pageNo" data-cy="pageNo" formControlName="pageNo" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.freeText.language"
+            for="field_language"
+            [ngbTooltip]="'fastAdminApp.freeText.help.language' | translate"
+            >Language</label
+          >
+          <select class="form-control" name="language" formControlName="language" id="field_language" data-cy="language">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentLanguage.null' | translate }}</option>
+            <option value="FRENCH">{{ 'fastAdminApp.DocumentLanguage.FRENCH' | translate }}</option>
+            <option value="ENGLISH">{{ 'fastAdminApp.DocumentLanguage.ENGLISH' | translate }}</option>
+            <option value="GERMAN">{{ 'fastAdminApp.DocumentLanguage.GERMAN' | translate }}</option>
+            <option value="SPANISH">{{ 'fastAdminApp.DocumentLanguage.SPANISH' | translate }}</option>
+            <option value="ITALIAN">{{ 'fastAdminApp.DocumentLanguage.ITALIAN' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

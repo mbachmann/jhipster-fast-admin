@@ -1,0 +1,190 @@
+<div>
+  <h2 id="page-heading" data-cy="ContactPersonHeading">
+    <span faTranslate="fastAdminApp.contactPerson.home.title">Contact People</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.contactPerson.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contact-person"
+        [routerLink]="['/contact-person/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.contactPerson.home.createLabel"> Create a new Contact Person </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contactPeople?.length === 0">
+    <span faTranslate="fastAdminApp.contactPerson.home.notFound">No contactPeople found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="contactPeople && contactPeople.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.contactPerson.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="defaultPerson">
+            <span faTranslate="fastAdminApp.contactPerson.defaultPerson">Default Person</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="name">
+            <span faTranslate="fastAdminApp.contactPerson.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="surname">
+            <span faTranslate="fastAdminApp.contactPerson.surname">Surname</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="gender">
+            <span faTranslate="fastAdminApp.contactPerson.gender">Gender</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="email">
+            <span faTranslate="fastAdminApp.contactPerson.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="phone">
+            <span faTranslate="fastAdminApp.contactPerson.phone">Phone</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="department">
+            <span faTranslate="fastAdminApp.contactPerson.department">Department</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="salutation">
+            <span faTranslate="fastAdminApp.contactPerson.salutation">Salutation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="showTitle">
+            <span faTranslate="fastAdminApp.contactPerson.showTitle">Show Title</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="showDepartment">
+            <span faTranslate="fastAdminApp.contactPerson.showDepartment">Show Department</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="wantsNewsletter">
+            <span faTranslate="fastAdminApp.contactPerson.wantsNewsletter">Wants Newsletter</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="birthDate">
+            <span faTranslate="fastAdminApp.contactPerson.birthDate">Birth Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="birthPlace">
+            <span faTranslate="fastAdminApp.contactPerson.birthPlace">Birth Place</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="placeOfOrigin">
+            <span faTranslate="fastAdminApp.contactPerson.placeOfOrigin">Place Of Origin</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="citizenCountry1">
+            <span faTranslate="fastAdminApp.contactPerson.citizenCountry1">Citizen Country 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="citizenCountry2">
+            <span faTranslate="fastAdminApp.contactPerson.citizenCountry2">Citizen Country 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="socialSecurityNumber">
+            <span faTranslate="fastAdminApp.contactPerson.socialSecurityNumber">Social Security Number</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="hobbies">
+            <span faTranslate="fastAdminApp.contactPerson.hobbies">Hobbies</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="dailyWork">
+            <span faTranslate="fastAdminApp.contactPerson.dailyWork">Daily Work</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactAttribute01">
+            <span faTranslate="fastAdminApp.contactPerson.contactAttribute01">Contact Attribute 01</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="avatar">
+            <span faTranslate="fastAdminApp.contactPerson.avatar">Avatar</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="imageType">
+            <span faTranslate="fastAdminApp.contactPerson.imageType">Image Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.contactPerson.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contact.id">
+            <span faTranslate="fastAdminApp.contactPerson.contact">Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let contactPerson of contactPeople; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contact-person', contactPerson.id, 'view']">{{ contactPerson.id }}</a>
+          </td>
+          <td>{{ contactPerson.remoteId }}</td>
+          <td>{{ contactPerson.defaultPerson }}</td>
+          <td>{{ contactPerson.name }}</td>
+          <td>{{ contactPerson.surname }}</td>
+          <td faTranslate="{{ 'fastAdminApp.GenderType.' + contactPerson.gender }}">{{ contactPerson.gender }}</td>
+          <td>{{ contactPerson.email }}</td>
+          <td>{{ contactPerson.phone }}</td>
+          <td>{{ contactPerson.department }}</td>
+          <td>{{ contactPerson.salutation }}</td>
+          <td>{{ contactPerson.showTitle }}</td>
+          <td>{{ contactPerson.showDepartment }}</td>
+          <td>{{ contactPerson.wantsNewsletter }}</td>
+          <td>{{ contactPerson.birthDate | formatMediumDate }}</td>
+          <td>{{ contactPerson.birthPlace }}</td>
+          <td>{{ contactPerson.placeOfOrigin }}</td>
+          <td>{{ contactPerson.citizenCountry1 }}</td>
+          <td>{{ contactPerson.citizenCountry2 }}</td>
+          <td>{{ contactPerson.socialSecurityNumber }}</td>
+          <td>{{ contactPerson.hobbies }}</td>
+          <td>{{ contactPerson.dailyWork }}</td>
+          <td>{{ contactPerson.contactAttribute01 }}</td>
+          <td>
+            <a *ngIf="contactPerson.avatar" (click)="openFile(contactPerson.avatar, contactPerson.avatarContentType)">
+              <img
+                [src]="'data:' + contactPerson.avatarContentType + ';base64,' + contactPerson.avatar"
+                style="max-height: 30px"
+                alt="contactPerson image"
+              />
+            </a>
+            <span *ngIf="contactPerson.avatar">{{ contactPerson.avatarContentType }}, {{ byteSize(contactPerson.avatar) }}</span>
+          </td>
+          <td>{{ contactPerson.imageType }}</td>
+          <td>{{ contactPerson.inactiv }}</td>
+          <td>
+            <div *ngIf="contactPerson.contact">
+              <a [routerLink]="['/contact', contactPerson.contact?.id, 'view']">{{ contactPerson.contact?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contact-person', contactPerson.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contact-person', contactPerson.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contactPerson)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,243 @@
+<div>
+  <h2 id="page-heading" data-cy="ContactHeading">
+    <span faTranslate="fastAdminApp.contact.home.title">Contacts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.contact.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contact"
+        [routerLink]="['/contact/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.contact.home.createLabel"> Create a new Contact </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contacts?.length === 0">
+    <span faTranslate="fastAdminApp.contact.home.notFound">No contacts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="contacts && contacts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.contact.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="number">
+            <span faTranslate="fastAdminApp.contact.number">Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="type"><span faTranslate="fastAdminApp.contact.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="gender">
+            <span faTranslate="fastAdminApp.contact.gender">Gender</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="genderSalutationActive">
+            <span faTranslate="fastAdminApp.contact.genderSalutationActive">Gender Salutation Active</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="name"><span faTranslate="fastAdminApp.contact.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="nameAddition">
+            <span faTranslate="fastAdminApp.contact.nameAddition">Name Addition</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="salutation">
+            <span faTranslate="fastAdminApp.contact.salutation">Salutation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="phone"><span faTranslate="fastAdminApp.contact.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="fax"><span faTranslate="fastAdminApp.contact.fax">Fax</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="email"><span faTranslate="fastAdminApp.contact.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="website">
+            <span faTranslate="fastAdminApp.contact.website">Website</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="notes"><span faTranslate="fastAdminApp.contact.notes">Notes</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="communicationLanguage">
+            <span faTranslate="fastAdminApp.contact.communicationLanguage">Communication Language</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="communicationChannel">
+            <span faTranslate="fastAdminApp.contact.communicationChannel">Communication Channel</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="communicationNewsletter">
+            <span faTranslate="fastAdminApp.contact.communicationNewsletter">Communication Newsletter</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="currency">
+            <span faTranslate="fastAdminApp.contact.currency">Currency</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="ebillAccountId">
+            <span faTranslate="fastAdminApp.contact.ebillAccountId">Ebill Account Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="vatIdentification">
+            <span faTranslate="fastAdminApp.contact.vatIdentification">Vat Identification</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="vatRate">
+            <span faTranslate="fastAdminApp.contact.vatRate">Vat Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="discountRate">
+            <span faTranslate="fastAdminApp.contact.discountRate">Discount Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="discountType">
+            <span faTranslate="fastAdminApp.contact.discountType">Discount Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="paymentGrace">
+            <span faTranslate="fastAdminApp.contact.paymentGrace">Payment Grace</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="hourlyRate">
+            <span faTranslate="fastAdminApp.contact.hourlyRate">Hourly Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="created">
+            <span faTranslate="fastAdminApp.contact.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="mainAddressId">
+            <span faTranslate="fastAdminApp.contact.mainAddressId">Main Address Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="birthDate">
+            <span faTranslate="fastAdminApp.contact.birthDate">Birth Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="birthPlace">
+            <span faTranslate="fastAdminApp.contact.birthPlace">Birth Place</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="placeOfOrigin">
+            <span faTranslate="fastAdminApp.contact.placeOfOrigin">Place Of Origin</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="citizenCountry1">
+            <span faTranslate="fastAdminApp.contact.citizenCountry1">Citizen Country 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="citizenCountry2">
+            <span faTranslate="fastAdminApp.contact.citizenCountry2">Citizen Country 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="socialSecurityNumber">
+            <span faTranslate="fastAdminApp.contact.socialSecurityNumber">Social Security Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="hobbies">
+            <span faTranslate="fastAdminApp.contact.hobbies">Hobbies</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="dailyWork">
+            <span faTranslate="fastAdminApp.contact.dailyWork">Daily Work</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactAttribute01">
+            <span faTranslate="fastAdminApp.contact.contactAttribute01">Contact Attribute 01</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="avatar">
+            <span faTranslate="fastAdminApp.contact.avatar">Avatar</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="imageType">
+            <span faTranslate="fastAdminApp.contact.imageType">Image Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.contact.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contact', contact.id, 'view']">{{ contact.id }}</a>
+          </td>
+          <td>{{ contact.remoteId }}</td>
+          <td>{{ contact.number }}</td>
+          <td faTranslate="{{ 'fastAdminApp.ContactType.' + contact.type }}">{{ contact.type }}</td>
+          <td faTranslate="{{ 'fastAdminApp.GenderType.' + contact.gender }}">{{ contact.gender }}</td>
+          <td>{{ contact.genderSalutationActive }}</td>
+          <td>{{ contact.name }}</td>
+          <td>{{ contact.nameAddition }}</td>
+          <td>{{ contact.salutation }}</td>
+          <td>{{ contact.phone }}</td>
+          <td>{{ contact.fax }}</td>
+          <td>{{ contact.email }}</td>
+          <td>{{ contact.website }}</td>
+          <td>{{ contact.notes }}</td>
+          <td>{{ contact.communicationLanguage }}</td>
+          <td faTranslate="{{ 'fastAdminApp.CommunicationChannel.' + contact.communicationChannel }}">
+            {{ contact.communicationChannel }}
+          </td>
+          <td faTranslate="{{ 'fastAdminApp.CommunicationNewsletter.' + contact.communicationNewsletter }}">
+            {{ contact.communicationNewsletter }}
+          </td>
+          <td faTranslate="{{ 'fastAdminApp.Currency.' + contact.currency }}">{{ contact.currency }}</td>
+          <td>{{ contact.ebillAccountId }}</td>
+          <td>{{ contact.vatIdentification }}</td>
+          <td>{{ contact.vatRate }}</td>
+          <td>{{ contact.discountRate }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DiscountType.' + contact.discountType }}">{{ contact.discountType }}</td>
+          <td>{{ contact.paymentGrace }}</td>
+          <td>{{ contact.hourlyRate }}</td>
+          <td>{{ contact.created | formatMediumDatetime }}</td>
+          <td>{{ contact.mainAddressId }}</td>
+          <td>{{ contact.birthDate | formatMediumDate }}</td>
+          <td>{{ contact.birthPlace }}</td>
+          <td>{{ contact.placeOfOrigin }}</td>
+          <td>{{ contact.citizenCountry1 }}</td>
+          <td>{{ contact.citizenCountry2 }}</td>
+          <td>{{ contact.socialSecurityNumber }}</td>
+          <td>{{ contact.hobbies }}</td>
+          <td>{{ contact.dailyWork }}</td>
+          <td>{{ contact.contactAttribute01 }}</td>
+          <td>
+            <a *ngIf="contact.avatar" (click)="openFile(contact.avatar, contact.avatarContentType)">
+              <img [src]="'data:' + contact.avatarContentType + ';base64,' + contact.avatar" style="max-height: 30px" alt="contact image" />
+            </a>
+            <span *ngIf="contact.avatar">{{ contact.avatarContentType }}, {{ byteSize(contact.avatar) }}</span>
+          </td>
+          <td>{{ contact.imageType }}</td>
+          <td>{{ contact.inactiv }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contact', contact.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contact', contact.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contact)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="contacts && contacts.length > 0">
+    <div class="row justify-content-center">
+      <fa-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></fa-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

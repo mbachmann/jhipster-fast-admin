@@ -1,0 +1,11 @@
+id;remote_id;number;contact_name;date;valid_until;period_text;currency;total;vat_included;discount_rate;discount_type;accept_online;accept_online_url;accept_online_status;language;page_amount;notes;status;created
+1;79599;back-end;Dynamic;2021-08-17;2021-08-17;Regional withdrawal;UZS;98182;true;27279;AMOUNT;true;Organic;DECLINED;FRENCH;9565;Keys;SENT;2021-08-16T18:42:11
+2;99966;protocol green;THX;2021-08-17;2021-08-16;24/7 purple;RWF;20212;false;33007;IN_PERCENT;true;Shoes;ACCEPTED;SPANISH;98231;Intelligent monitor metrics;SENT;2021-08-17T13:48:07
+3;85947;Seamless;Account cyan Road;2021-08-16;2021-08-16;deposit;BTN;49630;true;35314;AMOUNT;true;auxiliary;UNKNOWN;SPANISH;80621;plum Senior navigate;BILLED;2021-08-17T01:04:25
+4;77208;definition;Security Advanced;2021-08-16;2021-08-16;XML;CAD;11370;false;40098;IN_PERCENT;true;Wooden;UNKNOWN;FRENCH;62714;invoice Frozen;DRAFT;2021-08-16T22:35:46
+5;74325;Berkshire Hat Future;Comoros grey strategic;2021-08-17;2021-08-16;Tasty SAS Handcrafted;BDT;53085;false;90995;AMOUNT;true;HDD;UNKNOWN;GERMAN;96157;panel;DELETED;2021-08-17T02:17:04
+6;81092;process;Soft Health heuristic;2021-08-17;2021-08-17;Checking Checking Metal;CAD;84365;false;95245;AMOUNT;true;blockchains;ACCEPTED;SPANISH;7579;THX Pants;DRAFT;2021-08-17T03:31:49
+7;93721;Kina;payment;2021-08-17;2021-08-17;Gorgeous gold;GTQ;8274;false;16572;IN_PERCENT;false;Intelligent Account Rustic;UNKNOWN;GERMAN;33870;Ball Shoes North;DELETED;2021-08-17T06:35:50
+8;85889;array online;quantifying;2021-08-17;2021-08-17;Practical non-volatile Coordinator;RUB;30735;false;7344;AMOUNT;true;Kids Berkshire;ACCEPTED;ENGLISH;2236;Street Handcrafted;SENT;2021-08-17T11:24:47
+9;24239;Plastic Metal;Taka Metal Korea;2021-08-17;2021-08-17;Infrastructure Shoes;ERN;36898;true;53974;AMOUNT;false;drive parse azure;ACCEPTED;ENGLISH;88112;Chief Island;DRAFT;2021-08-17T10:41:19
+10;86175;withdrawal;Fish Networked;2021-08-17;2021-08-17;Divide overriding;ALL;8603;false;54399;AMOUNT;false;Plastic stable Fresh;DECLINED;ENGLISH;44076;Sports Analyst;BILLED;2021-08-17T03:59:42

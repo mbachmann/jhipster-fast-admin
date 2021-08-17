@@ -1,0 +1,50 @@
+{
+  "fastAdminApp": {
+    "effort": {
+      "home": {
+        "title": "Efforts",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Effort erstellen",
+        "createOrEditLabel": "Effort erstellen oder bearbeiten",
+        "notFound": "Keine Efforts gefunden"
+      },
+      "created": "Effort erstellt mit ID {{ param }}",
+      "updated": "Effort aktualisiert mit ID {{ param }}",
+      "deleted": "Effort gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Effort {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Effort"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "userId": "User Id",
+      "userName": "User Name",
+      "entityType": "Entity Type",
+      "entityId": "Entity Id",
+      "duration": "Duration",
+      "date": "Date",
+      "activityName": "Activity Name",
+      "notes": "Notes",
+      "isInvoiced": "Is Invoiced",
+      "updated": "Updated",
+      "hourlyRate": "Hourly Rate",
+      "activity": "Activity",
+      "help": {
+        "remoteId": "id of a remote system",
+        "userId": "id of user ,",
+        "userName": "full name of user (optional)",
+        "entityType": "type of assigned entity, one of: P - project, CU - cost unit, C - contact",
+        "entityId": "assigned entity id ,",
+        "duration": "duration of effort",
+        "date": "date of effort",
+        "activityName": "full activity name (optional)",
+        "notes": "notes to this effort",
+        "isInvoiced": "if effort has been invoiced already",
+        "updated": "update at",
+        "hourlyRate": "hourly rate of this effort"
+      }
+    }
+  }
+}

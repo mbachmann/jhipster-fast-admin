@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity DocumentPosition.
+    -->
+    <changeSet id="20210817165121-1" author="jhipster">
+        <createTable tableName="document_position" remarks="the document position">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)" remarks="position type; possible values: N - normal, T - text, PB - page break, H - header, SI - subtotal (incremental), SNI - subtotal (non incremental)">
+                <constraints nullable="true" />
+            </column>
+            <column name="catalog_type" type="varchar(255)" remarks="position catalog type; possible values: P - product, S - service">
+                <constraints nullable="true" />
+            </column>
+            <column name="number" type="varchar(255)" remarks="catalog unique number">
+                <constraints nullable="true" />
+            </column>
+            <column name="name" type="varchar(255)" remarks="position name">
+                <constraints nullable="true" />
+            </column>
+            <column name="description" type="varchar(255)" remarks="position description">
+                <constraints nullable="true" />
+            </column>
+            <column name="price" type="double" remarks="price per unit; required for N type">
+                <constraints nullable="true" />
+            </column>
+            <column name="vat" type="double" remarks="VAT rate; required for N type">
+                <constraints nullable="true" />
+            </column>
+            <column name="amount" type="double" remarks="amount; required for N type">
+                <constraints nullable="true" />
+            </column>
+            <column name="discount_rate" type="double" remarks="optional discount rate">
+                <constraints nullable="true" />
+            </column>
+            <column name="discount_type" type="varchar(255)" remarks="optional discount type; possible values:A - amount, P - percentage">
+                <constraints nullable="true" />
+            </column>
+            <column name="total" type="double" remarks="total price">
+                <constraints nullable="true" />
+            </column>
+            <column name="show_only_total" type="boolean" remarks="whether to show only total on invoice">
+                <constraints nullable="true" />
+            </column>
+            <column name="unit_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="delivery_note_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="invoice_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="offer_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="order_confirmation_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210817165121-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/document_position.csv"
+                  separator=";"
+                  tableName="document_position">
+            <column name="id" type="numeric"/>
+            <column name="type" type="string"/>
+            <column name="catalog_type" type="string"/>
+            <column name="number" type="string"/>
+            <column name="name" type="string"/>
+            <column name="description" type="string"/>
+            <column name="price" type="numeric"/>
+            <column name="vat" type="numeric"/>
+            <column name="amount" type="numeric"/>
+            <column name="discount_rate" type="numeric"/>
+            <column name="discount_type" type="string"/>
+            <column name="total" type="numeric"/>
+            <column name="show_only_total" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

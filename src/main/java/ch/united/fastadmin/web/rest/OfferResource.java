@@ -1,9 +1,7 @@
 package ch.united.fastadmin.web.rest;
 
 import ch.united.fastadmin.repository.OfferRepository;
-import ch.united.fastadmin.service.OfferQueryService;
 import ch.united.fastadmin.service.OfferService;
-import ch.united.fastadmin.service.criteria.OfferCriteria;
 import ch.united.fastadmin.service.dto.OfferDTO;
 import ch.united.fastadmin.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -45,12 +43,9 @@ public class OfferResource {
 
     private final OfferRepository offerRepository;
 
-    private final OfferQueryService offerQueryService;
-
-    public OfferResource(OfferService offerService, OfferRepository offerRepository, OfferQueryService offerQueryService) {
+    public OfferResource(OfferService offerService, OfferRepository offerRepository) {
         this.offerService = offerService;
         this.offerRepository = offerRepository;
-        this.offerQueryService = offerQueryService;
     }
 
     /**
@@ -147,27 +142,14 @@ public class OfferResource {
      * {@code GET  /offers} : get all the offers.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of offers in body.
      */
     @GetMapping("/offers")
-    public ResponseEntity<List<OfferDTO>> getAllOffers(OfferCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get Offers by criteria: {}", criteria);
-        Page<OfferDTO> page = offerQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<OfferDTO>> getAllOffers(Pageable pageable) {
+        log.debug("REST request to get a page of Offers");
+        Page<OfferDTO> page = offerService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /offers/count} : count all the offers.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/offers/count")
-    public ResponseEntity<Long> countOffers(OfferCriteria criteria) {
-        log.debug("REST request to count Offers by criteria: {}", criteria);
-        return ResponseEntity.ok().body(offerQueryService.countByCriteria(criteria));
     }
 
     /**

@@ -1,0 +1,24 @@
+{
+  "fastAdminApp": {
+    "applicationRole": {
+      "home": {
+        "title": "Application Roles",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Application Role erstellen",
+        "createOrEditLabel": "Application Role erstellen oder bearbeiten",
+        "notFound": "Keine Application Roles gefunden"
+      },
+      "created": "Application Role erstellt mit ID {{ param }}",
+      "updated": "Application Role aktualisiert mit ID {{ param }}",
+      "deleted": "Application Role gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Application Role {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Application Role"
+      },
+      "id": "ID",
+      "name": "Name"
+    }
+  }
+}

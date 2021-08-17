@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="customField">
+      <h2 data-cy="customFieldDetailsHeading"><span faTranslate="fastAdminApp.customField.detail.title">Custom Field</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ customField.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.customField.domainArea" [ngbTooltip]="'fastAdminApp.customField.help.domainArea' | translate"
+            >Domain Area</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DomainArea.' + customField.domainArea }}">{{ customField.domainArea }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customField.key" [ngbTooltip]="'fastAdminApp.customField.help.key' | translate">Key</span></dt>
+        <dd>
+          <span>{{ customField.key }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.customField.name" [ngbTooltip]="'fastAdminApp.customField.help.name' | translate">Name</span>
+        </dt>
+        <dd>
+          <span>{{ customField.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.customField.defaultValue" [ngbTooltip]="'fastAdminApp.customField.help.defaultValue' | translate"
+            >Default Value</span
+          >
+        </dt>
+        <dd>
+          <span>{{ customField.defaultValue }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/custom-field', customField.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

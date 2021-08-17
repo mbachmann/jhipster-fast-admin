@@ -1,0 +1,88 @@
+<div>
+  <h2 id="page-heading" data-cy="CostUnitHeading">
+    <span faTranslate="fastAdminApp.costUnit.home.title">Cost Units</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.costUnit.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cost-unit"
+        [routerLink]="['/cost-unit/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.costUnit.home.createLabel"> Create a new Cost Unit </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="costUnits?.length === 0">
+    <span faTranslate="fastAdminApp.costUnit.home.notFound">No costUnits found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="costUnits && costUnits.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.costUnit.remoteId">Remote Id</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.costUnit.number">Number</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.costUnit.name">Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.costUnit.description">Description</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.costUnit.type">Type</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.costUnit.inactiv">Inactiv</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let costUnit of costUnits; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cost-unit', costUnit.id, 'view']">{{ costUnit.id }}</a>
+          </td>
+          <td>{{ costUnit.remoteId }}</td>
+          <td>{{ costUnit.number }}</td>
+          <td>{{ costUnit.name }}</td>
+          <td>{{ costUnit.description }}</td>
+          <td faTranslate="{{ 'fastAdminApp.CostUnitType.' + costUnit.type }}">{{ costUnit.type }}</td>
+          <td>{{ costUnit.inactiv }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cost-unit', costUnit.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cost-unit', costUnit.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(costUnit)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

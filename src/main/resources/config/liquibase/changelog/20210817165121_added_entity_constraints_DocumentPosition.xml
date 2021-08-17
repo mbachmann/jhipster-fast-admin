@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity DocumentPosition.
+    -->
+    <changeSet id="20210817165121-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="unit_id"
+                                 baseTableName="document_position"
+                                 constraintName="fk_document_position__unit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="catalog_unit"/>
+
+        <addForeignKeyConstraint baseColumnNames="delivery_note_id"
+                                 baseTableName="document_position"
+                                 constraintName="fk_document_position__delivery_note_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="delivery_note"/>
+
+        <addForeignKeyConstraint baseColumnNames="invoice_id"
+                                 baseTableName="document_position"
+                                 constraintName="fk_document_position__invoice_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="invoice"/>
+
+        <addForeignKeyConstraint baseColumnNames="offer_id"
+                                 baseTableName="document_position"
+                                 constraintName="fk_document_position__offer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="offer"/>
+
+        <addForeignKeyConstraint baseColumnNames="order_confirmation_id"
+                                 baseTableName="document_position"
+                                 constraintName="fk_document_position__order_confirmation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_confirmation"/>
+    </changeSet>
+</databaseChangeLog>

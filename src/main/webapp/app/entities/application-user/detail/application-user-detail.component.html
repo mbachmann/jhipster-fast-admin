@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="applicationUser">
+      <h2 data-cy="applicationUserDetailsHeading"><span faTranslate="fastAdminApp.applicationUser.detail.title">Application User</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ applicationUser.id }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.applicationUser.shortCutName"
+            [ngbTooltip]="'fastAdminApp.applicationUser.help.shortCutName' | translate"
+            >Short Cut Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ applicationUser.shortCutName }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.applicationUser.memberSince"
+            [ngbTooltip]="'fastAdminApp.applicationUser.help.memberSince' | translate"
+            >Member Since</span
+          >
+        </dt>
+        <dd>
+          <span>{{ applicationUser.memberSince | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.applicationUser.avatar" [ngbTooltip]="'fastAdminApp.applicationUser.help.avatar' | translate"
+            >Avatar</span
+          >
+        </dt>
+        <dd>
+          <div *ngIf="applicationUser.avatar">
+            <a (click)="openFile(applicationUser.avatar, applicationUser.avatarContentType)">
+              <img
+                [src]="'data:' + applicationUser.avatarContentType + ';base64,' + applicationUser.avatar"
+                style="max-width: 100%"
+                alt="applicationUser image"
+              />
+            </a>
+            {{ applicationUser.avatarContentType }}, {{ byteSize(applicationUser.avatar) }}
+          </div>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.applicationUser.imageType"
+            [ngbTooltip]="'fastAdminApp.applicationUser.help.imageType' | translate"
+            >Image Type</span
+          >
+        </dt>
+        <dd>
+          <span>{{ applicationUser.imageType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.applicationUser.inactiv" [ngbTooltip]="'fastAdminApp.applicationUser.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ applicationUser.inactiv }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/application-user', applicationUser.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

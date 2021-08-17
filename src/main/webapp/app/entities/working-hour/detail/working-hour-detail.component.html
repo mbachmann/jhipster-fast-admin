@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="workingHour">
+      <h2 data-cy="workingHourDetailsHeading"><span faTranslate="fastAdminApp.workingHour.detail.title">Working Hour</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ workingHour.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.workingHour.remoteId" [ngbTooltip]="'fastAdminApp.workingHour.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ workingHour.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.workingHour.userName" [ngbTooltip]="'fastAdminApp.workingHour.help.userName' | translate"
+            >User Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ workingHour.userName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.workingHour.date" [ngbTooltip]="'fastAdminApp.workingHour.help.date' | translate">Date</span>
+        </dt>
+        <dd>
+          <span>{{ workingHour.date | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.workingHour.timeStart" [ngbTooltip]="'fastAdminApp.workingHour.help.timeStart' | translate"
+            >Time Start</span
+          >
+        </dt>
+        <dd>
+          <span>{{ workingHour.timeStart | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.workingHour.timeEnd" [ngbTooltip]="'fastAdminApp.workingHour.help.timeEnd' | translate"
+            >Time End</span
+          >
+        </dt>
+        <dd>
+          <span>{{ workingHour.timeEnd | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.workingHour.created" [ngbTooltip]="'fastAdminApp.workingHour.help.created' | translate"
+            >Created</span
+          >
+        </dt>
+        <dd>
+          <span>{{ workingHour.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.workingHour.applicationUser">Application User</span></dt>
+        <dd>
+          <div *ngIf="workingHour.applicationUser">
+            <a [routerLink]="['/application-user', workingHour.applicationUser?.id, 'view']">{{ workingHour.applicationUser?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.workingHour.effort">Effort</span></dt>
+        <dd>
+          <div *ngIf="workingHour.effort">
+            <a [routerLink]="['/effort', workingHour.effort?.id, 'view']">{{ workingHour.effort?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/working-hour', workingHour.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

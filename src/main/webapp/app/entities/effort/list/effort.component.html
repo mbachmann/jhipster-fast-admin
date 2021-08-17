@@ -1,0 +1,136 @@
+<div>
+  <h2 id="page-heading" data-cy="EffortHeading">
+    <span faTranslate="fastAdminApp.effort.home.title">Efforts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.effort.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-effort"
+        [routerLink]="['/effort/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.effort.home.createLabel"> Create a new Effort </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="efforts?.length === 0">
+    <span faTranslate="fastAdminApp.effort.home.notFound">No efforts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="efforts && efforts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.effort.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="userId">
+            <span faTranslate="fastAdminApp.effort.userId">User Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="userName">
+            <span faTranslate="fastAdminApp.effort.userName">User Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="entityType">
+            <span faTranslate="fastAdminApp.effort.entityType">Entity Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="entityId">
+            <span faTranslate="fastAdminApp.effort.entityId">Entity Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="duration">
+            <span faTranslate="fastAdminApp.effort.duration">Duration</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="date"><span faTranslate="fastAdminApp.effort.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="activityName">
+            <span faTranslate="fastAdminApp.effort.activityName">Activity Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="notes"><span faTranslate="fastAdminApp.effort.notes">Notes</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="isInvoiced">
+            <span faTranslate="fastAdminApp.effort.isInvoiced">Is Invoiced</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="updated">
+            <span faTranslate="fastAdminApp.effort.updated">Updated</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="hourlyRate">
+            <span faTranslate="fastAdminApp.effort.hourlyRate">Hourly Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="activity.id">
+            <span faTranslate="fastAdminApp.effort.activity">Activity</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let effort of efforts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/effort', effort.id, 'view']">{{ effort.id }}</a>
+          </td>
+          <td>{{ effort.remoteId }}</td>
+          <td>{{ effort.userId }}</td>
+          <td>{{ effort.userName }}</td>
+          <td faTranslate="{{ 'fastAdminApp.ReportingEntityType.' + effort.entityType }}">{{ effort.entityType }}</td>
+          <td>{{ effort.entityId }}</td>
+          <td>{{ effort.duration }}</td>
+          <td>{{ effort.date | formatMediumDate }}</td>
+          <td>{{ effort.activityName }}</td>
+          <td>{{ effort.notes }}</td>
+          <td>{{ effort.isInvoiced }}</td>
+          <td>{{ effort.updated | formatMediumDatetime }}</td>
+          <td>{{ effort.hourlyRate }}</td>
+          <td>
+            <div *ngIf="effort.activity">
+              <a [routerLink]="['/reporting-activity', effort.activity?.id, 'view']">{{ effort.activity?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/effort', effort.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/effort', effort.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(effort)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="efforts && efforts.length > 0">
+    <div class="row justify-content-center">
+      <fa-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></fa-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

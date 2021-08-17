@@ -1,0 +1,123 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-reporting-activity-heading"
+        data-cy="ReportingActivityCreateUpdateHeading"
+        faTranslate="fastAdminApp.reportingActivity.home.createOrEditLabel"
+      >
+        Create or edit a Reporting Activity
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.reportingActivity.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.reportingActivity.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.reportingActivity.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.reportingActivity.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.reportingActivity.useServicePrice"
+            for="field_useServicePrice"
+            [ngbTooltip]="'fastAdminApp.reportingActivity.help.useServicePrice' | translate"
+            >Use Service Price</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="useServicePrice"
+            id="field_useServicePrice"
+            data-cy="useServicePrice"
+            formControlName="useServicePrice"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.reportingActivity.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.reportingActivity.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.reportingActivity.catalogService" for="field_catalogService"
+            >Catalog Service</label
+          >
+          <select
+            class="form-control"
+            id="field_catalogService"
+            data-cy="catalogService"
+            name="catalogService"
+            formControlName="catalogService"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                catalogServiceOption.id === editForm.get('catalogService')!.value?.id
+                  ? editForm.get('catalogService')!.value
+                  : catalogServiceOption
+              "
+              *ngFor="let catalogServiceOption of catalogServicesSharedCollection; trackBy: trackCatalogServiceById"
+            >
+              {{ catalogServiceOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

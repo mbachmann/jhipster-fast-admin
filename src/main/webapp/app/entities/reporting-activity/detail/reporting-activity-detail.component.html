@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="reportingActivity">
+      <h2 data-cy="reportingActivityDetailsHeading">
+        <span faTranslate="fastAdminApp.reportingActivity.detail.title">Reporting Activity</span>
+      </h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ reportingActivity.id }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.reportingActivity.remoteId"
+            [ngbTooltip]="'fastAdminApp.reportingActivity.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ reportingActivity.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.reportingActivity.name" [ngbTooltip]="'fastAdminApp.reportingActivity.help.name' | translate"
+            >Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ reportingActivity.name }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.reportingActivity.useServicePrice"
+            [ngbTooltip]="'fastAdminApp.reportingActivity.help.useServicePrice' | translate"
+            >Use Service Price</span
+          >
+        </dt>
+        <dd>
+          <span>{{ reportingActivity.useServicePrice }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.reportingActivity.inactiv"
+            [ngbTooltip]="'fastAdminApp.reportingActivity.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ reportingActivity.inactiv }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.reportingActivity.catalogService">Catalog Service</span></dt>
+        <dd>
+          <div *ngIf="reportingActivity.catalogService">
+            <a [routerLink]="['/catalog-service', reportingActivity.catalogService?.id, 'view']">{{
+              reportingActivity.catalogService?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/reporting-activity', reportingActivity.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

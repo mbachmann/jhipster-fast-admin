@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="resourcePermission">
+      <h2 data-cy="resourcePermissionDetailsHeading">
+        <span faTranslate="fastAdminApp.resourcePermission.detail.title">Resource Permission</span>
+      </h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ resourcePermission.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.resourcePermission.add" [ngbTooltip]="'fastAdminApp.resourcePermission.help.add' | translate"
+            >Add</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.PermissionType.' + resourcePermission.add }}">{{ resourcePermission.add }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.resourcePermission.edit" [ngbTooltip]="'fastAdminApp.resourcePermission.help.edit' | translate"
+            >Edit</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.PermissionType.' + resourcePermission.edit }}">{{ resourcePermission.edit }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.resourcePermission.manage"
+            [ngbTooltip]="'fastAdminApp.resourcePermission.help.manage' | translate"
+            >Manage</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.PermissionType.' + resourcePermission.manage }}">{{ resourcePermission.manage }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.resourcePermission.domainArea"
+            [ngbTooltip]="'fastAdminApp.resourcePermission.help.domainArea' | translate"
+            >Domain Area</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DomainArea.' + resourcePermission.domainArea }}">{{ resourcePermission.domainArea }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.resourcePermission.role">Role</span></dt>
+        <dd>
+          <div *ngIf="resourcePermission.role">
+            <a [routerLink]="['/application-role', resourcePermission.role?.id, 'view']">{{ resourcePermission.role?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.resourcePermission.applicationUser">Application User</span></dt>
+        <dd>
+          <div *ngIf="resourcePermission.applicationUser">
+            <a [routerLink]="['/application-user', resourcePermission.applicationUser?.id, 'view']">{{
+              resourcePermission.applicationUser?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/resource-permission', resourcePermission.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+{
+  "fastAdminApp": {
+    "customFieldValue": {
+      "home": {
+        "title": "CustomFieldValues",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Custom Field Value",
+        "createOrEditLabel": "Créer ou éditer un Custom Field Value",
+        "notFound": "Aucun Custom Field Value trouvé"
+      },
+      "created": "Un nouveau Custom Field Value a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Custom Field Value avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Custom Field Value avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Custom Field Value {{ id }} ?"
+      },
+      "detail": {
+        "title": "Custom Field Value"
+      },
+      "id": "ID",
+      "key": "Key",
+      "name": "Name",
+      "value": "Value",
+      "customField": "Custom Field",
+      "contact": "Contact",
+      "contactPerson": "Contact Person",
+      "project": "Project",
+      "catalogProduct": "Catalog Product",
+      "catalogService": "Catalog Service",
+      "documentLetter": "Document Letter",
+      "deliveryNote": "Delivery Note",
+      "help": {
+        "key": "the key to identify the custom field",
+        "name": "a name which appears on the dialog",
+        "value": "the value of the resource"
+      }
+    }
+  }
+}

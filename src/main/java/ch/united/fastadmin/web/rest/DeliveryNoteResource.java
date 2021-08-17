@@ -1,9 +1,7 @@
 package ch.united.fastadmin.web.rest;
 
 import ch.united.fastadmin.repository.DeliveryNoteRepository;
-import ch.united.fastadmin.service.DeliveryNoteQueryService;
 import ch.united.fastadmin.service.DeliveryNoteService;
-import ch.united.fastadmin.service.criteria.DeliveryNoteCriteria;
 import ch.united.fastadmin.service.dto.DeliveryNoteDTO;
 import ch.united.fastadmin.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -45,16 +43,9 @@ public class DeliveryNoteResource {
 
     private final DeliveryNoteRepository deliveryNoteRepository;
 
-    private final DeliveryNoteQueryService deliveryNoteQueryService;
-
-    public DeliveryNoteResource(
-        DeliveryNoteService deliveryNoteService,
-        DeliveryNoteRepository deliveryNoteRepository,
-        DeliveryNoteQueryService deliveryNoteQueryService
-    ) {
+    public DeliveryNoteResource(DeliveryNoteService deliveryNoteService, DeliveryNoteRepository deliveryNoteRepository) {
         this.deliveryNoteService = deliveryNoteService;
         this.deliveryNoteRepository = deliveryNoteRepository;
-        this.deliveryNoteQueryService = deliveryNoteQueryService;
     }
 
     /**
@@ -152,27 +143,14 @@ public class DeliveryNoteResource {
      * {@code GET  /delivery-notes} : get all the deliveryNotes.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of deliveryNotes in body.
      */
     @GetMapping("/delivery-notes")
-    public ResponseEntity<List<DeliveryNoteDTO>> getAllDeliveryNotes(DeliveryNoteCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get DeliveryNotes by criteria: {}", criteria);
-        Page<DeliveryNoteDTO> page = deliveryNoteQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<DeliveryNoteDTO>> getAllDeliveryNotes(Pageable pageable) {
+        log.debug("REST request to get a page of DeliveryNotes");
+        Page<DeliveryNoteDTO> page = deliveryNoteService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /delivery-notes/count} : count all the deliveryNotes.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/delivery-notes/count")
-    public ResponseEntity<Long> countDeliveryNotes(DeliveryNoteCriteria criteria) {
-        log.debug("REST request to count DeliveryNotes by criteria: {}", criteria);
-        return ResponseEntity.ok().body(deliveryNoteQueryService.countByCriteria(criteria));
     }
 
     /**

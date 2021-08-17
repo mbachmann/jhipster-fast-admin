@@ -126,7 +126,7 @@ describe('DeliveryNote e2e test', () => {
 
     cy.get(`[data-cy="status"]`).select('SENT');
 
-    cy.get(`[data-cy="created"]`).type('2021-08-16T15:35').should('have.value', '2021-08-16T15:35');
+    cy.get(`[data-cy="created"]`).type('2021-08-16T17:11').should('have.value', '2021-08-16T17:11');
 
     cy.setFieldSelectToLastOfEntity('contact');
 

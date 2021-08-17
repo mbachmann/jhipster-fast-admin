@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface OrderConfirmationRepository extends JpaRepository<OrderConfirmation, Long>, JpaSpecificationExecutor<OrderConfirmation> {}
+public interface OrderConfirmationRepository extends JpaRepository<OrderConfirmation, Long> {}

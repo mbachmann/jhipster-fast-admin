@@ -1,9 +1,7 @@
 package ch.united.fastadmin.web.rest;
 
 import ch.united.fastadmin.repository.OrderConfirmationRepository;
-import ch.united.fastadmin.service.OrderConfirmationQueryService;
 import ch.united.fastadmin.service.OrderConfirmationService;
-import ch.united.fastadmin.service.criteria.OrderConfirmationCriteria;
 import ch.united.fastadmin.service.dto.OrderConfirmationDTO;
 import ch.united.fastadmin.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -45,16 +43,12 @@ public class OrderConfirmationResource {
 
     private final OrderConfirmationRepository orderConfirmationRepository;
 
-    private final OrderConfirmationQueryService orderConfirmationQueryService;
-
     public OrderConfirmationResource(
         OrderConfirmationService orderConfirmationService,
-        OrderConfirmationRepository orderConfirmationRepository,
-        OrderConfirmationQueryService orderConfirmationQueryService
+        OrderConfirmationRepository orderConfirmationRepository
     ) {
         this.orderConfirmationService = orderConfirmationService;
         this.orderConfirmationRepository = orderConfirmationRepository;
-        this.orderConfirmationQueryService = orderConfirmationQueryService;
     }
 
     /**
@@ -152,27 +146,14 @@ public class OrderConfirmationResource {
      * {@code GET  /order-confirmations} : get all the orderConfirmations.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of orderConfirmations in body.
      */
     @GetMapping("/order-confirmations")
-    public ResponseEntity<List<OrderConfirmationDTO>> getAllOrderConfirmations(OrderConfirmationCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get OrderConfirmations by criteria: {}", criteria);
-        Page<OrderConfirmationDTO> page = orderConfirmationQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<OrderConfirmationDTO>> getAllOrderConfirmations(Pageable pageable) {
+        log.debug("REST request to get a page of OrderConfirmations");
+        Page<OrderConfirmationDTO> page = orderConfirmationService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /order-confirmations/count} : count all the orderConfirmations.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/order-confirmations/count")
-    public ResponseEntity<Long> countOrderConfirmations(OrderConfirmationCriteria criteria) {
-        log.debug("REST request to count OrderConfirmations by criteria: {}", criteria);
-        return ResponseEntity.ok().body(orderConfirmationQueryService.countByCriteria(criteria));
     }
 
     /**

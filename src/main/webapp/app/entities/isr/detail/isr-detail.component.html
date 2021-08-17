@@ -1,0 +1,134 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="isr">
+      <h2 data-cy="isrDetailsHeading"><span faTranslate="fastAdminApp.isr.detail.title">Isr</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ isr.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.defaultIsr" [ngbTooltip]="'fastAdminApp.isr.help.defaultIsr' | translate">Default Isr</span>
+        </dt>
+        <dd>
+          <span>{{ isr.defaultIsr }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.isr.type" [ngbTooltip]="'fastAdminApp.isr.help.type' | translate">Type</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.IsrType.' + isr.type }}">{{ isr.type }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.isr.position" [ngbTooltip]="'fastAdminApp.isr.help.position' | translate">Position</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.IsrPosition.' + isr.position }}">{{ isr.position }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.isr.name" [ngbTooltip]="'fastAdminApp.isr.help.name' | translate">Name</span></dt>
+        <dd>
+          <span>{{ isr.name }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.isr.bankName" [ngbTooltip]="'fastAdminApp.isr.help.bankName' | translate">Bank Name</span></dt>
+        <dd>
+          <span>{{ isr.bankName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.bankAddress" [ngbTooltip]="'fastAdminApp.isr.help.bankAddress' | translate"
+            >Bank Address</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.bankAddress }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.recipientName" [ngbTooltip]="'fastAdminApp.isr.help.recipientName' | translate"
+            >Recipient Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.recipientName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.recipientAddition" [ngbTooltip]="'fastAdminApp.isr.help.recipientAddition' | translate"
+            >Recipient Addition</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.recipientAddition }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.recipientStreet" [ngbTooltip]="'fastAdminApp.isr.help.recipientStreet' | translate"
+            >Recipient Street</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.recipientStreet }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.recipientCity" [ngbTooltip]="'fastAdminApp.isr.help.recipientCity' | translate"
+            >Recipient City</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.recipientCity }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.deliveryNumber" [ngbTooltip]="'fastAdminApp.isr.help.deliveryNumber' | translate"
+            >Delivery Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.deliveryNumber }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.isr.iban" [ngbTooltip]="'fastAdminApp.isr.help.iban' | translate">Iban</span></dt>
+        <dd>
+          <span>{{ isr.iban }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.subscriberNumber" [ngbTooltip]="'fastAdminApp.isr.help.subscriberNumber' | translate"
+            >Subscriber Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.subscriberNumber }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.leftPrintAdjust" [ngbTooltip]="'fastAdminApp.isr.help.leftPrintAdjust' | translate"
+            >Left Print Adjust</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.leftPrintAdjust }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.isr.topPrintAdjust" [ngbTooltip]="'fastAdminApp.isr.help.topPrintAdjust' | translate"
+            >Top Print Adjust</span
+          >
+        </dt>
+        <dd>
+          <span>{{ isr.topPrintAdjust }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.isr.created">Created</span></dt>
+        <dd>
+          <span>{{ isr.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.isr.inactiv" [ngbTooltip]="'fastAdminApp.isr.help.inactiv' | translate">Inactiv</span></dt>
+        <dd>
+          <span>{{ isr.inactiv }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/isr', isr.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

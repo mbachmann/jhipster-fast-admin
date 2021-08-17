@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CustomFieldValue.
+    -->
+    <changeSet id="20210817165133-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="custom_field_id"
+                                 baseTableName="custom_field_value"
+                                 constraintName="fk_custom_field_value__custom_field_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="custom_field"/>
+
+        <addForeignKeyConstraint baseColumnNames="contact_id"
+                                 baseTableName="custom_field_value"
+                                 constraintName="fk_custom_field_value__contact_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact"/>
+
+        <addForeignKeyConstraint baseColumnNames="contact_person_id"
+                                 baseTableName="custom_field_value"
+                                 constraintName="fk_custom_field_value__contact_person_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_person"/>
+
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="custom_field_value"
+                                 constraintName="fk_custom_field_value__project_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"/>
+
+        <addForeignKeyConstraint baseColumnNames="catalog_product_id"
+                                 baseTableName="custom_field_value"
+                                 constraintName="fk_custom_field_value__catalog_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="catalog_product"/>
+
+        <addForeignKeyConstraint baseColumnNames="catalog_service_id"
+                                 baseTableName="custom_field_value"
+                                 constraintName="fk_custom_field_value__catalog_service_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="catalog_service"/>
+
+        <addForeignKeyConstraint baseColumnNames="document_letter_id"
+                                 baseTableName="custom_field_value"
+                                 constraintName="fk_custom_field_value__document_letter_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="document_letter"/>
+
+        <addForeignKeyConstraint baseColumnNames="delivery_note_id"
+                                 baseTableName="custom_field_value"
+                                 constraintName="fk_custom_field_value__delivery_note_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="delivery_note"/>
+    </changeSet>
+</databaseChangeLog>

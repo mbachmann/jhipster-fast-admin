@@ -46,5 +46,5 @@
   "readOnly": false,
   "embedded": false,
   "applications": ["fastAdmin"],
-  "changelogDate": "20210817151556"
+  "changelogDate": "20210817165124"
 }

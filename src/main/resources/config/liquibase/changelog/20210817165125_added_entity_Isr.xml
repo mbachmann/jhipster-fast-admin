@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Isr.
+    -->
+    <changeSet id="20210817165125-1" author="jhipster">
+        <createTable tableName="isr" remarks="ISR definition for ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, RIS - red inpayment slip, QR Code and QR Code with reference">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="default_isr" type="boolean" remarks="whether ISR is a default one">
+                <constraints nullable="true" />
+            </column>
+            <column name="type" type="varchar(255)" remarks="SR type; possible values: ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, RIS - red inpayment slip, QR Code and QR Code with reference">
+                <constraints nullable="true" />
+            </column>
+            <column name="position" type="varchar(255)" remarks="ISR position; possible values: A - additional page, F - first page, L - last page">
+                <constraints nullable="true" />
+            </column>
+            <column name="name" type="varchar(255)" remarks="optional ISR name (for internal system use only)">
+                <constraints nullable="true" />
+            </column>
+            <column name="bank_name" type="varchar(255)" remarks="Name of the bank">
+                <constraints nullable="true" />
+            </column>
+            <column name="bank_address" type="varchar(255)" remarks="Address of the bank">
+                <constraints nullable="true" />
+            </column>
+            <column name="recipient_name" type="varchar(255)" remarks="name of the recipient">
+                <constraints nullable="true" />
+            </column>
+            <column name="recipient_addition" type="varchar(255)" remarks="additional information of the recipient">
+                <constraints nullable="true" />
+            </column>
+            <column name="recipient_street" type="varchar(255)" remarks="street of the recipient">
+                <constraints nullable="true" />
+            </column>
+            <column name="recipient_city" type="varchar(255)" remarks="city of the recipient">
+                <constraints nullable="true" />
+            </column>
+            <column name="delivery_number" type="varchar(255)" remarks="the number (BESR or REF)">
+                <constraints nullable="true" />
+            </column>
+            <column name="iban" type="varchar(255)" remarks="the IBAN account number">
+                <constraints nullable="true" />
+            </column>
+            <column name="subscriber_number" type="varchar(255)" remarks="the subscriber number (Teilnehmernummer)">
+                <constraints nullable="true" />
+            </column>
+            <column name="left_print_adjust" type="double" remarks="left print adjust in mm">
+                <constraints nullable="true" />
+            </column>
+            <column name="top_print_adjust" type="double" remarks="top print adjust in mm">
+                <constraints nullable="true" />
+            </column>
+            <column name="created" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="inactiv" type="boolean" remarks="is not active anymore">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="isr" columnName="created" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210817165125-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/isr.csv"
+                  separator=";"
+                  tableName="isr">
+            <column name="id" type="numeric"/>
+            <column name="default_isr" type="boolean"/>
+            <column name="type" type="string"/>
+            <column name="position" type="string"/>
+            <column name="name" type="string"/>
+            <column name="bank_name" type="string"/>
+            <column name="bank_address" type="string"/>
+            <column name="recipient_name" type="string"/>
+            <column name="recipient_addition" type="string"/>
+            <column name="recipient_street" type="string"/>
+            <column name="recipient_city" type="string"/>
+            <column name="delivery_number" type="string"/>
+            <column name="iban" type="string"/>
+            <column name="subscriber_number" type="string"/>
+            <column name="left_print_adjust" type="numeric"/>
+            <column name="top_print_adjust" type="numeric"/>
+            <column name="created" type="${datetimeType}"/>
+            <column name="inactiv" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

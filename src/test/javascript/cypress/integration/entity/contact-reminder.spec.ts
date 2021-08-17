@@ -101,7 +101,7 @@ describe('ContactReminder e2e test', () => {
 
     cy.get(`[data-cy="contactName"]`).type('alarm Bike redundant').should('have.value', 'alarm Bike redundant');
 
-    cy.get(`[data-cy="dateTime"]`).type('2021-08-17T00:06').should('have.value', '2021-08-17T00:06');
+    cy.get(`[data-cy="dateTime"]`).type('2021-08-17T01:42').should('have.value', '2021-08-17T01:42');
 
     cy.get(`[data-cy="title"]`).type('overriding').should('have.value', 'overriding');
 

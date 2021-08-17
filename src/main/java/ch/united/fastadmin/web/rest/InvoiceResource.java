@@ -1,9 +1,7 @@
 package ch.united.fastadmin.web.rest;
 
 import ch.united.fastadmin.repository.InvoiceRepository;
-import ch.united.fastadmin.service.InvoiceQueryService;
 import ch.united.fastadmin.service.InvoiceService;
-import ch.united.fastadmin.service.criteria.InvoiceCriteria;
 import ch.united.fastadmin.service.dto.InvoiceDTO;
 import ch.united.fastadmin.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -45,12 +43,9 @@ public class InvoiceResource {
 
     private final InvoiceRepository invoiceRepository;
 
-    private final InvoiceQueryService invoiceQueryService;
-
-    public InvoiceResource(InvoiceService invoiceService, InvoiceRepository invoiceRepository, InvoiceQueryService invoiceQueryService) {
+    public InvoiceResource(InvoiceService invoiceService, InvoiceRepository invoiceRepository) {
         this.invoiceService = invoiceService;
         this.invoiceRepository = invoiceRepository;
-        this.invoiceQueryService = invoiceQueryService;
     }
 
     /**
@@ -147,27 +142,14 @@ public class InvoiceResource {
      * {@code GET  /invoices} : get all the invoices.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of invoices in body.
      */
     @GetMapping("/invoices")
-    public ResponseEntity<List<InvoiceDTO>> getAllInvoices(InvoiceCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get Invoices by criteria: {}", criteria);
-        Page<InvoiceDTO> page = invoiceQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<InvoiceDTO>> getAllInvoices(Pageable pageable) {
+        log.debug("REST request to get a page of Invoices");
+        Page<InvoiceDTO> page = invoiceService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /invoices/count} : count all the invoices.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/invoices/count")
-    public ResponseEntity<Long> countInvoices(InvoiceCriteria criteria) {
-        log.debug("REST request to count Invoices by criteria: {}", criteria);
-        return ResponseEntity.ok().body(invoiceQueryService.countByCriteria(criteria));
     }
 
     /**

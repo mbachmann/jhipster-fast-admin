@@ -126,7 +126,7 @@ describe('OrderConfirmation e2e test', () => {
 
     cy.get(`[data-cy="status"]`).select('BILLED');
 
-    cy.get(`[data-cy="created"]`).type('2021-08-17T11:53').should('have.value', '2021-08-17T11:53');
+    cy.get(`[data-cy="created"]`).type('2021-08-17T13:28').should('have.value', '2021-08-17T13:28');
 
     cy.setFieldSelectToLastOfEntity('contact');
 

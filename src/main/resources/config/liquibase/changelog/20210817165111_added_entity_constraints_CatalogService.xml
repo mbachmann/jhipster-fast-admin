@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CatalogService.
+    -->
+    <changeSet id="20210817165111-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="catalog_service"
+                                 constraintName="fk_catalog_service__category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="catalog_category"/>
+
+        <addForeignKeyConstraint baseColumnNames="unit_id"
+                                 baseTableName="catalog_service"
+                                 constraintName="fk_catalog_service__unit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="catalog_unit"/>
+
+        <addForeignKeyConstraint baseColumnNames="value_added_tax_id"
+                                 baseTableName="catalog_service"
+                                 constraintName="fk_catalog_service__value_added_tax_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="value_added_tax"/>
+    </changeSet>
+</databaseChangeLog>

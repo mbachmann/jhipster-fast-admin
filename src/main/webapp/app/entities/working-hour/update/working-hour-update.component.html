@@ -1,0 +1,195 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-working-hour-heading"
+        data-cy="WorkingHourCreateUpdateHeading"
+        faTranslate="fastAdminApp.workingHour.home.createOrEditLabel"
+      >
+        Create or edit a Working Hour
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.workingHour.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.workingHour.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.workingHour.userName"
+            for="field_userName"
+            [ngbTooltip]="'fastAdminApp.workingHour.help.userName' | translate"
+            >User Name</label
+          >
+          <input type="text" class="form-control" name="userName" id="field_userName" data-cy="userName" formControlName="userName" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.workingHour.date"
+            for="field_date"
+            [ngbTooltip]="'fastAdminApp.workingHour.help.date' | translate"
+            >Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.workingHour.timeStart"
+            for="field_timeStart"
+            [ngbTooltip]="'fastAdminApp.workingHour.help.timeStart' | translate"
+            >Time Start</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_timeStart"
+              data-cy="timeStart"
+              type="datetime-local"
+              class="form-control"
+              name="timeStart"
+              formControlName="timeStart"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.workingHour.timeEnd"
+            for="field_timeEnd"
+            [ngbTooltip]="'fastAdminApp.workingHour.help.timeEnd' | translate"
+            >Time End</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_timeEnd"
+              data-cy="timeEnd"
+              type="datetime-local"
+              class="form-control"
+              name="timeEnd"
+              formControlName="timeEnd"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.workingHour.created"
+            for="field_created"
+            [ngbTooltip]="'fastAdminApp.workingHour.help.created' | translate"
+            >Created</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.workingHour.applicationUser" for="field_applicationUser"
+            >Application User</label
+          >
+          <select
+            class="form-control"
+            id="field_applicationUser"
+            data-cy="applicationUser"
+            name="applicationUser"
+            formControlName="applicationUser"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                applicationUserOption.id === editForm.get('applicationUser')!.value?.id
+                  ? editForm.get('applicationUser')!.value
+                  : applicationUserOption
+              "
+              *ngFor="let applicationUserOption of applicationUsersSharedCollection; trackBy: trackApplicationUserById"
+            >
+              {{ applicationUserOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.workingHour.effort" for="field_effort">Effort</label>
+          <select class="form-control" id="field_effort" data-cy="effort" name="effort" formControlName="effort">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="effortOption.id === editForm.get('effort')!.value?.id ? editForm.get('effort')!.value : effortOption"
+              *ngFor="let effortOption of effortsSharedCollection; trackBy: trackEffortById"
+            >
+              {{ effortOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,9 +1,7 @@
 package ch.united.fastadmin.web.rest;
 
 import ch.united.fastadmin.repository.ContactReminderRepository;
-import ch.united.fastadmin.service.ContactReminderQueryService;
 import ch.united.fastadmin.service.ContactReminderService;
-import ch.united.fastadmin.service.criteria.ContactReminderCriteria;
 import ch.united.fastadmin.service.dto.ContactReminderDTO;
 import ch.united.fastadmin.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -45,16 +43,9 @@ public class ContactReminderResource {
 
     private final ContactReminderRepository contactReminderRepository;
 
-    private final ContactReminderQueryService contactReminderQueryService;
-
-    public ContactReminderResource(
-        ContactReminderService contactReminderService,
-        ContactReminderRepository contactReminderRepository,
-        ContactReminderQueryService contactReminderQueryService
-    ) {
+    public ContactReminderResource(ContactReminderService contactReminderService, ContactReminderRepository contactReminderRepository) {
         this.contactReminderService = contactReminderService;
         this.contactReminderRepository = contactReminderRepository;
-        this.contactReminderQueryService = contactReminderQueryService;
     }
 
     /**
@@ -152,27 +143,14 @@ public class ContactReminderResource {
      * {@code GET  /contact-reminders} : get all the contactReminders.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of contactReminders in body.
      */
     @GetMapping("/contact-reminders")
-    public ResponseEntity<List<ContactReminderDTO>> getAllContactReminders(ContactReminderCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get ContactReminders by criteria: {}", criteria);
-        Page<ContactReminderDTO> page = contactReminderQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<ContactReminderDTO>> getAllContactReminders(Pageable pageable) {
+        log.debug("REST request to get a page of ContactReminders");
+        Page<ContactReminderDTO> page = contactReminderService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /contact-reminders/count} : count all the contactReminders.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/contact-reminders/count")
-    public ResponseEntity<Long> countContactReminders(ContactReminderCriteria criteria) {
-        log.debug("REST request to count ContactReminders by criteria: {}", criteria);
-        return ResponseEntity.ok().body(contactReminderQueryService.countByCriteria(criteria));
     }
 
     /**

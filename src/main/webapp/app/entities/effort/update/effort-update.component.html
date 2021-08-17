@@ -1,0 +1,242 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="fa-effort-heading" data-cy="EffortCreateUpdateHeading" faTranslate="fastAdminApp.effort.home.createOrEditLabel">
+        Create or edit a Effort
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.effort.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.userId"
+            for="field_userId"
+            [ngbTooltip]="'fastAdminApp.effort.help.userId' | translate"
+            >User Id</label
+          >
+          <input type="number" class="form-control" name="userId" id="field_userId" data-cy="userId" formControlName="userId" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.userName"
+            for="field_userName"
+            [ngbTooltip]="'fastAdminApp.effort.help.userName' | translate"
+            >User Name</label
+          >
+          <input type="text" class="form-control" name="userName" id="field_userName" data-cy="userName" formControlName="userName" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.entityType"
+            for="field_entityType"
+            [ngbTooltip]="'fastAdminApp.effort.help.entityType' | translate"
+            >Entity Type</label
+          >
+          <select class="form-control" name="entityType" formControlName="entityType" id="field_entityType" data-cy="entityType">
+            <option [ngValue]="null">{{ 'fastAdminApp.ReportingEntityType.null' | translate }}</option>
+            <option value="PROJECT">{{ 'fastAdminApp.ReportingEntityType.PROJECT' | translate }}</option>
+            <option value="COST_UNIT">{{ 'fastAdminApp.ReportingEntityType.COST_UNIT' | translate }}</option>
+            <option value="CONTACT">{{ 'fastAdminApp.ReportingEntityType.CONTACT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.entityId"
+            for="field_entityId"
+            [ngbTooltip]="'fastAdminApp.effort.help.entityId' | translate"
+            >Entity Id</label
+          >
+          <input type="number" class="form-control" name="entityId" id="field_entityId" data-cy="entityId" formControlName="entityId" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.duration"
+            for="field_duration"
+            [ngbTooltip]="'fastAdminApp.effort.help.duration' | translate"
+            >Duration</label
+          >
+          <input type="number" class="form-control" name="duration" id="field_duration" data-cy="duration" formControlName="duration" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.date"
+            for="field_date"
+            [ngbTooltip]="'fastAdminApp.effort.help.date' | translate"
+            >Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.activityName"
+            for="field_activityName"
+            [ngbTooltip]="'fastAdminApp.effort.help.activityName' | translate"
+            >Activity Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="activityName"
+            id="field_activityName"
+            data-cy="activityName"
+            formControlName="activityName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.notes"
+            for="field_notes"
+            [ngbTooltip]="'fastAdminApp.effort.help.notes' | translate"
+            >Notes</label
+          >
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.isInvoiced"
+            for="field_isInvoiced"
+            [ngbTooltip]="'fastAdminApp.effort.help.isInvoiced' | translate"
+            >Is Invoiced</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isInvoiced"
+            id="field_isInvoiced"
+            data-cy="isInvoiced"
+            formControlName="isInvoiced"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.updated"
+            for="field_updated"
+            [ngbTooltip]="'fastAdminApp.effort.help.updated' | translate"
+            >Updated</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_updated"
+              data-cy="updated"
+              type="datetime-local"
+              class="form-control"
+              name="updated"
+              formControlName="updated"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.effort.hourlyRate"
+            for="field_hourlyRate"
+            [ngbTooltip]="'fastAdminApp.effort.help.hourlyRate' | translate"
+            >Hourly Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="hourlyRate"
+            id="field_hourlyRate"
+            data-cy="hourlyRate"
+            formControlName="hourlyRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.effort.activity" for="field_activity">Activity</label>
+          <select class="form-control" id="field_activity" data-cy="activity" name="activity" formControlName="activity">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                reportingActivityOption.id === editForm.get('activity')!.value?.id
+                  ? editForm.get('activity')!.value
+                  : reportingActivityOption
+              "
+              *ngFor="let reportingActivityOption of reportingActivitiesSharedCollection; trackBy: trackReportingActivityById"
+            >
+              {{ reportingActivityOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

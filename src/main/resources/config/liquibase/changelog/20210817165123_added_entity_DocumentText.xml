@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity DocumentText.
+    -->
+    <changeSet id="20210817165123-1" author="jhipster">
+        <createTable tableName="document_text" remarks="title, introduction and condition text">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="default_text" type="boolean" remarks="default text">
+                <constraints nullable="true" />
+            </column>
+            <column name="text" type="varchar(255)" remarks="Document conditions text (z.B. Zahlungsbedingungen)">
+                <constraints nullable="true" />
+            </column>
+            <column name="language" type="varchar(255)" remarks="language; possible values: de, en, es, fr, it ,">
+                <constraints nullable="true" />
+            </column>
+            <column name="fa_usage" type="varchar(255)" remarks="At which document position shall the text be used; possible values; T - Title, I - Introduction, D - Condition">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)" remarks="for invoice only">
+                <constraints nullable="true" />
+            </column>
+            <column name="type" type="varchar(255)" remarks="which document type is the condition for; possible values: D - Document, E- Email">
+                <constraints nullable="true" />
+            </column>
+            <column name="document_type" type="varchar(255)" remarks="which Receivable document is the information for; possible values: O - Offer, C - Order Confirmation, D - Delivery Note, I - Invoice">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210817165123-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/document_text.csv"
+                  separator=";"
+                  tableName="document_text">
+            <column name="id" type="numeric"/>
+            <column name="default_text" type="boolean"/>
+            <column name="text" type="string"/>
+            <column name="language" type="string"/>
+            <column name="fa_usage" type="string"/>
+            <column name="status" type="string"/>
+            <column name="type" type="string"/>
+            <column name="document_type" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

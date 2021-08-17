@@ -1,0 +1,39 @@
+{
+  "fastAdminApp": {
+    "workingHour": {
+      "home": {
+        "title": "Working Hours",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Working Hour",
+        "createOrEditLabel": "Create or edit a Working Hour",
+        "notFound": "No Working Hours found"
+      },
+      "created": "A new Working Hour is created with identifier {{ param }}",
+      "updated": "A Working Hour is updated with identifier {{ param }}",
+      "deleted": "A Working Hour is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Working Hour {{ id }}?"
+      },
+      "detail": {
+        "title": "Working Hour"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "userName": "User Name",
+      "date": "Date",
+      "timeStart": "Time Start",
+      "timeEnd": "Time End",
+      "created": "Created",
+      "applicationUser": "Application User",
+      "effort": "Effort",
+      "help": {
+        "remoteId": "id of a remote system",
+        "userName": "(optional): full name of user",
+        "date": "date of working hours time span",
+        "timeStart": "start of working hours time span (in HH:MM format)",
+        "timeEnd": "end of working hours time span (in HH:MM format)",
+        "created": "date when working hours entity was created"
+      }
+    }
+  }
+}

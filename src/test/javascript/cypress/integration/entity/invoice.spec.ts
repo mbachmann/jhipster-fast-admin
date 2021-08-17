@@ -164,7 +164,7 @@ describe('Invoice e2e test', () => {
 
     cy.get(`[data-cy="status"]`).select('THIRD_REMINDER');
 
-    cy.get(`[data-cy="created"]`).type('2021-08-17T15:06').should('have.value', '2021-08-17T15:06');
+    cy.get(`[data-cy="created"]`).type('2021-08-17T16:42').should('have.value', '2021-08-17T16:42');
 
     cy.setFieldSelectToLastOfEntity('contact');
 

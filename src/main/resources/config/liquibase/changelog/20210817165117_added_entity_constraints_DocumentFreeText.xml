@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity DocumentFreeText.
+    -->
+    <changeSet id="20210817165117-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="document_letter_id"
+                                 baseTableName="document_free_text"
+                                 constraintName="fk_document_free_text__document_letter_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="document_letter"/>
+
+        <addForeignKeyConstraint baseColumnNames="delivery_note_id"
+                                 baseTableName="document_free_text"
+                                 constraintName="fk_document_free_text__delivery_note_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="delivery_note"/>
+
+        <addForeignKeyConstraint baseColumnNames="invoice_id"
+                                 baseTableName="document_free_text"
+                                 constraintName="fk_document_free_text__invoice_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="invoice"/>
+
+        <addForeignKeyConstraint baseColumnNames="offer_id"
+                                 baseTableName="document_free_text"
+                                 constraintName="fk_document_free_text__offer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="offer"/>
+
+        <addForeignKeyConstraint baseColumnNames="order_confirmation_id"
+                                 baseTableName="document_free_text"
+                                 constraintName="fk_document_free_text__order_confirmation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_confirmation"/>
+    </changeSet>
+</databaseChangeLog>

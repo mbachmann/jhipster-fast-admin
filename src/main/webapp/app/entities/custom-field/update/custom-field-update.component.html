@@ -1,0 +1,112 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-custom-field-heading"
+        data-cy="CustomFieldCreateUpdateHeading"
+        faTranslate="fastAdminApp.customField.home.createOrEditLabel"
+      >
+        Create or edit a Custom Field
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.customField.domainArea"
+            for="field_domainArea"
+            [ngbTooltip]="'fastAdminApp.customField.help.domainArea' | translate"
+            >Domain Area</label
+          >
+          <select class="form-control" name="domainArea" formControlName="domainArea" id="field_domainArea" data-cy="domainArea">
+            <option [ngValue]="null">{{ 'fastAdminApp.DomainArea.null' | translate }}</option>
+            <option value="CONTACTS">{{ 'fastAdminApp.DomainArea.CONTACTS' | translate }}</option>
+            <option value="LETTERS">{{ 'fastAdminApp.DomainArea.LETTERS' | translate }}</option>
+            <option value="PRODUCTS">{{ 'fastAdminApp.DomainArea.PRODUCTS' | translate }}</option>
+            <option value="SERVICES">{{ 'fastAdminApp.DomainArea.SERVICES' | translate }}</option>
+            <option value="OFFERS">{{ 'fastAdminApp.DomainArea.OFFERS' | translate }}</option>
+            <option value="PROJECTS">{{ 'fastAdminApp.DomainArea.PROJECTS' | translate }}</option>
+            <option value="DELIVERY_NOTES">{{ 'fastAdminApp.DomainArea.DELIVERY_NOTES' | translate }}</option>
+            <option value="ORDER_CONFIRMATIONS">{{ 'fastAdminApp.DomainArea.ORDER_CONFIRMATIONS' | translate }}</option>
+            <option value="INVOICES">{{ 'fastAdminApp.DomainArea.INVOICES' | translate }}</option>
+            <option value="USERS">{{ 'fastAdminApp.DomainArea.USERS' | translate }}</option>
+            <option value="REPORTING">{{ 'fastAdminApp.DomainArea.REPORTING' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.customField.key"
+            for="field_key"
+            [ngbTooltip]="'fastAdminApp.customField.help.key' | translate"
+            >Key</label
+          >
+          <input type="text" class="form-control" name="key" id="field_key" data-cy="key" formControlName="key" />
+          <div *ngIf="editForm.get('key')!.invalid && (editForm.get('key')!.dirty || editForm.get('key')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('key')?.errors?.required" faTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.customField.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.customField.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" faTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.customField.defaultValue"
+            for="field_defaultValue"
+            [ngbTooltip]="'fastAdminApp.customField.help.defaultValue' | translate"
+            >Default Value</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="defaultValue"
+            id="field_defaultValue"
+            data-cy="defaultValue"
+            formControlName="defaultValue"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

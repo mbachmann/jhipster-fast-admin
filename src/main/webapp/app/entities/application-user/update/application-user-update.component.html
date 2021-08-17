@@ -1,0 +1,160 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-application-user-heading"
+        data-cy="ApplicationUserCreateUpdateHeading"
+        faTranslate="fastAdminApp.applicationUser.home.createOrEditLabel"
+      >
+        Create or edit a Application User
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.applicationUser.shortCutName"
+            for="field_shortCutName"
+            [ngbTooltip]="'fastAdminApp.applicationUser.help.shortCutName' | translate"
+            >Short Cut Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="shortCutName"
+            id="field_shortCutName"
+            data-cy="shortCutName"
+            formControlName="shortCutName"
+          />
+          <div
+            *ngIf="editForm.get('shortCutName')!.invalid && (editForm.get('shortCutName')!.dirty || editForm.get('shortCutName')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('shortCutName')?.errors?.required"
+              faTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.applicationUser.memberSince"
+            for="field_memberSince"
+            [ngbTooltip]="'fastAdminApp.applicationUser.help.memberSince' | translate"
+            >Member Since</label
+          >
+          <div class="input-group">
+            <input
+              id="field_memberSince"
+              data-cy="memberSince"
+              type="text"
+              class="form-control"
+              name="memberSince"
+              ngbDatepicker
+              #memberSinceDp="ngbDatepicker"
+              formControlName="memberSince"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="memberSinceDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.applicationUser.avatar"
+            for="field_avatar"
+            [ngbTooltip]="'fastAdminApp.applicationUser.help.avatar' | translate"
+            >Avatar</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('avatarContentType')!.value + ';base64,' + editForm.get('avatar')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('avatar')!.value"
+              alt="applicationUser image"
+            />
+            <div *ngIf="editForm.get('avatar')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('avatarContentType')!.value }}, {{ byteSize(editForm.get('avatar')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('avatar', 'avatarContentType', 'file_avatar')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_avatar"
+              data-cy="avatar"
+              (change)="setFileData($event, 'avatar', true)"
+              accept="image/*"
+              faTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="avatar" id="field_avatar" data-cy="avatar" formControlName="avatar" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="avatarContentType"
+            id="field_avatarContentType"
+            formControlName="avatarContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.applicationUser.imageType"
+            for="field_imageType"
+            [ngbTooltip]="'fastAdminApp.applicationUser.help.imageType' | translate"
+            >Image Type</label
+          >
+          <input type="text" class="form-control" name="imageType" id="field_imageType" data-cy="imageType" formControlName="imageType" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.applicationUser.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.applicationUser.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

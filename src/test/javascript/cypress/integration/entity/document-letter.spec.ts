@@ -115,7 +115,7 @@ describe('DocumentLetter e2e test', () => {
 
     cy.get(`[data-cy="status"]`).select('DRAFT');
 
-    cy.get(`[data-cy="created"]`).type('2021-08-16T20:26').should('have.value', '2021-08-16T20:26');
+    cy.get(`[data-cy="created"]`).type('2021-08-16T22:01').should('have.value', '2021-08-16T22:01');
 
     cy.setFieldSelectToLastOfEntity('contact');
 

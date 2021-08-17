@@ -1,9 +1,7 @@
 package ch.united.fastadmin.web.rest;
 
 import ch.united.fastadmin.repository.DocumentLetterRepository;
-import ch.united.fastadmin.service.DocumentLetterQueryService;
 import ch.united.fastadmin.service.DocumentLetterService;
-import ch.united.fastadmin.service.criteria.DocumentLetterCriteria;
 import ch.united.fastadmin.service.dto.DocumentLetterDTO;
 import ch.united.fastadmin.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -45,16 +43,9 @@ public class DocumentLetterResource {
 
     private final DocumentLetterRepository documentLetterRepository;
 
-    private final DocumentLetterQueryService documentLetterQueryService;
-
-    public DocumentLetterResource(
-        DocumentLetterService documentLetterService,
-        DocumentLetterRepository documentLetterRepository,
-        DocumentLetterQueryService documentLetterQueryService
-    ) {
+    public DocumentLetterResource(DocumentLetterService documentLetterService, DocumentLetterRepository documentLetterRepository) {
         this.documentLetterService = documentLetterService;
         this.documentLetterRepository = documentLetterRepository;
-        this.documentLetterQueryService = documentLetterQueryService;
     }
 
     /**
@@ -152,27 +143,14 @@ public class DocumentLetterResource {
      * {@code GET  /document-letters} : get all the documentLetters.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of documentLetters in body.
      */
     @GetMapping("/document-letters")
-    public ResponseEntity<List<DocumentLetterDTO>> getAllDocumentLetters(DocumentLetterCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get DocumentLetters by criteria: {}", criteria);
-        Page<DocumentLetterDTO> page = documentLetterQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<DocumentLetterDTO>> getAllDocumentLetters(Pageable pageable) {
+        log.debug("REST request to get a page of DocumentLetters");
+        Page<DocumentLetterDTO> page = documentLetterService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /document-letters/count} : count all the documentLetters.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/document-letters/count")
-    public ResponseEntity<Long> countDocumentLetters(DocumentLetterCriteria criteria) {
-        log.debug("REST request to count DocumentLetters by criteria: {}", criteria);
-        return ResponseEntity.ok().body(documentLetterQueryService.countByCriteria(criteria));
     }
 
     /**

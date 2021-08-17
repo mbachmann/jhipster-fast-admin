@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity BankAccount.
+    -->
+    <changeSet id="20210817165105-1" author="jhipster">
+        <createTable tableName="bank_account" remarks="The owner company bank account">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="remote_id" type="integer" remarks="id of a remote system">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_bank_account__remote_id" />
+            </column>
+            <column name="default_bank_account" type="boolean" remarks="whether it is a default bank account">
+                <constraints nullable="true" />
+            </column>
+            <column name="description" type="varchar(255)" remarks="The account description">
+                <constraints nullable="true" />
+            </column>
+            <column name="bank_name" type="varchar(255)" remarks="The Bank Name">
+                <constraints nullable="true" />
+            </column>
+            <column name="number" type="varchar(255)" remarks="Account Number">
+                <constraints nullable="true" />
+            </column>
+            <column name="iban" type="varchar(255)" remarks="IBAN Number">
+                <constraints nullable="true" />
+            </column>
+            <column name="bic" type="varchar(255)" remarks="BIC/SWIFT Code">
+                <constraints nullable="true" />
+            </column>
+            <column name="post_account" type="varchar(255)" remarks="bank’s postal account">
+                <constraints nullable="true" />
+            </column>
+            <column name="auto_sync" type="varchar(255)" remarks="one of: [active, inactive, requested]">
+                <constraints nullable="true" />
+            </column>
+            <column name="auto_sync_direction" type="varchar(255)" remarks="[in, out, null (means no direction specified)]">
+                <constraints nullable="true" />
+            </column>
+            <column name="currency" type="varchar(255)" remarks="ISO currency name o">
+                <constraints nullable="true" />
+            </column>
+            <column name="inactiv" type="boolean" remarks="is not active anymore">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210817165105-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/bank_account.csv"
+                  separator=";"
+                  tableName="bank_account">
+            <column name="id" type="numeric"/>
+            <column name="remote_id" type="numeric"/>
+            <column name="default_bank_account" type="boolean"/>
+            <column name="description" type="string"/>
+            <column name="bank_name" type="string"/>
+            <column name="number" type="string"/>
+            <column name="iban" type="string"/>
+            <column name="bic" type="string"/>
+            <column name="post_account" type="string"/>
+            <column name="auto_sync" type="string"/>
+            <column name="auto_sync_direction" type="string"/>
+            <column name="currency" type="string"/>
+            <column name="inactiv" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

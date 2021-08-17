@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="project">
+      <h2 data-cy="projectDetailsHeading"><span faTranslate="fastAdminApp.project.detail.title">Project</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ project.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.project.remoteId" [ngbTooltip]="'fastAdminApp.project.help.remoteId' | translate">Remote Id</span>
+        </dt>
+        <dd>
+          <span>{{ project.remoteId }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.project.number" [ngbTooltip]="'fastAdminApp.project.help.number' | translate">Number</span></dt>
+        <dd>
+          <span>{{ project.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.project.contactName" [ngbTooltip]="'fastAdminApp.project.help.contactName' | translate"
+            >Contact Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ project.contactName }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.project.name" [ngbTooltip]="'fastAdminApp.project.help.name' | translate">Name</span></dt>
+        <dd>
+          <span>{{ project.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.project.description" [ngbTooltip]="'fastAdminApp.project.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ project.description }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.project.startDate" [ngbTooltip]="'fastAdminApp.project.help.startDate' | translate"
+            >Start Date</span
+          >
+        </dt>
+        <dd>
+          <span>{{ project.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.project.hoursEstimated" [ngbTooltip]="'fastAdminApp.project.help.hoursEstimated' | translate"
+            >Hours Estimated</span
+          >
+        </dt>
+        <dd>
+          <span>{{ project.hoursEstimated }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.project.hourlyRate" [ngbTooltip]="'fastAdminApp.project.help.hourlyRate' | translate"
+            >Hourly Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ project.hourlyRate }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.project.status" [ngbTooltip]="'fastAdminApp.project.help.status' | translate">Status</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.ProjectStatus.' + project.status }}">{{ project.status }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.project.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="project.contact">
+            <a [routerLink]="['/contact', project.contact?.id, 'view']">{{ project.contact?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/project', project.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * Spring Data SQL repository for the Contact entity.
  */
 @Repository
-public interface ContactRepository extends JpaRepository<Contact, Long>, JpaSpecificationExecutor<Contact> {
+public interface ContactRepository extends JpaRepository<Contact, Long> {
     @Query(
         value = "select distinct contact from Contact contact left join fetch contact.relations left join fetch contact.groups",
         countQuery = "select count(distinct contact) from Contact contact"

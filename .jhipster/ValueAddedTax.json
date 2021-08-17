@@ -44,10 +44,10 @@
   "dto": "mapstruct",
   "pagination": "infinite-scroll",
   "service": "serviceClass",
-  "jpaMetamodelFiltering": true,
+  "jpaMetamodelFiltering": false,
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
   "applications": ["fastAdmin"],
-  "changelogDate": "20210817151541"
+  "changelogDate": "20210817165109"
 }

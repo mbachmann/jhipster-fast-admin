@@ -1,0 +1,35 @@
+{
+  "fastAdminApp": {
+    "resourcePermission": {
+      "home": {
+        "title": "ResourcePermissions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Resource Permission",
+        "createOrEditLabel": "Créer ou éditer un Resource Permission",
+        "notFound": "Aucun Resource Permission trouvé"
+      },
+      "created": "Un nouveau Resource Permission a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Resource Permission avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Resource Permission avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Resource Permission {{ id }} ?"
+      },
+      "detail": {
+        "title": "Resource Permission"
+      },
+      "id": "ID",
+      "add": "Add",
+      "edit": "Edit",
+      "manage": "Manage",
+      "domainArea": "Domain Area",
+      "role": "Role",
+      "applicationUser": "Application User",
+      "help": {
+        "add": "the use can add a new resource",
+        "edit": "the use can edit a resource",
+        "manage": "the use can manage a resource",
+        "domainArea": "the permission is for the domain resource"
+      }
+    }
+  }
+}

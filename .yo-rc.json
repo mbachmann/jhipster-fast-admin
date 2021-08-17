@@ -87,7 +87,7 @@
       "ResourcePermission",
       "Permission"
     ],
-    "lastLiquibaseTimestamp": 1629213368000
+    "lastLiquibaseTimestamp": 1629219096000
   },
   "git-provider": "GitHub",
   "git-company": "mbachmann",

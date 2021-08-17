@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity OrderConfirmation.
+    -->
+    <changeSet id="20210817165116-1" author="jhipster">
+        <createTable tableName="order_confirmation">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="remote_id" type="integer" remarks="id of a remote system">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_order_confirmation__remote_id" />
+            </column>
+            <column name="number" type="varchar(255)" remarks="document number">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_order_confirmation__number" />
+            </column>
+            <column name="contact_name" type="varchar(255)" remarks="name of a contact">
+                <constraints nullable="true" />
+            </column>
+            <column name="date" type="date" remarks="date of the document">
+                <constraints nullable="true" />
+            </column>
+            <column name="period_text" type="varchar(255)" remarks="service/delivery">
+                <constraints nullable="true" />
+            </column>
+            <column name="currency" type="varchar(255)" remarks="currency (e.g. CHF, EUR)">
+                <constraints nullable="true" />
+            </column>
+            <column name="total" type="double" remarks="total amount of the delivery note">
+                <constraints nullable="true" />
+            </column>
+            <column name="vat_included" type="boolean" remarks="whether prices in delivery note include VAT">
+                <constraints nullable="true" />
+            </column>
+            <column name="discount_rate" type="double" remarks="optional discount rate">
+                <constraints nullable="true" />
+            </column>
+            <column name="discount_type" type="varchar(255)" remarks="optional discount type; possible values: A - amount, P - in %">
+                <constraints nullable="true" />
+            </column>
+            <column name="language" type="varchar(255)" remarks="language; possible values: de, en, es, fr, it ,">
+                <constraints nullable="true" />
+            </column>
+            <column name="page_amount" type="integer" remarks="how many pages the document has">
+                <constraints nullable="true" />
+            </column>
+            <column name="notes" type="varchar(255)" remarks="optional notes">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)" remarks="status of order confirmation, possible values: DR - draft, S - sent, B - billed, D - deleted (but still visible)">
+                <constraints nullable="true" />
+            </column>
+            <column name="created" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="contact_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="contact_address_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="contact_person_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="contact_pre_page_address_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="layout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="signature_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="order_confirmation" columnName="created" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210817165116-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/order_confirmation.csv"
+                  separator=";"
+                  tableName="order_confirmation">
+            <column name="id" type="numeric"/>
+            <column name="remote_id" type="numeric"/>
+            <column name="number" type="string"/>
+            <column name="contact_name" type="string"/>
+            <column name="date" type="date"/>
+            <column name="period_text" type="string"/>
+            <column name="currency" type="string"/>
+            <column name="total" type="numeric"/>
+            <column name="vat_included" type="boolean"/>
+            <column name="discount_rate" type="numeric"/>
+            <column name="discount_type" type="string"/>
+            <column name="language" type="string"/>
+            <column name="page_amount" type="numeric"/>
+            <column name="notes" type="string"/>
+            <column name="status" type="string"/>
+            <column name="created" type="${datetimeType}"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -146,7 +146,7 @@ describe('Contact e2e test', () => {
 
     cy.get(`[data-cy="hourlyRate"]`).type('16197').should('have.value', '16197');
 
-    cy.get(`[data-cy="created"]`).type('2021-08-17T00:52').should('have.value', '2021-08-17T00:52');
+    cy.get(`[data-cy="created"]`).type('2021-08-17T02:28').should('have.value', '2021-08-17T02:28');
 
     cy.get(`[data-cy="mainAddressId"]`).type('81876').should('have.value', '81876');
 

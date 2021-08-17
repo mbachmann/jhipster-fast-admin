@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Offer.
+    -->
+    <changeSet id="20210817165115-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="contact_id"
+                                 baseTableName="offer"
+                                 constraintName="fk_offer__contact_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact"/>
+
+        <addForeignKeyConstraint baseColumnNames="contact_address_id"
+                                 baseTableName="offer"
+                                 constraintName="fk_offer__contact_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_address"/>
+
+        <addForeignKeyConstraint baseColumnNames="contact_person_id"
+                                 baseTableName="offer"
+                                 constraintName="fk_offer__contact_person_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_person"/>
+
+        <addForeignKeyConstraint baseColumnNames="contact_pre_page_address_id"
+                                 baseTableName="offer"
+                                 constraintName="fk_offer__contact_pre_page_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_address"/>
+
+        <addForeignKeyConstraint baseColumnNames="layout_id"
+                                 baseTableName="offer"
+                                 constraintName="fk_offer__layout_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="layout"/>
+
+        <addForeignKeyConstraint baseColumnNames="signature_id"
+                                 baseTableName="offer"
+                                 constraintName="fk_offer__signature_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="signature"/>
+    </changeSet>
+</databaseChangeLog>

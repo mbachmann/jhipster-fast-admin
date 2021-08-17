@@ -1,0 +1,102 @@
+<div>
+  <h2 id="page-heading" data-cy="ReportingActivityHeading">
+    <span faTranslate="fastAdminApp.reportingActivity.home.title">Reporting Activities</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.reportingActivity.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-reporting-activity"
+        [routerLink]="['/reporting-activity/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.reportingActivity.home.createLabel"> Create a new Reporting Activity </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="reportingActivities?.length === 0">
+    <span faTranslate="fastAdminApp.reportingActivity.home.notFound">No reportingActivities found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="reportingActivities && reportingActivities.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.reportingActivity.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="name">
+            <span faTranslate="fastAdminApp.reportingActivity.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="useServicePrice">
+            <span faTranslate="fastAdminApp.reportingActivity.useServicePrice">Use Service Price</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.reportingActivity.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="catalogService.id">
+            <span faTranslate="fastAdminApp.reportingActivity.catalogService">Catalog Service</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let reportingActivity of reportingActivities; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/reporting-activity', reportingActivity.id, 'view']">{{ reportingActivity.id }}</a>
+          </td>
+          <td>{{ reportingActivity.remoteId }}</td>
+          <td>{{ reportingActivity.name }}</td>
+          <td>{{ reportingActivity.useServicePrice }}</td>
+          <td>{{ reportingActivity.inactiv }}</td>
+          <td>
+            <div *ngIf="reportingActivity.catalogService">
+              <a [routerLink]="['/catalog-service', reportingActivity.catalogService?.id, 'view']">{{
+                reportingActivity.catalogService?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/reporting-activity', reportingActivity.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/reporting-activity', reportingActivity.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(reportingActivity)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

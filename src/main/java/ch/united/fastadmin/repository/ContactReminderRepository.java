@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ContactReminderRepository extends JpaRepository<ContactReminder, Long>, JpaSpecificationExecutor<ContactReminder> {}
+public interface ContactReminderRepository extends JpaRepository<ContactReminder, Long> {}

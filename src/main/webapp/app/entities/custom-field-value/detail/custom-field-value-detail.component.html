@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="customFieldValue">
+      <h2 data-cy="customFieldValueDetailsHeading">
+        <span faTranslate="fastAdminApp.customFieldValue.detail.title">Custom Field Value</span>
+      </h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ customFieldValue.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.customFieldValue.key" [ngbTooltip]="'fastAdminApp.customFieldValue.help.key' | translate"
+            >Key</span
+          >
+        </dt>
+        <dd>
+          <span>{{ customFieldValue.key }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.customFieldValue.name" [ngbTooltip]="'fastAdminApp.customFieldValue.help.name' | translate"
+            >Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ customFieldValue.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.customFieldValue.value" [ngbTooltip]="'fastAdminApp.customFieldValue.help.value' | translate"
+            >Value</span
+          >
+        </dt>
+        <dd>
+          <span>{{ customFieldValue.value }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customFieldValue.customField">Custom Field</span></dt>
+        <dd>
+          <div *ngIf="customFieldValue.customField">
+            <a [routerLink]="['/custom-field', customFieldValue.customField?.id, 'view']">{{ customFieldValue.customField?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customFieldValue.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="customFieldValue.contact">
+            <a [routerLink]="['/contact', customFieldValue.contact?.id, 'view']">{{ customFieldValue.contact?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customFieldValue.contactPerson">Contact Person</span></dt>
+        <dd>
+          <div *ngIf="customFieldValue.contactPerson">
+            <a [routerLink]="['/contact-person', customFieldValue.contactPerson?.id, 'view']">{{ customFieldValue.contactPerson?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customFieldValue.project">Project</span></dt>
+        <dd>
+          <div *ngIf="customFieldValue.project">
+            <a [routerLink]="['/project', customFieldValue.project?.id, 'view']">{{ customFieldValue.project?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customFieldValue.catalogProduct">Catalog Product</span></dt>
+        <dd>
+          <div *ngIf="customFieldValue.catalogProduct">
+            <a [routerLink]="['/catalog-product', customFieldValue.catalogProduct?.id, 'view']">{{
+              customFieldValue.catalogProduct?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customFieldValue.catalogService">Catalog Service</span></dt>
+        <dd>
+          <div *ngIf="customFieldValue.catalogService">
+            <a [routerLink]="['/catalog-service', customFieldValue.catalogService?.id, 'view']">{{
+              customFieldValue.catalogService?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customFieldValue.documentLetter">Document Letter</span></dt>
+        <dd>
+          <div *ngIf="customFieldValue.documentLetter">
+            <a [routerLink]="['/document-letter', customFieldValue.documentLetter?.id, 'view']">{{
+              customFieldValue.documentLetter?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.customFieldValue.deliveryNote">Delivery Note</span></dt>
+        <dd>
+          <div *ngIf="customFieldValue.deliveryNote">
+            <a [routerLink]="['/delivery-note', customFieldValue.deliveryNote?.id, 'view']">{{ customFieldValue.deliveryNote?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/custom-field-value', customFieldValue.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

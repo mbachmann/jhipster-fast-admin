@@ -1,0 +1,98 @@
+<div>
+  <h2 id="page-heading" data-cy="ResourcePermissionHeading">
+    <span faTranslate="fastAdminApp.resourcePermission.home.title">Resource Permissions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.resourcePermission.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-resource-permission"
+        [routerLink]="['/resource-permission/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.resourcePermission.home.createLabel"> Create a new Resource Permission </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="resourcePermissions?.length === 0">
+    <span faTranslate="fastAdminApp.resourcePermission.home.notFound">No resourcePermissions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="resourcePermissions && resourcePermissions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.resourcePermission.add">Add</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.resourcePermission.edit">Edit</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.resourcePermission.manage">Manage</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.resourcePermission.domainArea">Domain Area</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.resourcePermission.role">Role</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.resourcePermission.applicationUser">Application User</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resourcePermission of resourcePermissions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/resource-permission', resourcePermission.id, 'view']">{{ resourcePermission.id }}</a>
+          </td>
+          <td faTranslate="{{ 'fastAdminApp.PermissionType.' + resourcePermission.add }}">{{ resourcePermission.add }}</td>
+          <td faTranslate="{{ 'fastAdminApp.PermissionType.' + resourcePermission.edit }}">{{ resourcePermission.edit }}</td>
+          <td faTranslate="{{ 'fastAdminApp.PermissionType.' + resourcePermission.manage }}">{{ resourcePermission.manage }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DomainArea.' + resourcePermission.domainArea }}">{{ resourcePermission.domainArea }}</td>
+          <td>
+            <div *ngIf="resourcePermission.role">
+              <a [routerLink]="['/application-role', resourcePermission.role?.id, 'view']">{{ resourcePermission.role?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="resourcePermission.applicationUser">
+              <a [routerLink]="['/application-user', resourcePermission.applicationUser?.id, 'view']">{{
+                resourcePermission.applicationUser?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/resource-permission', resourcePermission.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/resource-permission', resourcePermission.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(resourcePermission)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

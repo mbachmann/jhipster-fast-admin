@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ValueAddedTaxRepository extends JpaRepository<ValueAddedTax, Long>, JpaSpecificationExecutor<ValueAddedTax> {}
+public interface ValueAddedTaxRepository extends JpaRepository<ValueAddedTax, Long> {}

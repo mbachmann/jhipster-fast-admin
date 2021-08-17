@@ -1,0 +1,11 @@
+id;type;catalog_type;number;name;description;price;vat;amount;discount_rate;discount_type;total;show_only_total
+1;SUBTOTAL_INCREMENTAL;SERVICE;withdrawal Extended;synergies Principal;wireless SDR;45654;77272;83072;38053;AMOUNT;71914;true
+2;TEXT;ALL;Towels capacitor impactful;Handcrafted Intranet;Pierre;89143;95215;72709;86201;IN_PERCENT;73505;false
+3;HEADER;PRODUCT;Dinar incremental;Savings Berkshire Cambridgeshire;white 1080p;11356;43252;87208;66044;IN_PERCENT;88180;true
+4;PAGE_BREAK;PRODUCT;Chicken Plastic;empower Customizable Practical;Sleek Steel;32144;40104;52812;74232;AMOUNT;91741;false
+5;NORMAL;PRODUCT;Refined payment navigate;application;Borders;5284;3309;61569;36878;IN_PERCENT;66967;false
+6;SUBTOTAL_INCREMENTAL;ALL;Central;Integrated Martinique;Ergonomic initiative Account;25738;65449;62216;20966;AMOUNT;12813;false
+7;SUBTOTAL_INCREMENTAL;ALL;Franc;client-driven Brand;Alaska Generic;1754;19523;90514;96030;IN_PERCENT;19862;true
+8;SUBTOTAL_NON_INCREMENTAL;SERVICE;enable implement Washington;upward-trending;AGP El Metrics;6392;49183;54886;70499;IN_PERCENT;53432;true
+9;NORMAL;SERVICE;Secured;Malaysia connect;XSS;99124;30952;55099;85439;IN_PERCENT;7411;false
+10;SUBTOTAL_INCREMENTAL;SERVICE;website infomediaries visionary;Networked Bahraini web-enabled;open-source turn-key;37979;95411;22003;80463;AMOUNT;90793;true

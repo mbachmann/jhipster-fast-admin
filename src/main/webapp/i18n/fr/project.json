@@ -1,0 +1,45 @@
+{
+  "fastAdminApp": {
+    "project": {
+      "home": {
+        "title": "Projects",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Project",
+        "createOrEditLabel": "Créer ou éditer un Project",
+        "notFound": "Aucun Project trouvé"
+      },
+      "created": "Un nouveau Project a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Project avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Project avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Project {{ id }} ?"
+      },
+      "detail": {
+        "title": "Project"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "number": "Number",
+      "contactName": "Contact Name",
+      "name": "Name",
+      "description": "Description",
+      "startDate": "Start Date",
+      "hoursEstimated": "Hours Estimated",
+      "hourlyRate": "Hourly Rate",
+      "status": "Status",
+      "customFields": "Custom Fields",
+      "contact": "Contact",
+      "help": {
+        "remoteId": "id of a remote system",
+        "number": "project&#39;s internal number",
+        "contactName": "related contact&#39;s name (optional)",
+        "name": "project&#39;s name",
+        "description": "project&#39;s description",
+        "startDate": "project&#39;s start date",
+        "hoursEstimated": "project&#39;s estimated maximum effort (in hours)",
+        "hourlyRate": "project&#39;s hourly rate",
+        "status": "status to be set, on of:  &#39;&#39;O&#39;&#39; - open, &#39;&#39;C&#39;&#39; - closed, &#39;&#39;B&#39;&#39; - billed, &#39;&#39;P&#39;&#39; - pending&#39;"
+      }
+    }
+  }
+}

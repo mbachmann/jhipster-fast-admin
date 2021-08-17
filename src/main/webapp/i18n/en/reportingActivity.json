@@ -1,0 +1,34 @@
+{
+  "fastAdminApp": {
+    "reportingActivity": {
+      "home": {
+        "title": "Reporting Activities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Reporting Activity",
+        "createOrEditLabel": "Create or edit a Reporting Activity",
+        "notFound": "No Reporting Activities found"
+      },
+      "created": "A new Reporting Activity is created with identifier {{ param }}",
+      "updated": "A Reporting Activity is updated with identifier {{ param }}",
+      "deleted": "A Reporting Activity is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Reporting Activity {{ id }}?"
+      },
+      "detail": {
+        "title": "Reporting Activity"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "name": "Name",
+      "useServicePrice": "Use Service Price",
+      "inactiv": "Inactiv",
+      "catalogService": "Catalog Service",
+      "help": {
+        "remoteId": "id of a remote system",
+        "name": "name of activity eg. Consulting",
+        "useServicePrice": "use price defined in service catalog",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

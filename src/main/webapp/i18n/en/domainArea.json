@@ -1,0 +1,18 @@
+{
+  "fastAdminApp": {
+    "DomainArea": {
+      "null": "",
+      "CONTACTS": "CONTACTS",
+      "LETTERS": "LETTERS",
+      "PRODUCTS": "PRODUCTS",
+      "SERVICES": "SERVICES",
+      "OFFERS": "OFFERS",
+      "PROJECTS": "PROJECTS",
+      "DELIVERY_NOTES": "DELIVERY_NOTES",
+      "ORDER_CONFIRMATIONS": "ORDER_CONFIRMATIONS",
+      "INVOICES": "INVOICES",
+      "USERS": "USERS",
+      "REPORTING": "REPORTING"
+    }
+  }
+}

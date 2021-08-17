@@ -1,9 +1,7 @@
 package ch.united.fastadmin.web.rest;
 
 import ch.united.fastadmin.repository.CatalogProductRepository;
-import ch.united.fastadmin.service.CatalogProductQueryService;
 import ch.united.fastadmin.service.CatalogProductService;
-import ch.united.fastadmin.service.criteria.CatalogProductCriteria;
 import ch.united.fastadmin.service.dto.CatalogProductDTO;
 import ch.united.fastadmin.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -45,16 +43,9 @@ public class CatalogProductResource {
 
     private final CatalogProductRepository catalogProductRepository;
 
-    private final CatalogProductQueryService catalogProductQueryService;
-
-    public CatalogProductResource(
-        CatalogProductService catalogProductService,
-        CatalogProductRepository catalogProductRepository,
-        CatalogProductQueryService catalogProductQueryService
-    ) {
+    public CatalogProductResource(CatalogProductService catalogProductService, CatalogProductRepository catalogProductRepository) {
         this.catalogProductService = catalogProductService;
         this.catalogProductRepository = catalogProductRepository;
-        this.catalogProductQueryService = catalogProductQueryService;
     }
 
     /**
@@ -152,27 +143,14 @@ public class CatalogProductResource {
      * {@code GET  /catalog-products} : get all the catalogProducts.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of catalogProducts in body.
      */
     @GetMapping("/catalog-products")
-    public ResponseEntity<List<CatalogProductDTO>> getAllCatalogProducts(CatalogProductCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get CatalogProducts by criteria: {}", criteria);
-        Page<CatalogProductDTO> page = catalogProductQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<CatalogProductDTO>> getAllCatalogProducts(Pageable pageable) {
+        log.debug("REST request to get a page of CatalogProducts");
+        Page<CatalogProductDTO> page = catalogProductService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /catalog-products/count} : count all the catalogProducts.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/catalog-products/count")
-    public ResponseEntity<Long> countCatalogProducts(CatalogProductCriteria criteria) {
-        log.debug("REST request to count CatalogProducts by criteria: {}", criteria);
-        return ResponseEntity.ok().body(catalogProductQueryService.countByCriteria(criteria));
     }
 
     /**

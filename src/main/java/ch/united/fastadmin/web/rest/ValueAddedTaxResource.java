@@ -1,9 +1,7 @@
 package ch.united.fastadmin.web.rest;
 
 import ch.united.fastadmin.repository.ValueAddedTaxRepository;
-import ch.united.fastadmin.service.ValueAddedTaxQueryService;
 import ch.united.fastadmin.service.ValueAddedTaxService;
-import ch.united.fastadmin.service.criteria.ValueAddedTaxCriteria;
 import ch.united.fastadmin.service.dto.ValueAddedTaxDTO;
 import ch.united.fastadmin.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -43,16 +41,9 @@ public class ValueAddedTaxResource {
 
     private final ValueAddedTaxRepository valueAddedTaxRepository;
 
-    private final ValueAddedTaxQueryService valueAddedTaxQueryService;
-
-    public ValueAddedTaxResource(
-        ValueAddedTaxService valueAddedTaxService,
-        ValueAddedTaxRepository valueAddedTaxRepository,
-        ValueAddedTaxQueryService valueAddedTaxQueryService
-    ) {
+    public ValueAddedTaxResource(ValueAddedTaxService valueAddedTaxService, ValueAddedTaxRepository valueAddedTaxRepository) {
         this.valueAddedTaxService = valueAddedTaxService;
         this.valueAddedTaxRepository = valueAddedTaxRepository;
-        this.valueAddedTaxQueryService = valueAddedTaxQueryService;
     }
 
     /**
@@ -149,27 +140,14 @@ public class ValueAddedTaxResource {
      * {@code GET  /value-added-taxes} : get all the valueAddedTaxes.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of valueAddedTaxes in body.
      */
     @GetMapping("/value-added-taxes")
-    public ResponseEntity<List<ValueAddedTaxDTO>> getAllValueAddedTaxes(ValueAddedTaxCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get ValueAddedTaxes by criteria: {}", criteria);
-        Page<ValueAddedTaxDTO> page = valueAddedTaxQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<ValueAddedTaxDTO>> getAllValueAddedTaxes(Pageable pageable) {
+        log.debug("REST request to get a page of ValueAddedTaxes");
+        Page<ValueAddedTaxDTO> page = valueAddedTaxService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /value-added-taxes/count} : count all the valueAddedTaxes.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/value-added-taxes/count")
-    public ResponseEntity<Long> countValueAddedTaxes(ValueAddedTaxCriteria criteria) {
-        log.debug("REST request to count ValueAddedTaxes by criteria: {}", criteria);
-        return ResponseEntity.ok().body(valueAddedTaxQueryService.countByCriteria(criteria));
     }
 
     /**

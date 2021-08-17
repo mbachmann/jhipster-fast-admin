@@ -1,0 +1,11 @@
+{
+  "fastAdminApp": {
+    "ProjectStatus": {
+      "null": "",
+      "OPEN": "O",
+      "CLOSED": "C",
+      "BILLED": "B",
+      "PENDING": "P"
+    }
+  }
+}

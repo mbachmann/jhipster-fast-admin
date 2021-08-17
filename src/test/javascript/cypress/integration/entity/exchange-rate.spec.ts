@@ -105,7 +105,7 @@ describe('ExchangeRate e2e test', () => {
 
     cy.get(`[data-cy="rate"]`).type('64438').should('have.value', '64438');
 
-    cy.get(`[data-cy="created"]`).type('2021-08-17T10:24').should('have.value', '2021-08-17T10:24');
+    cy.get(`[data-cy="created"]`).type('2021-08-17T12:00').should('have.value', '2021-08-17T12:00');
 
     cy.get(`[data-cy="inactiv"]`).should('not.be.checked');
     cy.get(`[data-cy="inactiv"]`).click().should('be.checked');

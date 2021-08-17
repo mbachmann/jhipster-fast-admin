@@ -116,10 +116,10 @@
   "dto": "mapstruct",
   "pagination": "pagination",
   "service": "serviceClass",
-  "jpaMetamodelFiltering": true,
+  "jpaMetamodelFiltering": false,
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
   "applications": ["fastAdmin"],
-  "changelogDate": "20210817151544"
+  "changelogDate": "20210817165112"
 }

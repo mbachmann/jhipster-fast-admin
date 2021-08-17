@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="WorkingHourHeading">
+    <span faTranslate="fastAdminApp.workingHour.home.title">Working Hours</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.workingHour.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-working-hour"
+        [routerLink]="['/working-hour/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.workingHour.home.createLabel"> Create a new Working Hour </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="workingHours?.length === 0">
+    <span faTranslate="fastAdminApp.workingHour.home.notFound">No workingHours found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="workingHours && workingHours.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.workingHour.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="userName">
+            <span faTranslate="fastAdminApp.workingHour.userName">User Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="date"><span faTranslate="fastAdminApp.workingHour.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="timeStart">
+            <span faTranslate="fastAdminApp.workingHour.timeStart">Time Start</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="timeEnd">
+            <span faTranslate="fastAdminApp.workingHour.timeEnd">Time End</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="created">
+            <span faTranslate="fastAdminApp.workingHour.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="applicationUser.id">
+            <span faTranslate="fastAdminApp.workingHour.applicationUser">Application User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="effort.id">
+            <span faTranslate="fastAdminApp.workingHour.effort">Effort</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let workingHour of workingHours; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/working-hour', workingHour.id, 'view']">{{ workingHour.id }}</a>
+          </td>
+          <td>{{ workingHour.remoteId }}</td>
+          <td>{{ workingHour.userName }}</td>
+          <td>{{ workingHour.date | formatMediumDate }}</td>
+          <td>{{ workingHour.timeStart | formatMediumDatetime }}</td>
+          <td>{{ workingHour.timeEnd | formatMediumDatetime }}</td>
+          <td>{{ workingHour.created | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="workingHour.applicationUser">
+              <a [routerLink]="['/application-user', workingHour.applicationUser?.id, 'view']">{{ workingHour.applicationUser?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="workingHour.effort">
+              <a [routerLink]="['/effort', workingHour.effort?.id, 'view']">{{ workingHour.effort?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/working-hour', workingHour.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/working-hour', workingHour.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(workingHour)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="workingHours && workingHours.length > 0">
+    <div class="row justify-content-center">
+      <fa-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></fa-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+id;name;vat_type;valid_from;valid_until;vat_percent;inactiv;new_vat_id
+1;synergize synergize Nicaragua;PERCENT;2021-08-17;2021-08-16;9031;false;41496
+2;withdrawal bypass;FREE_INPUT;2021-08-17;2021-08-16;60151;true;82214
+3;Bedfordshire leading-edge User-centric;FREE_INPUT;2021-08-16;2021-08-16;69951;false;76982
+4;Technician hack Facilitator;PERCENT;2021-08-16;2021-08-17;4695;false;71779
+5;Berkshire;PERCENT;2021-08-17;2021-08-17;5115;false;29136
+6;productize;PERCENT;2021-08-17;2021-08-17;4999;true;64862
+7;Ergonomic Turkish Global;FREE_INPUT;2021-08-17;2021-08-17;96889;false;80213
+8;Account;NO_VAT;2021-08-17;2021-08-16;51657;true;42037
+9;function integrated Refined;NO_VAT;2021-08-17;2021-08-16;42351;false;25513
+10;Generic Morocco;NO_VAT;2021-08-17;2021-08-17;67448;false;65173

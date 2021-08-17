@@ -126,7 +126,7 @@ describe('CatalogProduct e2e test', () => {
 
     cy.get(`[data-cy="defaultAmount"]`).type('91604').should('have.value', '91604');
 
-    cy.get(`[data-cy="created"]`).type('2021-08-17T06:12').should('have.value', '2021-08-17T06:12');
+    cy.get(`[data-cy="created"]`).type('2021-08-17T07:48').should('have.value', '2021-08-17T07:48');
 
     cy.get(`[data-cy="inactiv"]`).should('not.be.checked');
     cy.get(`[data-cy="inactiv"]`).click().should('be.checked');

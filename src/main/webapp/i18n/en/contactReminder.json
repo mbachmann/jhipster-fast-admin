@@ -1,0 +1,44 @@
+{
+  "fastAdminApp": {
+    "contactReminder": {
+      "home": {
+        "title": "Contact Reminders",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Contact Reminder",
+        "createOrEditLabel": "Create or edit a Contact Reminder",
+        "notFound": "No Contact Reminders found"
+      },
+      "created": "A new Contact Reminder is created with identifier {{ param }}",
+      "updated": "A Contact Reminder is updated with identifier {{ param }}",
+      "deleted": "A Contact Reminder is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contact Reminder {{ id }}?"
+      },
+      "detail": {
+        "title": "Contact Reminder"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "contactId": "Contact Id",
+      "contactName": "Contact Name",
+      "dateTime": "Date Time",
+      "title": "Title",
+      "description": "Description",
+      "intervalValue": "Interval Value",
+      "intervalType": "Interval Type",
+      "inactiv": "Inactiv",
+      "contact": "Contact",
+      "help": {
+        "remoteId": "id of a remote system",
+        "contactId": "id of a contact",
+        "contactName": "optional: name of a contact",
+        "dateTime": "date and time of event that should be reminded (format: IOS8601) ,",
+        "title": "title of reminder",
+        "description": "description of reminder",
+        "intervalValue": "value of interval in which reminder will be activated , /",
+        "intervalType": "one of: [&#39;hour&#39;,&#39;day&#39;,&#39;month&#39;]",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

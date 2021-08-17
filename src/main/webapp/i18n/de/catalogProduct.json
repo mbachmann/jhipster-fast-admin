@@ -1,0 +1,60 @@
+{
+  "fastAdminApp": {
+    "catalogProduct": {
+      "home": {
+        "title": "Catalog Products",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Catalog Product erstellen",
+        "createOrEditLabel": "Catalog Product erstellen oder bearbeiten",
+        "notFound": "Keine Catalog Products gefunden"
+      },
+      "created": "Catalog Product erstellt mit ID {{ param }}",
+      "updated": "Catalog Product aktualisiert mit ID {{ param }}",
+      "deleted": "Catalog Product gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Catalog Product {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Catalog Product"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "number": "Number",
+      "name": "Name",
+      "description": "Description",
+      "notes": "Notes",
+      "categoryName": "Category Name",
+      "includingVat": "Including Vat",
+      "vat": "Vat",
+      "unitName": "Unit Name",
+      "price": "Price",
+      "pricePurchase": "Price Purchase",
+      "inventoryAvailable": "Inventory Available",
+      "inventoryReserved": "Inventory Reserved",
+      "defaultAmount": "Default Amount",
+      "created": "Created",
+      "inactiv": "Inactiv",
+      "customFields": "Custom Fields",
+      "category": "Category",
+      "unit": "Unit",
+      "valueAddedTax": "Value Added Tax",
+      "help": {
+        "remoteId": "id of a remote system",
+        "number": "Catalog Product Number",
+        "name": "Catalog Product Name",
+        "description": "Catalog Product Description",
+        "notes": "Catalog Product Notes",
+        "categoryName": "Category Name",
+        "includingVat": "The price includes MWST",
+        "vat": "The VAT Percent",
+        "unitName": "The unit Name",
+        "price": "The sales price of the product",
+        "pricePurchase": "The purchase price of the product",
+        "inventoryAvailable": "Available Products in Inventory",
+        "inventoryReserved": "Reserved Products in Inventory",
+        "defaultAmount": "Default amount of products (Standard Menge)",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

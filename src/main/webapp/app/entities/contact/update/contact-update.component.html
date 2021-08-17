@@ -1,0 +1,905 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="fa-contact-heading" data-cy="ContactCreateUpdateHeading" faTranslate="fastAdminApp.contact.home.createOrEditLabel">
+        Create or edit a Contact
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.contact.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.number"
+            for="field_number"
+            [ngbTooltip]="'fastAdminApp.contact.help.number' | translate"
+            >Number</label
+          >
+          <input type="text" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+          <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)"></div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.type"
+            for="field_type"
+            [ngbTooltip]="'fastAdminApp.contact.help.type' | translate"
+            >Type</label
+          >
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'fastAdminApp.ContactType.null' | translate }}</option>
+            <option value="COMPANY">{{ 'fastAdminApp.ContactType.COMPANY' | translate }}</option>
+            <option value="PRIVATE">{{ 'fastAdminApp.ContactType.PRIVATE' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" faTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.gender"
+            for="field_gender"
+            [ngbTooltip]="'fastAdminApp.contact.help.gender' | translate"
+            >Gender</label
+          >
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'fastAdminApp.GenderType.null' | translate }}</option>
+            <option value="MALE">{{ 'fastAdminApp.GenderType.MALE' | translate }}</option>
+            <option value="FEMALE">{{ 'fastAdminApp.GenderType.FEMALE' | translate }}</option>
+            <option value="OTHER">{{ 'fastAdminApp.GenderType.OTHER' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('gender')!.invalid && (editForm.get('gender')!.dirty || editForm.get('gender')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gender')?.errors?.required" faTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.genderSalutationActive"
+            for="field_genderSalutationActive"
+            [ngbTooltip]="'fastAdminApp.contact.help.genderSalutationActive' | translate"
+            >Gender Salutation Active</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="genderSalutationActive"
+            id="field_genderSalutationActive"
+            data-cy="genderSalutationActive"
+            formControlName="genderSalutationActive"
+          />
+          <div
+            *ngIf="
+              editForm.get('genderSalutationActive')!.invalid &&
+              (editForm.get('genderSalutationActive')!.dirty || editForm.get('genderSalutationActive')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('genderSalutationActive')?.errors?.required"
+              faTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.contact.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" faTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.nameAddition"
+            for="field_nameAddition"
+            [ngbTooltip]="'fastAdminApp.contact.help.nameAddition' | translate"
+            >Name Addition</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nameAddition"
+            id="field_nameAddition"
+            data-cy="nameAddition"
+            formControlName="nameAddition"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.salutation"
+            for="field_salutation"
+            [ngbTooltip]="'fastAdminApp.contact.help.salutation' | translate"
+            >Salutation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="salutation"
+            id="field_salutation"
+            data-cy="salutation"
+            formControlName="salutation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.phone"
+            for="field_phone"
+            [ngbTooltip]="'fastAdminApp.contact.help.phone' | translate"
+            >Phone</label
+          >
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.fax"
+            for="field_fax"
+            [ngbTooltip]="'fastAdminApp.contact.help.fax' | translate"
+            >Fax</label
+          >
+          <input type="text" class="form-control" name="fax" id="field_fax" data-cy="fax" formControlName="fax" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.email"
+            for="field_email"
+            [ngbTooltip]="'fastAdminApp.contact.help.email' | translate"
+            >Email</label
+          >
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.website"
+            for="field_website"
+            [ngbTooltip]="'fastAdminApp.contact.help.website' | translate"
+            >Website</label
+          >
+          <input type="text" class="form-control" name="website" id="field_website" data-cy="website" formControlName="website" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.notes"
+            for="field_notes"
+            [ngbTooltip]="'fastAdminApp.contact.help.notes' | translate"
+            >Notes</label
+          >
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.communicationLanguage"
+            for="field_communicationLanguage"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationLanguage' | translate"
+            >Communication Language</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="communicationLanguage"
+            id="field_communicationLanguage"
+            data-cy="communicationLanguage"
+            formControlName="communicationLanguage"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.communicationChannel"
+            for="field_communicationChannel"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationChannel' | translate"
+            >Communication Channel</label
+          >
+          <select
+            class="form-control"
+            name="communicationChannel"
+            formControlName="communicationChannel"
+            id="field_communicationChannel"
+            data-cy="communicationChannel"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.CommunicationChannel.null' | translate }}</option>
+            <option value="NO_PREFERENCE">{{ 'fastAdminApp.CommunicationChannel.NO_PREFERENCE' | translate }}</option>
+            <option value="BY_EMAIL">{{ 'fastAdminApp.CommunicationChannel.BY_EMAIL' | translate }}</option>
+            <option value="BY_POST">{{ 'fastAdminApp.CommunicationChannel.BY_POST' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.communicationNewsletter"
+            for="field_communicationNewsletter"
+            [ngbTooltip]="'fastAdminApp.contact.help.communicationNewsletter' | translate"
+            >Communication Newsletter</label
+          >
+          <select
+            class="form-control"
+            name="communicationNewsletter"
+            formControlName="communicationNewsletter"
+            id="field_communicationNewsletter"
+            data-cy="communicationNewsletter"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.CommunicationNewsletter.null' | translate }}</option>
+            <option value="SEND_ADDRESS_AND_CONTACTS">
+              {{ 'fastAdminApp.CommunicationNewsletter.SEND_ADDRESS_AND_CONTACTS' | translate }}
+            </option>
+            <option value="SEND_TO_MAIN_CONTACT_ONLY">
+              {{ 'fastAdminApp.CommunicationNewsletter.SEND_TO_MAIN_CONTACT_ONLY' | translate }}
+            </option>
+            <option value="NO_NEWS_LETTER">{{ 'fastAdminApp.CommunicationNewsletter.NO_NEWS_LETTER' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.currency"
+            for="field_currency"
+            [ngbTooltip]="'fastAdminApp.contact.help.currency' | translate"
+            >Currency</label
+          >
+          <select class="form-control" name="currency" formControlName="currency" id="field_currency" data-cy="currency">
+            <option [ngValue]="null">{{ 'fastAdminApp.Currency.null' | translate }}</option>
+            <option value="AED">{{ 'fastAdminApp.Currency.AED' | translate }}</option>
+            <option value="AFN">{{ 'fastAdminApp.Currency.AFN' | translate }}</option>
+            <option value="ALL">{{ 'fastAdminApp.Currency.ALL' | translate }}</option>
+            <option value="AMD">{{ 'fastAdminApp.Currency.AMD' | translate }}</option>
+            <option value="ANG">{{ 'fastAdminApp.Currency.ANG' | translate }}</option>
+            <option value="AOA">{{ 'fastAdminApp.Currency.AOA' | translate }}</option>
+            <option value="ARS">{{ 'fastAdminApp.Currency.ARS' | translate }}</option>
+            <option value="AUD">{{ 'fastAdminApp.Currency.AUD' | translate }}</option>
+            <option value="AWG">{{ 'fastAdminApp.Currency.AWG' | translate }}</option>
+            <option value="AZN">{{ 'fastAdminApp.Currency.AZN' | translate }}</option>
+            <option value="BAM">{{ 'fastAdminApp.Currency.BAM' | translate }}</option>
+            <option value="BBD">{{ 'fastAdminApp.Currency.BBD' | translate }}</option>
+            <option value="BDT">{{ 'fastAdminApp.Currency.BDT' | translate }}</option>
+            <option value="BGN">{{ 'fastAdminApp.Currency.BGN' | translate }}</option>
+            <option value="BHD">{{ 'fastAdminApp.Currency.BHD' | translate }}</option>
+            <option value="BIF">{{ 'fastAdminApp.Currency.BIF' | translate }}</option>
+            <option value="BMD">{{ 'fastAdminApp.Currency.BMD' | translate }}</option>
+            <option value="BND">{{ 'fastAdminApp.Currency.BND' | translate }}</option>
+            <option value="BOB">{{ 'fastAdminApp.Currency.BOB' | translate }}</option>
+            <option value="BOV">{{ 'fastAdminApp.Currency.BOV' | translate }}</option>
+            <option value="BRL">{{ 'fastAdminApp.Currency.BRL' | translate }}</option>
+            <option value="BSD">{{ 'fastAdminApp.Currency.BSD' | translate }}</option>
+            <option value="BTN">{{ 'fastAdminApp.Currency.BTN' | translate }}</option>
+            <option value="BWP">{{ 'fastAdminApp.Currency.BWP' | translate }}</option>
+            <option value="BYN">{{ 'fastAdminApp.Currency.BYN' | translate }}</option>
+            <option value="BYR">{{ 'fastAdminApp.Currency.BYR' | translate }}</option>
+            <option value="BZD">{{ 'fastAdminApp.Currency.BZD' | translate }}</option>
+            <option value="CAD">{{ 'fastAdminApp.Currency.CAD' | translate }}</option>
+            <option value="CDF">{{ 'fastAdminApp.Currency.CDF' | translate }}</option>
+            <option value="CHE">{{ 'fastAdminApp.Currency.CHE' | translate }}</option>
+            <option value="CHF">{{ 'fastAdminApp.Currency.CHF' | translate }}</option>
+            <option value="CHW">{{ 'fastAdminApp.Currency.CHW' | translate }}</option>
+            <option value="CLF">{{ 'fastAdminApp.Currency.CLF' | translate }}</option>
+            <option value="CLP">{{ 'fastAdminApp.Currency.CLP' | translate }}</option>
+            <option value="CNY">{{ 'fastAdminApp.Currency.CNY' | translate }}</option>
+            <option value="COP">{{ 'fastAdminApp.Currency.COP' | translate }}</option>
+            <option value="COU">{{ 'fastAdminApp.Currency.COU' | translate }}</option>
+            <option value="CRC">{{ 'fastAdminApp.Currency.CRC' | translate }}</option>
+            <option value="CUC">{{ 'fastAdminApp.Currency.CUC' | translate }}</option>
+            <option value="CUP">{{ 'fastAdminApp.Currency.CUP' | translate }}</option>
+            <option value="CVE">{{ 'fastAdminApp.Currency.CVE' | translate }}</option>
+            <option value="CZK">{{ 'fastAdminApp.Currency.CZK' | translate }}</option>
+            <option value="DJF">{{ 'fastAdminApp.Currency.DJF' | translate }}</option>
+            <option value="DKK">{{ 'fastAdminApp.Currency.DKK' | translate }}</option>
+            <option value="DOP">{{ 'fastAdminApp.Currency.DOP' | translate }}</option>
+            <option value="DZD">{{ 'fastAdminApp.Currency.DZD' | translate }}</option>
+            <option value="EGP">{{ 'fastAdminApp.Currency.EGP' | translate }}</option>
+            <option value="ERN">{{ 'fastAdminApp.Currency.ERN' | translate }}</option>
+            <option value="ETB">{{ 'fastAdminApp.Currency.ETB' | translate }}</option>
+            <option value="EUR">{{ 'fastAdminApp.Currency.EUR' | translate }}</option>
+            <option value="FJD">{{ 'fastAdminApp.Currency.FJD' | translate }}</option>
+            <option value="FKP">{{ 'fastAdminApp.Currency.FKP' | translate }}</option>
+            <option value="GBP">{{ 'fastAdminApp.Currency.GBP' | translate }}</option>
+            <option value="GEL">{{ 'fastAdminApp.Currency.GEL' | translate }}</option>
+            <option value="GHS">{{ 'fastAdminApp.Currency.GHS' | translate }}</option>
+            <option value="GIP">{{ 'fastAdminApp.Currency.GIP' | translate }}</option>
+            <option value="GMD">{{ 'fastAdminApp.Currency.GMD' | translate }}</option>
+            <option value="GNF">{{ 'fastAdminApp.Currency.GNF' | translate }}</option>
+            <option value="GTQ">{{ 'fastAdminApp.Currency.GTQ' | translate }}</option>
+            <option value="GYD">{{ 'fastAdminApp.Currency.GYD' | translate }}</option>
+            <option value="HKD">{{ 'fastAdminApp.Currency.HKD' | translate }}</option>
+            <option value="HNL">{{ 'fastAdminApp.Currency.HNL' | translate }}</option>
+            <option value="HRK">{{ 'fastAdminApp.Currency.HRK' | translate }}</option>
+            <option value="HTG">{{ 'fastAdminApp.Currency.HTG' | translate }}</option>
+            <option value="HUF">{{ 'fastAdminApp.Currency.HUF' | translate }}</option>
+            <option value="IDR">{{ 'fastAdminApp.Currency.IDR' | translate }}</option>
+            <option value="ILS">{{ 'fastAdminApp.Currency.ILS' | translate }}</option>
+            <option value="INR">{{ 'fastAdminApp.Currency.INR' | translate }}</option>
+            <option value="IQD">{{ 'fastAdminApp.Currency.IQD' | translate }}</option>
+            <option value="IRR">{{ 'fastAdminApp.Currency.IRR' | translate }}</option>
+            <option value="ISK">{{ 'fastAdminApp.Currency.ISK' | translate }}</option>
+            <option value="JMD">{{ 'fastAdminApp.Currency.JMD' | translate }}</option>
+            <option value="JOD">{{ 'fastAdminApp.Currency.JOD' | translate }}</option>
+            <option value="JPY">{{ 'fastAdminApp.Currency.JPY' | translate }}</option>
+            <option value="KES">{{ 'fastAdminApp.Currency.KES' | translate }}</option>
+            <option value="KGS">{{ 'fastAdminApp.Currency.KGS' | translate }}</option>
+            <option value="KHR">{{ 'fastAdminApp.Currency.KHR' | translate }}</option>
+            <option value="KMF">{{ 'fastAdminApp.Currency.KMF' | translate }}</option>
+            <option value="KPW">{{ 'fastAdminApp.Currency.KPW' | translate }}</option>
+            <option value="KRW">{{ 'fastAdminApp.Currency.KRW' | translate }}</option>
+            <option value="KWD">{{ 'fastAdminApp.Currency.KWD' | translate }}</option>
+            <option value="KYD">{{ 'fastAdminApp.Currency.KYD' | translate }}</option>
+            <option value="KZT">{{ 'fastAdminApp.Currency.KZT' | translate }}</option>
+            <option value="LAK">{{ 'fastAdminApp.Currency.LAK' | translate }}</option>
+            <option value="LBP">{{ 'fastAdminApp.Currency.LBP' | translate }}</option>
+            <option value="LKR">{{ 'fastAdminApp.Currency.LKR' | translate }}</option>
+            <option value="LRD">{{ 'fastAdminApp.Currency.LRD' | translate }}</option>
+            <option value="LSL">{{ 'fastAdminApp.Currency.LSL' | translate }}</option>
+            <option value="LYD">{{ 'fastAdminApp.Currency.LYD' | translate }}</option>
+            <option value="MAD">{{ 'fastAdminApp.Currency.MAD' | translate }}</option>
+            <option value="MDL">{{ 'fastAdminApp.Currency.MDL' | translate }}</option>
+            <option value="MGA">{{ 'fastAdminApp.Currency.MGA' | translate }}</option>
+            <option value="MKD">{{ 'fastAdminApp.Currency.MKD' | translate }}</option>
+            <option value="MMK">{{ 'fastAdminApp.Currency.MMK' | translate }}</option>
+            <option value="MNT">{{ 'fastAdminApp.Currency.MNT' | translate }}</option>
+            <option value="MOP">{{ 'fastAdminApp.Currency.MOP' | translate }}</option>
+            <option value="MRO">{{ 'fastAdminApp.Currency.MRO' | translate }}</option>
+            <option value="MUR">{{ 'fastAdminApp.Currency.MUR' | translate }}</option>
+            <option value="MVR">{{ 'fastAdminApp.Currency.MVR' | translate }}</option>
+            <option value="MWK">{{ 'fastAdminApp.Currency.MWK' | translate }}</option>
+            <option value="MXN">{{ 'fastAdminApp.Currency.MXN' | translate }}</option>
+            <option value="MXV">{{ 'fastAdminApp.Currency.MXV' | translate }}</option>
+            <option value="MYR">{{ 'fastAdminApp.Currency.MYR' | translate }}</option>
+            <option value="MZN">{{ 'fastAdminApp.Currency.MZN' | translate }}</option>
+            <option value="NAD">{{ 'fastAdminApp.Currency.NAD' | translate }}</option>
+            <option value="NGN">{{ 'fastAdminApp.Currency.NGN' | translate }}</option>
+            <option value="NIO">{{ 'fastAdminApp.Currency.NIO' | translate }}</option>
+            <option value="NOK">{{ 'fastAdminApp.Currency.NOK' | translate }}</option>
+            <option value="NPR">{{ 'fastAdminApp.Currency.NPR' | translate }}</option>
+            <option value="NZD">{{ 'fastAdminApp.Currency.NZD' | translate }}</option>
+            <option value="OMR">{{ 'fastAdminApp.Currency.OMR' | translate }}</option>
+            <option value="PAB">{{ 'fastAdminApp.Currency.PAB' | translate }}</option>
+            <option value="PEN">{{ 'fastAdminApp.Currency.PEN' | translate }}</option>
+            <option value="PGK">{{ 'fastAdminApp.Currency.PGK' | translate }}</option>
+            <option value="PHP">{{ 'fastAdminApp.Currency.PHP' | translate }}</option>
+            <option value="PKR">{{ 'fastAdminApp.Currency.PKR' | translate }}</option>
+            <option value="PLN">{{ 'fastAdminApp.Currency.PLN' | translate }}</option>
+            <option value="PYG">{{ 'fastAdminApp.Currency.PYG' | translate }}</option>
+            <option value="QAR">{{ 'fastAdminApp.Currency.QAR' | translate }}</option>
+            <option value="RON">{{ 'fastAdminApp.Currency.RON' | translate }}</option>
+            <option value="RSD">{{ 'fastAdminApp.Currency.RSD' | translate }}</option>
+            <option value="RUB">{{ 'fastAdminApp.Currency.RUB' | translate }}</option>
+            <option value="RWF">{{ 'fastAdminApp.Currency.RWF' | translate }}</option>
+            <option value="SAR">{{ 'fastAdminApp.Currency.SAR' | translate }}</option>
+            <option value="SBD">{{ 'fastAdminApp.Currency.SBD' | translate }}</option>
+            <option value="SCR">{{ 'fastAdminApp.Currency.SCR' | translate }}</option>
+            <option value="SDG">{{ 'fastAdminApp.Currency.SDG' | translate }}</option>
+            <option value="SEK">{{ 'fastAdminApp.Currency.SEK' | translate }}</option>
+            <option value="SGD">{{ 'fastAdminApp.Currency.SGD' | translate }}</option>
+            <option value="SHP">{{ 'fastAdminApp.Currency.SHP' | translate }}</option>
+            <option value="SLL">{{ 'fastAdminApp.Currency.SLL' | translate }}</option>
+            <option value="SOS">{{ 'fastAdminApp.Currency.SOS' | translate }}</option>
+            <option value="SRD">{{ 'fastAdminApp.Currency.SRD' | translate }}</option>
+            <option value="SSP">{{ 'fastAdminApp.Currency.SSP' | translate }}</option>
+            <option value="STD">{{ 'fastAdminApp.Currency.STD' | translate }}</option>
+            <option value="SYP">{{ 'fastAdminApp.Currency.SYP' | translate }}</option>
+            <option value="SZL">{{ 'fastAdminApp.Currency.SZL' | translate }}</option>
+            <option value="THB">{{ 'fastAdminApp.Currency.THB' | translate }}</option>
+            <option value="TJS">{{ 'fastAdminApp.Currency.TJS' | translate }}</option>
+            <option value="TMT">{{ 'fastAdminApp.Currency.TMT' | translate }}</option>
+            <option value="TND">{{ 'fastAdminApp.Currency.TND' | translate }}</option>
+            <option value="TOP">{{ 'fastAdminApp.Currency.TOP' | translate }}</option>
+            <option value="TRY">{{ 'fastAdminApp.Currency.TRY' | translate }}</option>
+            <option value="TTD">{{ 'fastAdminApp.Currency.TTD' | translate }}</option>
+            <option value="TWD">{{ 'fastAdminApp.Currency.TWD' | translate }}</option>
+            <option value="TZS">{{ 'fastAdminApp.Currency.TZS' | translate }}</option>
+            <option value="UAH">{{ 'fastAdminApp.Currency.UAH' | translate }}</option>
+            <option value="UGX">{{ 'fastAdminApp.Currency.UGX' | translate }}</option>
+            <option value="USD">{{ 'fastAdminApp.Currency.USD' | translate }}</option>
+            <option value="USN">{{ 'fastAdminApp.Currency.USN' | translate }}</option>
+            <option value="UYI">{{ 'fastAdminApp.Currency.UYI' | translate }}</option>
+            <option value="UYU">{{ 'fastAdminApp.Currency.UYU' | translate }}</option>
+            <option value="UZS">{{ 'fastAdminApp.Currency.UZS' | translate }}</option>
+            <option value="VEF">{{ 'fastAdminApp.Currency.VEF' | translate }}</option>
+            <option value="VND">{{ 'fastAdminApp.Currency.VND' | translate }}</option>
+            <option value="VUV">{{ 'fastAdminApp.Currency.VUV' | translate }}</option>
+            <option value="WST">{{ 'fastAdminApp.Currency.WST' | translate }}</option>
+            <option value="XAF">{{ 'fastAdminApp.Currency.XAF' | translate }}</option>
+            <option value="XAG">{{ 'fastAdminApp.Currency.XAG' | translate }}</option>
+            <option value="XAU">{{ 'fastAdminApp.Currency.XAU' | translate }}</option>
+            <option value="XBA">{{ 'fastAdminApp.Currency.XBA' | translate }}</option>
+            <option value="XBB">{{ 'fastAdminApp.Currency.XBB' | translate }}</option>
+            <option value="XBC">{{ 'fastAdminApp.Currency.XBC' | translate }}</option>
+            <option value="XBD">{{ 'fastAdminApp.Currency.XBD' | translate }}</option>
+            <option value="XCD">{{ 'fastAdminApp.Currency.XCD' | translate }}</option>
+            <option value="XDR">{{ 'fastAdminApp.Currency.XDR' | translate }}</option>
+            <option value="XFU">{{ 'fastAdminApp.Currency.XFU' | translate }}</option>
+            <option value="XOF">{{ 'fastAdminApp.Currency.XOF' | translate }}</option>
+            <option value="XPD">{{ 'fastAdminApp.Currency.XPD' | translate }}</option>
+            <option value="XPF">{{ 'fastAdminApp.Currency.XPF' | translate }}</option>
+            <option value="XPT">{{ 'fastAdminApp.Currency.XPT' | translate }}</option>
+            <option value="XSU">{{ 'fastAdminApp.Currency.XSU' | translate }}</option>
+            <option value="XTS">{{ 'fastAdminApp.Currency.XTS' | translate }}</option>
+            <option value="XUA">{{ 'fastAdminApp.Currency.XUA' | translate }}</option>
+            <option value="XXX">{{ 'fastAdminApp.Currency.XXX' | translate }}</option>
+            <option value="YER">{{ 'fastAdminApp.Currency.YER' | translate }}</option>
+            <option value="ZAR">{{ 'fastAdminApp.Currency.ZAR' | translate }}</option>
+            <option value="ZMW">{{ 'fastAdminApp.Currency.ZMW' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.ebillAccountId"
+            for="field_ebillAccountId"
+            [ngbTooltip]="'fastAdminApp.contact.help.ebillAccountId' | translate"
+            >Ebill Account Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="ebillAccountId"
+            id="field_ebillAccountId"
+            data-cy="ebillAccountId"
+            formControlName="ebillAccountId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.vatIdentification"
+            for="field_vatIdentification"
+            [ngbTooltip]="'fastAdminApp.contact.help.vatIdentification' | translate"
+            >Vat Identification</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="vatIdentification"
+            id="field_vatIdentification"
+            data-cy="vatIdentification"
+            formControlName="vatIdentification"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.vatRate"
+            for="field_vatRate"
+            [ngbTooltip]="'fastAdminApp.contact.help.vatRate' | translate"
+            >Vat Rate</label
+          >
+          <input type="number" class="form-control" name="vatRate" id="field_vatRate" data-cy="vatRate" formControlName="vatRate" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.discountRate"
+            for="field_discountRate"
+            [ngbTooltip]="'fastAdminApp.contact.help.discountRate' | translate"
+            >Discount Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="discountRate"
+            id="field_discountRate"
+            data-cy="discountRate"
+            formControlName="discountRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.discountType"
+            for="field_discountType"
+            [ngbTooltip]="'fastAdminApp.contact.help.discountType' | translate"
+            >Discount Type</label
+          >
+          <select class="form-control" name="discountType" formControlName="discountType" id="field_discountType" data-cy="discountType">
+            <option [ngValue]="null">{{ 'fastAdminApp.DiscountType.null' | translate }}</option>
+            <option value="IN_PERCENT">{{ 'fastAdminApp.DiscountType.IN_PERCENT' | translate }}</option>
+            <option value="AMOUNT">{{ 'fastAdminApp.DiscountType.AMOUNT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.paymentGrace"
+            for="field_paymentGrace"
+            [ngbTooltip]="'fastAdminApp.contact.help.paymentGrace' | translate"
+            >Payment Grace</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="paymentGrace"
+            id="field_paymentGrace"
+            data-cy="paymentGrace"
+            formControlName="paymentGrace"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.hourlyRate"
+            for="field_hourlyRate"
+            [ngbTooltip]="'fastAdminApp.contact.help.hourlyRate' | translate"
+            >Hourly Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="hourlyRate"
+            id="field_hourlyRate"
+            data-cy="hourlyRate"
+            formControlName="hourlyRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.created"
+            for="field_created"
+            [ngbTooltip]="'fastAdminApp.contact.help.created' | translate"
+            >Created</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.mainAddressId"
+            for="field_mainAddressId"
+            [ngbTooltip]="'fastAdminApp.contact.help.mainAddressId' | translate"
+            >Main Address Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="mainAddressId"
+            id="field_mainAddressId"
+            data-cy="mainAddressId"
+            formControlName="mainAddressId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.birthDate"
+            for="field_birthDate"
+            [ngbTooltip]="'fastAdminApp.contact.help.birthDate' | translate"
+            >Birth Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_birthDate"
+              data-cy="birthDate"
+              type="text"
+              class="form-control"
+              name="birthDate"
+              ngbDatepicker
+              #birthDateDp="ngbDatepicker"
+              formControlName="birthDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.birthPlace"
+            for="field_birthPlace"
+            [ngbTooltip]="'fastAdminApp.contact.help.birthPlace' | translate"
+            >Birth Place</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="birthPlace"
+            id="field_birthPlace"
+            data-cy="birthPlace"
+            formControlName="birthPlace"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.placeOfOrigin"
+            for="field_placeOfOrigin"
+            [ngbTooltip]="'fastAdminApp.contact.help.placeOfOrigin' | translate"
+            >Place Of Origin</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="placeOfOrigin"
+            id="field_placeOfOrigin"
+            data-cy="placeOfOrigin"
+            formControlName="placeOfOrigin"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.citizenCountry1"
+            for="field_citizenCountry1"
+            [ngbTooltip]="'fastAdminApp.contact.help.citizenCountry1' | translate"
+            >Citizen Country 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="citizenCountry1"
+            id="field_citizenCountry1"
+            data-cy="citizenCountry1"
+            formControlName="citizenCountry1"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.citizenCountry2"
+            for="field_citizenCountry2"
+            [ngbTooltip]="'fastAdminApp.contact.help.citizenCountry2' | translate"
+            >Citizen Country 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="citizenCountry2"
+            id="field_citizenCountry2"
+            data-cy="citizenCountry2"
+            formControlName="citizenCountry2"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.socialSecurityNumber"
+            for="field_socialSecurityNumber"
+            [ngbTooltip]="'fastAdminApp.contact.help.socialSecurityNumber' | translate"
+            >Social Security Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="socialSecurityNumber"
+            id="field_socialSecurityNumber"
+            data-cy="socialSecurityNumber"
+            formControlName="socialSecurityNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.hobbies"
+            for="field_hobbies"
+            [ngbTooltip]="'fastAdminApp.contact.help.hobbies' | translate"
+            >Hobbies</label
+          >
+          <input type="text" class="form-control" name="hobbies" id="field_hobbies" data-cy="hobbies" formControlName="hobbies" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.dailyWork"
+            for="field_dailyWork"
+            [ngbTooltip]="'fastAdminApp.contact.help.dailyWork' | translate"
+            >Daily Work</label
+          >
+          <input type="text" class="form-control" name="dailyWork" id="field_dailyWork" data-cy="dailyWork" formControlName="dailyWork" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.contactAttribute01"
+            for="field_contactAttribute01"
+            [ngbTooltip]="'fastAdminApp.contact.help.contactAttribute01' | translate"
+            >Contact Attribute 01</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactAttribute01"
+            id="field_contactAttribute01"
+            data-cy="contactAttribute01"
+            formControlName="contactAttribute01"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.avatar"
+            for="field_avatar"
+            [ngbTooltip]="'fastAdminApp.contact.help.avatar' | translate"
+            >Avatar</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('avatarContentType')!.value + ';base64,' + editForm.get('avatar')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('avatar')!.value"
+              alt="contact image"
+            />
+            <div *ngIf="editForm.get('avatar')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('avatarContentType')!.value }}, {{ byteSize(editForm.get('avatar')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('avatar', 'avatarContentType', 'file_avatar')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_avatar"
+              data-cy="avatar"
+              (change)="setFileData($event, 'avatar', true)"
+              accept="image/*"
+              faTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="avatar" id="field_avatar" data-cy="avatar" formControlName="avatar" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="avatarContentType"
+            id="field_avatarContentType"
+            formControlName="avatarContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.imageType"
+            for="field_imageType"
+            [ngbTooltip]="'fastAdminApp.contact.help.imageType' | translate"
+            >Image Type</label
+          >
+          <input type="text" class="form-control" name="imageType" id="field_imageType" data-cy="imageType" formControlName="imageType" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contact.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.contact.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+
+        <div class="form-group">
+          <label faTranslate="fastAdminApp.contact.relations" for="field_relations">Relations</label>
+          <select class="form-control" id="field_relations" data-cy="relations" multiple name="relations" formControlName="relations">
+            <option
+              [ngValue]="getSelectedContactRelation(contactRelationOption, editForm.get('relations')!.value)"
+              *ngFor="let contactRelationOption of contactRelationsSharedCollection; trackBy: trackContactRelationById"
+            >
+              {{ contactRelationOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label faTranslate="fastAdminApp.contact.groups" for="field_groups">Groups</label>
+          <select class="form-control" id="field_groups" data-cy="groups" multiple name="groups" formControlName="groups">
+            <option
+              [ngValue]="getSelectedContactGroup(contactGroupOption, editForm.get('groups')!.value)"
+              *ngFor="let contactGroupOption of contactGroupsSharedCollection; trackBy: trackContactGroupById"
+            >
+              {{ contactGroupOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,180 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="deliveryNote">
+      <h2 data-cy="deliveryNoteDetailsHeading"><span faTranslate="fastAdminApp.deliveryNote.detail.title">Delivery Note</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ deliveryNote.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.remoteId" [ngbTooltip]="'fastAdminApp.deliveryNote.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.number" [ngbTooltip]="'fastAdminApp.deliveryNote.help.number' | translate"
+            >Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.contactName" [ngbTooltip]="'fastAdminApp.deliveryNote.help.contactName' | translate"
+            >Contact Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.contactName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.date" [ngbTooltip]="'fastAdminApp.deliveryNote.help.date' | translate">Date</span>
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.date | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.periodText" [ngbTooltip]="'fastAdminApp.deliveryNote.help.periodText' | translate"
+            >Period Text</span
+          >
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.periodText }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.currency" [ngbTooltip]="'fastAdminApp.deliveryNote.help.currency' | translate"
+            >Currency</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Currency.' + deliveryNote.currency }}">{{ deliveryNote.currency }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.total" [ngbTooltip]="'fastAdminApp.deliveryNote.help.total' | translate">Total</span>
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.total }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.vatIncluded" [ngbTooltip]="'fastAdminApp.deliveryNote.help.vatIncluded' | translate"
+            >Vat Included</span
+          >
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.vatIncluded }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.deliveryNote.discountRate"
+            [ngbTooltip]="'fastAdminApp.deliveryNote.help.discountRate' | translate"
+            >Discount Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.discountRate }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.deliveryNote.discountType"
+            [ngbTooltip]="'fastAdminApp.deliveryNote.help.discountType' | translate"
+            >Discount Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DiscountType.' + deliveryNote.discountType }}">{{ deliveryNote.discountType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.language" [ngbTooltip]="'fastAdminApp.deliveryNote.help.language' | translate"
+            >Language</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + deliveryNote.language }}">{{ deliveryNote.language }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.pageAmount" [ngbTooltip]="'fastAdminApp.deliveryNote.help.pageAmount' | translate"
+            >Page Amount</span
+          >
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.pageAmount }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.notes" [ngbTooltip]="'fastAdminApp.deliveryNote.help.notes' | translate">Notes</span>
+        </dt>
+        <dd>
+          <span>{{ deliveryNote.notes }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.deliveryNote.status" [ngbTooltip]="'fastAdminApp.deliveryNote.help.status' | translate"
+            >Status</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DeliveryNoteStatus.' + deliveryNote.status }}">{{ deliveryNote.status }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.deliveryNote.created">Created</span></dt>
+        <dd>
+          <span>{{ deliveryNote.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.deliveryNote.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="deliveryNote.contact">
+            <a [routerLink]="['/contact', deliveryNote.contact?.id, 'view']">{{ deliveryNote.contact?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.deliveryNote.contactAddress">Contact Address</span></dt>
+        <dd>
+          <div *ngIf="deliveryNote.contactAddress">
+            <a [routerLink]="['/contact-address', deliveryNote.contactAddress?.id, 'view']">{{ deliveryNote.contactAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.deliveryNote.contactPerson">Contact Person</span></dt>
+        <dd>
+          <div *ngIf="deliveryNote.contactPerson">
+            <a [routerLink]="['/contact-person', deliveryNote.contactPerson?.id, 'view']">{{ deliveryNote.contactPerson?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.deliveryNote.contactPrePageAddress">Contact Pre Page Address</span></dt>
+        <dd>
+          <div *ngIf="deliveryNote.contactPrePageAddress">
+            <a [routerLink]="['/contact-address', deliveryNote.contactPrePageAddress?.id, 'view']">{{
+              deliveryNote.contactPrePageAddress?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.deliveryNote.layout">Layout</span></dt>
+        <dd>
+          <div *ngIf="deliveryNote.layout">
+            <a [routerLink]="['/layout', deliveryNote.layout?.id, 'view']">{{ deliveryNote.layout?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.deliveryNote.layout">Layout</span></dt>
+        <dd>
+          <div *ngIf="deliveryNote.layout">
+            <a [routerLink]="['/signature', deliveryNote.layout?.id, 'view']">{{ deliveryNote.layout?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/delivery-note', deliveryNote.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

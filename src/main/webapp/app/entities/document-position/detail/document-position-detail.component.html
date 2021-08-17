@@ -1,0 +1,168 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="documentPosition">
+      <h2 data-cy="documentPositionDetailsHeading">
+        <span faTranslate="fastAdminApp.documentPosition.detail.title">Document Position</span>
+      </h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ documentPosition.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentPosition.type" [ngbTooltip]="'fastAdminApp.documentPosition.help.type' | translate"
+            >Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentPositionType.' + documentPosition.type }}">{{ documentPosition.type }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentPosition.catalogType"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.catalogType' | translate"
+            >Catalog Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.CatalogScope.' + documentPosition.catalogType }}">{{ documentPosition.catalogType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentPosition.number" [ngbTooltip]="'fastAdminApp.documentPosition.help.number' | translate"
+            >Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentPosition.name" [ngbTooltip]="'fastAdminApp.documentPosition.help.name' | translate"
+            >Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.name }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentPosition.description"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.description }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentPosition.price" [ngbTooltip]="'fastAdminApp.documentPosition.help.price' | translate"
+            >Price</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.price }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentPosition.vat" [ngbTooltip]="'fastAdminApp.documentPosition.help.vat' | translate"
+            >Vat</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.vat }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentPosition.amount" [ngbTooltip]="'fastAdminApp.documentPosition.help.amount' | translate"
+            >Amount</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.amount }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentPosition.discountRate"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.discountRate' | translate"
+            >Discount Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.discountRate }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentPosition.discountType"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.discountType' | translate"
+            >Discount Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DiscountType.' + documentPosition.discountType }}">{{ documentPosition.discountType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentPosition.total" [ngbTooltip]="'fastAdminApp.documentPosition.help.total' | translate"
+            >Total</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.total }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentPosition.showOnlyTotal"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.showOnlyTotal' | translate"
+            >Show Only Total</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentPosition.showOnlyTotal }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentPosition.unit">Unit</span></dt>
+        <dd>
+          <div *ngIf="documentPosition.unit">
+            <a [routerLink]="['/catalog-unit', documentPosition.unit?.id, 'view']">{{ documentPosition.unit?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentPosition.deliveryNote">Delivery Note</span></dt>
+        <dd>
+          <div *ngIf="documentPosition.deliveryNote">
+            <a [routerLink]="['/delivery-note', documentPosition.deliveryNote?.id, 'view']">{{ documentPosition.deliveryNote?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentPosition.invoice">Invoice</span></dt>
+        <dd>
+          <div *ngIf="documentPosition.invoice">
+            <a [routerLink]="['/invoice', documentPosition.invoice?.id, 'view']">{{ documentPosition.invoice?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentPosition.offer">Offer</span></dt>
+        <dd>
+          <div *ngIf="documentPosition.offer">
+            <a [routerLink]="['/offer', documentPosition.offer?.id, 'view']">{{ documentPosition.offer?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentPosition.orderConfirmation">Order Confirmation</span></dt>
+        <dd>
+          <div *ngIf="documentPosition.orderConfirmation">
+            <a [routerLink]="['/order-confirmation', documentPosition.orderConfirmation?.id, 'view']">{{
+              documentPosition.orderConfirmation?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/document-position', documentPosition.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

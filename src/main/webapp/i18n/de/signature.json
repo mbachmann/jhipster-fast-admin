@@ -1,0 +1,36 @@
+{
+  "fastAdminApp": {
+    "signature": {
+      "home": {
+        "title": "Signatures",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Signature erstellen",
+        "createOrEditLabel": "Signature erstellen oder bearbeiten",
+        "notFound": "Keine Signatures gefunden"
+      },
+      "created": "Signature erstellt mit ID {{ param }}",
+      "updated": "Signature aktualisiert mit ID {{ param }}",
+      "deleted": "Signature gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Signature {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Signature"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "signatureImage": "Signature Image",
+      "width": "Width",
+      "heigth": "Heigth",
+      "userName": "User Name",
+      "applicationUser": "Application User",
+      "help": {
+        "remoteId": "id of a remote system",
+        "signatureImage": "the image of the signature",
+        "width": "the width of the signature",
+        "heigth": "the height of the signature",
+        "userName": "the user name of this signature"
+      }
+    }
+  }
+}

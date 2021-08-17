@@ -1,0 +1,50 @@
+{
+  "name": "DocumentInvoiceWorkflow",
+  "fields": [
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean",
+      "javadoc": "whether workflow is active"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "InvoiceWorkflowStatus",
+      "javadoc": "status of a document that the workflow is for; possible values: R - payment reminder, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder",
+      "fieldValues": "PAYMENT_REMINDER (R),FIRST_REMINDER (R1),SECOND_REMINDER (R2),THIRD_REMINDER (R3)"
+    },
+    {
+      "fieldName": "overdueDays",
+      "fieldType": "Integer",
+      "javadoc": "how many days after due date action should be taken ,"
+    },
+    {
+      "fieldName": "action",
+      "fieldType": "WorkflowAction",
+      "javadoc": "action that should be taken; possible values: M - remind me, CE - remind contact by email, CP - remind contact by post",
+      "fieldValues": "REMIND_ME (M),REMIND_CONTACT_BY_EMAIL (CE),REMIND_CONTACT_BY_POST (CP)"
+    },
+    {
+      "fieldName": "contactEmail",
+      "fieldType": "String",
+      "javadoc": "email address for reminding contact (valid only when action is CE)"
+    },
+    {
+      "fieldName": "speed",
+      "fieldType": "PostSpeed",
+      "javadoc": "post speed for reminding contact (valid only when action is CP); possible values: P - priority, E - economy",
+      "fieldValues": "PRIORIRY (P),ECONOMY (E)"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "Defining the workflow of the invoice with  R - payment reminder, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder",
+  "entityTableName": "document_invoice_workflow",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817131402"
+}

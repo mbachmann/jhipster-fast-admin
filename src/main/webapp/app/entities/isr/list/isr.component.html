@@ -1,0 +1,100 @@
+<div>
+  <h2 id="page-heading" data-cy="IsrHeading">
+    <span faTranslate="fastAdminApp.isr.home.title">Isrs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.isr.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-isr"
+        [routerLink]="['/isr/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.isr.home.createLabel"> Create a new Isr </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="isrs?.length === 0">
+    <span faTranslate="fastAdminApp.isr.home.notFound">No isrs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="isrs && isrs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.defaultIsr">Default Isr</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.type">Type</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.position">Position</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.name">Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.bankName">Bank Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.bankAddress">Bank Address</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.recipientName">Recipient Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.recipientAddition">Recipient Addition</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.recipientStreet">Recipient Street</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.recipientCity">Recipient City</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.deliveryNumber">Delivery Number</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.iban">Iban</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.subscriberNumber">Subscriber Number</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.leftPrintAdjust">Left Print Adjust</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.topPrintAdjust">Top Print Adjust</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.created">Created</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.isr.inactiv">Inactiv</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let isr of isrs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/isr', isr.id, 'view']">{{ isr.id }}</a>
+          </td>
+          <td>{{ isr.defaultIsr }}</td>
+          <td faTranslate="{{ 'fastAdminApp.IsrType.' + isr.type }}">{{ isr.type }}</td>
+          <td faTranslate="{{ 'fastAdminApp.IsrPosition.' + isr.position }}">{{ isr.position }}</td>
+          <td>{{ isr.name }}</td>
+          <td>{{ isr.bankName }}</td>
+          <td>{{ isr.bankAddress }}</td>
+          <td>{{ isr.recipientName }}</td>
+          <td>{{ isr.recipientAddition }}</td>
+          <td>{{ isr.recipientStreet }}</td>
+          <td>{{ isr.recipientCity }}</td>
+          <td>{{ isr.deliveryNumber }}</td>
+          <td>{{ isr.iban }}</td>
+          <td>{{ isr.subscriberNumber }}</td>
+          <td>{{ isr.leftPrintAdjust }}</td>
+          <td>{{ isr.topPrintAdjust }}</td>
+          <td>{{ isr.created | formatMediumDatetime }}</td>
+          <td>{{ isr.inactiv }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/isr', isr.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/isr', isr.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(isr)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

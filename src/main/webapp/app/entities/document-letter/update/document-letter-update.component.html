@@ -1,0 +1,318 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-document-letter-heading"
+        data-cy="DocumentLetterCreateUpdateHeading"
+        faTranslate="fastAdminApp.documentLetter.home.createOrEditLabel"
+      >
+        Create or edit a Document Letter
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.contactName"
+            for="field_contactName"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.contactName' | translate"
+            >Contact Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactName"
+            id="field_contactName"
+            data-cy="contactName"
+            formControlName="contactName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.date"
+            for="field_date"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.date' | translate"
+            >Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.title"
+            for="field_title"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.title' | translate"
+            >Title</label
+          >
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.content"
+            for="field_content"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.content' | translate"
+            >Content</label
+          >
+          <input type="text" class="form-control" name="content" id="field_content" data-cy="content" formControlName="content" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.language"
+            for="field_language"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.language' | translate"
+            >Language</label
+          >
+          <select class="form-control" name="language" formControlName="language" id="field_language" data-cy="language">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentLanguage.null' | translate }}</option>
+            <option value="FRENCH">{{ 'fastAdminApp.DocumentLanguage.FRENCH' | translate }}</option>
+            <option value="ENGLISH">{{ 'fastAdminApp.DocumentLanguage.ENGLISH' | translate }}</option>
+            <option value="GERMAN">{{ 'fastAdminApp.DocumentLanguage.GERMAN' | translate }}</option>
+            <option value="SPANISH">{{ 'fastAdminApp.DocumentLanguage.SPANISH' | translate }}</option>
+            <option value="ITALIAN">{{ 'fastAdminApp.DocumentLanguage.ITALIAN' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.pageAmount"
+            for="field_pageAmount"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.pageAmount' | translate"
+            >Page Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="pageAmount"
+            id="field_pageAmount"
+            data-cy="pageAmount"
+            formControlName="pageAmount"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.notes"
+            for="field_notes"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.notes' | translate"
+            >Notes</label
+          >
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.status"
+            for="field_status"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.status' | translate"
+            >Status</label
+          >
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'fastAdminApp.LetterStatus.null' | translate }}</option>
+            <option value="DRAFT">{{ 'fastAdminApp.LetterStatus.DRAFT' | translate }}</option>
+            <option value="SENT">{{ 'fastAdminApp.LetterStatus.SENT' | translate }}</option>
+            <option value="DELETED">{{ 'fastAdminApp.LetterStatus.DELETED' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentLetter.created" for="field_created">Created</label>
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentLetter.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentLetter.contactAddress" for="field_contactAddress"
+            >Contact Address</label
+          >
+          <select
+            class="form-control"
+            id="field_contactAddress"
+            data-cy="contactAddress"
+            name="contactAddress"
+            formControlName="contactAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                contactAddressOption.id === editForm.get('contactAddress')!.value?.id
+                  ? editForm.get('contactAddress')!.value
+                  : contactAddressOption
+              "
+              *ngFor="let contactAddressOption of contactAddressesSharedCollection; trackBy: trackContactAddressById"
+            >
+              {{ contactAddressOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentLetter.contactPerson" for="field_contactPerson"
+            >Contact Person</label
+          >
+          <select
+            class="form-control"
+            id="field_contactPerson"
+            data-cy="contactPerson"
+            name="contactPerson"
+            formControlName="contactPerson"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                contactPersonOption.id === editForm.get('contactPerson')!.value?.id
+                  ? editForm.get('contactPerson')!.value
+                  : contactPersonOption
+              "
+              *ngFor="let contactPersonOption of contactPeopleSharedCollection; trackBy: trackContactPersonById"
+            >
+              {{ contactPersonOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentLetter.contactPrePageAddress"
+            for="field_contactPrePageAddress"
+            >Contact Pre Page Address</label
+          >
+          <select
+            class="form-control"
+            id="field_contactPrePageAddress"
+            data-cy="contactPrePageAddress"
+            name="contactPrePageAddress"
+            formControlName="contactPrePageAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                contactAddressOption.id === editForm.get('contactPrePageAddress')!.value?.id
+                  ? editForm.get('contactPrePageAddress')!.value
+                  : contactAddressOption
+              "
+              *ngFor="let contactAddressOption of contactAddressesSharedCollection; trackBy: trackContactAddressById"
+            >
+              {{ contactAddressOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentLetter.layout" for="field_layout">Layout</label>
+          <select class="form-control" id="field_layout" data-cy="layout" name="layout" formControlName="layout">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="layoutOption.id === editForm.get('layout')!.value?.id ? editForm.get('layout')!.value : layoutOption"
+              *ngFor="let layoutOption of layoutsSharedCollection; trackBy: trackLayoutById"
+            >
+              {{ layoutOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentLetter.layout" for="field_layout">Layout</label>
+          <select class="form-control" id="field_layout" data-cy="layout" name="layout" formControlName="layout">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="signatureOption.id === editForm.get('layout')!.value?.id ? editForm.get('layout')!.value : signatureOption"
+              *ngFor="let signatureOption of signaturesSharedCollection; trackBy: trackSignatureById"
+            >
+              {{ signatureOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

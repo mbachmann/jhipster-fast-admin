@@ -1,0 +1,185 @@
+<div>
+  <h2 id="page-heading" data-cy="DocumentLetterHeading">
+    <span faTranslate="fastAdminApp.documentLetter.home.title">Document Letters</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.documentLetter.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-document-letter"
+        [routerLink]="['/document-letter/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.documentLetter.home.createLabel"> Create a new Document Letter </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="documentLetters?.length === 0">
+    <span faTranslate="fastAdminApp.documentLetter.home.notFound">No documentLetters found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="documentLetters && documentLetters.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.documentLetter.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactName">
+            <span faTranslate="fastAdminApp.documentLetter.contactName">Contact Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="date">
+            <span faTranslate="fastAdminApp.documentLetter.date">Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="title">
+            <span faTranslate="fastAdminApp.documentLetter.title">Title</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="content">
+            <span faTranslate="fastAdminApp.documentLetter.content">Content</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="language">
+            <span faTranslate="fastAdminApp.documentLetter.language">Language</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="pageAmount">
+            <span faTranslate="fastAdminApp.documentLetter.pageAmount">Page Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="notes">
+            <span faTranslate="fastAdminApp.documentLetter.notes">Notes</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="status">
+            <span faTranslate="fastAdminApp.documentLetter.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="created">
+            <span faTranslate="fastAdminApp.documentLetter.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contact.id">
+            <span faTranslate="fastAdminApp.documentLetter.contact">Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactAddress.id">
+            <span faTranslate="fastAdminApp.documentLetter.contactAddress">Contact Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactPerson.id">
+            <span faTranslate="fastAdminApp.documentLetter.contactPerson">Contact Person</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactPrePageAddress.id">
+            <span faTranslate="fastAdminApp.documentLetter.contactPrePageAddress">Contact Pre Page Address</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="layout.id">
+            <span faTranslate="fastAdminApp.documentLetter.layout">Layout</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="layout.id">
+            <span faTranslate="fastAdminApp.documentLetter.layout">Layout</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let documentLetter of documentLetters; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/document-letter', documentLetter.id, 'view']">{{ documentLetter.id }}</a>
+          </td>
+          <td>{{ documentLetter.remoteId }}</td>
+          <td>{{ documentLetter.contactName }}</td>
+          <td>{{ documentLetter.date | formatMediumDate }}</td>
+          <td>{{ documentLetter.title }}</td>
+          <td>{{ documentLetter.content }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + documentLetter.language }}">{{ documentLetter.language }}</td>
+          <td>{{ documentLetter.pageAmount }}</td>
+          <td>{{ documentLetter.notes }}</td>
+          <td faTranslate="{{ 'fastAdminApp.LetterStatus.' + documentLetter.status }}">{{ documentLetter.status }}</td>
+          <td>{{ documentLetter.created | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="documentLetter.contact">
+              <a [routerLink]="['/contact', documentLetter.contact?.id, 'view']">{{ documentLetter.contact?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentLetter.contactAddress">
+              <a [routerLink]="['/contact-address', documentLetter.contactAddress?.id, 'view']">{{ documentLetter.contactAddress?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentLetter.contactPerson">
+              <a [routerLink]="['/contact-person', documentLetter.contactPerson?.id, 'view']">{{ documentLetter.contactPerson?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentLetter.contactPrePageAddress">
+              <a [routerLink]="['/contact-address', documentLetter.contactPrePageAddress?.id, 'view']">{{
+                documentLetter.contactPrePageAddress?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentLetter.layout">
+              <a [routerLink]="['/layout', documentLetter.layout?.id, 'view']">{{ documentLetter.layout?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentLetter.layout">
+              <a [routerLink]="['/signature', documentLetter.layout?.id, 'view']">{{ documentLetter.layout?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/document-letter', documentLetter.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/document-letter', documentLetter.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(documentLetter)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="documentLetters && documentLetters.length > 0">
+    <div class="row justify-content-center">
+      <fa-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></fa-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,198 @@
+<div>
+  <h2 id="page-heading" data-cy="OfferHeading">
+    <span faTranslate="fastAdminApp.offer.home.title">Offers</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.offer.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-offer"
+        [routerLink]="['/offer/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.offer.home.createLabel"> Create a new Offer </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="offers?.length === 0">
+    <span faTranslate="fastAdminApp.offer.home.notFound">No offers found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="offers && offers.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.offer.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="number"><span faTranslate="fastAdminApp.offer.number">Number</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="contactName">
+            <span faTranslate="fastAdminApp.offer.contactName">Contact Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="date"><span faTranslate="fastAdminApp.offer.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="validUntil">
+            <span faTranslate="fastAdminApp.offer.validUntil">Valid Until</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="periodText">
+            <span faTranslate="fastAdminApp.offer.periodText">Period Text</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="currency">
+            <span faTranslate="fastAdminApp.offer.currency">Currency</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="total"><span faTranslate="fastAdminApp.offer.total">Total</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="vatIncluded">
+            <span faTranslate="fastAdminApp.offer.vatIncluded">Vat Included</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="discountRate">
+            <span faTranslate="fastAdminApp.offer.discountRate">Discount Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="discountType">
+            <span faTranslate="fastAdminApp.offer.discountType">Discount Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="acceptOnline">
+            <span faTranslate="fastAdminApp.offer.acceptOnline">Accept Online</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="acceptOnlineUrl">
+            <span faTranslate="fastAdminApp.offer.acceptOnlineUrl">Accept Online Url</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="acceptOnlineStatus">
+            <span faTranslate="fastAdminApp.offer.acceptOnlineStatus">Accept Online Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="language">
+            <span faTranslate="fastAdminApp.offer.language">Language</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="pageAmount">
+            <span faTranslate="fastAdminApp.offer.pageAmount">Page Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="notes"><span faTranslate="fastAdminApp.offer.notes">Notes</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="status"><span faTranslate="fastAdminApp.offer.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="created">
+            <span faTranslate="fastAdminApp.offer.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contact.id">
+            <span faTranslate="fastAdminApp.offer.contact">Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactAddress.id">
+            <span faTranslate="fastAdminApp.offer.contactAddress">Contact Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactPerson.id">
+            <span faTranslate="fastAdminApp.offer.contactPerson">Contact Person</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactPrePageAddress.id">
+            <span faTranslate="fastAdminApp.offer.contactPrePageAddress">Contact Pre Page Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="layout.id">
+            <span faTranslate="fastAdminApp.offer.layout">Layout</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="layout.id">
+            <span faTranslate="fastAdminApp.offer.layout">Layout</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let offer of offers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/offer', offer.id, 'view']">{{ offer.id }}</a>
+          </td>
+          <td>{{ offer.remoteId }}</td>
+          <td>{{ offer.number }}</td>
+          <td>{{ offer.contactName }}</td>
+          <td>{{ offer.date | formatMediumDate }}</td>
+          <td>{{ offer.validUntil | formatMediumDate }}</td>
+          <td>{{ offer.periodText }}</td>
+          <td faTranslate="{{ 'fastAdminApp.Currency.' + offer.currency }}">{{ offer.currency }}</td>
+          <td>{{ offer.total }}</td>
+          <td>{{ offer.vatIncluded }}</td>
+          <td>{{ offer.discountRate }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DiscountType.' + offer.discountType }}">{{ offer.discountType }}</td>
+          <td>{{ offer.acceptOnline }}</td>
+          <td>{{ offer.acceptOnlineUrl }}</td>
+          <td faTranslate="{{ 'fastAdminApp.OfferAcceptOnlineStatus.' + offer.acceptOnlineStatus }}">{{ offer.acceptOnlineStatus }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + offer.language }}">{{ offer.language }}</td>
+          <td>{{ offer.pageAmount }}</td>
+          <td>{{ offer.notes }}</td>
+          <td faTranslate="{{ 'fastAdminApp.OfferStatus.' + offer.status }}">{{ offer.status }}</td>
+          <td>{{ offer.created | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="offer.contact">
+              <a [routerLink]="['/contact', offer.contact?.id, 'view']">{{ offer.contact?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="offer.contactAddress">
+              <a [routerLink]="['/contact-address', offer.contactAddress?.id, 'view']">{{ offer.contactAddress?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="offer.contactPerson">
+              <a [routerLink]="['/contact-person', offer.contactPerson?.id, 'view']">{{ offer.contactPerson?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="offer.contactPrePageAddress">
+              <a [routerLink]="['/contact-address', offer.contactPrePageAddress?.id, 'view']">{{ offer.contactPrePageAddress?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="offer.layout">
+              <a [routerLink]="['/layout', offer.layout?.id, 'view']">{{ offer.layout?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="offer.layout">
+              <a [routerLink]="['/signature', offer.layout?.id, 'view']">{{ offer.layout?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/offer', offer.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/offer', offer.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(offer)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="offers && offers.length > 0">
+    <div class="row justify-content-center">
+      <fa-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></fa-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

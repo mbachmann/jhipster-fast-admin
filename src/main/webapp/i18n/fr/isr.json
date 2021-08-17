@@ -1,0 +1,58 @@
+{
+  "fastAdminApp": {
+    "isr": {
+      "home": {
+        "title": "Isrs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Isr",
+        "createOrEditLabel": "Créer ou éditer un Isr",
+        "notFound": "Aucun Isr trouvé"
+      },
+      "created": "Un nouveau Isr a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Isr avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Isr avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Isr {{ id }} ?"
+      },
+      "detail": {
+        "title": "Isr"
+      },
+      "id": "ID",
+      "defaultIsr": "Default Isr",
+      "type": "Type",
+      "position": "Position",
+      "name": "Name",
+      "bankName": "Bank Name",
+      "bankAddress": "Bank Address",
+      "recipientName": "Recipient Name",
+      "recipientAddition": "Recipient Addition",
+      "recipientStreet": "Recipient Street",
+      "recipientCity": "Recipient City",
+      "deliveryNumber": "Delivery Number",
+      "iban": "Iban",
+      "subscriberNumber": "Subscriber Number",
+      "leftPrintAdjust": "Left Print Adjust",
+      "topPrintAdjust": "Top Print Adjust",
+      "created": "Created",
+      "inactiv": "Inactiv",
+      "help": {
+        "defaultIsr": "whether ISR is a default one",
+        "type": "SR type; possible values: ISR - orange inpayment slip, ISR+ - orange inpayment slip plus, RIS - red inpayment slip, QR Code and QR Code with reference",
+        "position": "ISR position; possible values: A - additional page, F - first page, L - last page",
+        "name": "optional ISR name (for internal system use only)",
+        "bankName": "Name of the bank",
+        "bankAddress": "Address of the bank",
+        "recipientName": "name of the recipient",
+        "recipientAddition": "additional information of the recipient",
+        "recipientStreet": "street of the recipient",
+        "recipientCity": "city of the recipient",
+        "deliveryNumber": "the number (BESR or REF)",
+        "iban": "the IBAN account number",
+        "subscriberNumber": "the subscriber number (Teilnehmernummer)",
+        "leftPrintAdjust": "left print adjust in mm",
+        "topPrintAdjust": "top print adjust in mm",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

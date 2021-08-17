@@ -1,0 +1,186 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="offer">
+      <h2 data-cy="offerDetailsHeading"><span faTranslate="fastAdminApp.offer.detail.title">Offer</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ offer.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.remoteId" [ngbTooltip]="'fastAdminApp.offer.help.remoteId' | translate">Remote Id</span>
+        </dt>
+        <dd>
+          <span>{{ offer.remoteId }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.number" [ngbTooltip]="'fastAdminApp.offer.help.number' | translate">Number</span></dt>
+        <dd>
+          <span>{{ offer.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.contactName" [ngbTooltip]="'fastAdminApp.offer.help.contactName' | translate"
+            >Contact Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ offer.contactName }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.date" [ngbTooltip]="'fastAdminApp.offer.help.date' | translate">Date</span></dt>
+        <dd>
+          <span>{{ offer.date | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.validUntil" [ngbTooltip]="'fastAdminApp.offer.help.validUntil' | translate"
+            >Valid Until</span
+          >
+        </dt>
+        <dd>
+          <span>{{ offer.validUntil | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.periodText" [ngbTooltip]="'fastAdminApp.offer.help.periodText' | translate"
+            >Period Text</span
+          >
+        </dt>
+        <dd>
+          <span>{{ offer.periodText }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.currency" [ngbTooltip]="'fastAdminApp.offer.help.currency' | translate">Currency</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Currency.' + offer.currency }}">{{ offer.currency }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.total" [ngbTooltip]="'fastAdminApp.offer.help.total' | translate">Total</span></dt>
+        <dd>
+          <span>{{ offer.total }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.vatIncluded" [ngbTooltip]="'fastAdminApp.offer.help.vatIncluded' | translate"
+            >Vat Included</span
+          >
+        </dt>
+        <dd>
+          <span>{{ offer.vatIncluded }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.discountRate" [ngbTooltip]="'fastAdminApp.offer.help.discountRate' | translate"
+            >Discount Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ offer.discountRate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.discountType" [ngbTooltip]="'fastAdminApp.offer.help.discountType' | translate"
+            >Discount Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DiscountType.' + offer.discountType }}">{{ offer.discountType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.acceptOnline" [ngbTooltip]="'fastAdminApp.offer.help.acceptOnline' | translate"
+            >Accept Online</span
+          >
+        </dt>
+        <dd>
+          <span>{{ offer.acceptOnline }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.acceptOnlineUrl" [ngbTooltip]="'fastAdminApp.offer.help.acceptOnlineUrl' | translate"
+            >Accept Online Url</span
+          >
+        </dt>
+        <dd>
+          <span>{{ offer.acceptOnlineUrl }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.acceptOnlineStatus" [ngbTooltip]="'fastAdminApp.offer.help.acceptOnlineStatus' | translate"
+            >Accept Online Status</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.OfferAcceptOnlineStatus.' + offer.acceptOnlineStatus }}">{{ offer.acceptOnlineStatus }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.language" [ngbTooltip]="'fastAdminApp.offer.help.language' | translate">Language</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + offer.language }}">{{ offer.language }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.offer.pageAmount" [ngbTooltip]="'fastAdminApp.offer.help.pageAmount' | translate"
+            >Page Amount</span
+          >
+        </dt>
+        <dd>
+          <span>{{ offer.pageAmount }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.notes" [ngbTooltip]="'fastAdminApp.offer.help.notes' | translate">Notes</span></dt>
+        <dd>
+          <span>{{ offer.notes }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.status" [ngbTooltip]="'fastAdminApp.offer.help.status' | translate">Status</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.OfferStatus.' + offer.status }}">{{ offer.status }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.created">Created</span></dt>
+        <dd>
+          <span>{{ offer.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="offer.contact">
+            <a [routerLink]="['/contact', offer.contact?.id, 'view']">{{ offer.contact?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.contactAddress">Contact Address</span></dt>
+        <dd>
+          <div *ngIf="offer.contactAddress">
+            <a [routerLink]="['/contact-address', offer.contactAddress?.id, 'view']">{{ offer.contactAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.contactPerson">Contact Person</span></dt>
+        <dd>
+          <div *ngIf="offer.contactPerson">
+            <a [routerLink]="['/contact-person', offer.contactPerson?.id, 'view']">{{ offer.contactPerson?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.contactPrePageAddress">Contact Pre Page Address</span></dt>
+        <dd>
+          <div *ngIf="offer.contactPrePageAddress">
+            <a [routerLink]="['/contact-address', offer.contactPrePageAddress?.id, 'view']">{{ offer.contactPrePageAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.layout">Layout</span></dt>
+        <dd>
+          <div *ngIf="offer.layout">
+            <a [routerLink]="['/layout', offer.layout?.id, 'view']">{{ offer.layout?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.offer.layout">Layout</span></dt>
+        <dd>
+          <div *ngIf="offer.layout">
+            <a [routerLink]="['/signature', offer.layout?.id, 'view']">{{ offer.layout?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/offer', offer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

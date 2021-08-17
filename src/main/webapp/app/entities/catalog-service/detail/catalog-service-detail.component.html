@@ -1,0 +1,152 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="catalogService">
+      <h2 data-cy="catalogServiceDetailsHeading"><span faTranslate="fastAdminApp.catalogService.detail.title">Catalog Service</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ catalogService.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogService.remoteId" [ngbTooltip]="'fastAdminApp.catalogService.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogService.number" [ngbTooltip]="'fastAdminApp.catalogService.help.number' | translate"
+            >Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogService.name" [ngbTooltip]="'fastAdminApp.catalogService.help.name' | translate"
+            >Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.name }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogService.description"
+            [ngbTooltip]="'fastAdminApp.catalogService.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.description }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogService.notes" [ngbTooltip]="'fastAdminApp.catalogService.help.notes' | translate"
+            >Notes</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.notes }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogService.categoryName"
+            [ngbTooltip]="'fastAdminApp.catalogService.help.categoryName' | translate"
+            >Category Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.categoryName }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogService.includingVat"
+            [ngbTooltip]="'fastAdminApp.catalogService.help.includingVat' | translate"
+            >Including Vat</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.includingVat }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogService.vat" [ngbTooltip]="'fastAdminApp.catalogService.help.vat' | translate">Vat</span>
+        </dt>
+        <dd>
+          <span>{{ catalogService.vat }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogService.unitName" [ngbTooltip]="'fastAdminApp.catalogService.help.unitName' | translate"
+            >Unit Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.unitName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogService.price" [ngbTooltip]="'fastAdminApp.catalogService.help.price' | translate"
+            >Price</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.price }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogService.defaultAmount"
+            [ngbTooltip]="'fastAdminApp.catalogService.help.defaultAmount' | translate"
+            >Default Amount</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.defaultAmount }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogService.created">Created</span></dt>
+        <dd>
+          <span>{{ catalogService.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogService.inactiv" [ngbTooltip]="'fastAdminApp.catalogService.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogService.inactiv }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogService.category">Category</span></dt>
+        <dd>
+          <div *ngIf="catalogService.category">
+            <a [routerLink]="['/catalog-category', catalogService.category?.id, 'view']">{{ catalogService.category?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogService.unit">Unit</span></dt>
+        <dd>
+          <div *ngIf="catalogService.unit">
+            <a [routerLink]="['/catalog-unit', catalogService.unit?.id, 'view']">{{ catalogService.unit?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogService.valueAddedTax">Value Added Tax</span></dt>
+        <dd>
+          <div *ngIf="catalogService.valueAddedTax">
+            <a [routerLink]="['/value-added-tax', catalogService.valueAddedTax?.id, 'view']">{{ catalogService.valueAddedTax?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/catalog-service', catalogService.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

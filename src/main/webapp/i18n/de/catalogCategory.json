@@ -1,0 +1,34 @@
+{
+  "fastAdminApp": {
+    "catalogCategory": {
+      "home": {
+        "title": "Catalog Categories",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Catalog Category erstellen",
+        "createOrEditLabel": "Catalog Category erstellen oder bearbeiten",
+        "notFound": "Keine Catalog Categories gefunden"
+      },
+      "created": "Catalog Category erstellt mit ID {{ param }}",
+      "updated": "Catalog Category aktualisiert mit ID {{ param }}",
+      "deleted": "Catalog Category gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Catalog Category {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Catalog Category"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "name": "Name",
+      "accountingAccountNumber": "Accounting Account Number",
+      "usage": "Usage",
+      "inactiv": "Inactiv",
+      "help": {
+        "remoteId": "id of a remote system",
+        "name": "Category name",
+        "usage": "how many catalog items are using this category",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

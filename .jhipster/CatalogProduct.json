@@ -1,0 +1,128 @@
+{
+  "name": "CatalogProduct",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "Catalog Product Number",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "Catalog Product Name",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "javadoc": "Catalog Product Description"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "Catalog Product Notes"
+    },
+    {
+      "fieldName": "categoryName",
+      "fieldType": "String",
+      "javadoc": "Category Name"
+    },
+    {
+      "fieldName": "includingVat",
+      "fieldType": "Boolean",
+      "javadoc": "The price includes MWST"
+    },
+    {
+      "fieldName": "vat",
+      "fieldType": "Double",
+      "javadoc": "The VAT Percent"
+    },
+    {
+      "fieldName": "unitName",
+      "fieldType": "String",
+      "javadoc": "The unit Name"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double",
+      "javadoc": "The sales price of the product"
+    },
+    {
+      "fieldName": "pricePurchase",
+      "fieldType": "Double",
+      "javadoc": "The purchase price of the product"
+    },
+    {
+      "fieldName": "inventoryAvailable",
+      "fieldType": "Double",
+      "javadoc": "Available Products in Inventory"
+    },
+    {
+      "fieldName": "inventoryReserved",
+      "fieldType": "Double",
+      "javadoc": "Reserved Products in Inventory"
+    },
+    {
+      "fieldName": "defaultAmount",
+      "fieldType": "Integer",
+      "javadoc": "Default amount of products (Standard Menge)"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customFieldValue",
+      "otherEntityRelationshipName": "catalogProduct",
+      "javadoc": "custom edit fields",
+      "relationshipName": "customFields"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "catalogCategory",
+      "otherEntityRelationshipName": "catalogProduct",
+      "javadoc": "The category relation",
+      "relationshipName": "category"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "catalogUnit",
+      "otherEntityRelationshipName": "catalogProduct",
+      "javadoc": "The unit relation",
+      "relationshipName": "unit"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "valueAddedTax",
+      "otherEntityRelationshipName": "catalogProduct",
+      "javadoc": "The vat relation",
+      "relationshipName": "valueAddedTax"
+    }
+  ],
+  "javadoc": "Standard Products",
+  "entityTableName": "catalog_product",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817131348"
+}

@@ -1,0 +1,9 @@
+{
+  "fastAdminApp": {
+    "DiscountType": {
+      "null": "",
+      "IN_PERCENT": "P",
+      "AMOUNT": "A"
+    }
+  }
+}

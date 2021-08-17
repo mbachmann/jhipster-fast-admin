@@ -1,0 +1,146 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="documentLetter">
+      <h2 data-cy="documentLetterDetailsHeading"><span faTranslate="fastAdminApp.documentLetter.detail.title">Document Letter</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ documentLetter.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentLetter.remoteId" [ngbTooltip]="'fastAdminApp.documentLetter.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentLetter.remoteId }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentLetter.contactName"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.contactName' | translate"
+            >Contact Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentLetter.contactName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentLetter.date" [ngbTooltip]="'fastAdminApp.documentLetter.help.date' | translate"
+            >Date</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentLetter.date | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentLetter.title" [ngbTooltip]="'fastAdminApp.documentLetter.help.title' | translate"
+            >Title</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentLetter.title }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentLetter.content" [ngbTooltip]="'fastAdminApp.documentLetter.help.content' | translate"
+            >Content</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentLetter.content }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentLetter.language" [ngbTooltip]="'fastAdminApp.documentLetter.help.language' | translate"
+            >Language</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + documentLetter.language }}">{{ documentLetter.language }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentLetter.pageAmount"
+            [ngbTooltip]="'fastAdminApp.documentLetter.help.pageAmount' | translate"
+            >Page Amount</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentLetter.pageAmount }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentLetter.notes" [ngbTooltip]="'fastAdminApp.documentLetter.help.notes' | translate"
+            >Notes</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentLetter.notes }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentLetter.status" [ngbTooltip]="'fastAdminApp.documentLetter.help.status' | translate"
+            >Status</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.LetterStatus.' + documentLetter.status }}">{{ documentLetter.status }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentLetter.created">Created</span></dt>
+        <dd>
+          <span>{{ documentLetter.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentLetter.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="documentLetter.contact">
+            <a [routerLink]="['/contact', documentLetter.contact?.id, 'view']">{{ documentLetter.contact?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentLetter.contactAddress">Contact Address</span></dt>
+        <dd>
+          <div *ngIf="documentLetter.contactAddress">
+            <a [routerLink]="['/contact-address', documentLetter.contactAddress?.id, 'view']">{{ documentLetter.contactAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentLetter.contactPerson">Contact Person</span></dt>
+        <dd>
+          <div *ngIf="documentLetter.contactPerson">
+            <a [routerLink]="['/contact-person', documentLetter.contactPerson?.id, 'view']">{{ documentLetter.contactPerson?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentLetter.contactPrePageAddress">Contact Pre Page Address</span></dt>
+        <dd>
+          <div *ngIf="documentLetter.contactPrePageAddress">
+            <a [routerLink]="['/contact-address', documentLetter.contactPrePageAddress?.id, 'view']">{{
+              documentLetter.contactPrePageAddress?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentLetter.layout">Layout</span></dt>
+        <dd>
+          <div *ngIf="documentLetter.layout">
+            <a [routerLink]="['/layout', documentLetter.layout?.id, 'view']">{{ documentLetter.layout?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentLetter.layout">Layout</span></dt>
+        <dd>
+          <div *ngIf="documentLetter.layout">
+            <a [routerLink]="['/signature', documentLetter.layout?.id, 'view']">{{ documentLetter.layout?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/document-letter', documentLetter.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

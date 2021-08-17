@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="ContactAccountHeading">
+    <span faTranslate="fastAdminApp.contactAccount.home.title">Contact Accounts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.contactAccount.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contact-account"
+        [routerLink]="['/contact-account/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.contactAccount.home.createLabel"> Create a new Contact Account </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contactAccounts?.length === 0">
+    <span faTranslate="fastAdminApp.contactAccount.home.notFound">No contactAccounts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="contactAccounts && contactAccounts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.contactAccount.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="defaultAccount">
+            <span faTranslate="fastAdminApp.contactAccount.defaultAccount">Default Account</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="type">
+            <span faTranslate="fastAdminApp.contactAccount.type">Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="number">
+            <span faTranslate="fastAdminApp.contactAccount.number">Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="bic"><span faTranslate="fastAdminApp.contactAccount.bic">Bic</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="description">
+            <span faTranslate="fastAdminApp.contactAccount.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.contactAccount.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contact.id">
+            <span faTranslate="fastAdminApp.contactAccount.contact">Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let contactAccount of contactAccounts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contact-account', contactAccount.id, 'view']">{{ contactAccount.id }}</a>
+          </td>
+          <td>{{ contactAccount.remoteId }}</td>
+          <td>{{ contactAccount.defaultAccount }}</td>
+          <td faTranslate="{{ 'fastAdminApp.AccountType.' + contactAccount.type }}">{{ contactAccount.type }}</td>
+          <td>{{ contactAccount.number }}</td>
+          <td>{{ contactAccount.bic }}</td>
+          <td>{{ contactAccount.description }}</td>
+          <td>{{ contactAccount.inactiv }}</td>
+          <td>
+            <div *ngIf="contactAccount.contact">
+              <a [routerLink]="['/contact', contactAccount.contact?.id, 'view']">{{ contactAccount.contact?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contact-account', contactAccount.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contact-account', contactAccount.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contactAccount)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

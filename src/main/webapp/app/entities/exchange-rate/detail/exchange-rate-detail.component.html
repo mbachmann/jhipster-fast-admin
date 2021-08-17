@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="exchangeRate">
+      <h2 data-cy="exchangeRateDetailsHeading"><span faTranslate="fastAdminApp.exchangeRate.detail.title">Exchange Rate</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ exchangeRate.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.exchangeRate.remoteId" [ngbTooltip]="'fastAdminApp.exchangeRate.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ exchangeRate.remoteId }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.exchangeRate.currencyFrom"
+            [ngbTooltip]="'fastAdminApp.exchangeRate.help.currencyFrom' | translate"
+            >Currency From</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Currency.' + exchangeRate.currencyFrom }}">{{ exchangeRate.currencyFrom }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.exchangeRate.currencyTo" [ngbTooltip]="'fastAdminApp.exchangeRate.help.currencyTo' | translate"
+            >Currency To</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Currency.' + exchangeRate.currencyTo }}">{{ exchangeRate.currencyTo }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.exchangeRate.rate" [ngbTooltip]="'fastAdminApp.exchangeRate.help.rate' | translate">Rate</span>
+        </dt>
+        <dd>
+          <span>{{ exchangeRate.rate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.exchangeRate.created" [ngbTooltip]="'fastAdminApp.exchangeRate.help.created' | translate"
+            >Created</span
+          >
+        </dt>
+        <dd>
+          <span>{{ exchangeRate.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.exchangeRate.inactiv" [ngbTooltip]="'fastAdminApp.exchangeRate.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ exchangeRate.inactiv }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/exchange-rate', exchangeRate.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

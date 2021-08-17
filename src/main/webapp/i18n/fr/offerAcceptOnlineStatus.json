@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "OfferAcceptOnlineStatus": {
+      "null": "",
+      "ACCEPTED": "A",
+      "DECLINED": "D",
+      "UNKNOWN": "U"
+    }
+  }
+}

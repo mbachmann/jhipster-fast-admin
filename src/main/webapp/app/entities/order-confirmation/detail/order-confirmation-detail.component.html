@@ -1,0 +1,206 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="orderConfirmation">
+      <h2 data-cy="orderConfirmationDetailsHeading">
+        <span faTranslate="fastAdminApp.orderConfirmation.detail.title">Order Confirmation</span>
+      </h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ orderConfirmation.id }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.remoteId"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.orderConfirmation.number" [ngbTooltip]="'fastAdminApp.orderConfirmation.help.number' | translate"
+            >Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.number }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.contactName"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.contactName' | translate"
+            >Contact Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.contactName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.orderConfirmation.date" [ngbTooltip]="'fastAdminApp.orderConfirmation.help.date' | translate"
+            >Date</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.date | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.periodText"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.periodText' | translate"
+            >Period Text</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.periodText }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.currency"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.currency' | translate"
+            >Currency</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Currency.' + orderConfirmation.currency }}">{{ orderConfirmation.currency }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.orderConfirmation.total" [ngbTooltip]="'fastAdminApp.orderConfirmation.help.total' | translate"
+            >Total</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.total }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.vatIncluded"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.vatIncluded' | translate"
+            >Vat Included</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.vatIncluded }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.discountRate"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.discountRate' | translate"
+            >Discount Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.discountRate }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.discountType"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.discountType' | translate"
+            >Discount Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DiscountType.' + orderConfirmation.discountType }}">{{
+            orderConfirmation.discountType
+          }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.language"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.language' | translate"
+            >Language</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + orderConfirmation.language }}">{{ orderConfirmation.language }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.orderConfirmation.pageAmount"
+            [ngbTooltip]="'fastAdminApp.orderConfirmation.help.pageAmount' | translate"
+            >Page Amount</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.pageAmount }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.orderConfirmation.notes" [ngbTooltip]="'fastAdminApp.orderConfirmation.help.notes' | translate"
+            >Notes</span
+          >
+        </dt>
+        <dd>
+          <span>{{ orderConfirmation.notes }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.orderConfirmation.status" [ngbTooltip]="'fastAdminApp.orderConfirmation.help.status' | translate"
+            >Status</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.OrderConfirmationStatus.' + orderConfirmation.status }}">{{ orderConfirmation.status }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.orderConfirmation.created">Created</span></dt>
+        <dd>
+          <span>{{ orderConfirmation.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.orderConfirmation.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="orderConfirmation.contact">
+            <a [routerLink]="['/contact', orderConfirmation.contact?.id, 'view']">{{ orderConfirmation.contact?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.orderConfirmation.contactAddress">Contact Address</span></dt>
+        <dd>
+          <div *ngIf="orderConfirmation.contactAddress">
+            <a [routerLink]="['/contact-address', orderConfirmation.contactAddress?.id, 'view']">{{
+              orderConfirmation.contactAddress?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.orderConfirmation.contactPerson">Contact Person</span></dt>
+        <dd>
+          <div *ngIf="orderConfirmation.contactPerson">
+            <a [routerLink]="['/contact-person', orderConfirmation.contactPerson?.id, 'view']">{{ orderConfirmation.contactPerson?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.orderConfirmation.contactPrePageAddress">Contact Pre Page Address</span></dt>
+        <dd>
+          <div *ngIf="orderConfirmation.contactPrePageAddress">
+            <a [routerLink]="['/contact-address', orderConfirmation.contactPrePageAddress?.id, 'view']">{{
+              orderConfirmation.contactPrePageAddress?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.orderConfirmation.layout">Layout</span></dt>
+        <dd>
+          <div *ngIf="orderConfirmation.layout">
+            <a [routerLink]="['/layout', orderConfirmation.layout?.id, 'view']">{{ orderConfirmation.layout?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.orderConfirmation.signature">Signature</span></dt>
+        <dd>
+          <div *ngIf="orderConfirmation.signature">
+            <a [routerLink]="['/signature', orderConfirmation.signature?.id, 'view']">{{ orderConfirmation.signature?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/order-confirmation', orderConfirmation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

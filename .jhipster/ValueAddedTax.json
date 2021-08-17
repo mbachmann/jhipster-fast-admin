@@ -1,0 +1,53 @@
+{
+  "name": "ValueAddedTax",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "Name of the VAT"
+    },
+    {
+      "fieldName": "vatType",
+      "fieldType": "VatType",
+      "javadoc": "VAT Type percent, no_vat, free_input",
+      "fieldValues": "PERCENT (P),NO_VAT (N),FREE_INPUT (F)"
+    },
+    {
+      "fieldName": "validFrom",
+      "fieldType": "LocalDate",
+      "javadoc": "VAT is valid from"
+    },
+    {
+      "fieldName": "validUntil",
+      "fieldType": "LocalDate",
+      "javadoc": "VAT is valid until"
+    },
+    {
+      "fieldName": "vatPercent",
+      "fieldType": "Double",
+      "javadoc": "The VAT percent"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    },
+    {
+      "fieldName": "newVatId",
+      "fieldType": "Integer",
+      "javadoc": "replaced by"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "Value added tax",
+  "entityTableName": "value_added_tax",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817134511"
+}

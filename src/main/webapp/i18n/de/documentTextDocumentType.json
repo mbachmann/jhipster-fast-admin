@@ -1,0 +1,11 @@
+{
+  "fastAdminApp": {
+    "DocumentTextDocumentType": {
+      "null": "",
+      "OFFER": "O",
+      "ORDER_CONFIRMATION": "C",
+      "DELIVERY_NOTE": "D",
+      "INVOICE": "I"
+    }
+  }
+}

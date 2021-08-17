@@ -1,0 +1,27 @@
+{
+  "fastAdminApp": {
+    "layout": {
+      "home": {
+        "title": "Layouts",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Layout",
+        "createOrEditLabel": "Créer ou éditer un Layout",
+        "notFound": "Aucun Layout trouvé"
+      },
+      "created": "Un nouveau Layout a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Layout avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Layout avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Layout {{ id }} ?"
+      },
+      "detail": {
+        "title": "Layout"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "help": {
+        "remoteId": "id of a remote system"
+      }
+    }
+  }
+}

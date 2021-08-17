@@ -1,0 +1,37 @@
+{
+  "fastAdminApp": {
+    "exchangeRate": {
+      "home": {
+        "title": "Exchange Rates",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Exchange Rate erstellen",
+        "createOrEditLabel": "Exchange Rate erstellen oder bearbeiten",
+        "notFound": "Keine Exchange Rates gefunden"
+      },
+      "created": "Exchange Rate erstellt mit ID {{ param }}",
+      "updated": "Exchange Rate aktualisiert mit ID {{ param }}",
+      "deleted": "Exchange Rate gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Exchange Rate {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Exchange Rate"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "currencyFrom": "Currency From",
+      "currencyTo": "Currency To",
+      "rate": "Rate",
+      "created": "Created",
+      "inactiv": "Inactiv",
+      "help": {
+        "remoteId": "id of a remote system",
+        "currencyFrom": "ISO currency name we are setting exchange from",
+        "currencyTo": "ISO currency name we are setting exchange to",
+        "rate": "exchange rate value",
+        "created": "when contact was created",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

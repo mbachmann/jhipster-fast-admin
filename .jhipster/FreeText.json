@@ -1,0 +1,48 @@
+{
+  "name": "FreeText",
+  "fields": [
+    {
+      "fieldName": "text",
+      "fieldType": "String",
+      "javadoc": "displayed text"
+    },
+    {
+      "fieldName": "fontSize",
+      "fieldType": "Integer",
+      "javadoc": "font size of displayed text (min: 1; max: 50)"
+    },
+    {
+      "fieldName": "positionX",
+      "fieldType": "Double",
+      "javadoc": "The x position of the free text"
+    },
+    {
+      "fieldName": "positionY",
+      "fieldType": "Double",
+      "javadoc": "The y position of the free text"
+    },
+    {
+      "fieldName": "pageNo",
+      "fieldType": "Integer",
+      "javadoc": "which page text is displayed on"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "DocumentLanguage",
+      "javadoc": "language; possible values: de, en, es, fr, it ,",
+      "fieldValues": "FRENCH (fr),ENGLISH (en),GERMAN (de),SPANISH (es),ITALIAN (it)"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "free texts objects",
+  "entityTableName": "free_text",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817134520"
+}

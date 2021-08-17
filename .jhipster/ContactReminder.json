@@ -1,0 +1,71 @@
+{
+  "name": "ContactReminder",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "contactId",
+      "fieldType": "Integer",
+      "javadoc": "id of a contact"
+    },
+    {
+      "fieldName": "contactName",
+      "fieldType": "String",
+      "javadoc": "optional: name of a contact"
+    },
+    {
+      "fieldName": "dateTime",
+      "fieldType": "ZonedDateTime",
+      "javadoc": "date and time of event that should be reminded (format: IOS8601) ,"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "javadoc": "title of reminder"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "javadoc": "description of reminder"
+    },
+    {
+      "fieldName": "intervalValue",
+      "fieldType": "Integer",
+      "javadoc": "value of interval in which reminder will be activated , /"
+    },
+    {
+      "fieldName": "intervalType",
+      "fieldType": "IntervalType",
+      "javadoc": "one of: ['hour','day','month']",
+      "fieldValues": "HOUR (hour),DAY (day),MONTH (month)"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "contactReminder",
+      "javadoc": "The contact relation",
+      "relationshipName": "contact"
+    }
+  ],
+  "entityTableName": "contact_reminder",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817134506"
+}

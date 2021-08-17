@@ -1,0 +1,84 @@
+{
+  "name": "CustomFieldValue",
+  "fields": [
+    {
+      "fieldName": "key",
+      "fieldType": "String",
+      "javadoc": "the key to identify the custom field",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "a name which appears on the dialog",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String",
+      "javadoc": "the value of the resource"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "customField",
+      "otherEntityRelationshipName": "customFieldValue",
+      "javadoc": "The descriptive custom field relates to the custom field definition",
+      "relationshipName": "customField"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "contact"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactPerson",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "contactPerson"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "project"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "catalogProduct",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "catalogProduct"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "catalogService",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "catalogService"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "documentLetter",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "documentLetter"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "deliveryNote",
+      "otherEntityRelationshipName": "customFields",
+      "relationshipName": "deliveryNote"
+    }
+  ],
+  "javadoc": "Additional information for a resource",
+  "entityTableName": "custom_field_value",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817134535"
+}

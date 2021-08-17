@@ -1,0 +1,312 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="invoice">
+      <h2 data-cy="invoiceDetailsHeading"><span faTranslate="fastAdminApp.invoice.detail.title">Invoice</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ invoice.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.remoteId" [ngbTooltip]="'fastAdminApp.invoice.help.remoteId' | translate">Remote Id</span>
+        </dt>
+        <dd>
+          <span>{{ invoice.remoteId }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.number" [ngbTooltip]="'fastAdminApp.invoice.help.number' | translate">Number</span></dt>
+        <dd>
+          <span>{{ invoice.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.contactName" [ngbTooltip]="'fastAdminApp.invoice.help.contactName' | translate"
+            >Contact Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.contactName }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.date" [ngbTooltip]="'fastAdminApp.invoice.help.date' | translate">Date</span></dt>
+        <dd>
+          <span>{{ invoice.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.due" [ngbTooltip]="'fastAdminApp.invoice.help.due' | translate">Due</span></dt>
+        <dd>
+          <span>{{ invoice.due | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.periodFrom" [ngbTooltip]="'fastAdminApp.invoice.help.periodFrom' | translate"
+            >Period From</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.periodFrom | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.periodTo" [ngbTooltip]="'fastAdminApp.invoice.help.periodTo' | translate">Period To</span>
+        </dt>
+        <dd>
+          <span>{{ invoice.periodTo | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.periodText" [ngbTooltip]="'fastAdminApp.invoice.help.periodText' | translate"
+            >Period Text</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.periodText }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.currency" [ngbTooltip]="'fastAdminApp.invoice.help.currency' | translate">Currency</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Currency.' + invoice.currency }}">{{ invoice.currency }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.total" [ngbTooltip]="'fastAdminApp.invoice.help.total' | translate">Total</span></dt>
+        <dd>
+          <span>{{ invoice.total }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.vatIncluded" [ngbTooltip]="'fastAdminApp.invoice.help.vatIncluded' | translate"
+            >Vat Included</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.vatIncluded }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.discountRate" [ngbTooltip]="'fastAdminApp.invoice.help.discountRate' | translate"
+            >Discount Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.discountRate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.discountType" [ngbTooltip]="'fastAdminApp.invoice.help.discountType' | translate"
+            >Discount Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DiscountType.' + invoice.discountType }}">{{ invoice.discountType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.cashDiscountRate" [ngbTooltip]="'fastAdminApp.invoice.help.cashDiscountRate' | translate"
+            >Cash Discount Rate</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.cashDiscountRate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.cashDiscountDate" [ngbTooltip]="'fastAdminApp.invoice.help.cashDiscountDate' | translate"
+            >Cash Discount Date</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.cashDiscountDate | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.totalPaid" [ngbTooltip]="'fastAdminApp.invoice.help.totalPaid' | translate"
+            >Total Paid</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.totalPaid }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.paidDate" [ngbTooltip]="'fastAdminApp.invoice.help.paidDate' | translate">Paid Date</span>
+        </dt>
+        <dd>
+          <span>{{ invoice.paidDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.isrPosition" [ngbTooltip]="'fastAdminApp.invoice.help.isrPosition' | translate"
+            >Isr Position</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.IsrPosition.' + invoice.isrPosition }}">{{ invoice.isrPosition }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.isrReferenceNumber"
+            [ngbTooltip]="'fastAdminApp.invoice.help.isrReferenceNumber' | translate"
+            >Isr Reference Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.isrReferenceNumber }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.paymentLinkPaypal"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPaypal' | translate"
+            >Payment Link Paypal</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.paymentLinkPaypal }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.paymentLinkPaypalUrl"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPaypalUrl' | translate"
+            >Payment Link Paypal Url</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.paymentLinkPaypalUrl }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.paymentLinkPostfinance"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPostfinance' | translate"
+            >Payment Link Postfinance</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.paymentLinkPostfinance }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.paymentLinkPostfinanceUrl"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPostfinanceUrl' | translate"
+            >Payment Link Postfinance Url</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.paymentLinkPostfinanceUrl }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.paymentLinkPayrexx"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPayrexx' | translate"
+            >Payment Link Payrexx</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.paymentLinkPayrexx }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.paymentLinkPayrexxUrl"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPayrexxUrl' | translate"
+            >Payment Link Payrexx Url</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.paymentLinkPayrexxUrl }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.paymentLinkSmartcommerce"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkSmartcommerce' | translate"
+            >Payment Link Smartcommerce</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.paymentLinkSmartcommerce }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.invoice.paymentLinkSmartcommerceUrl"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkSmartcommerceUrl' | translate"
+            >Payment Link Smartcommerce Url</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.paymentLinkSmartcommerceUrl }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.language" [ngbTooltip]="'fastAdminApp.invoice.help.language' | translate">Language</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + invoice.language }}">{{ invoice.language }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.invoice.pageAmount" [ngbTooltip]="'fastAdminApp.invoice.help.pageAmount' | translate"
+            >Page Amount</span
+          >
+        </dt>
+        <dd>
+          <span>{{ invoice.pageAmount }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.notes" [ngbTooltip]="'fastAdminApp.invoice.help.notes' | translate">Notes</span></dt>
+        <dd>
+          <span>{{ invoice.notes }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.status" [ngbTooltip]="'fastAdminApp.invoice.help.status' | translate">Status</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.InvoiceStatus.' + invoice.status }}">{{ invoice.status }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.created">Created</span></dt>
+        <dd>
+          <span>{{ invoice.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="invoice.contact">
+            <a [routerLink]="['/contact', invoice.contact?.id, 'view']">{{ invoice.contact?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.contactAddress">Contact Address</span></dt>
+        <dd>
+          <div *ngIf="invoice.contactAddress">
+            <a [routerLink]="['/contact-address', invoice.contactAddress?.id, 'view']">{{ invoice.contactAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.contactPerson">Contact Person</span></dt>
+        <dd>
+          <div *ngIf="invoice.contactPerson">
+            <a [routerLink]="['/contact-person', invoice.contactPerson?.id, 'view']">{{ invoice.contactPerson?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.contactPrePageAddress">Contact Pre Page Address</span></dt>
+        <dd>
+          <div *ngIf="invoice.contactPrePageAddress">
+            <a [routerLink]="['/contact-address', invoice.contactPrePageAddress?.id, 'view']">{{ invoice.contactPrePageAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.layout">Layout</span></dt>
+        <dd>
+          <div *ngIf="invoice.layout">
+            <a [routerLink]="['/layout', invoice.layout?.id, 'view']">{{ invoice.layout?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.signature">Signature</span></dt>
+        <dd>
+          <div *ngIf="invoice.signature">
+            <a [routerLink]="['/signature', invoice.signature?.id, 'view']">{{ invoice.signature?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.bankAccount">Bank Account</span></dt>
+        <dd>
+          <div *ngIf="invoice.bankAccount">
+            <a [routerLink]="['/bank-account', invoice.bankAccount?.id, 'view']">{{ invoice.bankAccount?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.invoice.isr">Isr</span></dt>
+        <dd>
+          <div *ngIf="invoice.isr">
+            <a [routerLink]="['/isr', invoice.isr?.id, 'view']">{{ invoice.isr?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/invoice', invoice.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

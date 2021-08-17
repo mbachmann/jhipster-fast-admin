@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="catalogCategory">
+      <h2 data-cy="catalogCategoryDetailsHeading"><span faTranslate="fastAdminApp.catalogCategory.detail.title">Catalog Category</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ catalogCategory.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogCategory.remoteId" [ngbTooltip]="'fastAdminApp.catalogCategory.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogCategory.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogCategory.name" [ngbTooltip]="'fastAdminApp.catalogCategory.help.name' | translate"
+            >Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogCategory.name }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogCategory.accountingAccountNumber">Accounting Account Number</span></dt>
+        <dd>
+          <span>{{ catalogCategory.accountingAccountNumber }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogCategory.usage" [ngbTooltip]="'fastAdminApp.catalogCategory.help.usage' | translate"
+            >Usage</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogCategory.usage }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogCategory.inactiv" [ngbTooltip]="'fastAdminApp.catalogCategory.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogCategory.inactiv }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/catalog-category', catalogCategory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

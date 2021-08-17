@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="freeText">
+      <h2 data-cy="freeTextDetailsHeading"><span faTranslate="fastAdminApp.freeText.detail.title">Free Text</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ freeText.id }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.freeText.text" [ngbTooltip]="'fastAdminApp.freeText.help.text' | translate">Text</span></dt>
+        <dd>
+          <span>{{ freeText.text }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.freeText.fontSize" [ngbTooltip]="'fastAdminApp.freeText.help.fontSize' | translate"
+            >Font Size</span
+          >
+        </dt>
+        <dd>
+          <span>{{ freeText.fontSize }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.freeText.positionX" [ngbTooltip]="'fastAdminApp.freeText.help.positionX' | translate"
+            >Position X</span
+          >
+        </dt>
+        <dd>
+          <span>{{ freeText.positionX }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.freeText.positionY" [ngbTooltip]="'fastAdminApp.freeText.help.positionY' | translate"
+            >Position Y</span
+          >
+        </dt>
+        <dd>
+          <span>{{ freeText.positionY }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.freeText.pageNo" [ngbTooltip]="'fastAdminApp.freeText.help.pageNo' | translate">Page No</span>
+        </dt>
+        <dd>
+          <span>{{ freeText.pageNo }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.freeText.language" [ngbTooltip]="'fastAdminApp.freeText.help.language' | translate"
+            >Language</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + freeText.language }}">{{ freeText.language }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/free-text', freeText.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

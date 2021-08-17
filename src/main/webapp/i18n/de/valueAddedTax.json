@@ -1,0 +1,39 @@
+{
+  "fastAdminApp": {
+    "valueAddedTax": {
+      "home": {
+        "title": "Value Added Taxes",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Value Added Tax erstellen",
+        "createOrEditLabel": "Value Added Tax erstellen oder bearbeiten",
+        "notFound": "Keine Value Added Taxes gefunden"
+      },
+      "created": "Value Added Tax erstellt mit ID {{ param }}",
+      "updated": "Value Added Tax aktualisiert mit ID {{ param }}",
+      "deleted": "Value Added Tax gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Value Added Tax {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Value Added Tax"
+      },
+      "id": "ID",
+      "name": "Name",
+      "vatType": "Vat Type",
+      "validFrom": "Valid From",
+      "validUntil": "Valid Until",
+      "vatPercent": "Vat Percent",
+      "inactiv": "Inactiv",
+      "newVatId": "New Vat Id",
+      "help": {
+        "name": "Name of the VAT",
+        "vatType": "VAT Type percent, no_vat, free_input",
+        "validFrom": "VAT is valid from",
+        "validUntil": "VAT is valid until",
+        "vatPercent": "The VAT percent",
+        "inactiv": "is not active anymore",
+        "newVatId": "replaced by"
+      }
+    }
+  }
+}

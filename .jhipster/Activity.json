@@ -1,0 +1,46 @@
+{
+  "name": "Activity",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "name of activity eg. Consulting"
+    },
+    {
+      "fieldName": "useServicePrice",
+      "fieldType": "Boolean",
+      "javadoc": "use price defined in service catalog"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "catalogService",
+      "otherEntityRelationshipName": "activity",
+      "javadoc": "The related activity to this effort",
+      "relationshipName": "catalogService"
+    }
+  ],
+  "javadoc": "Reporting Activity like consulting with an optional relation to a catalog service",
+  "entityTableName": "activity",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817134528"
+}

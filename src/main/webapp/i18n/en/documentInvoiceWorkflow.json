@@ -1,0 +1,37 @@
+{
+  "fastAdminApp": {
+    "documentInvoiceWorkflow": {
+      "home": {
+        "title": "Document Invoice Workflows",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Document Invoice Workflow",
+        "createOrEditLabel": "Create or edit a Document Invoice Workflow",
+        "notFound": "No Document Invoice Workflows found"
+      },
+      "created": "A new Document Invoice Workflow is created with identifier {{ param }}",
+      "updated": "A Document Invoice Workflow is updated with identifier {{ param }}",
+      "deleted": "A Document Invoice Workflow is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Document Invoice Workflow {{ id }}?"
+      },
+      "detail": {
+        "title": "Document Invoice Workflow"
+      },
+      "id": "ID",
+      "active": "Active",
+      "status": "Status",
+      "overdueDays": "Overdue Days",
+      "action": "Action",
+      "contactEmail": "Contact Email",
+      "speed": "Speed",
+      "help": {
+        "active": "whether workflow is active",
+        "status": "status of a document that the workflow is for; possible values: R - payment reminder, R1 - 1st reminder, R2 - 2nd reminder, R3 - 3rd reminder",
+        "overdueDays": "how many days after due date action should be taken ,",
+        "action": "action that should be taken; possible values: M - remind me, CE - remind contact by email, CP - remind contact by post",
+        "contactEmail": "email address for reminding contact (valid only when action is CE)",
+        "speed": "post speed for reminding contact (valid only when action is CP); possible values: P - priority, E - economy"
+      }
+    }
+  }
+}

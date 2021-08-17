@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "CommunicationChannel": {
+      "null": "",
+      "NO_PREFERENCE": "U",
+      "BY_EMAIL": "E",
+      "BY_POST": "P"
+    }
+  }
+}

@@ -1,0 +1,395 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-bank-account-fa-heading"
+        data-cy="BankAccountCreateUpdateHeading"
+        faTranslate="fastAdminApp.bankAccount.home.createOrEditLabel"
+      >
+        Create or edit a Bank Account
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.defaultBankAccount"
+            for="field_defaultBankAccount"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.defaultBankAccount' | translate"
+            >Default Bank Account</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultBankAccount"
+            id="field_defaultBankAccount"
+            data-cy="defaultBankAccount"
+            formControlName="defaultBankAccount"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.description"
+            for="field_description"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.description' | translate"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.bankName"
+            for="field_bankName"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.bankName' | translate"
+            >Bank Name</label
+          >
+          <input type="text" class="form-control" name="bankName" id="field_bankName" data-cy="bankName" formControlName="bankName" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.number"
+            for="field_number"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.number' | translate"
+            >Number</label
+          >
+          <input type="text" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.iban"
+            for="field_iban"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.iban' | translate"
+            >Iban</label
+          >
+          <input type="text" class="form-control" name="iban" id="field_iban" data-cy="iban" formControlName="iban" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.bic"
+            for="field_bic"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.bic' | translate"
+            >Bic</label
+          >
+          <input type="text" class="form-control" name="bic" id="field_bic" data-cy="bic" formControlName="bic" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.postAccount"
+            for="field_postAccount"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.postAccount' | translate"
+            >Post Account</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="postAccount"
+            id="field_postAccount"
+            data-cy="postAccount"
+            formControlName="postAccount"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.autoSync"
+            for="field_autoSync"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.autoSync' | translate"
+            >Auto Sync</label
+          >
+          <select class="form-control" name="autoSync" formControlName="autoSync" id="field_autoSync" data-cy="autoSync">
+            <option [ngValue]="null">{{ 'fastAdminApp.AutoSynch.null' | translate }}</option>
+            <option value="ACTIVE">{{ 'fastAdminApp.AutoSynch.ACTIVE' | translate }}</option>
+            <option value="INACTIVE">{{ 'fastAdminApp.AutoSynch.INACTIVE' | translate }}</option>
+            <option value="REQUESTED">{{ 'fastAdminApp.AutoSynch.REQUESTED' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.autoSyncDirection"
+            for="field_autoSyncDirection"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.autoSyncDirection' | translate"
+            >Auto Sync Direction</label
+          >
+          <select
+            class="form-control"
+            name="autoSyncDirection"
+            formControlName="autoSyncDirection"
+            id="field_autoSyncDirection"
+            data-cy="autoSyncDirection"
+          >
+            <option [ngValue]="null">{{ 'fastAdminApp.AutoSynchDirection.null' | translate }}</option>
+            <option value="IN">{{ 'fastAdminApp.AutoSynchDirection.IN' | translate }}</option>
+            <option value="OUT">{{ 'fastAdminApp.AutoSynchDirection.OUT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.currency"
+            for="field_currency"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.currency' | translate"
+            >Currency</label
+          >
+          <select class="form-control" name="currency" formControlName="currency" id="field_currency" data-cy="currency">
+            <option [ngValue]="null">{{ 'fastAdminApp.Currency.null' | translate }}</option>
+            <option value="AED">{{ 'fastAdminApp.Currency.AED' | translate }}</option>
+            <option value="AFN">{{ 'fastAdminApp.Currency.AFN' | translate }}</option>
+            <option value="ALL">{{ 'fastAdminApp.Currency.ALL' | translate }}</option>
+            <option value="AMD">{{ 'fastAdminApp.Currency.AMD' | translate }}</option>
+            <option value="ANG">{{ 'fastAdminApp.Currency.ANG' | translate }}</option>
+            <option value="AOA">{{ 'fastAdminApp.Currency.AOA' | translate }}</option>
+            <option value="ARS">{{ 'fastAdminApp.Currency.ARS' | translate }}</option>
+            <option value="AUD">{{ 'fastAdminApp.Currency.AUD' | translate }}</option>
+            <option value="AWG">{{ 'fastAdminApp.Currency.AWG' | translate }}</option>
+            <option value="AZN">{{ 'fastAdminApp.Currency.AZN' | translate }}</option>
+            <option value="BAM">{{ 'fastAdminApp.Currency.BAM' | translate }}</option>
+            <option value="BBD">{{ 'fastAdminApp.Currency.BBD' | translate }}</option>
+            <option value="BDT">{{ 'fastAdminApp.Currency.BDT' | translate }}</option>
+            <option value="BGN">{{ 'fastAdminApp.Currency.BGN' | translate }}</option>
+            <option value="BHD">{{ 'fastAdminApp.Currency.BHD' | translate }}</option>
+            <option value="BIF">{{ 'fastAdminApp.Currency.BIF' | translate }}</option>
+            <option value="BMD">{{ 'fastAdminApp.Currency.BMD' | translate }}</option>
+            <option value="BND">{{ 'fastAdminApp.Currency.BND' | translate }}</option>
+            <option value="BOB">{{ 'fastAdminApp.Currency.BOB' | translate }}</option>
+            <option value="BOV">{{ 'fastAdminApp.Currency.BOV' | translate }}</option>
+            <option value="BRL">{{ 'fastAdminApp.Currency.BRL' | translate }}</option>
+            <option value="BSD">{{ 'fastAdminApp.Currency.BSD' | translate }}</option>
+            <option value="BTN">{{ 'fastAdminApp.Currency.BTN' | translate }}</option>
+            <option value="BWP">{{ 'fastAdminApp.Currency.BWP' | translate }}</option>
+            <option value="BYN">{{ 'fastAdminApp.Currency.BYN' | translate }}</option>
+            <option value="BYR">{{ 'fastAdminApp.Currency.BYR' | translate }}</option>
+            <option value="BZD">{{ 'fastAdminApp.Currency.BZD' | translate }}</option>
+            <option value="CAD">{{ 'fastAdminApp.Currency.CAD' | translate }}</option>
+            <option value="CDF">{{ 'fastAdminApp.Currency.CDF' | translate }}</option>
+            <option value="CHE">{{ 'fastAdminApp.Currency.CHE' | translate }}</option>
+            <option value="CHF">{{ 'fastAdminApp.Currency.CHF' | translate }}</option>
+            <option value="CHW">{{ 'fastAdminApp.Currency.CHW' | translate }}</option>
+            <option value="CLF">{{ 'fastAdminApp.Currency.CLF' | translate }}</option>
+            <option value="CLP">{{ 'fastAdminApp.Currency.CLP' | translate }}</option>
+            <option value="CNY">{{ 'fastAdminApp.Currency.CNY' | translate }}</option>
+            <option value="COP">{{ 'fastAdminApp.Currency.COP' | translate }}</option>
+            <option value="COU">{{ 'fastAdminApp.Currency.COU' | translate }}</option>
+            <option value="CRC">{{ 'fastAdminApp.Currency.CRC' | translate }}</option>
+            <option value="CUC">{{ 'fastAdminApp.Currency.CUC' | translate }}</option>
+            <option value="CUP">{{ 'fastAdminApp.Currency.CUP' | translate }}</option>
+            <option value="CVE">{{ 'fastAdminApp.Currency.CVE' | translate }}</option>
+            <option value="CZK">{{ 'fastAdminApp.Currency.CZK' | translate }}</option>
+            <option value="DJF">{{ 'fastAdminApp.Currency.DJF' | translate }}</option>
+            <option value="DKK">{{ 'fastAdminApp.Currency.DKK' | translate }}</option>
+            <option value="DOP">{{ 'fastAdminApp.Currency.DOP' | translate }}</option>
+            <option value="DZD">{{ 'fastAdminApp.Currency.DZD' | translate }}</option>
+            <option value="EGP">{{ 'fastAdminApp.Currency.EGP' | translate }}</option>
+            <option value="ERN">{{ 'fastAdminApp.Currency.ERN' | translate }}</option>
+            <option value="ETB">{{ 'fastAdminApp.Currency.ETB' | translate }}</option>
+            <option value="EUR">{{ 'fastAdminApp.Currency.EUR' | translate }}</option>
+            <option value="FJD">{{ 'fastAdminApp.Currency.FJD' | translate }}</option>
+            <option value="FKP">{{ 'fastAdminApp.Currency.FKP' | translate }}</option>
+            <option value="GBP">{{ 'fastAdminApp.Currency.GBP' | translate }}</option>
+            <option value="GEL">{{ 'fastAdminApp.Currency.GEL' | translate }}</option>
+            <option value="GHS">{{ 'fastAdminApp.Currency.GHS' | translate }}</option>
+            <option value="GIP">{{ 'fastAdminApp.Currency.GIP' | translate }}</option>
+            <option value="GMD">{{ 'fastAdminApp.Currency.GMD' | translate }}</option>
+            <option value="GNF">{{ 'fastAdminApp.Currency.GNF' | translate }}</option>
+            <option value="GTQ">{{ 'fastAdminApp.Currency.GTQ' | translate }}</option>
+            <option value="GYD">{{ 'fastAdminApp.Currency.GYD' | translate }}</option>
+            <option value="HKD">{{ 'fastAdminApp.Currency.HKD' | translate }}</option>
+            <option value="HNL">{{ 'fastAdminApp.Currency.HNL' | translate }}</option>
+            <option value="HRK">{{ 'fastAdminApp.Currency.HRK' | translate }}</option>
+            <option value="HTG">{{ 'fastAdminApp.Currency.HTG' | translate }}</option>
+            <option value="HUF">{{ 'fastAdminApp.Currency.HUF' | translate }}</option>
+            <option value="IDR">{{ 'fastAdminApp.Currency.IDR' | translate }}</option>
+            <option value="ILS">{{ 'fastAdminApp.Currency.ILS' | translate }}</option>
+            <option value="INR">{{ 'fastAdminApp.Currency.INR' | translate }}</option>
+            <option value="IQD">{{ 'fastAdminApp.Currency.IQD' | translate }}</option>
+            <option value="IRR">{{ 'fastAdminApp.Currency.IRR' | translate }}</option>
+            <option value="ISK">{{ 'fastAdminApp.Currency.ISK' | translate }}</option>
+            <option value="JMD">{{ 'fastAdminApp.Currency.JMD' | translate }}</option>
+            <option value="JOD">{{ 'fastAdminApp.Currency.JOD' | translate }}</option>
+            <option value="JPY">{{ 'fastAdminApp.Currency.JPY' | translate }}</option>
+            <option value="KES">{{ 'fastAdminApp.Currency.KES' | translate }}</option>
+            <option value="KGS">{{ 'fastAdminApp.Currency.KGS' | translate }}</option>
+            <option value="KHR">{{ 'fastAdminApp.Currency.KHR' | translate }}</option>
+            <option value="KMF">{{ 'fastAdminApp.Currency.KMF' | translate }}</option>
+            <option value="KPW">{{ 'fastAdminApp.Currency.KPW' | translate }}</option>
+            <option value="KRW">{{ 'fastAdminApp.Currency.KRW' | translate }}</option>
+            <option value="KWD">{{ 'fastAdminApp.Currency.KWD' | translate }}</option>
+            <option value="KYD">{{ 'fastAdminApp.Currency.KYD' | translate }}</option>
+            <option value="KZT">{{ 'fastAdminApp.Currency.KZT' | translate }}</option>
+            <option value="LAK">{{ 'fastAdminApp.Currency.LAK' | translate }}</option>
+            <option value="LBP">{{ 'fastAdminApp.Currency.LBP' | translate }}</option>
+            <option value="LKR">{{ 'fastAdminApp.Currency.LKR' | translate }}</option>
+            <option value="LRD">{{ 'fastAdminApp.Currency.LRD' | translate }}</option>
+            <option value="LSL">{{ 'fastAdminApp.Currency.LSL' | translate }}</option>
+            <option value="LYD">{{ 'fastAdminApp.Currency.LYD' | translate }}</option>
+            <option value="MAD">{{ 'fastAdminApp.Currency.MAD' | translate }}</option>
+            <option value="MDL">{{ 'fastAdminApp.Currency.MDL' | translate }}</option>
+            <option value="MGA">{{ 'fastAdminApp.Currency.MGA' | translate }}</option>
+            <option value="MKD">{{ 'fastAdminApp.Currency.MKD' | translate }}</option>
+            <option value="MMK">{{ 'fastAdminApp.Currency.MMK' | translate }}</option>
+            <option value="MNT">{{ 'fastAdminApp.Currency.MNT' | translate }}</option>
+            <option value="MOP">{{ 'fastAdminApp.Currency.MOP' | translate }}</option>
+            <option value="MRO">{{ 'fastAdminApp.Currency.MRO' | translate }}</option>
+            <option value="MUR">{{ 'fastAdminApp.Currency.MUR' | translate }}</option>
+            <option value="MVR">{{ 'fastAdminApp.Currency.MVR' | translate }}</option>
+            <option value="MWK">{{ 'fastAdminApp.Currency.MWK' | translate }}</option>
+            <option value="MXN">{{ 'fastAdminApp.Currency.MXN' | translate }}</option>
+            <option value="MXV">{{ 'fastAdminApp.Currency.MXV' | translate }}</option>
+            <option value="MYR">{{ 'fastAdminApp.Currency.MYR' | translate }}</option>
+            <option value="MZN">{{ 'fastAdminApp.Currency.MZN' | translate }}</option>
+            <option value="NAD">{{ 'fastAdminApp.Currency.NAD' | translate }}</option>
+            <option value="NGN">{{ 'fastAdminApp.Currency.NGN' | translate }}</option>
+            <option value="NIO">{{ 'fastAdminApp.Currency.NIO' | translate }}</option>
+            <option value="NOK">{{ 'fastAdminApp.Currency.NOK' | translate }}</option>
+            <option value="NPR">{{ 'fastAdminApp.Currency.NPR' | translate }}</option>
+            <option value="NZD">{{ 'fastAdminApp.Currency.NZD' | translate }}</option>
+            <option value="OMR">{{ 'fastAdminApp.Currency.OMR' | translate }}</option>
+            <option value="PAB">{{ 'fastAdminApp.Currency.PAB' | translate }}</option>
+            <option value="PEN">{{ 'fastAdminApp.Currency.PEN' | translate }}</option>
+            <option value="PGK">{{ 'fastAdminApp.Currency.PGK' | translate }}</option>
+            <option value="PHP">{{ 'fastAdminApp.Currency.PHP' | translate }}</option>
+            <option value="PKR">{{ 'fastAdminApp.Currency.PKR' | translate }}</option>
+            <option value="PLN">{{ 'fastAdminApp.Currency.PLN' | translate }}</option>
+            <option value="PYG">{{ 'fastAdminApp.Currency.PYG' | translate }}</option>
+            <option value="QAR">{{ 'fastAdminApp.Currency.QAR' | translate }}</option>
+            <option value="RON">{{ 'fastAdminApp.Currency.RON' | translate }}</option>
+            <option value="RSD">{{ 'fastAdminApp.Currency.RSD' | translate }}</option>
+            <option value="RUB">{{ 'fastAdminApp.Currency.RUB' | translate }}</option>
+            <option value="RWF">{{ 'fastAdminApp.Currency.RWF' | translate }}</option>
+            <option value="SAR">{{ 'fastAdminApp.Currency.SAR' | translate }}</option>
+            <option value="SBD">{{ 'fastAdminApp.Currency.SBD' | translate }}</option>
+            <option value="SCR">{{ 'fastAdminApp.Currency.SCR' | translate }}</option>
+            <option value="SDG">{{ 'fastAdminApp.Currency.SDG' | translate }}</option>
+            <option value="SEK">{{ 'fastAdminApp.Currency.SEK' | translate }}</option>
+            <option value="SGD">{{ 'fastAdminApp.Currency.SGD' | translate }}</option>
+            <option value="SHP">{{ 'fastAdminApp.Currency.SHP' | translate }}</option>
+            <option value="SLL">{{ 'fastAdminApp.Currency.SLL' | translate }}</option>
+            <option value="SOS">{{ 'fastAdminApp.Currency.SOS' | translate }}</option>
+            <option value="SRD">{{ 'fastAdminApp.Currency.SRD' | translate }}</option>
+            <option value="SSP">{{ 'fastAdminApp.Currency.SSP' | translate }}</option>
+            <option value="STD">{{ 'fastAdminApp.Currency.STD' | translate }}</option>
+            <option value="SYP">{{ 'fastAdminApp.Currency.SYP' | translate }}</option>
+            <option value="SZL">{{ 'fastAdminApp.Currency.SZL' | translate }}</option>
+            <option value="THB">{{ 'fastAdminApp.Currency.THB' | translate }}</option>
+            <option value="TJS">{{ 'fastAdminApp.Currency.TJS' | translate }}</option>
+            <option value="TMT">{{ 'fastAdminApp.Currency.TMT' | translate }}</option>
+            <option value="TND">{{ 'fastAdminApp.Currency.TND' | translate }}</option>
+            <option value="TOP">{{ 'fastAdminApp.Currency.TOP' | translate }}</option>
+            <option value="TRY">{{ 'fastAdminApp.Currency.TRY' | translate }}</option>
+            <option value="TTD">{{ 'fastAdminApp.Currency.TTD' | translate }}</option>
+            <option value="TWD">{{ 'fastAdminApp.Currency.TWD' | translate }}</option>
+            <option value="TZS">{{ 'fastAdminApp.Currency.TZS' | translate }}</option>
+            <option value="UAH">{{ 'fastAdminApp.Currency.UAH' | translate }}</option>
+            <option value="UGX">{{ 'fastAdminApp.Currency.UGX' | translate }}</option>
+            <option value="USD">{{ 'fastAdminApp.Currency.USD' | translate }}</option>
+            <option value="USN">{{ 'fastAdminApp.Currency.USN' | translate }}</option>
+            <option value="UYI">{{ 'fastAdminApp.Currency.UYI' | translate }}</option>
+            <option value="UYU">{{ 'fastAdminApp.Currency.UYU' | translate }}</option>
+            <option value="UZS">{{ 'fastAdminApp.Currency.UZS' | translate }}</option>
+            <option value="VEF">{{ 'fastAdminApp.Currency.VEF' | translate }}</option>
+            <option value="VND">{{ 'fastAdminApp.Currency.VND' | translate }}</option>
+            <option value="VUV">{{ 'fastAdminApp.Currency.VUV' | translate }}</option>
+            <option value="WST">{{ 'fastAdminApp.Currency.WST' | translate }}</option>
+            <option value="XAF">{{ 'fastAdminApp.Currency.XAF' | translate }}</option>
+            <option value="XAG">{{ 'fastAdminApp.Currency.XAG' | translate }}</option>
+            <option value="XAU">{{ 'fastAdminApp.Currency.XAU' | translate }}</option>
+            <option value="XBA">{{ 'fastAdminApp.Currency.XBA' | translate }}</option>
+            <option value="XBB">{{ 'fastAdminApp.Currency.XBB' | translate }}</option>
+            <option value="XBC">{{ 'fastAdminApp.Currency.XBC' | translate }}</option>
+            <option value="XBD">{{ 'fastAdminApp.Currency.XBD' | translate }}</option>
+            <option value="XCD">{{ 'fastAdminApp.Currency.XCD' | translate }}</option>
+            <option value="XDR">{{ 'fastAdminApp.Currency.XDR' | translate }}</option>
+            <option value="XFU">{{ 'fastAdminApp.Currency.XFU' | translate }}</option>
+            <option value="XOF">{{ 'fastAdminApp.Currency.XOF' | translate }}</option>
+            <option value="XPD">{{ 'fastAdminApp.Currency.XPD' | translate }}</option>
+            <option value="XPF">{{ 'fastAdminApp.Currency.XPF' | translate }}</option>
+            <option value="XPT">{{ 'fastAdminApp.Currency.XPT' | translate }}</option>
+            <option value="XSU">{{ 'fastAdminApp.Currency.XSU' | translate }}</option>
+            <option value="XTS">{{ 'fastAdminApp.Currency.XTS' | translate }}</option>
+            <option value="XUA">{{ 'fastAdminApp.Currency.XUA' | translate }}</option>
+            <option value="XXX">{{ 'fastAdminApp.Currency.XXX' | translate }}</option>
+            <option value="YER">{{ 'fastAdminApp.Currency.YER' | translate }}</option>
+            <option value="ZAR">{{ 'fastAdminApp.Currency.ZAR' | translate }}</option>
+            <option value="ZMW">{{ 'fastAdminApp.Currency.ZMW' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.bankAccount.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.bankAccount.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

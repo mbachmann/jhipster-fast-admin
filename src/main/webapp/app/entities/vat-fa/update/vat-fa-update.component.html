@@ -1,0 +1,155 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="fa-vat-fa-heading" data-cy="VatCreateUpdateHeading" faTranslate="fastAdminApp.vat.home.createOrEditLabel">
+        Create or edit a Vat
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.vat.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.vat.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.vat.vatType"
+            for="field_vatType"
+            [ngbTooltip]="'fastAdminApp.vat.help.vatType' | translate"
+            >Vat Type</label
+          >
+          <select class="form-control" name="vatType" formControlName="vatType" id="field_vatType" data-cy="vatType">
+            <option [ngValue]="null">{{ 'fastAdminApp.VatType.null' | translate }}</option>
+            <option value="PERCENT">{{ 'fastAdminApp.VatType.PERCENT' | translate }}</option>
+            <option value="NO_VAT">{{ 'fastAdminApp.VatType.NO_VAT' | translate }}</option>
+            <option value="FREE_INPUT">{{ 'fastAdminApp.VatType.FREE_INPUT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.vat.validFrom"
+            for="field_validFrom"
+            [ngbTooltip]="'fastAdminApp.vat.help.validFrom' | translate"
+            >Valid From</label
+          >
+          <div class="input-group">
+            <input
+              id="field_validFrom"
+              data-cy="validFrom"
+              type="text"
+              class="form-control"
+              name="validFrom"
+              ngbDatepicker
+              #validFromDp="ngbDatepicker"
+              formControlName="validFrom"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="validFromDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.vat.validUntil"
+            for="field_validUntil"
+            [ngbTooltip]="'fastAdminApp.vat.help.validUntil' | translate"
+            >Valid Until</label
+          >
+          <div class="input-group">
+            <input
+              id="field_validUntil"
+              data-cy="validUntil"
+              type="text"
+              class="form-control"
+              name="validUntil"
+              ngbDatepicker
+              #validUntilDp="ngbDatepicker"
+              formControlName="validUntil"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="validUntilDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.vat.vatPercent"
+            for="field_vatPercent"
+            [ngbTooltip]="'fastAdminApp.vat.help.vatPercent' | translate"
+            >Vat Percent</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="vatPercent"
+            id="field_vatPercent"
+            data-cy="vatPercent"
+            formControlName="vatPercent"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.vat.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.vat.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.vat.newVatId"
+            for="field_newVatId"
+            [ngbTooltip]="'fastAdminApp.vat.help.newVatId' | translate"
+            >New Vat Id</label
+          >
+          <input type="number" class="form-control" name="newVatId" id="field_newVatId" data-cy="newVatId" formControlName="newVatId" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

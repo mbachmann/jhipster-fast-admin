@@ -1,0 +1,54 @@
+{
+  "fastAdminApp": {
+    "documentPosition": {
+      "home": {
+        "title": "Document Positions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Document Position",
+        "createOrEditLabel": "Create or edit a Document Position",
+        "notFound": "No Document Positions found"
+      },
+      "created": "A new Document Position is created with identifier {{ param }}",
+      "updated": "A Document Position is updated with identifier {{ param }}",
+      "deleted": "A Document Position is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Document Position {{ id }}?"
+      },
+      "detail": {
+        "title": "Document Position"
+      },
+      "id": "ID",
+      "type": "Type",
+      "catalogType": "Catalog Type",
+      "number": "Number",
+      "name": "Name",
+      "description": "Description",
+      "price": "Price",
+      "vat": "Vat",
+      "amount": "Amount",
+      "discountRate": "Discount Rate",
+      "discountType": "Discount Type",
+      "total": "Total",
+      "showOnlyTotal": "Show Only Total",
+      "unit": "Unit",
+      "deliveryNote": "Delivery Note",
+      "invoice": "Invoice",
+      "offer": "Offer",
+      "orderConfirmation": "Order Confirmation",
+      "help": {
+        "type": "position type; possible values: N - normal, T - text, PB - page break, H - header, SI - subtotal (incremental), SNI - subtotal (non incremental)",
+        "catalogType": "position catalog type; possible values: P - product, S - service",
+        "number": "catalog unique number",
+        "name": "position name",
+        "description": "position description",
+        "price": "price per unit; required for N type",
+        "vat": "VAT rate; required for N type",
+        "amount": "amount; required for N type",
+        "discountRate": "optional discount rate",
+        "discountType": "optional discount type; possible values:A - amount, P - percentage",
+        "total": "total price",
+        "showOnlyTotal": "whether to show only total on invoice"
+      }
+    }
+  }
+}

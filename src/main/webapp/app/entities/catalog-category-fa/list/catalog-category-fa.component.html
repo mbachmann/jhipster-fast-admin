@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="CatalogCategoryHeading">
+    <span faTranslate="fastAdminApp.catalogCategory.home.title">Catalog Categories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.catalogCategory.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-catalog-category-fa"
+        [routerLink]="['/catalog-category-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.catalogCategory.home.createLabel"> Create a new Catalog Category </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="catalogCategories?.length === 0">
+    <span faTranslate="fastAdminApp.catalogCategory.home.notFound">No catalogCategories found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="catalogCategories && catalogCategories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.catalogCategory.remoteId">Remote Id</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.catalogCategory.name">Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.catalogCategory.accountingAccountNumber">Accounting Account Number</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.catalogCategory.usage">Usage</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.catalogCategory.inactiv">Inactiv</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let catalogCategory of catalogCategories; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/catalog-category-fa', catalogCategory.id, 'view']">{{ catalogCategory.id }}</a>
+          </td>
+          <td>{{ catalogCategory.remoteId }}</td>
+          <td>{{ catalogCategory.name }}</td>
+          <td>{{ catalogCategory.accountingAccountNumber }}</td>
+          <td>{{ catalogCategory.usage }}</td>
+          <td>{{ catalogCategory.inactiv }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/catalog-category-fa', catalogCategory.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/catalog-category-fa', catalogCategory.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(catalogCategory)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

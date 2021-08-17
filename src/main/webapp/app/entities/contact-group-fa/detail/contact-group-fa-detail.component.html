@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contactGroup">
+      <h2 data-cy="contactGroupDetailsHeading"><span faTranslate="fastAdminApp.contactGroup.detail.title">Contact Group</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contactGroup.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactGroup.remoteId" [ngbTooltip]="'fastAdminApp.contactGroup.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactGroup.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactGroup.name" [ngbTooltip]="'fastAdminApp.contactGroup.help.name' | translate">Name</span>
+        </dt>
+        <dd>
+          <span>{{ contactGroup.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactGroup.usage" [ngbTooltip]="'fastAdminApp.contactGroup.help.usage' | translate">Usage</span>
+        </dt>
+        <dd>
+          <span>{{ contactGroup.usage }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact-group-fa', contactGroup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

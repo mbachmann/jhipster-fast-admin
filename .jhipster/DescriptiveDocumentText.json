@@ -1,0 +1,63 @@
+{
+  "name": "DescriptiveDocumentText",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "javadoc": "Document title text"
+    },
+    {
+      "fieldName": "introduction",
+      "fieldType": "String",
+      "javadoc": "Document introduction text"
+    },
+    {
+      "fieldName": "conditions",
+      "fieldType": "String",
+      "javadoc": "Document conditions text (z.B. Zahlungsbedinungen)"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "DocumentInvoiceTextStatus",
+      "javadoc": "for invoice only",
+      "fieldValues": "DEFAULT (D),PAYMENT_REMINDER (R),FIRST_REMINDER (R1),SECOND_REMINDER (R2),THIRD_REMINDER (R3),DEBT_COLLECTION (DC),RECEIPT (RE)"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "deliveryNote",
+      "otherEntityRelationshipName": "texts",
+      "relationshipName": "deliveryNote"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "invoice",
+      "otherEntityRelationshipName": "texts",
+      "relationshipName": "invoice"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "offer",
+      "otherEntityRelationshipName": "texts",
+      "relationshipName": "offer"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "orderConfirmation",
+      "otherEntityRelationshipName": "texts",
+      "relationshipName": "orderConfirmation"
+    }
+  ],
+  "entityTableName": "descriptive_document_text",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210817125504"
+}

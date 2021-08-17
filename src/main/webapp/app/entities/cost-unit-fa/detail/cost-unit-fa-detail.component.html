@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="costUnit">
+      <h2 data-cy="costUnitDetailsHeading"><span faTranslate="fastAdminApp.costUnit.detail.title">Cost Unit</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ costUnit.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.costUnit.remoteId" [ngbTooltip]="'fastAdminApp.costUnit.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ costUnit.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.costUnit.number" [ngbTooltip]="'fastAdminApp.costUnit.help.number' | translate">Number</span>
+        </dt>
+        <dd>
+          <span>{{ costUnit.number }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.costUnit.name" [ngbTooltip]="'fastAdminApp.costUnit.help.name' | translate">Name</span></dt>
+        <dd>
+          <span>{{ costUnit.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.costUnit.description" [ngbTooltip]="'fastAdminApp.costUnit.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ costUnit.description }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.costUnit.type" [ngbTooltip]="'fastAdminApp.costUnit.help.type' | translate">Type</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.CostUnitType.' + costUnit.type }}">{{ costUnit.type }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.costUnit.inactiv" [ngbTooltip]="'fastAdminApp.costUnit.help.inactiv' | translate">Inactiv</span>
+        </dt>
+        <dd>
+          <span>{{ costUnit.inactiv }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cost-unit-fa', costUnit.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

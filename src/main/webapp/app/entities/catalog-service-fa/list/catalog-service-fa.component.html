@@ -1,0 +1,168 @@
+<div>
+  <h2 id="page-heading" data-cy="CatalogServiceHeading">
+    <span faTranslate="fastAdminApp.catalogService.home.title">Catalog Services</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.catalogService.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-catalog-service-fa"
+        [routerLink]="['/catalog-service-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.catalogService.home.createLabel"> Create a new Catalog Service </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="catalogServices?.length === 0">
+    <span faTranslate="fastAdminApp.catalogService.home.notFound">No catalogServices found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="catalogServices && catalogServices.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.catalogService.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="number">
+            <span faTranslate="fastAdminApp.catalogService.number">Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="name">
+            <span faTranslate="fastAdminApp.catalogService.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="description">
+            <span faTranslate="fastAdminApp.catalogService.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="notes">
+            <span faTranslate="fastAdminApp.catalogService.notes">Notes</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="categoryName">
+            <span faTranslate="fastAdminApp.catalogService.categoryName">Category Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="includingVat">
+            <span faTranslate="fastAdminApp.catalogService.includingVat">Including Vat</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="vat"><span faTranslate="fastAdminApp.catalogService.vat">Vat</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="unitName">
+            <span faTranslate="fastAdminApp.catalogService.unitName">Unit Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="price">
+            <span faTranslate="fastAdminApp.catalogService.price">Price</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="defaultAmount">
+            <span faTranslate="fastAdminApp.catalogService.defaultAmount">Default Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="created">
+            <span faTranslate="fastAdminApp.catalogService.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.catalogService.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="category.id">
+            <span faTranslate="fastAdminApp.catalogService.category">Category</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="unit.id">
+            <span faTranslate="fastAdminApp.catalogService.unit">Unit</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="vat.id">
+            <span faTranslate="fastAdminApp.catalogService.vat">Vat</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let catalogService of catalogServices; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/catalog-service-fa', catalogService.id, 'view']">{{ catalogService.id }}</a>
+          </td>
+          <td>{{ catalogService.remoteId }}</td>
+          <td>{{ catalogService.number }}</td>
+          <td>{{ catalogService.name }}</td>
+          <td>{{ catalogService.description }}</td>
+          <td>{{ catalogService.notes }}</td>
+          <td>{{ catalogService.categoryName }}</td>
+          <td>{{ catalogService.includingVat }}</td>
+          <td>{{ catalogService.vat }}</td>
+          <td>{{ catalogService.unitName }}</td>
+          <td>{{ catalogService.price }}</td>
+          <td>{{ catalogService.defaultAmount }}</td>
+          <td>{{ catalogService.created | formatMediumDatetime }}</td>
+          <td>{{ catalogService.inactiv }}</td>
+          <td>
+            <div *ngIf="catalogService.category">
+              <a [routerLink]="['/catalog-category-fa', catalogService.category?.id, 'view']">{{ catalogService.category?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="catalogService.unit">
+              <a [routerLink]="['/catalog-unit-fa', catalogService.unit?.id, 'view']">{{ catalogService.unit?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="catalogService.vat">
+              <a [routerLink]="['/vat-fa', catalogService.vat?.id, 'view']">{{ catalogService.vat?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/catalog-service-fa', catalogService.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/catalog-service-fa', catalogService.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(catalogService)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="catalogServices && catalogServices.length > 0">
+    <div class="row justify-content-center">
+      <fa-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></fa-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

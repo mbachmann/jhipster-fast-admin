@@ -1,0 +1,176 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-descriptive-document-text-fa-heading"
+        data-cy="DescriptiveDocumentTextCreateUpdateHeading"
+        faTranslate="fastAdminApp.descriptiveDocumentText.home.createOrEditLabel"
+      >
+        Create or edit a Descriptive Document Text
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.descriptiveDocumentText.title"
+            for="field_title"
+            [ngbTooltip]="'fastAdminApp.descriptiveDocumentText.help.title' | translate"
+            >Title</label
+          >
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.descriptiveDocumentText.introduction"
+            for="field_introduction"
+            [ngbTooltip]="'fastAdminApp.descriptiveDocumentText.help.introduction' | translate"
+            >Introduction</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="introduction"
+            id="field_introduction"
+            data-cy="introduction"
+            formControlName="introduction"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.descriptiveDocumentText.conditions"
+            for="field_conditions"
+            [ngbTooltip]="'fastAdminApp.descriptiveDocumentText.help.conditions' | translate"
+            >Conditions</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="conditions"
+            id="field_conditions"
+            data-cy="conditions"
+            formControlName="conditions"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.descriptiveDocumentText.status"
+            for="field_status"
+            [ngbTooltip]="'fastAdminApp.descriptiveDocumentText.help.status' | translate"
+            >Status</label
+          >
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentInvoiceTextStatus.null' | translate }}</option>
+            <option value="DEFAULT">{{ 'fastAdminApp.DocumentInvoiceTextStatus.DEFAULT' | translate }}</option>
+            <option value="PAYMENT_REMINDER">{{ 'fastAdminApp.DocumentInvoiceTextStatus.PAYMENT_REMINDER' | translate }}</option>
+            <option value="FIRST_REMINDER">{{ 'fastAdminApp.DocumentInvoiceTextStatus.FIRST_REMINDER' | translate }}</option>
+            <option value="SECOND_REMINDER">{{ 'fastAdminApp.DocumentInvoiceTextStatus.SECOND_REMINDER' | translate }}</option>
+            <option value="THIRD_REMINDER">{{ 'fastAdminApp.DocumentInvoiceTextStatus.THIRD_REMINDER' | translate }}</option>
+            <option value="DEBT_COLLECTION">{{ 'fastAdminApp.DocumentInvoiceTextStatus.DEBT_COLLECTION' | translate }}</option>
+            <option value="RECEIPT">{{ 'fastAdminApp.DocumentInvoiceTextStatus.RECEIPT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.descriptiveDocumentText.deliveryNote" for="field_deliveryNote"
+            >Delivery Note</label
+          >
+          <select class="form-control" id="field_deliveryNote" data-cy="deliveryNote" name="deliveryNote" formControlName="deliveryNote">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                deliveryNoteOption.id === editForm.get('deliveryNote')!.value?.id ? editForm.get('deliveryNote')!.value : deliveryNoteOption
+              "
+              *ngFor="let deliveryNoteOption of deliveryNotesSharedCollection; trackBy: trackDeliveryNoteFaById"
+            >
+              {{ deliveryNoteOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.descriptiveDocumentText.invoice" for="field_invoice">Invoice</label>
+          <select class="form-control" id="field_invoice" data-cy="invoice" name="invoice" formControlName="invoice">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="invoiceOption.id === editForm.get('invoice')!.value?.id ? editForm.get('invoice')!.value : invoiceOption"
+              *ngFor="let invoiceOption of invoicesSharedCollection; trackBy: trackInvoiceFaById"
+            >
+              {{ invoiceOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.descriptiveDocumentText.offer" for="field_offer">Offer</label>
+          <select class="form-control" id="field_offer" data-cy="offer" name="offer" formControlName="offer">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="offerOption.id === editForm.get('offer')!.value?.id ? editForm.get('offer')!.value : offerOption"
+              *ngFor="let offerOption of offersSharedCollection; trackBy: trackOfferFaById"
+            >
+              {{ offerOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.descriptiveDocumentText.orderConfirmation"
+            for="field_orderConfirmation"
+            >Order Confirmation</label
+          >
+          <select
+            class="form-control"
+            id="field_orderConfirmation"
+            data-cy="orderConfirmation"
+            name="orderConfirmation"
+            formControlName="orderConfirmation"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                orderConfirmationOption.id === editForm.get('orderConfirmation')!.value?.id
+                  ? editForm.get('orderConfirmation')!.value
+                  : orderConfirmationOption
+              "
+              *ngFor="let orderConfirmationOption of orderConfirmationsSharedCollection; trackBy: trackOrderConfirmationFaById"
+            >
+              {{ orderConfirmationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

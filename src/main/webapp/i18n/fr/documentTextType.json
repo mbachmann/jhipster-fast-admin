@@ -1,0 +1,9 @@
+{
+  "fastAdminApp": {
+    "DocumentTextType": {
+      "null": "",
+      "DOCUMENT": "D",
+      "EMAIL": "E"
+    }
+  }
+}

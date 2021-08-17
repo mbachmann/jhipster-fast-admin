@@ -1,0 +1,455 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-contact-person-fa-heading"
+        data-cy="ContactPersonCreateUpdateHeading"
+        faTranslate="fastAdminApp.contactPerson.home.createOrEditLabel"
+      >
+        Create or edit a Contact Person
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.defaultPerson"
+            for="field_defaultPerson"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.defaultPerson' | translate"
+            >Default Person</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultPerson"
+            id="field_defaultPerson"
+            data-cy="defaultPerson"
+            formControlName="defaultPerson"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.surname"
+            for="field_surname"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.surname' | translate"
+            >Surname</label
+          >
+          <input type="text" class="form-control" name="surname" id="field_surname" data-cy="surname" formControlName="surname" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.gender"
+            for="field_gender"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.gender' | translate"
+            >Gender</label
+          >
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'fastAdminApp.GenderType.null' | translate }}</option>
+            <option value="MALE">{{ 'fastAdminApp.GenderType.MALE' | translate }}</option>
+            <option value="FEMALE">{{ 'fastAdminApp.GenderType.FEMALE' | translate }}</option>
+            <option value="OTHER">{{ 'fastAdminApp.GenderType.OTHER' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.email"
+            for="field_email"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.email' | translate"
+            >Email</label
+          >
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.phone"
+            for="field_phone"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.phone' | translate"
+            >Phone</label
+          >
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.department"
+            for="field_department"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.department' | translate"
+            >Department</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="department"
+            id="field_department"
+            data-cy="department"
+            formControlName="department"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.salutation"
+            for="field_salutation"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.salutation' | translate"
+            >Salutation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="salutation"
+            id="field_salutation"
+            data-cy="salutation"
+            formControlName="salutation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.showTitle"
+            for="field_showTitle"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.showTitle' | translate"
+            >Show Title</label
+          >
+          <input type="checkbox" class="form-check" name="showTitle" id="field_showTitle" data-cy="showTitle" formControlName="showTitle" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.showDepartment"
+            for="field_showDepartment"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.showDepartment' | translate"
+            >Show Department</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="showDepartment"
+            id="field_showDepartment"
+            data-cy="showDepartment"
+            formControlName="showDepartment"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.wantsNewsletter"
+            for="field_wantsNewsletter"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.wantsNewsletter' | translate"
+            >Wants Newsletter</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="wantsNewsletter"
+            id="field_wantsNewsletter"
+            data-cy="wantsNewsletter"
+            formControlName="wantsNewsletter"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.birthDate"
+            for="field_birthDate"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.birthDate' | translate"
+            >Birth Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_birthDate"
+              data-cy="birthDate"
+              type="text"
+              class="form-control"
+              name="birthDate"
+              ngbDatepicker
+              #birthDateDp="ngbDatepicker"
+              formControlName="birthDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.birthPlace"
+            for="field_birthPlace"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.birthPlace' | translate"
+            >Birth Place</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="birthPlace"
+            id="field_birthPlace"
+            data-cy="birthPlace"
+            formControlName="birthPlace"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.placeOfOrigin"
+            for="field_placeOfOrigin"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.placeOfOrigin' | translate"
+            >Place Of Origin</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="placeOfOrigin"
+            id="field_placeOfOrigin"
+            data-cy="placeOfOrigin"
+            formControlName="placeOfOrigin"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.citizenCountry1"
+            for="field_citizenCountry1"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.citizenCountry1' | translate"
+            >Citizen Country 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="citizenCountry1"
+            id="field_citizenCountry1"
+            data-cy="citizenCountry1"
+            formControlName="citizenCountry1"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.citizenCountry2"
+            for="field_citizenCountry2"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.citizenCountry2' | translate"
+            >Citizen Country 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="citizenCountry2"
+            id="field_citizenCountry2"
+            data-cy="citizenCountry2"
+            formControlName="citizenCountry2"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.socialSecurityNumber"
+            for="field_socialSecurityNumber"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.socialSecurityNumber' | translate"
+            >Social Security Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="socialSecurityNumber"
+            id="field_socialSecurityNumber"
+            data-cy="socialSecurityNumber"
+            formControlName="socialSecurityNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.hobbies"
+            for="field_hobbies"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.hobbies' | translate"
+            >Hobbies</label
+          >
+          <input type="text" class="form-control" name="hobbies" id="field_hobbies" data-cy="hobbies" formControlName="hobbies" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.dailyWork"
+            for="field_dailyWork"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.dailyWork' | translate"
+            >Daily Work</label
+          >
+          <input type="text" class="form-control" name="dailyWork" id="field_dailyWork" data-cy="dailyWork" formControlName="dailyWork" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.contactAttribute01"
+            for="field_contactAttribute01"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.contactAttribute01' | translate"
+            >Contact Attribute 01</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactAttribute01"
+            id="field_contactAttribute01"
+            data-cy="contactAttribute01"
+            formControlName="contactAttribute01"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.avatar"
+            for="field_avatar"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.avatar' | translate"
+            >Avatar</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('avatarContentType')!.value + ';base64,' + editForm.get('avatar')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('avatar')!.value"
+              alt="contactPerson image"
+            />
+            <div *ngIf="editForm.get('avatar')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('avatarContentType')!.value }}, {{ byteSize(editForm.get('avatar')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('avatar', 'avatarContentType', 'file_avatar')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_avatar"
+              data-cy="avatar"
+              (change)="setFileData($event, 'avatar', true)"
+              accept="image/*"
+              faTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="avatar" id="field_avatar" data-cy="avatar" formControlName="avatar" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="avatarContentType"
+            id="field_avatarContentType"
+            formControlName="avatarContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.imageType"
+            for="field_imageType"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.imageType' | translate"
+            >Image Type</label
+          >
+          <input type="text" class="form-control" name="imageType" id="field_imageType" data-cy="imageType" formControlName="imageType" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.contactPerson.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.contactPerson.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.contactPerson.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactFaById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

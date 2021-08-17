@@ -1,0 +1,114 @@
+<div>
+  <h2 id="page-heading" data-cy="OwnerHeading">
+    <span faTranslate="fastAdminApp.owner.home.title">Owners</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.owner.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-owner-fa"
+        [routerLink]="['/owner-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.owner.home.createLabel"> Create a new Owner </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="owners?.length === 0">
+    <span faTranslate="fastAdminApp.owner.home.notFound">No owners found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="owners && owners.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.remoteId">Remote Id</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.name">Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.surname">Surname</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.email">Email</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.language">Language</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyName">Company Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyAddition">Company Addition</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyCountry">Company Country</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyStreet">Company Street</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyStreetNo">Company Street No</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyStreet2">Company Street 2</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyPostcode">Company Postcode</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyCity">Company City</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyPhone">Company Phone</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyFax">Company Fax</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyEmail">Company Email</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyWebsite">Company Website</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyVatId">Company Vat Id</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.owner.companyCurrency">Company Currency</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let owner of owners; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/owner-fa', owner.id, 'view']">{{ owner.id }}</a>
+          </td>
+          <td>{{ owner.remoteId }}</td>
+          <td>{{ owner.name }}</td>
+          <td>{{ owner.surname }}</td>
+          <td>{{ owner.email }}</td>
+          <td faTranslate="{{ 'fastAdminApp.CompanyLanguage.' + owner.language }}">{{ owner.language }}</td>
+          <td>{{ owner.companyName }}</td>
+          <td>{{ owner.companyAddition }}</td>
+          <td faTranslate="{{ 'fastAdminApp.Country.' + owner.companyCountry }}">{{ owner.companyCountry }}</td>
+          <td>{{ owner.companyStreet }}</td>
+          <td>{{ owner.companyStreetNo }}</td>
+          <td>{{ owner.companyStreet2 }}</td>
+          <td>{{ owner.companyPostcode }}</td>
+          <td>{{ owner.companyCity }}</td>
+          <td>{{ owner.companyPhone }}</td>
+          <td>{{ owner.companyFax }}</td>
+          <td>{{ owner.companyEmail }}</td>
+          <td>{{ owner.companyWebsite }}</td>
+          <td>{{ owner.companyVatId }}</td>
+          <td faTranslate="{{ 'fastAdminApp.CompanyCurrency.' + owner.companyCurrency }}">{{ owner.companyCurrency }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/owner-fa', owner.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/owner-fa', owner.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(owner)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<div>
+  <h2 id="page-heading" data-cy="FreeTextHeading">
+    <span faTranslate="fastAdminApp.freeText.home.title">Free Texts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.freeText.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-free-text-fa"
+        [routerLink]="['/free-text-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.freeText.home.createLabel"> Create a new Free Text </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="freeTexts?.length === 0">
+    <span faTranslate="fastAdminApp.freeText.home.notFound">No freeTexts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="freeTexts && freeTexts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.freeText.text">Text</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.freeText.fontSize">Font Size</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.freeText.positionX">Position X</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.freeText.positionY">Position Y</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.freeText.pageNo">Page No</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.freeText.language">Language</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let freeText of freeTexts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/free-text-fa', freeText.id, 'view']">{{ freeText.id }}</a>
+          </td>
+          <td>{{ freeText.text }}</td>
+          <td>{{ freeText.fontSize }}</td>
+          <td>{{ freeText.positionX }}</td>
+          <td>{{ freeText.positionY }}</td>
+          <td>{{ freeText.pageNo }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + freeText.language }}">{{ freeText.language }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/free-text-fa', freeText.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/free-text-fa', freeText.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(freeText)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

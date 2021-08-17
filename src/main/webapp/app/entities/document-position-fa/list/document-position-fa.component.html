@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="DocumentPositionHeading">
+    <span faTranslate="fastAdminApp.documentPosition.home.title">Document Positions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.documentPosition.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-document-position-fa"
+        [routerLink]="['/document-position-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.documentPosition.home.createLabel"> Create a new Document Position </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="documentPositions?.length === 0">
+    <span faTranslate="fastAdminApp.documentPosition.home.notFound">No documentPositions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="documentPositions && documentPositions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.type">Type</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.catalogType">Catalog Type</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.number">Number</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.name">Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.description">Description</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.price">Price</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.vat">Vat</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.amount">Amount</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.discountRate">Discount Rate</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.discountType">Discount Type</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.total">Total</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.showOnlyTotal">Show Only Total</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.unit">Unit</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.deliveryNote">Delivery Note</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.invoice">Invoice</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.offer">Offer</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentPosition.orderConfirmation">Order Confirmation</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let documentPosition of documentPositions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/document-position-fa', documentPosition.id, 'view']">{{ documentPosition.id }}</a>
+          </td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentPositionType.' + documentPosition.type }}">{{ documentPosition.type }}</td>
+          <td faTranslate="{{ 'fastAdminApp.CatalogScope.' + documentPosition.catalogType }}">{{ documentPosition.catalogType }}</td>
+          <td>{{ documentPosition.number }}</td>
+          <td>{{ documentPosition.name }}</td>
+          <td>{{ documentPosition.description }}</td>
+          <td>{{ documentPosition.price }}</td>
+          <td>{{ documentPosition.vat }}</td>
+          <td>{{ documentPosition.amount }}</td>
+          <td>{{ documentPosition.discountRate }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DiscountType.' + documentPosition.discountType }}">{{ documentPosition.discountType }}</td>
+          <td>{{ documentPosition.total }}</td>
+          <td>{{ documentPosition.showOnlyTotal }}</td>
+          <td>
+            <div *ngIf="documentPosition.unit">
+              <a [routerLink]="['/catalog-unit-fa', documentPosition.unit?.id, 'view']">{{ documentPosition.unit?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentPosition.deliveryNote">
+              <a [routerLink]="['/delivery-note-fa', documentPosition.deliveryNote?.id, 'view']">{{ documentPosition.deliveryNote?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentPosition.invoice">
+              <a [routerLink]="['/invoice-fa', documentPosition.invoice?.id, 'view']">{{ documentPosition.invoice?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentPosition.offer">
+              <a [routerLink]="['/offer-fa', documentPosition.offer?.id, 'view']">{{ documentPosition.offer?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentPosition.orderConfirmation">
+              <a [routerLink]="['/order-confirmation-fa', documentPosition.orderConfirmation?.id, 'view']">{{
+                documentPosition.orderConfirmation?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/document-position-fa', documentPosition.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/document-position-fa', documentPosition.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(documentPosition)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

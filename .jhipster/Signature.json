@@ -1,0 +1,53 @@
+{
+  "name": "Signature",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "signatureImage",
+      "fieldType": "byte[]",
+      "javadoc": "the image of the signature",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "width",
+      "fieldType": "Integer",
+      "javadoc": "the width of the signature"
+    },
+    {
+      "fieldName": "heigth",
+      "fieldType": "Integer",
+      "javadoc": "the height of the signature"
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String",
+      "javadoc": "the user name of this signature"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "signature",
+      "javadoc": "the signature belongs to the application user",
+      "relationshipName": "applicationUser"
+    }
+  ],
+  "javadoc": "User Signatures for documents",
+  "entityTableName": "signature",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210817125501"
+}

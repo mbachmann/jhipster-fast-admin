@@ -1,0 +1,12 @@
+{
+  "fastAdminApp": {
+    "IsrType": {
+      "null": "",
+      "RIS": "RIS",
+      "IBAN": "IBAN",
+      "ISR": "ISR",
+      "QR": "QR",
+      "QRREF": "QRREF"
+    }
+  }
+}

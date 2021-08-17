@@ -1,0 +1,90 @@
+<div>
+  <h2 id="page-heading" data-cy="DocumentInvoiceWorkflowHeading">
+    <span faTranslate="fastAdminApp.documentInvoiceWorkflow.home.title">Document Invoice Workflows</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.documentInvoiceWorkflow.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-document-invoice-workflow-fa"
+        [routerLink]="['/document-invoice-workflow-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.documentInvoiceWorkflow.home.createLabel"> Create a new Document Invoice Workflow </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="documentInvoiceWorkflows?.length === 0">
+    <span faTranslate="fastAdminApp.documentInvoiceWorkflow.home.notFound">No documentInvoiceWorkflows found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="documentInvoiceWorkflows && documentInvoiceWorkflows.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentInvoiceWorkflow.active">Active</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentInvoiceWorkflow.status">Status</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentInvoiceWorkflow.overdueDays">Overdue Days</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentInvoiceWorkflow.action">Action</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentInvoiceWorkflow.contactEmail">Contact Email</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentInvoiceWorkflow.speed">Speed</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let documentInvoiceWorkflow of documentInvoiceWorkflows; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/document-invoice-workflow-fa', documentInvoiceWorkflow.id, 'view']">{{ documentInvoiceWorkflow.id }}</a>
+          </td>
+          <td>{{ documentInvoiceWorkflow.active }}</td>
+          <td faTranslate="{{ 'fastAdminApp.InvoiceWorkflowStatus.' + documentInvoiceWorkflow.status }}">
+            {{ documentInvoiceWorkflow.status }}
+          </td>
+          <td>{{ documentInvoiceWorkflow.overdueDays }}</td>
+          <td faTranslate="{{ 'fastAdminApp.WorkflowAction.' + documentInvoiceWorkflow.action }}">{{ documentInvoiceWorkflow.action }}</td>
+          <td>{{ documentInvoiceWorkflow.contactEmail }}</td>
+          <td faTranslate="{{ 'fastAdminApp.PostSpeed.' + documentInvoiceWorkflow.speed }}">{{ documentInvoiceWorkflow.speed }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/document-invoice-workflow-fa', documentInvoiceWorkflow.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/document-invoice-workflow-fa', documentInvoiceWorkflow.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(documentInvoiceWorkflow)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

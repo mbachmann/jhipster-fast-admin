@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="documentFreeText">
+      <h2 data-cy="documentFreeTextDetailsHeading">
+        <span faTranslate="fastAdminApp.documentFreeText.detail.title">Document Free Text</span>
+      </h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ documentFreeText.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentFreeText.text" [ngbTooltip]="'fastAdminApp.documentFreeText.help.text' | translate"
+            >Text</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentFreeText.text }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentFreeText.fontSize"
+            [ngbTooltip]="'fastAdminApp.documentFreeText.help.fontSize' | translate"
+            >Font Size</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentFreeText.fontSize }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentFreeText.positionX"
+            [ngbTooltip]="'fastAdminApp.documentFreeText.help.positionX' | translate"
+            >Position X</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentFreeText.positionX }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentFreeText.positionY"
+            [ngbTooltip]="'fastAdminApp.documentFreeText.help.positionY' | translate"
+            >Position Y</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentFreeText.positionY }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentFreeText.pageNo" [ngbTooltip]="'fastAdminApp.documentFreeText.help.pageNo' | translate"
+            >Page No</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentFreeText.pageNo }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentFreeText.documentLetter">Document Letter</span></dt>
+        <dd>
+          <div *ngIf="documentFreeText.documentLetter">
+            <a [routerLink]="['/document-letter-fa', documentFreeText.documentLetter?.id, 'view']">{{
+              documentFreeText.documentLetter?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentFreeText.deliveryNote">Delivery Note</span></dt>
+        <dd>
+          <div *ngIf="documentFreeText.deliveryNote">
+            <a [routerLink]="['/delivery-note-fa', documentFreeText.deliveryNote?.id, 'view']">{{ documentFreeText.deliveryNote?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentFreeText.invoice">Invoice</span></dt>
+        <dd>
+          <div *ngIf="documentFreeText.invoice">
+            <a [routerLink]="['/invoice-fa', documentFreeText.invoice?.id, 'view']">{{ documentFreeText.invoice?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentFreeText.offer">Offer</span></dt>
+        <dd>
+          <div *ngIf="documentFreeText.offer">
+            <a [routerLink]="['/offer-fa', documentFreeText.offer?.id, 'view']">{{ documentFreeText.offer?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.documentFreeText.orderConfirmation">Order Confirmation</span></dt>
+        <dd>
+          <div *ngIf="documentFreeText.orderConfirmation">
+            <a [routerLink]="['/order-confirmation-fa', documentFreeText.orderConfirmation?.id, 'view']">{{
+              documentFreeText.orderConfirmation?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/document-free-text-fa', documentFreeText.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

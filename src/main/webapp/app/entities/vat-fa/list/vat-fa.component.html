@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="VatHeading">
+    <span faTranslate="fastAdminApp.vat.home.title">Vats</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.vat.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-vat-fa"
+        [routerLink]="['/vat-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.vat.home.createLabel"> Create a new Vat </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="vats?.length === 0">
+    <span faTranslate="fastAdminApp.vat.home.notFound">No vats found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="vats && vats.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="name"><span faTranslate="fastAdminApp.vat.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="vatType">
+            <span faTranslate="fastAdminApp.vat.vatType">Vat Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="validFrom">
+            <span faTranslate="fastAdminApp.vat.validFrom">Valid From</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="validUntil">
+            <span faTranslate="fastAdminApp.vat.validUntil">Valid Until</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="vatPercent">
+            <span faTranslate="fastAdminApp.vat.vatPercent">Vat Percent</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.vat.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="newVatId">
+            <span faTranslate="fastAdminApp.vat.newVatId">New Vat Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let vat of vats; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/vat-fa', vat.id, 'view']">{{ vat.id }}</a>
+          </td>
+          <td>{{ vat.name }}</td>
+          <td faTranslate="{{ 'fastAdminApp.VatType.' + vat.vatType }}">{{ vat.vatType }}</td>
+          <td>{{ vat.validFrom | formatMediumDate }}</td>
+          <td>{{ vat.validUntil | formatMediumDate }}</td>
+          <td>{{ vat.vatPercent }}</td>
+          <td>{{ vat.inactiv }}</td>
+          <td>{{ vat.newVatId }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/vat-fa', vat.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/vat-fa', vat.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(vat)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

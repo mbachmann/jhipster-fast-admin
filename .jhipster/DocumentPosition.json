@@ -1,0 +1,113 @@
+{
+  "name": "DocumentPosition",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "DocumentPositionType",
+      "javadoc": "position type; possible values: N - normal, T - text, PB - page break, H - header, SI - subtotal (incremental), SNI - subtotal (non incremental)",
+      "fieldValues": "NORMAL (N),TEXT (T),PAGE_BREAK (PB),HEADER (H),SUBTOTAL_INCREMENTAL (SI),SUBTOTAL_NON_INCREMENTAL (SNI)"
+    },
+    {
+      "fieldName": "catalogType",
+      "fieldType": "CatalogScope",
+      "javadoc": "position catalog type; possible values: P - product, S - service",
+      "fieldValues": "SERVICE (S),PRODUCT (P),ALL (A)"
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "catalog unique number"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "position name"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "javadoc": "position description"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double",
+      "javadoc": "price per unit; required for N type"
+    },
+    {
+      "fieldName": "vat",
+      "fieldType": "Double",
+      "javadoc": "VAT rate; required for N type"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "Double",
+      "javadoc": "amount; required for N type"
+    },
+    {
+      "fieldName": "discountRate",
+      "fieldType": "Double",
+      "javadoc": "optional discount rate"
+    },
+    {
+      "fieldName": "discountType",
+      "fieldType": "DiscountType",
+      "javadoc": "optional discount type; possible values:A - amount, P - percentage",
+      "fieldValues": "IN_PERCENT (P),AMOUNT (A)"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Double",
+      "javadoc": "total price"
+    },
+    {
+      "fieldName": "showOnlyTotal",
+      "fieldType": "Boolean",
+      "javadoc": "whether to show only total on invoice"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "catalogUnit",
+      "otherEntityRelationshipName": "documentPosition",
+      "javadoc": "the related catalog unit",
+      "relationshipName": "unit"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "deliveryNote",
+      "otherEntityRelationshipName": "positions",
+      "relationshipName": "deliveryNote"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "invoice",
+      "otherEntityRelationshipName": "positions",
+      "relationshipName": "invoice"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "offer",
+      "otherEntityRelationshipName": "positions",
+      "relationshipName": "offer"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "orderConfirmation",
+      "otherEntityRelationshipName": "positions",
+      "relationshipName": "orderConfirmation"
+    }
+  ],
+  "javadoc": "the document position",
+  "entityTableName": "document_position",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210817125503"
+}

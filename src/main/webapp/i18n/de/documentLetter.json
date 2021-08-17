@@ -1,0 +1,52 @@
+{
+  "fastAdminApp": {
+    "documentLetter": {
+      "home": {
+        "title": "Document Letters",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Document Letter erstellen",
+        "createOrEditLabel": "Document Letter erstellen oder bearbeiten",
+        "notFound": "Keine Document Letters gefunden"
+      },
+      "created": "Document Letter erstellt mit ID {{ param }}",
+      "updated": "Document Letter aktualisiert mit ID {{ param }}",
+      "deleted": "Document Letter gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Document Letter {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Document Letter"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "contactName": "Contact Name",
+      "date": "Date",
+      "title": "Title",
+      "content": "Content",
+      "language": "Language",
+      "pageAmount": "Page Amount",
+      "notes": "Notes",
+      "status": "Status",
+      "created": "Created",
+      "customFields": "Custom Fields",
+      "freeTexts": "Free Texts",
+      "contact": "Contact",
+      "contactAddress": "Contact Address",
+      "contactPerson": "Contact Person",
+      "contactPrePageAddress": "Contact Pre Page Address",
+      "layout": "Layout",
+      "layout": "Layout",
+      "help": {
+        "remoteId": "id of a remote system",
+        "contactName": "name of a contact",
+        "date": "date of the letter",
+        "title": "title of the document",
+        "content": "content of the document",
+        "language": "language; possible values: de, en, es, fr, it ,",
+        "pageAmount": "how many pages the document has",
+        "notes": "optional notes",
+        "status": "status of letter, possible values: DR - draft, S - sent, D - deleted (but still visible)"
+      }
+    }
+  }
+}

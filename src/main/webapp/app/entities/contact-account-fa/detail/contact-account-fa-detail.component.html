@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contactAccount">
+      <h2 data-cy="contactAccountDetailsHeading"><span faTranslate="fastAdminApp.contactAccount.detail.title">Contact Account</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contactAccount.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAccount.remoteId" [ngbTooltip]="'fastAdminApp.contactAccount.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAccount.remoteId }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactAccount.defaultAccount"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.defaultAccount' | translate"
+            >Default Account</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAccount.defaultAccount }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAccount.type" [ngbTooltip]="'fastAdminApp.contactAccount.help.type' | translate"
+            >Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.AccountType.' + contactAccount.type }}">{{ contactAccount.type }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAccount.number" [ngbTooltip]="'fastAdminApp.contactAccount.help.number' | translate"
+            >Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAccount.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAccount.bic" [ngbTooltip]="'fastAdminApp.contactAccount.help.bic' | translate">Bic</span>
+        </dt>
+        <dd>
+          <span>{{ contactAccount.bic }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.contactAccount.description"
+            [ngbTooltip]="'fastAdminApp.contactAccount.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAccount.description }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.contactAccount.inactiv" [ngbTooltip]="'fastAdminApp.contactAccount.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ contactAccount.inactiv }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.contactAccount.contact">Contact</span></dt>
+        <dd>
+          <div *ngIf="contactAccount.contact">
+            <a [routerLink]="['/contact-fa', contactAccount.contact?.id, 'view']">{{ contactAccount.contact?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contact-account-fa', contactAccount.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

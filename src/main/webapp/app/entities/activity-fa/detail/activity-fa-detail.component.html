@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="activity">
+      <h2 data-cy="activityDetailsHeading"><span faTranslate="fastAdminApp.activity.detail.title">Activity</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ activity.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.activity.remoteId" [ngbTooltip]="'fastAdminApp.activity.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ activity.remoteId }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.activity.name" [ngbTooltip]="'fastAdminApp.activity.help.name' | translate">Name</span></dt>
+        <dd>
+          <span>{{ activity.name }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.activity.useServicePrice" [ngbTooltip]="'fastAdminApp.activity.help.useServicePrice' | translate"
+            >Use Service Price</span
+          >
+        </dt>
+        <dd>
+          <span>{{ activity.useServicePrice }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.activity.inactiv" [ngbTooltip]="'fastAdminApp.activity.help.inactiv' | translate">Inactiv</span>
+        </dt>
+        <dd>
+          <span>{{ activity.inactiv }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.activity.activity">Activity</span></dt>
+        <dd>
+          <div *ngIf="activity.activity">
+            <a [routerLink]="['/catalog-service-fa', activity.activity?.id, 'view']">{{ activity.activity?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/activity-fa', activity.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

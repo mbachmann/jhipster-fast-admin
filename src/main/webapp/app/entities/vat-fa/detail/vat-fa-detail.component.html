@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="vat">
+      <h2 data-cy="vatDetailsHeading"><span faTranslate="fastAdminApp.vat.detail.title">Vat</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ vat.id }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.vat.name" [ngbTooltip]="'fastAdminApp.vat.help.name' | translate">Name</span></dt>
+        <dd>
+          <span>{{ vat.name }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.vat.vatType" [ngbTooltip]="'fastAdminApp.vat.help.vatType' | translate">Vat Type</span></dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.VatType.' + vat.vatType }}">{{ vat.vatType }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.vat.validFrom" [ngbTooltip]="'fastAdminApp.vat.help.validFrom' | translate">Valid From</span>
+        </dt>
+        <dd>
+          <span>{{ vat.validFrom | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.vat.validUntil" [ngbTooltip]="'fastAdminApp.vat.help.validUntil' | translate">Valid Until</span>
+        </dt>
+        <dd>
+          <span>{{ vat.validUntil | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.vat.vatPercent" [ngbTooltip]="'fastAdminApp.vat.help.vatPercent' | translate">Vat Percent</span>
+        </dt>
+        <dd>
+          <span>{{ vat.vatPercent }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.vat.inactiv" [ngbTooltip]="'fastAdminApp.vat.help.inactiv' | translate">Inactiv</span></dt>
+        <dd>
+          <span>{{ vat.inactiv }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.vat.newVatId" [ngbTooltip]="'fastAdminApp.vat.help.newVatId' | translate">New Vat Id</span></dt>
+        <dd>
+          <span>{{ vat.newVatId }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/vat-fa', vat.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

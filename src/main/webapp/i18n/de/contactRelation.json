@@ -1,0 +1,28 @@
+{
+  "fastAdminApp": {
+    "contactRelation": {
+      "home": {
+        "title": "Contact Relations",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Contact Relation erstellen",
+        "createOrEditLabel": "Contact Relation erstellen oder bearbeiten",
+        "notFound": "Keine Contact Relations gefunden"
+      },
+      "created": "Contact Relation erstellt mit ID {{ param }}",
+      "updated": "Contact Relation aktualisiert mit ID {{ param }}",
+      "deleted": "Contact Relation gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Contact Relation {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Contact Relation"
+      },
+      "id": "ID",
+      "contactRelationType": "Contact Relation Type",
+      "contacts": "Contacts",
+      "help": {
+        "contactRelationType": "type of contact&#39;s relation; possible values: type of contact&#39;s relation; possible values: CL - Customer, CR - Creditor, TE - TEAM, OF - Authorities (Behörden), ME - Medical, OT - Others"
+      }
+    }
+  }
+}

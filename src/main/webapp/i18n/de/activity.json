@@ -1,0 +1,34 @@
+{
+  "fastAdminApp": {
+    "activity": {
+      "home": {
+        "title": "Activities",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Activity erstellen",
+        "createOrEditLabel": "Activity erstellen oder bearbeiten",
+        "notFound": "Keine Activities gefunden"
+      },
+      "created": "Activity erstellt mit ID {{ param }}",
+      "updated": "Activity aktualisiert mit ID {{ param }}",
+      "deleted": "Activity gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Activity {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Activity"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "name": "Name",
+      "useServicePrice": "Use Service Price",
+      "inactiv": "Inactiv",
+      "activity": "Activity",
+      "help": {
+        "remoteId": "id of a remote system",
+        "name": "name of activity eg. Consulting",
+        "useServicePrice": "use price defined in service catalog",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

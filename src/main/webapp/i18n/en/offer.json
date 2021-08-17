@@ -1,0 +1,71 @@
+{
+  "fastAdminApp": {
+    "offer": {
+      "home": {
+        "title": "Offers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Offer",
+        "createOrEditLabel": "Create or edit a Offer",
+        "notFound": "No Offers found"
+      },
+      "created": "A new Offer is created with identifier {{ param }}",
+      "updated": "A Offer is updated with identifier {{ param }}",
+      "deleted": "A Offer is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Offer {{ id }}?"
+      },
+      "detail": {
+        "title": "Offer"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "number": "Number",
+      "contactName": "Contact Name",
+      "date": "Date",
+      "validUntil": "Valid Until",
+      "periodText": "Period Text",
+      "currency": "Currency",
+      "total": "Total",
+      "vatIncluded": "Vat Included",
+      "discountRate": "Discount Rate",
+      "discountType": "Discount Type",
+      "acceptOnline": "Accept Online",
+      "acceptOnlineUrl": "Accept Online Url",
+      "acceptOnlineStatus": "Accept Online Status",
+      "language": "Language",
+      "pageAmount": "Page Amount",
+      "notes": "Notes",
+      "status": "Status",
+      "created": "Created",
+      "freeTexts": "Free Texts",
+      "texts": "Texts",
+      "positions": "Positions",
+      "contact": "Contact",
+      "contactAddress": "Contact Address",
+      "contactPerson": "Contact Person",
+      "contactPrePageAddress": "Contact Pre Page Address",
+      "layout": "Layout",
+      "layout": "Layout",
+      "help": {
+        "remoteId": "id of a remote system",
+        "number": "document number",
+        "contactName": "name of a contact",
+        "date": "date of the document",
+        "validUntil": "date that offer is valid until",
+        "periodText": "service/delivery",
+        "currency": "currency (e.g. CHF, EUR)",
+        "total": "total amount of the delivery note",
+        "vatIncluded": "whether prices in delivery note include VAT",
+        "discountRate": "optional discount rate",
+        "discountType": "optional discount type; possible values: A - amount, P - in %",
+        "acceptOnline": "whether offer can be accepted online",
+        "acceptOnlineUrl": "generated URL for accepting the offer online",
+        "acceptOnlineStatus": "status of offer&#39;s acceptance; possible values: A - accepted, D - declined, U - unknown",
+        "language": "language; possible values: de, en, es, fr, it ,",
+        "pageAmount": "how many pages the document has",
+        "notes": "optional notes",
+        "status": "status of offer, possible values: DR - draft, S - sent, DE - declined, A - accepted, B - billed, D - deleted (but still visible)"
+      }
+    }
+  }
+}

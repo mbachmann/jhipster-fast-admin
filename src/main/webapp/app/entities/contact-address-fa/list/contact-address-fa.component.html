@@ -1,0 +1,128 @@
+<div>
+  <h2 id="page-heading" data-cy="ContactAddressHeading">
+    <span faTranslate="fastAdminApp.contactAddress.home.title">Contact Addresses</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.contactAddress.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contact-address-fa"
+        [routerLink]="['/contact-address-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.contactAddress.home.createLabel"> Create a new Contact Address </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contactAddresses?.length === 0">
+    <span faTranslate="fastAdminApp.contactAddress.home.notFound">No contactAddresses found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="contactAddresses && contactAddresses.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.contactAddress.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="defaultAddress">
+            <span faTranslate="fastAdminApp.contactAddress.defaultAddress">Default Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="country">
+            <span faTranslate="fastAdminApp.contactAddress.country">Country</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="street">
+            <span faTranslate="fastAdminApp.contactAddress.street">Street</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="streetNo">
+            <span faTranslate="fastAdminApp.contactAddress.streetNo">Street No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="street2">
+            <span faTranslate="fastAdminApp.contactAddress.street2">Street 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="postcode">
+            <span faTranslate="fastAdminApp.contactAddress.postcode">Postcode</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="city">
+            <span faTranslate="fastAdminApp.contactAddress.city">City</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="hideOnDocuments">
+            <span faTranslate="fastAdminApp.contactAddress.hideOnDocuments">Hide On Documents</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="defaultPrepage">
+            <span faTranslate="fastAdminApp.contactAddress.defaultPrepage">Default Prepage</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.contactAddress.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contact.id">
+            <span faTranslate="fastAdminApp.contactAddress.contact">Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let contactAddress of contactAddresses; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contact-address-fa', contactAddress.id, 'view']">{{ contactAddress.id }}</a>
+          </td>
+          <td>{{ contactAddress.remoteId }}</td>
+          <td>{{ contactAddress.defaultAddress }}</td>
+          <td faTranslate="{{ 'fastAdminApp.Country.' + contactAddress.country }}">{{ contactAddress.country }}</td>
+          <td>{{ contactAddress.street }}</td>
+          <td>{{ contactAddress.streetNo }}</td>
+          <td>{{ contactAddress.street2 }}</td>
+          <td>{{ contactAddress.postcode }}</td>
+          <td>{{ contactAddress.city }}</td>
+          <td>{{ contactAddress.hideOnDocuments }}</td>
+          <td>{{ contactAddress.defaultPrepage }}</td>
+          <td>{{ contactAddress.inactiv }}</td>
+          <td>
+            <div *ngIf="contactAddress.contact">
+              <a [routerLink]="['/contact-fa', contactAddress.contact?.id, 'view']">{{ contactAddress.contact?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contact-address-fa', contactAddress.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contact-address-fa', contactAddress.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contactAddress)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

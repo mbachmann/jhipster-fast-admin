@@ -1,0 +1,165 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="fa-signature-fa-heading" data-cy="SignatureCreateUpdateHeading" faTranslate="fastAdminApp.signature.home.createOrEditLabel">
+        Create or edit a Signature
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.signature.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.signature.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.signature.signatureImage"
+            for="field_signatureImage"
+            [ngbTooltip]="'fastAdminApp.signature.help.signatureImage' | translate"
+            >Signature Image</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('signatureImageContentType')!.value + ';base64,' + editForm.get('signatureImage')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('signatureImage')!.value"
+              alt="signature image"
+            />
+            <div *ngIf="editForm.get('signatureImage')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left"
+                >{{ editForm.get('signatureImageContentType')!.value }}, {{ byteSize(editForm.get('signatureImage')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('signatureImage', 'signatureImageContentType', 'file_signatureImage')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_signatureImage"
+              data-cy="signatureImage"
+              (change)="setFileData($event, 'signatureImage', true)"
+              accept="image/*"
+              faTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="signatureImage"
+            id="field_signatureImage"
+            data-cy="signatureImage"
+            formControlName="signatureImage"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="signatureImageContentType"
+            id="field_signatureImageContentType"
+            formControlName="signatureImageContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.signature.width"
+            for="field_width"
+            [ngbTooltip]="'fastAdminApp.signature.help.width' | translate"
+            >Width</label
+          >
+          <input type="number" class="form-control" name="width" id="field_width" data-cy="width" formControlName="width" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.signature.heigth"
+            for="field_heigth"
+            [ngbTooltip]="'fastAdminApp.signature.help.heigth' | translate"
+            >Heigth</label
+          >
+          <input type="number" class="form-control" name="heigth" id="field_heigth" data-cy="heigth" formControlName="heigth" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.signature.userName"
+            for="field_userName"
+            [ngbTooltip]="'fastAdminApp.signature.help.userName' | translate"
+            >User Name</label
+          >
+          <input type="text" class="form-control" name="userName" id="field_userName" data-cy="userName" formControlName="userName" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.signature.applicationUser" for="field_applicationUser"
+            >Application User</label
+          >
+          <select
+            class="form-control"
+            id="field_applicationUser"
+            data-cy="applicationUser"
+            name="applicationUser"
+            formControlName="applicationUser"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                applicationUserOption.id === editForm.get('applicationUser')!.value?.id
+                  ? editForm.get('applicationUser')!.value
+                  : applicationUserOption
+              "
+              *ngFor="let applicationUserOption of applicationUsersSharedCollection; trackBy: trackApplicationUserFaById"
+            >
+              {{ applicationUserOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

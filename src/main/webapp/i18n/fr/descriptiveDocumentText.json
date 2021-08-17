@@ -1,0 +1,37 @@
+{
+  "fastAdminApp": {
+    "descriptiveDocumentText": {
+      "home": {
+        "title": "DescriptiveDocumentTexts",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Descriptive Document Text",
+        "createOrEditLabel": "Créer ou éditer un Descriptive Document Text",
+        "notFound": "Aucun Descriptive Document Text trouvé"
+      },
+      "created": "Un nouveau Descriptive Document Text a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Descriptive Document Text avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Descriptive Document Text avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Descriptive Document Text {{ id }} ?"
+      },
+      "detail": {
+        "title": "Descriptive Document Text"
+      },
+      "id": "ID",
+      "title": "Title",
+      "introduction": "Introduction",
+      "conditions": "Conditions",
+      "status": "Status",
+      "deliveryNote": "Delivery Note",
+      "invoice": "Invoice",
+      "offer": "Offer",
+      "orderConfirmation": "Order Confirmation",
+      "help": {
+        "title": "Document title text",
+        "introduction": "Document introduction text",
+        "conditions": "Document conditions text (z.B. Zahlungsbedinungen)",
+        "status": "for invoice only"
+      }
+    }
+  }
+}

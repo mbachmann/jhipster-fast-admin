@@ -1,0 +1,289 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-document-position-fa-heading"
+        data-cy="DocumentPositionCreateUpdateHeading"
+        faTranslate="fastAdminApp.documentPosition.home.createOrEditLabel"
+      >
+        Create or edit a Document Position
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.type"
+            for="field_type"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.type' | translate"
+            >Type</label
+          >
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentPositionType.null' | translate }}</option>
+            <option value="NORMAL">{{ 'fastAdminApp.DocumentPositionType.NORMAL' | translate }}</option>
+            <option value="TEXT">{{ 'fastAdminApp.DocumentPositionType.TEXT' | translate }}</option>
+            <option value="PAGE_BREAK">{{ 'fastAdminApp.DocumentPositionType.PAGE_BREAK' | translate }}</option>
+            <option value="HEADER">{{ 'fastAdminApp.DocumentPositionType.HEADER' | translate }}</option>
+            <option value="SUBTOTAL_INCREMENTAL">{{ 'fastAdminApp.DocumentPositionType.SUBTOTAL_INCREMENTAL' | translate }}</option>
+            <option value="SUBTOTAL_NON_INCREMENTAL">{{ 'fastAdminApp.DocumentPositionType.SUBTOTAL_NON_INCREMENTAL' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.catalogType"
+            for="field_catalogType"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.catalogType' | translate"
+            >Catalog Type</label
+          >
+          <select class="form-control" name="catalogType" formControlName="catalogType" id="field_catalogType" data-cy="catalogType">
+            <option [ngValue]="null">{{ 'fastAdminApp.CatalogScope.null' | translate }}</option>
+            <option value="SERVICE">{{ 'fastAdminApp.CatalogScope.SERVICE' | translate }}</option>
+            <option value="PRODUCT">{{ 'fastAdminApp.CatalogScope.PRODUCT' | translate }}</option>
+            <option value="ALL">{{ 'fastAdminApp.CatalogScope.ALL' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.number"
+            for="field_number"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.number' | translate"
+            >Number</label
+          >
+          <input type="text" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.description"
+            for="field_description"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.description' | translate"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.price"
+            for="field_price"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.price' | translate"
+            >Price</label
+          >
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.vat"
+            for="field_vat"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.vat' | translate"
+            >Vat</label
+          >
+          <input type="number" class="form-control" name="vat" id="field_vat" data-cy="vat" formControlName="vat" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.amount"
+            for="field_amount"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.amount' | translate"
+            >Amount</label
+          >
+          <input type="number" class="form-control" name="amount" id="field_amount" data-cy="amount" formControlName="amount" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.discountRate"
+            for="field_discountRate"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.discountRate' | translate"
+            >Discount Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="discountRate"
+            id="field_discountRate"
+            data-cy="discountRate"
+            formControlName="discountRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.discountType"
+            for="field_discountType"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.discountType' | translate"
+            >Discount Type</label
+          >
+          <select class="form-control" name="discountType" formControlName="discountType" id="field_discountType" data-cy="discountType">
+            <option [ngValue]="null">{{ 'fastAdminApp.DiscountType.null' | translate }}</option>
+            <option value="IN_PERCENT">{{ 'fastAdminApp.DiscountType.IN_PERCENT' | translate }}</option>
+            <option value="AMOUNT">{{ 'fastAdminApp.DiscountType.AMOUNT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.total"
+            for="field_total"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.total' | translate"
+            >Total</label
+          >
+          <input type="number" class="form-control" name="total" id="field_total" data-cy="total" formControlName="total" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentPosition.showOnlyTotal"
+            for="field_showOnlyTotal"
+            [ngbTooltip]="'fastAdminApp.documentPosition.help.showOnlyTotal' | translate"
+            >Show Only Total</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="showOnlyTotal"
+            id="field_showOnlyTotal"
+            data-cy="showOnlyTotal"
+            formControlName="showOnlyTotal"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentPosition.unit" for="field_unit">Unit</label>
+          <select class="form-control" id="field_unit" data-cy="unit" name="unit" formControlName="unit">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="catalogUnitOption.id === editForm.get('unit')!.value?.id ? editForm.get('unit')!.value : catalogUnitOption"
+              *ngFor="let catalogUnitOption of catalogUnitsSharedCollection; trackBy: trackCatalogUnitFaById"
+            >
+              {{ catalogUnitOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentPosition.deliveryNote" for="field_deliveryNote"
+            >Delivery Note</label
+          >
+          <select class="form-control" id="field_deliveryNote" data-cy="deliveryNote" name="deliveryNote" formControlName="deliveryNote">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                deliveryNoteOption.id === editForm.get('deliveryNote')!.value?.id ? editForm.get('deliveryNote')!.value : deliveryNoteOption
+              "
+              *ngFor="let deliveryNoteOption of deliveryNotesSharedCollection; trackBy: trackDeliveryNoteFaById"
+            >
+              {{ deliveryNoteOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentPosition.invoice" for="field_invoice">Invoice</label>
+          <select class="form-control" id="field_invoice" data-cy="invoice" name="invoice" formControlName="invoice">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="invoiceOption.id === editForm.get('invoice')!.value?.id ? editForm.get('invoice')!.value : invoiceOption"
+              *ngFor="let invoiceOption of invoicesSharedCollection; trackBy: trackInvoiceFaById"
+            >
+              {{ invoiceOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentPosition.offer" for="field_offer">Offer</label>
+          <select class="form-control" id="field_offer" data-cy="offer" name="offer" formControlName="offer">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="offerOption.id === editForm.get('offer')!.value?.id ? editForm.get('offer')!.value : offerOption"
+              *ngFor="let offerOption of offersSharedCollection; trackBy: trackOfferFaById"
+            >
+              {{ offerOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.documentPosition.orderConfirmation" for="field_orderConfirmation"
+            >Order Confirmation</label
+          >
+          <select
+            class="form-control"
+            id="field_orderConfirmation"
+            data-cy="orderConfirmation"
+            name="orderConfirmation"
+            formControlName="orderConfirmation"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                orderConfirmationOption.id === editForm.get('orderConfirmation')!.value?.id
+                  ? editForm.get('orderConfirmation')!.value
+                  : orderConfirmationOption
+              "
+              *ngFor="let orderConfirmationOption of orderConfirmationsSharedCollection; trackBy: trackOrderConfirmationFaById"
+            >
+              {{ orderConfirmationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

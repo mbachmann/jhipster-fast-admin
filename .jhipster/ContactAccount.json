@@ -1,0 +1,63 @@
+{
+  "name": "ContactAccount",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "defaultAccount",
+      "fieldType": "Boolean",
+      "javadoc": "whether it is a default contact's account ,"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "AccountType",
+      "javadoc": "type (possible values: IBAN, ISR) ,",
+      "fieldValues": "IBAN (IBAN),ISR (ISR),QR (QR),QRREF (QRREF)"
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "IBAN or ISR number (depends on the type)"
+    },
+    {
+      "fieldName": "bic",
+      "fieldType": "String",
+      "javadoc": "The BIC or SWIFT number"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "javadoc": "internal description"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "contactAccount",
+      "javadoc": "The contact relation",
+      "relationshipName": "contact"
+    }
+  ],
+  "javadoc": "Bank or Postfinance account of the Contact",
+  "entityTableName": "contact_account",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "angularJSSuffix": "fa",
+  "changelogDate": "20210817125445"
+}

@@ -1,0 +1,100 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="descriptiveDocumentText">
+      <h2 data-cy="descriptiveDocumentTextDetailsHeading">
+        <span faTranslate="fastAdminApp.descriptiveDocumentText.detail.title">Descriptive Document Text</span>
+      </h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ descriptiveDocumentText.id }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.descriptiveDocumentText.title"
+            [ngbTooltip]="'fastAdminApp.descriptiveDocumentText.help.title' | translate"
+            >Title</span
+          >
+        </dt>
+        <dd>
+          <span>{{ descriptiveDocumentText.title }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.descriptiveDocumentText.introduction"
+            [ngbTooltip]="'fastAdminApp.descriptiveDocumentText.help.introduction' | translate"
+            >Introduction</span
+          >
+        </dt>
+        <dd>
+          <span>{{ descriptiveDocumentText.introduction }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.descriptiveDocumentText.conditions"
+            [ngbTooltip]="'fastAdminApp.descriptiveDocumentText.help.conditions' | translate"
+            >Conditions</span
+          >
+        </dt>
+        <dd>
+          <span>{{ descriptiveDocumentText.conditions }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.descriptiveDocumentText.status"
+            [ngbTooltip]="'fastAdminApp.descriptiveDocumentText.help.status' | translate"
+            >Status</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentInvoiceTextStatus.' + descriptiveDocumentText.status }}">{{
+            descriptiveDocumentText.status
+          }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.descriptiveDocumentText.deliveryNote">Delivery Note</span></dt>
+        <dd>
+          <div *ngIf="descriptiveDocumentText.deliveryNote">
+            <a [routerLink]="['/delivery-note-fa', descriptiveDocumentText.deliveryNote?.id, 'view']">{{
+              descriptiveDocumentText.deliveryNote?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.descriptiveDocumentText.invoice">Invoice</span></dt>
+        <dd>
+          <div *ngIf="descriptiveDocumentText.invoice">
+            <a [routerLink]="['/invoice-fa', descriptiveDocumentText.invoice?.id, 'view']">{{ descriptiveDocumentText.invoice?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.descriptiveDocumentText.offer">Offer</span></dt>
+        <dd>
+          <div *ngIf="descriptiveDocumentText.offer">
+            <a [routerLink]="['/offer-fa', descriptiveDocumentText.offer?.id, 'view']">{{ descriptiveDocumentText.offer?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.descriptiveDocumentText.orderConfirmation">Order Confirmation</span></dt>
+        <dd>
+          <div *ngIf="descriptiveDocumentText.orderConfirmation">
+            <a [routerLink]="['/order-confirmation-fa', descriptiveDocumentText.orderConfirmation?.id, 'view']">{{
+              descriptiveDocumentText.orderConfirmation?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/descriptive-document-text-fa', descriptiveDocumentText.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

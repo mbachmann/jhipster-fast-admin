@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="DocumentFreeTextHeading">
+    <span faTranslate="fastAdminApp.documentFreeText.home.title">Document Free Texts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.documentFreeText.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-document-free-text-fa"
+        [routerLink]="['/document-free-text-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.documentFreeText.home.createLabel"> Create a new Document Free Text </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="documentFreeTexts?.length === 0">
+    <span faTranslate="fastAdminApp.documentFreeText.home.notFound">No documentFreeTexts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="documentFreeTexts && documentFreeTexts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.text">Text</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.fontSize">Font Size</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.positionX">Position X</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.positionY">Position Y</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.pageNo">Page No</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.documentLetter">Document Letter</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.deliveryNote">Delivery Note</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.invoice">Invoice</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.offer">Offer</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentFreeText.orderConfirmation">Order Confirmation</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let documentFreeText of documentFreeTexts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/document-free-text-fa', documentFreeText.id, 'view']">{{ documentFreeText.id }}</a>
+          </td>
+          <td>{{ documentFreeText.text }}</td>
+          <td>{{ documentFreeText.fontSize }}</td>
+          <td>{{ documentFreeText.positionX }}</td>
+          <td>{{ documentFreeText.positionY }}</td>
+          <td>{{ documentFreeText.pageNo }}</td>
+          <td>
+            <div *ngIf="documentFreeText.documentLetter">
+              <a [routerLink]="['/document-letter-fa', documentFreeText.documentLetter?.id, 'view']">{{
+                documentFreeText.documentLetter?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentFreeText.deliveryNote">
+              <a [routerLink]="['/delivery-note-fa', documentFreeText.deliveryNote?.id, 'view']">{{ documentFreeText.deliveryNote?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentFreeText.invoice">
+              <a [routerLink]="['/invoice-fa', documentFreeText.invoice?.id, 'view']">{{ documentFreeText.invoice?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentFreeText.offer">
+              <a [routerLink]="['/offer-fa', documentFreeText.offer?.id, 'view']">{{ documentFreeText.offer?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documentFreeText.orderConfirmation">
+              <a [routerLink]="['/order-confirmation-fa', documentFreeText.orderConfirmation?.id, 'view']">{{
+                documentFreeText.orderConfirmation?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/document-free-text-fa', documentFreeText.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/document-free-text-fa', documentFreeText.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(documentFreeText)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<div>
+  <h2 id="page-heading" data-cy="ActivityHeading">
+    <span faTranslate="fastAdminApp.activity.home.title">Activities</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.activity.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-activity-fa"
+        [routerLink]="['/activity-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.activity.home.createLabel"> Create a new Activity </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="activities?.length === 0">
+    <span faTranslate="fastAdminApp.activity.home.notFound">No activities found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="activities && activities.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.activity.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="name"><span faTranslate="fastAdminApp.activity.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="useServicePrice">
+            <span faTranslate="fastAdminApp.activity.useServicePrice">Use Service Price</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.activity.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="activity.id">
+            <span faTranslate="fastAdminApp.activity.activity">Activity</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let activity of activities; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/activity-fa', activity.id, 'view']">{{ activity.id }}</a>
+          </td>
+          <td>{{ activity.remoteId }}</td>
+          <td>{{ activity.name }}</td>
+          <td>{{ activity.useServicePrice }}</td>
+          <td>{{ activity.inactiv }}</td>
+          <td>
+            <div *ngIf="activity.activity">
+              <a [routerLink]="['/catalog-service-fa', activity.activity?.id, 'view']">{{ activity.activity?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/activity-fa', activity.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/activity-fa', activity.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(activity)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+{
+  "fastAdminApp": {
+    "effort": {
+      "home": {
+        "title": "Efforts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Effort",
+        "createOrEditLabel": "Create or edit a Effort",
+        "notFound": "No Efforts found"
+      },
+      "created": "A new Effort is created with identifier {{ param }}",
+      "updated": "A Effort is updated with identifier {{ param }}",
+      "deleted": "A Effort is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Effort {{ id }}?"
+      },
+      "detail": {
+        "title": "Effort"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "userId": "User Id",
+      "userName": "User Name",
+      "entityType": "Entity Type",
+      "entityId": "Entity Id",
+      "duration": "Duration",
+      "date": "Date",
+      "activityName": "Activity Name",
+      "notes": "Notes",
+      "isInvoiced": "Is Invoiced",
+      "updated": "Updated",
+      "hourlyRate": "Hourly Rate",
+      "activity": "Activity",
+      "help": {
+        "remoteId": "id of a remote system",
+        "userId": "id of user ,",
+        "userName": "full name of user (optional)",
+        "entityType": "type of assigned entity, one of: P - project, CU - cost unit, C - contact",
+        "entityId": "assigned entity id ,",
+        "duration": "duration of effort",
+        "date": "date of effort",
+        "activityName": "full activity name (optional)",
+        "notes": "notes to this effort",
+        "isInvoiced": "if effort has been invoiced already",
+        "updated": "update at",
+        "hourlyRate": "hourly rate of this effort"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "CatalogScope": {
+      "null": "",
+      "SERVICE": "S",
+      "PRODUCT": "P",
+      "ALL": "A"
+    }
+  }
+}

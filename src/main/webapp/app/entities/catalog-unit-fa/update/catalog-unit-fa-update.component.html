@@ -1,0 +1,132 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-catalog-unit-fa-heading"
+        data-cy="CatalogUnitCreateUpdateHeading"
+        faTranslate="fastAdminApp.catalogUnit.home.createOrEditLabel"
+      >
+        Create or edit a Catalog Unit
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.catalogUnit.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.catalogUnit.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.catalogUnit.name"
+            for="field_name"
+            [ngbTooltip]="'fastAdminApp.catalogUnit.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" faTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.catalogUnit.nameDe" for="field_nameDe">Name De</label>
+          <input type="text" class="form-control" name="nameDe" id="field_nameDe" data-cy="nameDe" formControlName="nameDe" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.catalogUnit.nameEn" for="field_nameEn">Name En</label>
+          <input type="text" class="form-control" name="nameEn" id="field_nameEn" data-cy="nameEn" formControlName="nameEn" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.catalogUnit.nameFr" for="field_nameFr">Name Fr</label>
+          <input type="text" class="form-control" name="nameFr" id="field_nameFr" data-cy="nameFr" formControlName="nameFr" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.catalogUnit.nameIt" for="field_nameIt">Name It</label>
+          <input type="text" class="form-control" name="nameIt" id="field_nameIt" data-cy="nameIt" formControlName="nameIt" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.catalogUnit.scope"
+            for="field_scope"
+            [ngbTooltip]="'fastAdminApp.catalogUnit.help.scope' | translate"
+            >Scope</label
+          >
+          <select class="form-control" name="scope" formControlName="scope" id="field_scope" data-cy="scope">
+            <option [ngValue]="null">{{ 'fastAdminApp.CatalogScope.null' | translate }}</option>
+            <option value="SERVICE">{{ 'fastAdminApp.CatalogScope.SERVICE' | translate }}</option>
+            <option value="PRODUCT">{{ 'fastAdminApp.CatalogScope.PRODUCT' | translate }}</option>
+            <option value="ALL">{{ 'fastAdminApp.CatalogScope.ALL' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.catalogUnit.custom"
+            for="field_custom"
+            [ngbTooltip]="'fastAdminApp.catalogUnit.help.custom' | translate"
+            >Custom</label
+          >
+          <input type="checkbox" class="form-check" name="custom" id="field_custom" data-cy="custom" formControlName="custom" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.catalogUnit.inactiv"
+            for="field_inactiv"
+            [ngbTooltip]="'fastAdminApp.catalogUnit.help.inactiv' | translate"
+            >Inactiv</label
+          >
+          <input type="checkbox" class="form-check" name="inactiv" id="field_inactiv" data-cy="inactiv" formControlName="inactiv" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

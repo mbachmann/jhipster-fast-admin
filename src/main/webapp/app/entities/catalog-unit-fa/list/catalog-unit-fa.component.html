@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="CatalogUnitHeading">
+    <span faTranslate="fastAdminApp.catalogUnit.home.title">Catalog Units</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.catalogUnit.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-catalog-unit-fa"
+        [routerLink]="['/catalog-unit-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.catalogUnit.home.createLabel"> Create a new Catalog Unit </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="catalogUnits?.length === 0">
+    <span faTranslate="fastAdminApp.catalogUnit.home.notFound">No catalogUnits found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="catalogUnits && catalogUnits.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.catalogUnit.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="name"><span faTranslate="fastAdminApp.catalogUnit.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="nameDe">
+            <span faTranslate="fastAdminApp.catalogUnit.nameDe">Name De</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="nameEn">
+            <span faTranslate="fastAdminApp.catalogUnit.nameEn">Name En</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="nameFr">
+            <span faTranslate="fastAdminApp.catalogUnit.nameFr">Name Fr</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="nameIt">
+            <span faTranslate="fastAdminApp.catalogUnit.nameIt">Name It</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="scope">
+            <span faTranslate="fastAdminApp.catalogUnit.scope">Scope</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="custom">
+            <span faTranslate="fastAdminApp.catalogUnit.custom">Custom</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="inactiv">
+            <span faTranslate="fastAdminApp.catalogUnit.inactiv">Inactiv</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let catalogUnit of catalogUnits; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/catalog-unit-fa', catalogUnit.id, 'view']">{{ catalogUnit.id }}</a>
+          </td>
+          <td>{{ catalogUnit.remoteId }}</td>
+          <td>{{ catalogUnit.name }}</td>
+          <td>{{ catalogUnit.nameDe }}</td>
+          <td>{{ catalogUnit.nameEn }}</td>
+          <td>{{ catalogUnit.nameFr }}</td>
+          <td>{{ catalogUnit.nameIt }}</td>
+          <td faTranslate="{{ 'fastAdminApp.CatalogScope.' + catalogUnit.scope }}">{{ catalogUnit.scope }}</td>
+          <td>{{ catalogUnit.custom }}</td>
+          <td>{{ catalogUnit.inactiv }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/catalog-unit-fa', catalogUnit.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/catalog-unit-fa', catalogUnit.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(catalogUnit)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import * as dayjs from 'dayjs';
+
+import { isPresent } from 'app/core/util/operators';
+import { DATE_FORMAT } from 'app/config/input.constants';
+import { ApplicationConfigService } from 'app/core/config/application-config.service';
+import { createRequestOption } from 'app/core/request/request-util';
+import { IProjectFa, getProjectFaIdentifier } from '../project-fa.model';
+
+export type EntityResponseType = HttpResponse<IProjectFa>;
+export type EntityArrayResponseType = HttpResponse<IProjectFa[]>;
+
+@Injectable({ providedIn: 'root' })
+export class ProjectFaService {
+  protected resourceUrl = this.applicationConfigService.getEndpointFor('api/projects');
+
+  constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
+
+  create(project: IProjectFa): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(project);
+    return this.http
+      .post<IProjectFa>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  update(project: IProjectFa): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(project);
+    return this.http
+      .put<IProjectFa>(`${this.resourceUrl}/${getProjectFaIdentifier(project) as number}`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  partialUpdate(project: IProjectFa): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(project);
+    return this.http
+      .patch<IProjectFa>(`${this.resourceUrl}/${getProjectFaIdentifier(project) as number}`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  find(id: number): Observable<EntityResponseType> {
+    return this.http
+      .get<IProjectFa>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  query(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<IProjectFa[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  addProjectFaToCollectionIfMissing(projectCollection: IProjectFa[], ...projectsToCheck: (IProjectFa | null | undefined)[]): IProjectFa[] {
+    const projects: IProjectFa[] = projectsToCheck.filter(isPresent);
+    if (projects.length > 0) {
+      const projectCollectionIdentifiers = projectCollection.map(projectItem => getProjectFaIdentifier(projectItem)!);
+      const projectsToAdd = projects.filter(projectItem => {
+        const projectIdentifier = getProjectFaIdentifier(projectItem);
+        if (projectIdentifier == null || projectCollectionIdentifiers.includes(projectIdentifier)) {
+          return false;
+        }
+        projectCollectionIdentifiers.push(projectIdentifier);
+        return true;
+      });
+      return [...projectsToAdd, ...projectCollection];
+    }
+    return projectCollection;
+  }
+
+  protected convertDateFromClient(project: IProjectFa): IProjectFa {
+    return Object.assign({}, project, {
+      startDate: project.startDate?.isValid() ? project.startDate.format(DATE_FORMAT) : undefined,
+    });
+  }
+
+  protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
+    if (res.body) {
+      res.body.startDate = res.body.startDate ? dayjs(res.body.startDate) : undefined;
+    }
+    return res;
+  }
+
+  protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
+    if (res.body) {
+      res.body.forEach((project: IProjectFa) => {
+        project.startDate = project.startDate ? dayjs(project.startDate) : undefined;
+      });
+    }
+    return res;
+  }
+}

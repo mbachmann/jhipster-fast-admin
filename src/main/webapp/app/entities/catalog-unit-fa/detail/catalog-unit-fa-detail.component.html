@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="catalogUnit">
+      <h2 data-cy="catalogUnitDetailsHeading"><span faTranslate="fastAdminApp.catalogUnit.detail.title">Catalog Unit</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ catalogUnit.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogUnit.remoteId" [ngbTooltip]="'fastAdminApp.catalogUnit.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogUnit.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogUnit.name" [ngbTooltip]="'fastAdminApp.catalogUnit.help.name' | translate">Name</span>
+        </dt>
+        <dd>
+          <span>{{ catalogUnit.name }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogUnit.nameDe">Name De</span></dt>
+        <dd>
+          <span>{{ catalogUnit.nameDe }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogUnit.nameEn">Name En</span></dt>
+        <dd>
+          <span>{{ catalogUnit.nameEn }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogUnit.nameFr">Name Fr</span></dt>
+        <dd>
+          <span>{{ catalogUnit.nameFr }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogUnit.nameIt">Name It</span></dt>
+        <dd>
+          <span>{{ catalogUnit.nameIt }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogUnit.scope" [ngbTooltip]="'fastAdminApp.catalogUnit.help.scope' | translate">Scope</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.CatalogScope.' + catalogUnit.scope }}">{{ catalogUnit.scope }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogUnit.custom" [ngbTooltip]="'fastAdminApp.catalogUnit.help.custom' | translate"
+            >Custom</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogUnit.custom }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogUnit.inactiv" [ngbTooltip]="'fastAdminApp.catalogUnit.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogUnit.inactiv }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/catalog-unit-fa', catalogUnit.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

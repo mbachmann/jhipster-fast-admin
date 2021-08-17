@@ -1,0 +1,10 @@
+{
+  "fastAdminApp": {
+    "ReportingEntityType": {
+      "null": "",
+      "PROJECT": "P",
+      "COST_UNIT": "CU",
+      "CONTACT": "C"
+    }
+  }
+}

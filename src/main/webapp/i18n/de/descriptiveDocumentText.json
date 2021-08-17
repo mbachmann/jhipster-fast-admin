@@ -1,0 +1,37 @@
+{
+  "fastAdminApp": {
+    "descriptiveDocumentText": {
+      "home": {
+        "title": "Descriptive Document Texts",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Descriptive Document Text erstellen",
+        "createOrEditLabel": "Descriptive Document Text erstellen oder bearbeiten",
+        "notFound": "Keine Descriptive Document Texts gefunden"
+      },
+      "created": "Descriptive Document Text erstellt mit ID {{ param }}",
+      "updated": "Descriptive Document Text aktualisiert mit ID {{ param }}",
+      "deleted": "Descriptive Document Text gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Descriptive Document Text {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Descriptive Document Text"
+      },
+      "id": "ID",
+      "title": "Title",
+      "introduction": "Introduction",
+      "conditions": "Conditions",
+      "status": "Status",
+      "deliveryNote": "Delivery Note",
+      "invoice": "Invoice",
+      "offer": "Offer",
+      "orderConfirmation": "Order Confirmation",
+      "help": {
+        "title": "Document title text",
+        "introduction": "Document introduction text",
+        "conditions": "Document conditions text (z.B. Zahlungsbedinungen)",
+        "status": "for invoice only"
+      }
+    }
+  }
+}

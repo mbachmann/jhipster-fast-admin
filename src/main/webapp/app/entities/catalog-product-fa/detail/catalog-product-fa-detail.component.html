@@ -1,0 +1,182 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="catalogProduct">
+      <h2 data-cy="catalogProductDetailsHeading"><span faTranslate="fastAdminApp.catalogProduct.detail.title">Catalog Product</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ catalogProduct.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogProduct.remoteId" [ngbTooltip]="'fastAdminApp.catalogProduct.help.remoteId' | translate"
+            >Remote Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.remoteId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogProduct.number" [ngbTooltip]="'fastAdminApp.catalogProduct.help.number' | translate"
+            >Number</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.number }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogProduct.name" [ngbTooltip]="'fastAdminApp.catalogProduct.help.name' | translate"
+            >Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.name }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogProduct.description"
+            [ngbTooltip]="'fastAdminApp.catalogProduct.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.description }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogProduct.notes" [ngbTooltip]="'fastAdminApp.catalogProduct.help.notes' | translate"
+            >Notes</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.notes }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogProduct.categoryName"
+            [ngbTooltip]="'fastAdminApp.catalogProduct.help.categoryName' | translate"
+            >Category Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.categoryName }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogProduct.includingVat"
+            [ngbTooltip]="'fastAdminApp.catalogProduct.help.includingVat' | translate"
+            >Including Vat</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.includingVat }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogProduct.vat" [ngbTooltip]="'fastAdminApp.catalogProduct.help.vat' | translate">Vat</span>
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.vat }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogProduct.unitName" [ngbTooltip]="'fastAdminApp.catalogProduct.help.unitName' | translate"
+            >Unit Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.unitName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogProduct.price" [ngbTooltip]="'fastAdminApp.catalogProduct.help.price' | translate"
+            >Price</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.price }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogProduct.pricePurchase"
+            [ngbTooltip]="'fastAdminApp.catalogProduct.help.pricePurchase' | translate"
+            >Price Purchase</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.pricePurchase }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogProduct.inventoryAvailable"
+            [ngbTooltip]="'fastAdminApp.catalogProduct.help.inventoryAvailable' | translate"
+            >Inventory Available</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.inventoryAvailable }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogProduct.inventoryReserved"
+            [ngbTooltip]="'fastAdminApp.catalogProduct.help.inventoryReserved' | translate"
+            >Inventory Reserved</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.inventoryReserved }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.catalogProduct.defaultAmount"
+            [ngbTooltip]="'fastAdminApp.catalogProduct.help.defaultAmount' | translate"
+            >Default Amount</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.defaultAmount }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogProduct.created">Created</span></dt>
+        <dd>
+          <span>{{ catalogProduct.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.catalogProduct.inactiv" [ngbTooltip]="'fastAdminApp.catalogProduct.help.inactiv' | translate"
+            >Inactiv</span
+          >
+        </dt>
+        <dd>
+          <span>{{ catalogProduct.inactiv }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogProduct.category">Category</span></dt>
+        <dd>
+          <div *ngIf="catalogProduct.category">
+            <a [routerLink]="['/catalog-category-fa', catalogProduct.category?.id, 'view']">{{ catalogProduct.category?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogProduct.unit">Unit</span></dt>
+        <dd>
+          <div *ngIf="catalogProduct.unit">
+            <a [routerLink]="['/catalog-unit-fa', catalogProduct.unit?.id, 'view']">{{ catalogProduct.unit?.id }}</a>
+          </div>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.catalogProduct.vat">Vat</span></dt>
+        <dd>
+          <div *ngIf="catalogProduct.vat">
+            <a [routerLink]="['/vat-fa', catalogProduct.vat?.id, 'view']">{{ catalogProduct.vat?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/catalog-product-fa', catalogProduct.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

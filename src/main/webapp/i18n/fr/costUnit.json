@@ -1,0 +1,37 @@
+{
+  "fastAdminApp": {
+    "costUnit": {
+      "home": {
+        "title": "CostUnits",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cost Unit",
+        "createOrEditLabel": "Créer ou éditer un Cost Unit",
+        "notFound": "Aucun Cost Unit trouvé"
+      },
+      "created": "Un nouveau Cost Unit a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cost Unit avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cost Unit avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Cost Unit {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cost Unit"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "number": "Number",
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "inactiv": "Inactiv",
+      "help": {
+        "remoteId": "id of a remote system",
+        "number": "cost unit&#39;s (Kostenstelle) internal number",
+        "name": "cost unit&#39;s name",
+        "description": "cost unit&#39;s description",
+        "type": "cost unit&#39;s type: one of: [&#39;P&#39;,&#39;U&#39;] ,",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

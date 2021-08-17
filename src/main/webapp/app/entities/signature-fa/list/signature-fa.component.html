@@ -1,0 +1,103 @@
+<div>
+  <h2 id="page-heading" data-cy="SignatureHeading">
+    <span faTranslate="fastAdminApp.signature.home.title">Signatures</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.signature.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-signature-fa"
+        [routerLink]="['/signature-fa/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.signature.home.createLabel"> Create a new Signature </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="signatures?.length === 0">
+    <span faTranslate="fastAdminApp.signature.home.notFound">No signatures found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="signatures && signatures.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.signature.remoteId">Remote Id</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.signature.signatureImage">Signature Image</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.signature.width">Width</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.signature.heigth">Heigth</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.signature.userName">User Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.signature.applicationUser">Application User</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let signature of signatures; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/signature-fa', signature.id, 'view']">{{ signature.id }}</a>
+          </td>
+          <td>{{ signature.remoteId }}</td>
+          <td>
+            <a *ngIf="signature.signatureImage" (click)="openFile(signature.signatureImage, signature.signatureImageContentType)">
+              <img
+                [src]="'data:' + signature.signatureImageContentType + ';base64,' + signature.signatureImage"
+                style="max-height: 30px"
+                alt="signature image"
+              />
+            </a>
+            <span *ngIf="signature.signatureImage"
+              >{{ signature.signatureImageContentType }}, {{ byteSize(signature.signatureImage) }}</span
+            >
+          </td>
+          <td>{{ signature.width }}</td>
+          <td>{{ signature.heigth }}</td>
+          <td>{{ signature.userName }}</td>
+          <td>
+            <div *ngIf="signature.applicationUser">
+              <a [routerLink]="['/application-user-fa', signature.applicationUser?.id, 'view']">{{ signature.applicationUser?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/signature-fa', signature.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/signature-fa', signature.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(signature)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

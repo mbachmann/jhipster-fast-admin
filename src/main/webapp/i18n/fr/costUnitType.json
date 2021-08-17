@@ -1,0 +1,9 @@
+{
+  "fastAdminApp": {
+    "CostUnitType": {
+      "null": "",
+      "PRODUCTIVE": "P",
+      "NOT_PRODUCTIVE": "U"
+    }
+  }
+}

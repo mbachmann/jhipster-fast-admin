@@ -1,0 +1,209 @@
+<div>
+  <h2 id="page-heading" data-cy="OrderConfirmationHeading">
+    <span faTranslate="fastAdminApp.orderConfirmation.home.title">Order Confirmations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.orderConfirmation.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-order-confirmation"
+        [routerLink]="['/order-confirmation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.orderConfirmation.home.createLabel"> Create a new Order Confirmation </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="orderConfirmations?.length === 0">
+    <span faTranslate="fastAdminApp.orderConfirmation.home.notFound">No orderConfirmations found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="orderConfirmations && orderConfirmations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr faSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" faSortBy="id"><span faTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" faSortBy="remoteId">
+            <span faTranslate="fastAdminApp.orderConfirmation.remoteId">Remote Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="number">
+            <span faTranslate="fastAdminApp.orderConfirmation.number">Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactName">
+            <span faTranslate="fastAdminApp.orderConfirmation.contactName">Contact Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="date">
+            <span faTranslate="fastAdminApp.orderConfirmation.date">Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="periodText">
+            <span faTranslate="fastAdminApp.orderConfirmation.periodText">Period Text</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="currency">
+            <span faTranslate="fastAdminApp.orderConfirmation.currency">Currency</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="total">
+            <span faTranslate="fastAdminApp.orderConfirmation.total">Total</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="vatIncluded">
+            <span faTranslate="fastAdminApp.orderConfirmation.vatIncluded">Vat Included</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="discountRate">
+            <span faTranslate="fastAdminApp.orderConfirmation.discountRate">Discount Rate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="discountType">
+            <span faTranslate="fastAdminApp.orderConfirmation.discountType">Discount Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="language">
+            <span faTranslate="fastAdminApp.orderConfirmation.language">Language</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="pageAmount">
+            <span faTranslate="fastAdminApp.orderConfirmation.pageAmount">Page Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="notes">
+            <span faTranslate="fastAdminApp.orderConfirmation.notes">Notes</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="status">
+            <span faTranslate="fastAdminApp.orderConfirmation.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="created">
+            <span faTranslate="fastAdminApp.orderConfirmation.created">Created</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contact.id">
+            <span faTranslate="fastAdminApp.orderConfirmation.contact">Contact</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactAddress.id">
+            <span faTranslate="fastAdminApp.orderConfirmation.contactAddress">Contact Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactPerson.id">
+            <span faTranslate="fastAdminApp.orderConfirmation.contactPerson">Contact Person</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="contactPrePageAddress.id">
+            <span faTranslate="fastAdminApp.orderConfirmation.contactPrePageAddress">Contact Pre Page Address</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="layout.id">
+            <span faTranslate="fastAdminApp.orderConfirmation.layout">Layout</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" faSortBy="signature.id">
+            <span faTranslate="fastAdminApp.orderConfirmation.signature">Signature</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let orderConfirmation of orderConfirmations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/order-confirmation', orderConfirmation.id, 'view']">{{ orderConfirmation.id }}</a>
+          </td>
+          <td>{{ orderConfirmation.remoteId }}</td>
+          <td>{{ orderConfirmation.number }}</td>
+          <td>{{ orderConfirmation.contactName }}</td>
+          <td>{{ orderConfirmation.date | formatMediumDate }}</td>
+          <td>{{ orderConfirmation.periodText }}</td>
+          <td faTranslate="{{ 'fastAdminApp.Currency.' + orderConfirmation.currency }}">{{ orderConfirmation.currency }}</td>
+          <td>{{ orderConfirmation.total }}</td>
+          <td>{{ orderConfirmation.vatIncluded }}</td>
+          <td>{{ orderConfirmation.discountRate }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DiscountType.' + orderConfirmation.discountType }}">{{ orderConfirmation.discountType }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + orderConfirmation.language }}">{{ orderConfirmation.language }}</td>
+          <td>{{ orderConfirmation.pageAmount }}</td>
+          <td>{{ orderConfirmation.notes }}</td>
+          <td faTranslate="{{ 'fastAdminApp.OrderConfirmationStatus.' + orderConfirmation.status }}">{{ orderConfirmation.status }}</td>
+          <td>{{ orderConfirmation.created | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="orderConfirmation.contact">
+              <a [routerLink]="['/contact', orderConfirmation.contact?.id, 'view']">{{ orderConfirmation.contact?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="orderConfirmation.contactAddress">
+              <a [routerLink]="['/contact-address', orderConfirmation.contactAddress?.id, 'view']">{{
+                orderConfirmation.contactAddress?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="orderConfirmation.contactPerson">
+              <a [routerLink]="['/contact-person', orderConfirmation.contactPerson?.id, 'view']">{{
+                orderConfirmation.contactPerson?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="orderConfirmation.contactPrePageAddress">
+              <a [routerLink]="['/contact-address', orderConfirmation.contactPrePageAddress?.id, 'view']">{{
+                orderConfirmation.contactPrePageAddress?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="orderConfirmation.layout">
+              <a [routerLink]="['/layout', orderConfirmation.layout?.id, 'view']">{{ orderConfirmation.layout?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="orderConfirmation.signature">
+              <a [routerLink]="['/signature', orderConfirmation.signature?.id, 'view']">{{ orderConfirmation.signature?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/order-confirmation', orderConfirmation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/order-confirmation', orderConfirmation.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(orderConfirmation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="orderConfirmations && orderConfirmations.length > 0">
+    <div class="row justify-content-center">
+      <fa-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></fa-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+{
+  "name": "ApplicationUser",
+  "fields": [
+    {
+      "fieldName": "shortCutName",
+      "fieldType": "String",
+      "javadoc": "short user name",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "memberSince",
+      "fieldType": "LocalDate",
+      "javadoc": "member since"
+    },
+    {
+      "fieldName": "avatar",
+      "fieldType": "byte[]",
+      "javadoc": "image of contact",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "imageType",
+      "fieldType": "String",
+      "javadoc": "image type"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "Inherits from the User",
+  "entityTableName": "application_user",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817151604"
+}

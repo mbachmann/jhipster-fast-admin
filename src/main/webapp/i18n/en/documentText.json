@@ -1,0 +1,39 @@
+{
+  "fastAdminApp": {
+    "documentText": {
+      "home": {
+        "title": "Document Texts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Document Text",
+        "createOrEditLabel": "Create or edit a Document Text",
+        "notFound": "No Document Texts found"
+      },
+      "created": "A new Document Text is created with identifier {{ param }}",
+      "updated": "A Document Text is updated with identifier {{ param }}",
+      "deleted": "A Document Text is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Document Text {{ id }}?"
+      },
+      "detail": {
+        "title": "Document Text"
+      },
+      "id": "ID",
+      "defaultText": "Default Text",
+      "text": "Text",
+      "language": "Language",
+      "usage": "Usage",
+      "status": "Status",
+      "type": "Type",
+      "documentType": "Document Type",
+      "help": {
+        "defaultText": "default text",
+        "text": "Document conditions text (z.B. Zahlungsbedingungen)",
+        "language": "language; possible values: de, en, es, fr, it ,",
+        "usage": "At which document position shall the text be used; possible values; T - Title, I - Introduction, D - Condition",
+        "status": "for invoice only",
+        "type": "which document type is the condition for; possible values: D - Document, E- Email",
+        "documentType": "which Receivable document is the information for; possible values: O - Offer, C - Order Confirmation, D - Delivery Note, I - Invoice"
+      }
+    }
+  }
+}

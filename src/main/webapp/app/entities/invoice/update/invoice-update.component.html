@@ -1,0 +1,930 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="fa-invoice-heading" data-cy="InvoiceCreateUpdateHeading" faTranslate="fastAdminApp.invoice.home.createOrEditLabel">
+        Create or edit a Invoice
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.remoteId"
+            for="field_remoteId"
+            [ngbTooltip]="'fastAdminApp.invoice.help.remoteId' | translate"
+            >Remote Id</label
+          >
+          <input type="number" class="form-control" name="remoteId" id="field_remoteId" data-cy="remoteId" formControlName="remoteId" />
+          <div *ngIf="editForm.get('remoteId')!.invalid && (editForm.get('remoteId')!.dirty || editForm.get('remoteId')!.touched)">
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('remoteId')?.errors?.number"
+              faTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.number"
+            for="field_number"
+            [ngbTooltip]="'fastAdminApp.invoice.help.number' | translate"
+            >Number</label
+          >
+          <input type="text" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+          <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)"></div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.contactName"
+            for="field_contactName"
+            [ngbTooltip]="'fastAdminApp.invoice.help.contactName' | translate"
+            >Contact Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactName"
+            id="field_contactName"
+            data-cy="contactName"
+            formControlName="contactName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.date"
+            for="field_date"
+            [ngbTooltip]="'fastAdminApp.invoice.help.date' | translate"
+            >Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.due"
+            for="field_due"
+            [ngbTooltip]="'fastAdminApp.invoice.help.due' | translate"
+            >Due</label
+          >
+          <div class="input-group">
+            <input
+              id="field_due"
+              data-cy="due"
+              type="text"
+              class="form-control"
+              name="due"
+              ngbDatepicker
+              #dueDp="ngbDatepicker"
+              formControlName="due"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dueDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.periodFrom"
+            for="field_periodFrom"
+            [ngbTooltip]="'fastAdminApp.invoice.help.periodFrom' | translate"
+            >Period From</label
+          >
+          <div class="input-group">
+            <input
+              id="field_periodFrom"
+              data-cy="periodFrom"
+              type="text"
+              class="form-control"
+              name="periodFrom"
+              ngbDatepicker
+              #periodFromDp="ngbDatepicker"
+              formControlName="periodFrom"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="periodFromDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.periodTo"
+            for="field_periodTo"
+            [ngbTooltip]="'fastAdminApp.invoice.help.periodTo' | translate"
+            >Period To</label
+          >
+          <div class="input-group">
+            <input
+              id="field_periodTo"
+              data-cy="periodTo"
+              type="text"
+              class="form-control"
+              name="periodTo"
+              ngbDatepicker
+              #periodToDp="ngbDatepicker"
+              formControlName="periodTo"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="periodToDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.periodText"
+            for="field_periodText"
+            [ngbTooltip]="'fastAdminApp.invoice.help.periodText' | translate"
+            >Period Text</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="periodText"
+            id="field_periodText"
+            data-cy="periodText"
+            formControlName="periodText"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.currency"
+            for="field_currency"
+            [ngbTooltip]="'fastAdminApp.invoice.help.currency' | translate"
+            >Currency</label
+          >
+          <select class="form-control" name="currency" formControlName="currency" id="field_currency" data-cy="currency">
+            <option [ngValue]="null">{{ 'fastAdminApp.Currency.null' | translate }}</option>
+            <option value="AED">{{ 'fastAdminApp.Currency.AED' | translate }}</option>
+            <option value="AFN">{{ 'fastAdminApp.Currency.AFN' | translate }}</option>
+            <option value="ALL">{{ 'fastAdminApp.Currency.ALL' | translate }}</option>
+            <option value="AMD">{{ 'fastAdminApp.Currency.AMD' | translate }}</option>
+            <option value="ANG">{{ 'fastAdminApp.Currency.ANG' | translate }}</option>
+            <option value="AOA">{{ 'fastAdminApp.Currency.AOA' | translate }}</option>
+            <option value="ARS">{{ 'fastAdminApp.Currency.ARS' | translate }}</option>
+            <option value="AUD">{{ 'fastAdminApp.Currency.AUD' | translate }}</option>
+            <option value="AWG">{{ 'fastAdminApp.Currency.AWG' | translate }}</option>
+            <option value="AZN">{{ 'fastAdminApp.Currency.AZN' | translate }}</option>
+            <option value="BAM">{{ 'fastAdminApp.Currency.BAM' | translate }}</option>
+            <option value="BBD">{{ 'fastAdminApp.Currency.BBD' | translate }}</option>
+            <option value="BDT">{{ 'fastAdminApp.Currency.BDT' | translate }}</option>
+            <option value="BGN">{{ 'fastAdminApp.Currency.BGN' | translate }}</option>
+            <option value="BHD">{{ 'fastAdminApp.Currency.BHD' | translate }}</option>
+            <option value="BIF">{{ 'fastAdminApp.Currency.BIF' | translate }}</option>
+            <option value="BMD">{{ 'fastAdminApp.Currency.BMD' | translate }}</option>
+            <option value="BND">{{ 'fastAdminApp.Currency.BND' | translate }}</option>
+            <option value="BOB">{{ 'fastAdminApp.Currency.BOB' | translate }}</option>
+            <option value="BOV">{{ 'fastAdminApp.Currency.BOV' | translate }}</option>
+            <option value="BRL">{{ 'fastAdminApp.Currency.BRL' | translate }}</option>
+            <option value="BSD">{{ 'fastAdminApp.Currency.BSD' | translate }}</option>
+            <option value="BTN">{{ 'fastAdminApp.Currency.BTN' | translate }}</option>
+            <option value="BWP">{{ 'fastAdminApp.Currency.BWP' | translate }}</option>
+            <option value="BYN">{{ 'fastAdminApp.Currency.BYN' | translate }}</option>
+            <option value="BYR">{{ 'fastAdminApp.Currency.BYR' | translate }}</option>
+            <option value="BZD">{{ 'fastAdminApp.Currency.BZD' | translate }}</option>
+            <option value="CAD">{{ 'fastAdminApp.Currency.CAD' | translate }}</option>
+            <option value="CDF">{{ 'fastAdminApp.Currency.CDF' | translate }}</option>
+            <option value="CHE">{{ 'fastAdminApp.Currency.CHE' | translate }}</option>
+            <option value="CHF">{{ 'fastAdminApp.Currency.CHF' | translate }}</option>
+            <option value="CHW">{{ 'fastAdminApp.Currency.CHW' | translate }}</option>
+            <option value="CLF">{{ 'fastAdminApp.Currency.CLF' | translate }}</option>
+            <option value="CLP">{{ 'fastAdminApp.Currency.CLP' | translate }}</option>
+            <option value="CNY">{{ 'fastAdminApp.Currency.CNY' | translate }}</option>
+            <option value="COP">{{ 'fastAdminApp.Currency.COP' | translate }}</option>
+            <option value="COU">{{ 'fastAdminApp.Currency.COU' | translate }}</option>
+            <option value="CRC">{{ 'fastAdminApp.Currency.CRC' | translate }}</option>
+            <option value="CUC">{{ 'fastAdminApp.Currency.CUC' | translate }}</option>
+            <option value="CUP">{{ 'fastAdminApp.Currency.CUP' | translate }}</option>
+            <option value="CVE">{{ 'fastAdminApp.Currency.CVE' | translate }}</option>
+            <option value="CZK">{{ 'fastAdminApp.Currency.CZK' | translate }}</option>
+            <option value="DJF">{{ 'fastAdminApp.Currency.DJF' | translate }}</option>
+            <option value="DKK">{{ 'fastAdminApp.Currency.DKK' | translate }}</option>
+            <option value="DOP">{{ 'fastAdminApp.Currency.DOP' | translate }}</option>
+            <option value="DZD">{{ 'fastAdminApp.Currency.DZD' | translate }}</option>
+            <option value="EGP">{{ 'fastAdminApp.Currency.EGP' | translate }}</option>
+            <option value="ERN">{{ 'fastAdminApp.Currency.ERN' | translate }}</option>
+            <option value="ETB">{{ 'fastAdminApp.Currency.ETB' | translate }}</option>
+            <option value="EUR">{{ 'fastAdminApp.Currency.EUR' | translate }}</option>
+            <option value="FJD">{{ 'fastAdminApp.Currency.FJD' | translate }}</option>
+            <option value="FKP">{{ 'fastAdminApp.Currency.FKP' | translate }}</option>
+            <option value="GBP">{{ 'fastAdminApp.Currency.GBP' | translate }}</option>
+            <option value="GEL">{{ 'fastAdminApp.Currency.GEL' | translate }}</option>
+            <option value="GHS">{{ 'fastAdminApp.Currency.GHS' | translate }}</option>
+            <option value="GIP">{{ 'fastAdminApp.Currency.GIP' | translate }}</option>
+            <option value="GMD">{{ 'fastAdminApp.Currency.GMD' | translate }}</option>
+            <option value="GNF">{{ 'fastAdminApp.Currency.GNF' | translate }}</option>
+            <option value="GTQ">{{ 'fastAdminApp.Currency.GTQ' | translate }}</option>
+            <option value="GYD">{{ 'fastAdminApp.Currency.GYD' | translate }}</option>
+            <option value="HKD">{{ 'fastAdminApp.Currency.HKD' | translate }}</option>
+            <option value="HNL">{{ 'fastAdminApp.Currency.HNL' | translate }}</option>
+            <option value="HRK">{{ 'fastAdminApp.Currency.HRK' | translate }}</option>
+            <option value="HTG">{{ 'fastAdminApp.Currency.HTG' | translate }}</option>
+            <option value="HUF">{{ 'fastAdminApp.Currency.HUF' | translate }}</option>
+            <option value="IDR">{{ 'fastAdminApp.Currency.IDR' | translate }}</option>
+            <option value="ILS">{{ 'fastAdminApp.Currency.ILS' | translate }}</option>
+            <option value="INR">{{ 'fastAdminApp.Currency.INR' | translate }}</option>
+            <option value="IQD">{{ 'fastAdminApp.Currency.IQD' | translate }}</option>
+            <option value="IRR">{{ 'fastAdminApp.Currency.IRR' | translate }}</option>
+            <option value="ISK">{{ 'fastAdminApp.Currency.ISK' | translate }}</option>
+            <option value="JMD">{{ 'fastAdminApp.Currency.JMD' | translate }}</option>
+            <option value="JOD">{{ 'fastAdminApp.Currency.JOD' | translate }}</option>
+            <option value="JPY">{{ 'fastAdminApp.Currency.JPY' | translate }}</option>
+            <option value="KES">{{ 'fastAdminApp.Currency.KES' | translate }}</option>
+            <option value="KGS">{{ 'fastAdminApp.Currency.KGS' | translate }}</option>
+            <option value="KHR">{{ 'fastAdminApp.Currency.KHR' | translate }}</option>
+            <option value="KMF">{{ 'fastAdminApp.Currency.KMF' | translate }}</option>
+            <option value="KPW">{{ 'fastAdminApp.Currency.KPW' | translate }}</option>
+            <option value="KRW">{{ 'fastAdminApp.Currency.KRW' | translate }}</option>
+            <option value="KWD">{{ 'fastAdminApp.Currency.KWD' | translate }}</option>
+            <option value="KYD">{{ 'fastAdminApp.Currency.KYD' | translate }}</option>
+            <option value="KZT">{{ 'fastAdminApp.Currency.KZT' | translate }}</option>
+            <option value="LAK">{{ 'fastAdminApp.Currency.LAK' | translate }}</option>
+            <option value="LBP">{{ 'fastAdminApp.Currency.LBP' | translate }}</option>
+            <option value="LKR">{{ 'fastAdminApp.Currency.LKR' | translate }}</option>
+            <option value="LRD">{{ 'fastAdminApp.Currency.LRD' | translate }}</option>
+            <option value="LSL">{{ 'fastAdminApp.Currency.LSL' | translate }}</option>
+            <option value="LYD">{{ 'fastAdminApp.Currency.LYD' | translate }}</option>
+            <option value="MAD">{{ 'fastAdminApp.Currency.MAD' | translate }}</option>
+            <option value="MDL">{{ 'fastAdminApp.Currency.MDL' | translate }}</option>
+            <option value="MGA">{{ 'fastAdminApp.Currency.MGA' | translate }}</option>
+            <option value="MKD">{{ 'fastAdminApp.Currency.MKD' | translate }}</option>
+            <option value="MMK">{{ 'fastAdminApp.Currency.MMK' | translate }}</option>
+            <option value="MNT">{{ 'fastAdminApp.Currency.MNT' | translate }}</option>
+            <option value="MOP">{{ 'fastAdminApp.Currency.MOP' | translate }}</option>
+            <option value="MRO">{{ 'fastAdminApp.Currency.MRO' | translate }}</option>
+            <option value="MUR">{{ 'fastAdminApp.Currency.MUR' | translate }}</option>
+            <option value="MVR">{{ 'fastAdminApp.Currency.MVR' | translate }}</option>
+            <option value="MWK">{{ 'fastAdminApp.Currency.MWK' | translate }}</option>
+            <option value="MXN">{{ 'fastAdminApp.Currency.MXN' | translate }}</option>
+            <option value="MXV">{{ 'fastAdminApp.Currency.MXV' | translate }}</option>
+            <option value="MYR">{{ 'fastAdminApp.Currency.MYR' | translate }}</option>
+            <option value="MZN">{{ 'fastAdminApp.Currency.MZN' | translate }}</option>
+            <option value="NAD">{{ 'fastAdminApp.Currency.NAD' | translate }}</option>
+            <option value="NGN">{{ 'fastAdminApp.Currency.NGN' | translate }}</option>
+            <option value="NIO">{{ 'fastAdminApp.Currency.NIO' | translate }}</option>
+            <option value="NOK">{{ 'fastAdminApp.Currency.NOK' | translate }}</option>
+            <option value="NPR">{{ 'fastAdminApp.Currency.NPR' | translate }}</option>
+            <option value="NZD">{{ 'fastAdminApp.Currency.NZD' | translate }}</option>
+            <option value="OMR">{{ 'fastAdminApp.Currency.OMR' | translate }}</option>
+            <option value="PAB">{{ 'fastAdminApp.Currency.PAB' | translate }}</option>
+            <option value="PEN">{{ 'fastAdminApp.Currency.PEN' | translate }}</option>
+            <option value="PGK">{{ 'fastAdminApp.Currency.PGK' | translate }}</option>
+            <option value="PHP">{{ 'fastAdminApp.Currency.PHP' | translate }}</option>
+            <option value="PKR">{{ 'fastAdminApp.Currency.PKR' | translate }}</option>
+            <option value="PLN">{{ 'fastAdminApp.Currency.PLN' | translate }}</option>
+            <option value="PYG">{{ 'fastAdminApp.Currency.PYG' | translate }}</option>
+            <option value="QAR">{{ 'fastAdminApp.Currency.QAR' | translate }}</option>
+            <option value="RON">{{ 'fastAdminApp.Currency.RON' | translate }}</option>
+            <option value="RSD">{{ 'fastAdminApp.Currency.RSD' | translate }}</option>
+            <option value="RUB">{{ 'fastAdminApp.Currency.RUB' | translate }}</option>
+            <option value="RWF">{{ 'fastAdminApp.Currency.RWF' | translate }}</option>
+            <option value="SAR">{{ 'fastAdminApp.Currency.SAR' | translate }}</option>
+            <option value="SBD">{{ 'fastAdminApp.Currency.SBD' | translate }}</option>
+            <option value="SCR">{{ 'fastAdminApp.Currency.SCR' | translate }}</option>
+            <option value="SDG">{{ 'fastAdminApp.Currency.SDG' | translate }}</option>
+            <option value="SEK">{{ 'fastAdminApp.Currency.SEK' | translate }}</option>
+            <option value="SGD">{{ 'fastAdminApp.Currency.SGD' | translate }}</option>
+            <option value="SHP">{{ 'fastAdminApp.Currency.SHP' | translate }}</option>
+            <option value="SLL">{{ 'fastAdminApp.Currency.SLL' | translate }}</option>
+            <option value="SOS">{{ 'fastAdminApp.Currency.SOS' | translate }}</option>
+            <option value="SRD">{{ 'fastAdminApp.Currency.SRD' | translate }}</option>
+            <option value="SSP">{{ 'fastAdminApp.Currency.SSP' | translate }}</option>
+            <option value="STD">{{ 'fastAdminApp.Currency.STD' | translate }}</option>
+            <option value="SYP">{{ 'fastAdminApp.Currency.SYP' | translate }}</option>
+            <option value="SZL">{{ 'fastAdminApp.Currency.SZL' | translate }}</option>
+            <option value="THB">{{ 'fastAdminApp.Currency.THB' | translate }}</option>
+            <option value="TJS">{{ 'fastAdminApp.Currency.TJS' | translate }}</option>
+            <option value="TMT">{{ 'fastAdminApp.Currency.TMT' | translate }}</option>
+            <option value="TND">{{ 'fastAdminApp.Currency.TND' | translate }}</option>
+            <option value="TOP">{{ 'fastAdminApp.Currency.TOP' | translate }}</option>
+            <option value="TRY">{{ 'fastAdminApp.Currency.TRY' | translate }}</option>
+            <option value="TTD">{{ 'fastAdminApp.Currency.TTD' | translate }}</option>
+            <option value="TWD">{{ 'fastAdminApp.Currency.TWD' | translate }}</option>
+            <option value="TZS">{{ 'fastAdminApp.Currency.TZS' | translate }}</option>
+            <option value="UAH">{{ 'fastAdminApp.Currency.UAH' | translate }}</option>
+            <option value="UGX">{{ 'fastAdminApp.Currency.UGX' | translate }}</option>
+            <option value="USD">{{ 'fastAdminApp.Currency.USD' | translate }}</option>
+            <option value="USN">{{ 'fastAdminApp.Currency.USN' | translate }}</option>
+            <option value="UYI">{{ 'fastAdminApp.Currency.UYI' | translate }}</option>
+            <option value="UYU">{{ 'fastAdminApp.Currency.UYU' | translate }}</option>
+            <option value="UZS">{{ 'fastAdminApp.Currency.UZS' | translate }}</option>
+            <option value="VEF">{{ 'fastAdminApp.Currency.VEF' | translate }}</option>
+            <option value="VND">{{ 'fastAdminApp.Currency.VND' | translate }}</option>
+            <option value="VUV">{{ 'fastAdminApp.Currency.VUV' | translate }}</option>
+            <option value="WST">{{ 'fastAdminApp.Currency.WST' | translate }}</option>
+            <option value="XAF">{{ 'fastAdminApp.Currency.XAF' | translate }}</option>
+            <option value="XAG">{{ 'fastAdminApp.Currency.XAG' | translate }}</option>
+            <option value="XAU">{{ 'fastAdminApp.Currency.XAU' | translate }}</option>
+            <option value="XBA">{{ 'fastAdminApp.Currency.XBA' | translate }}</option>
+            <option value="XBB">{{ 'fastAdminApp.Currency.XBB' | translate }}</option>
+            <option value="XBC">{{ 'fastAdminApp.Currency.XBC' | translate }}</option>
+            <option value="XBD">{{ 'fastAdminApp.Currency.XBD' | translate }}</option>
+            <option value="XCD">{{ 'fastAdminApp.Currency.XCD' | translate }}</option>
+            <option value="XDR">{{ 'fastAdminApp.Currency.XDR' | translate }}</option>
+            <option value="XFU">{{ 'fastAdminApp.Currency.XFU' | translate }}</option>
+            <option value="XOF">{{ 'fastAdminApp.Currency.XOF' | translate }}</option>
+            <option value="XPD">{{ 'fastAdminApp.Currency.XPD' | translate }}</option>
+            <option value="XPF">{{ 'fastAdminApp.Currency.XPF' | translate }}</option>
+            <option value="XPT">{{ 'fastAdminApp.Currency.XPT' | translate }}</option>
+            <option value="XSU">{{ 'fastAdminApp.Currency.XSU' | translate }}</option>
+            <option value="XTS">{{ 'fastAdminApp.Currency.XTS' | translate }}</option>
+            <option value="XUA">{{ 'fastAdminApp.Currency.XUA' | translate }}</option>
+            <option value="XXX">{{ 'fastAdminApp.Currency.XXX' | translate }}</option>
+            <option value="YER">{{ 'fastAdminApp.Currency.YER' | translate }}</option>
+            <option value="ZAR">{{ 'fastAdminApp.Currency.ZAR' | translate }}</option>
+            <option value="ZMW">{{ 'fastAdminApp.Currency.ZMW' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.total"
+            for="field_total"
+            [ngbTooltip]="'fastAdminApp.invoice.help.total' | translate"
+            >Total</label
+          >
+          <input type="number" class="form-control" name="total" id="field_total" data-cy="total" formControlName="total" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.vatIncluded"
+            for="field_vatIncluded"
+            [ngbTooltip]="'fastAdminApp.invoice.help.vatIncluded' | translate"
+            >Vat Included</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="vatIncluded"
+            id="field_vatIncluded"
+            data-cy="vatIncluded"
+            formControlName="vatIncluded"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.discountRate"
+            for="field_discountRate"
+            [ngbTooltip]="'fastAdminApp.invoice.help.discountRate' | translate"
+            >Discount Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="discountRate"
+            id="field_discountRate"
+            data-cy="discountRate"
+            formControlName="discountRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.discountType"
+            for="field_discountType"
+            [ngbTooltip]="'fastAdminApp.invoice.help.discountType' | translate"
+            >Discount Type</label
+          >
+          <select class="form-control" name="discountType" formControlName="discountType" id="field_discountType" data-cy="discountType">
+            <option [ngValue]="null">{{ 'fastAdminApp.DiscountType.null' | translate }}</option>
+            <option value="IN_PERCENT">{{ 'fastAdminApp.DiscountType.IN_PERCENT' | translate }}</option>
+            <option value="AMOUNT">{{ 'fastAdminApp.DiscountType.AMOUNT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.cashDiscountRate"
+            for="field_cashDiscountRate"
+            [ngbTooltip]="'fastAdminApp.invoice.help.cashDiscountRate' | translate"
+            >Cash Discount Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="cashDiscountRate"
+            id="field_cashDiscountRate"
+            data-cy="cashDiscountRate"
+            formControlName="cashDiscountRate"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.cashDiscountDate"
+            for="field_cashDiscountDate"
+            [ngbTooltip]="'fastAdminApp.invoice.help.cashDiscountDate' | translate"
+            >Cash Discount Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_cashDiscountDate"
+              data-cy="cashDiscountDate"
+              type="text"
+              class="form-control"
+              name="cashDiscountDate"
+              ngbDatepicker
+              #cashDiscountDateDp="ngbDatepicker"
+              formControlName="cashDiscountDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="cashDiscountDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.totalPaid"
+            for="field_totalPaid"
+            [ngbTooltip]="'fastAdminApp.invoice.help.totalPaid' | translate"
+            >Total Paid</label
+          >
+          <input type="number" class="form-control" name="totalPaid" id="field_totalPaid" data-cy="totalPaid" formControlName="totalPaid" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paidDate"
+            for="field_paidDate"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paidDate' | translate"
+            >Paid Date</label
+          >
+          <input type="text" class="form-control" name="paidDate" id="field_paidDate" data-cy="paidDate" formControlName="paidDate" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.isrPosition"
+            for="field_isrPosition"
+            [ngbTooltip]="'fastAdminApp.invoice.help.isrPosition' | translate"
+            >Isr Position</label
+          >
+          <select class="form-control" name="isrPosition" formControlName="isrPosition" id="field_isrPosition" data-cy="isrPosition">
+            <option [ngValue]="null">{{ 'fastAdminApp.IsrPosition.null' | translate }}</option>
+            <option value="ADDITIONAL_PAGE">{{ 'fastAdminApp.IsrPosition.ADDITIONAL_PAGE' | translate }}</option>
+            <option value="FIRST_PAGE">{{ 'fastAdminApp.IsrPosition.FIRST_PAGE' | translate }}</option>
+            <option value="LAST_PAGE">{{ 'fastAdminApp.IsrPosition.LAST_PAGE' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.isrReferenceNumber"
+            for="field_isrReferenceNumber"
+            [ngbTooltip]="'fastAdminApp.invoice.help.isrReferenceNumber' | translate"
+            >Isr Reference Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="isrReferenceNumber"
+            id="field_isrReferenceNumber"
+            data-cy="isrReferenceNumber"
+            formControlName="isrReferenceNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paymentLinkPaypal"
+            for="field_paymentLinkPaypal"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPaypal' | translate"
+            >Payment Link Paypal</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="paymentLinkPaypal"
+            id="field_paymentLinkPaypal"
+            data-cy="paymentLinkPaypal"
+            formControlName="paymentLinkPaypal"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paymentLinkPaypalUrl"
+            for="field_paymentLinkPaypalUrl"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPaypalUrl' | translate"
+            >Payment Link Paypal Url</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="paymentLinkPaypalUrl"
+            id="field_paymentLinkPaypalUrl"
+            data-cy="paymentLinkPaypalUrl"
+            formControlName="paymentLinkPaypalUrl"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paymentLinkPostfinance"
+            for="field_paymentLinkPostfinance"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPostfinance' | translate"
+            >Payment Link Postfinance</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="paymentLinkPostfinance"
+            id="field_paymentLinkPostfinance"
+            data-cy="paymentLinkPostfinance"
+            formControlName="paymentLinkPostfinance"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paymentLinkPostfinanceUrl"
+            for="field_paymentLinkPostfinanceUrl"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPostfinanceUrl' | translate"
+            >Payment Link Postfinance Url</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="paymentLinkPostfinanceUrl"
+            id="field_paymentLinkPostfinanceUrl"
+            data-cy="paymentLinkPostfinanceUrl"
+            formControlName="paymentLinkPostfinanceUrl"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paymentLinkPayrexx"
+            for="field_paymentLinkPayrexx"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPayrexx' | translate"
+            >Payment Link Payrexx</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="paymentLinkPayrexx"
+            id="field_paymentLinkPayrexx"
+            data-cy="paymentLinkPayrexx"
+            formControlName="paymentLinkPayrexx"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paymentLinkPayrexxUrl"
+            for="field_paymentLinkPayrexxUrl"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkPayrexxUrl' | translate"
+            >Payment Link Payrexx Url</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="paymentLinkPayrexxUrl"
+            id="field_paymentLinkPayrexxUrl"
+            data-cy="paymentLinkPayrexxUrl"
+            formControlName="paymentLinkPayrexxUrl"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paymentLinkSmartcommerce"
+            for="field_paymentLinkSmartcommerce"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkSmartcommerce' | translate"
+            >Payment Link Smartcommerce</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="paymentLinkSmartcommerce"
+            id="field_paymentLinkSmartcommerce"
+            data-cy="paymentLinkSmartcommerce"
+            formControlName="paymentLinkSmartcommerce"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.paymentLinkSmartcommerceUrl"
+            for="field_paymentLinkSmartcommerceUrl"
+            [ngbTooltip]="'fastAdminApp.invoice.help.paymentLinkSmartcommerceUrl' | translate"
+            >Payment Link Smartcommerce Url</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="paymentLinkSmartcommerceUrl"
+            id="field_paymentLinkSmartcommerceUrl"
+            data-cy="paymentLinkSmartcommerceUrl"
+            formControlName="paymentLinkSmartcommerceUrl"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.language"
+            for="field_language"
+            [ngbTooltip]="'fastAdminApp.invoice.help.language' | translate"
+            >Language</label
+          >
+          <select class="form-control" name="language" formControlName="language" id="field_language" data-cy="language">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentLanguage.null' | translate }}</option>
+            <option value="FRENCH">{{ 'fastAdminApp.DocumentLanguage.FRENCH' | translate }}</option>
+            <option value="ENGLISH">{{ 'fastAdminApp.DocumentLanguage.ENGLISH' | translate }}</option>
+            <option value="GERMAN">{{ 'fastAdminApp.DocumentLanguage.GERMAN' | translate }}</option>
+            <option value="SPANISH">{{ 'fastAdminApp.DocumentLanguage.SPANISH' | translate }}</option>
+            <option value="ITALIAN">{{ 'fastAdminApp.DocumentLanguage.ITALIAN' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.pageAmount"
+            for="field_pageAmount"
+            [ngbTooltip]="'fastAdminApp.invoice.help.pageAmount' | translate"
+            >Page Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="pageAmount"
+            id="field_pageAmount"
+            data-cy="pageAmount"
+            formControlName="pageAmount"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.notes"
+            for="field_notes"
+            [ngbTooltip]="'fastAdminApp.invoice.help.notes' | translate"
+            >Notes</label
+          >
+          <input type="text" class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.invoice.status"
+            for="field_status"
+            [ngbTooltip]="'fastAdminApp.invoice.help.status' | translate"
+            >Status</label
+          >
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'fastAdminApp.InvoiceStatus.null' | translate }}</option>
+            <option value="DRAFT">{{ 'fastAdminApp.InvoiceStatus.DRAFT' | translate }}</option>
+            <option value="SENT">{{ 'fastAdminApp.InvoiceStatus.SENT' | translate }}</option>
+            <option value="PAYED">{{ 'fastAdminApp.InvoiceStatus.PAYED' | translate }}</option>
+            <option value="PARTIALLY_PAID">{{ 'fastAdminApp.InvoiceStatus.PARTIALLY_PAID' | translate }}</option>
+            <option value="PAYMENT_REMINDER">{{ 'fastAdminApp.InvoiceStatus.PAYMENT_REMINDER' | translate }}</option>
+            <option value="FIRST_REMINDER">{{ 'fastAdminApp.InvoiceStatus.FIRST_REMINDER' | translate }}</option>
+            <option value="SECOND_REMINDER">{{ 'fastAdminApp.InvoiceStatus.SECOND_REMINDER' | translate }}</option>
+            <option value="THIRD_REMINDER">{{ 'fastAdminApp.InvoiceStatus.THIRD_REMINDER' | translate }}</option>
+            <option value="DEBT_COLLECTION">{{ 'fastAdminApp.InvoiceStatus.DEBT_COLLECTION' | translate }}</option>
+            <option value="CANCELD">{{ 'fastAdminApp.InvoiceStatus.CANCELD' | translate }}</option>
+            <option value="DELETED">{{ 'fastAdminApp.InvoiceStatus.DELETED' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.created" for="field_created">Created</label>
+          <div class="d-flex">
+            <input
+              id="field_created"
+              data-cy="created"
+              type="datetime-local"
+              class="form-control"
+              name="created"
+              formControlName="created"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.contact" for="field_contact">Contact</label>
+          <select class="form-control" id="field_contact" data-cy="contact" name="contact" formControlName="contact">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contactOption.id === editForm.get('contact')!.value?.id ? editForm.get('contact')!.value : contactOption"
+              *ngFor="let contactOption of contactsSharedCollection; trackBy: trackContactById"
+            >
+              {{ contactOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.contactAddress" for="field_contactAddress"
+            >Contact Address</label
+          >
+          <select
+            class="form-control"
+            id="field_contactAddress"
+            data-cy="contactAddress"
+            name="contactAddress"
+            formControlName="contactAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                contactAddressOption.id === editForm.get('contactAddress')!.value?.id
+                  ? editForm.get('contactAddress')!.value
+                  : contactAddressOption
+              "
+              *ngFor="let contactAddressOption of contactAddressesSharedCollection; trackBy: trackContactAddressById"
+            >
+              {{ contactAddressOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.contactPerson" for="field_contactPerson"
+            >Contact Person</label
+          >
+          <select
+            class="form-control"
+            id="field_contactPerson"
+            data-cy="contactPerson"
+            name="contactPerson"
+            formControlName="contactPerson"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                contactPersonOption.id === editForm.get('contactPerson')!.value?.id
+                  ? editForm.get('contactPerson')!.value
+                  : contactPersonOption
+              "
+              *ngFor="let contactPersonOption of contactPeopleSharedCollection; trackBy: trackContactPersonById"
+            >
+              {{ contactPersonOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.contactPrePageAddress" for="field_contactPrePageAddress"
+            >Contact Pre Page Address</label
+          >
+          <select
+            class="form-control"
+            id="field_contactPrePageAddress"
+            data-cy="contactPrePageAddress"
+            name="contactPrePageAddress"
+            formControlName="contactPrePageAddress"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                contactAddressOption.id === editForm.get('contactPrePageAddress')!.value?.id
+                  ? editForm.get('contactPrePageAddress')!.value
+                  : contactAddressOption
+              "
+              *ngFor="let contactAddressOption of contactAddressesSharedCollection; trackBy: trackContactAddressById"
+            >
+              {{ contactAddressOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.layout" for="field_layout">Layout</label>
+          <select class="form-control" id="field_layout" data-cy="layout" name="layout" formControlName="layout">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="layoutOption.id === editForm.get('layout')!.value?.id ? editForm.get('layout')!.value : layoutOption"
+              *ngFor="let layoutOption of layoutsSharedCollection; trackBy: trackLayoutById"
+            >
+              {{ layoutOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.signature" for="field_signature">Signature</label>
+          <select class="form-control" id="field_signature" data-cy="signature" name="signature" formControlName="signature">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="signatureOption.id === editForm.get('signature')!.value?.id ? editForm.get('signature')!.value : signatureOption"
+              *ngFor="let signatureOption of signaturesSharedCollection; trackBy: trackSignatureById"
+            >
+              {{ signatureOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.bankAccount" for="field_bankAccount">Bank Account</label>
+          <select class="form-control" id="field_bankAccount" data-cy="bankAccount" name="bankAccount" formControlName="bankAccount">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                bankAccountOption.id === editForm.get('bankAccount')!.value?.id ? editForm.get('bankAccount')!.value : bankAccountOption
+              "
+              *ngFor="let bankAccountOption of bankAccountsSharedCollection; trackBy: trackBankAccountById"
+            >
+              {{ bankAccountOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" faTranslate="fastAdminApp.invoice.isr" for="field_isr">Isr</label>
+          <select class="form-control" id="field_isr" data-cy="isr" name="isr" formControlName="isr">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="isrOption.id === editForm.get('isr')!.value?.id ? editForm.get('isr')!.value : isrOption"
+              *ngFor="let isrOption of isrsSharedCollection; trackBy: trackIsrById"
+            >
+              {{ isrOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

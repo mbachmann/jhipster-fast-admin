@@ -1,0 +1,160 @@
+{
+  "name": "OrderConfirmation",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "javadoc": "document number",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "contactName",
+      "fieldType": "String",
+      "javadoc": "name of a contact"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "javadoc": "date of the document"
+    },
+    {
+      "fieldName": "periodText",
+      "fieldType": "String",
+      "javadoc": "service/delivery"
+    },
+    {
+      "fieldName": "currency",
+      "fieldType": "Currency",
+      "javadoc": "currency (e.g. CHF, EUR)",
+      "fieldValues": "AED,AFN,ALL,AMD,ANG,AOA,ARS,AUD,AWG,AZN,BAM,BBD,BDT,BGN,BHD,BIF,BMD,BND,BOB,BOV,BRL,BSD,BTN,BWP,BYN,BYR,BZD,CAD,CDF,CHE,CHF,CHW,CLF,CLP,CNY,COP,COU,CRC,CUC,CUP,CVE,CZK,DJF,DKK,DOP,DZD,EGP,ERN,ETB,EUR,FJD,FKP,GBP,GEL,GHS,GIP,GMD,GNF,GTQ,GYD,HKD,HNL,HRK,HTG,HUF,IDR,ILS,INR,IQD,IRR,ISK,JMD,JOD,JPY,KES,KGS,KHR,KMF,KPW,KRW,KWD,KYD,KZT,LAK,LBP,LKR,LRD,LSL,LYD,MAD,MDL,MGA,MKD,MMK,MNT,MOP,MRO,MUR,MVR,MWK,MXN,MXV,MYR,MZN,NAD,NGN,NIO,NOK,NPR,NZD,OMR,PAB,PEN,PGK,PHP,PKR,PLN,PYG,QAR,RON,RSD,RUB,RWF,SAR,SBD,SCR,SDG,SEK,SGD,SHP,SLL,SOS,SRD,SSP,STD,SYP,SZL,THB,TJS,TMT,TND,TOP,TRY,TTD,TWD,TZS,UAH,UGX,USD,USN,UYI,UYU,UZS,VEF,VND,VUV,WST,XAF,XAG,XAU,XBA,XBB,XBC,XBD,XCD,XDR,XFU,XOF,XPD,XPF,XPT,XSU,XTS,XUA,XXX,YER,ZAR,ZMW"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Double",
+      "javadoc": "total amount of the delivery note"
+    },
+    {
+      "fieldName": "vatIncluded",
+      "fieldType": "Boolean",
+      "javadoc": "whether prices in delivery note include VAT"
+    },
+    {
+      "fieldName": "discountRate",
+      "fieldType": "Double",
+      "javadoc": "optional discount rate"
+    },
+    {
+      "fieldName": "discountType",
+      "fieldType": "DiscountType",
+      "javadoc": "optional discount type; possible values: A - amount, P - in %",
+      "fieldValues": "IN_PERCENT (P),AMOUNT (A)"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "DocumentLanguage",
+      "javadoc": "language; possible values: de, en, es, fr, it ,",
+      "fieldValues": "FRENCH (fr),ENGLISH (en),GERMAN (de),SPANISH (es),ITALIAN (it)"
+    },
+    {
+      "fieldName": "pageAmount",
+      "fieldType": "Integer",
+      "javadoc": "how many pages the document has"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "javadoc": "optional notes"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "OrderConfirmationStatus",
+      "javadoc": "status of order confirmation, possible values: DR - draft, S - sent, B - billed, D - deleted (but still visible)",
+      "fieldValues": "DRAFT (DR),SENT (S),BILLED (B),DELETED (D)"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "documentFreeText",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the free texts belonging to this document",
+      "relationshipName": "freeTexts"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "descriptiveDocumentText",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the title, introduction, condition texts belonging to this document",
+      "relationshipName": "texts"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "documentPosition",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the positions belonging to this document",
+      "relationshipName": "positions"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the document contact",
+      "relationshipName": "contact"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the optional contact address",
+      "relationshipName": "contactAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactPerson",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the optional contact person",
+      "relationshipName": "contactPerson"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contactAddress",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the optional postal address",
+      "relationshipName": "contactPrePageAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "layout",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the layout information for rendering",
+      "relationshipName": "layout"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "signature",
+      "otherEntityRelationshipName": "orderConfirmation",
+      "javadoc": "the related user signature",
+      "relationshipName": "signature"
+    }
+  ],
+  "entityTableName": "order_confirmation",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817151548"
+}

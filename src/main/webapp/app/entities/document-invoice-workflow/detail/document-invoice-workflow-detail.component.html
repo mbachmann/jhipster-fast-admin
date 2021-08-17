@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="documentInvoiceWorkflow">
+      <h2 data-cy="documentInvoiceWorkflowDetailsHeading">
+        <span faTranslate="fastAdminApp.documentInvoiceWorkflow.detail.title">Document Invoice Workflow</span>
+      </h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ documentInvoiceWorkflow.id }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.active"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.active' | translate"
+            >Active</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentInvoiceWorkflow.active }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.status"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.status' | translate"
+            >Status</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.InvoiceWorkflowStatus.' + documentInvoiceWorkflow.status }}">{{
+            documentInvoiceWorkflow.status
+          }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.overdueDays"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.overdueDays' | translate"
+            >Overdue Days</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentInvoiceWorkflow.overdueDays }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.action"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.action' | translate"
+            >Action</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.WorkflowAction.' + documentInvoiceWorkflow.action }}">{{
+            documentInvoiceWorkflow.action
+          }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.contactEmail"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.contactEmail' | translate"
+            >Contact Email</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentInvoiceWorkflow.contactEmail }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentInvoiceWorkflow.speed"
+            [ngbTooltip]="'fastAdminApp.documentInvoiceWorkflow.help.speed' | translate"
+            >Speed</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.PostSpeed.' + documentInvoiceWorkflow.speed }}">{{ documentInvoiceWorkflow.speed }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/document-invoice-workflow', documentInvoiceWorkflow.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

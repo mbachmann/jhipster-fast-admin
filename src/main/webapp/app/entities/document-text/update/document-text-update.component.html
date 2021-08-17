@@ -1,0 +1,153 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="fa-document-text-heading"
+        data-cy="DocumentTextCreateUpdateHeading"
+        faTranslate="fastAdminApp.documentText.home.createOrEditLabel"
+      >
+        Create or edit a Document Text
+      </h2>
+
+      <div>
+        <fa-alert-error></fa-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" faTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentText.defaultText"
+            for="field_defaultText"
+            [ngbTooltip]="'fastAdminApp.documentText.help.defaultText' | translate"
+            >Default Text</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="defaultText"
+            id="field_defaultText"
+            data-cy="defaultText"
+            formControlName="defaultText"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentText.text"
+            for="field_text"
+            [ngbTooltip]="'fastAdminApp.documentText.help.text' | translate"
+            >Text</label
+          >
+          <input type="text" class="form-control" name="text" id="field_text" data-cy="text" formControlName="text" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentText.language"
+            for="field_language"
+            [ngbTooltip]="'fastAdminApp.documentText.help.language' | translate"
+            >Language</label
+          >
+          <select class="form-control" name="language" formControlName="language" id="field_language" data-cy="language">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentLanguage.null' | translate }}</option>
+            <option value="FRENCH">{{ 'fastAdminApp.DocumentLanguage.FRENCH' | translate }}</option>
+            <option value="ENGLISH">{{ 'fastAdminApp.DocumentLanguage.ENGLISH' | translate }}</option>
+            <option value="GERMAN">{{ 'fastAdminApp.DocumentLanguage.GERMAN' | translate }}</option>
+            <option value="SPANISH">{{ 'fastAdminApp.DocumentLanguage.SPANISH' | translate }}</option>
+            <option value="ITALIAN">{{ 'fastAdminApp.DocumentLanguage.ITALIAN' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentText.usage"
+            for="field_usage"
+            [ngbTooltip]="'fastAdminApp.documentText.help.usage' | translate"
+            >Usage</label
+          >
+          <select class="form-control" name="usage" formControlName="usage" id="field_usage" data-cy="usage">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentTextUsage.null' | translate }}</option>
+            <option value="TITLE">{{ 'fastAdminApp.DocumentTextUsage.TITLE' | translate }}</option>
+            <option value="INTRODUCTION">{{ 'fastAdminApp.DocumentTextUsage.INTRODUCTION' | translate }}</option>
+            <option value="CONDITION">{{ 'fastAdminApp.DocumentTextUsage.CONDITION' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentText.status"
+            for="field_status"
+            [ngbTooltip]="'fastAdminApp.documentText.help.status' | translate"
+            >Status</label
+          >
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentInvoiceTextStatus.null' | translate }}</option>
+            <option value="DEFAULT">{{ 'fastAdminApp.DocumentInvoiceTextStatus.DEFAULT' | translate }}</option>
+            <option value="PAYMENT_REMINDER">{{ 'fastAdminApp.DocumentInvoiceTextStatus.PAYMENT_REMINDER' | translate }}</option>
+            <option value="FIRST_REMINDER">{{ 'fastAdminApp.DocumentInvoiceTextStatus.FIRST_REMINDER' | translate }}</option>
+            <option value="SECOND_REMINDER">{{ 'fastAdminApp.DocumentInvoiceTextStatus.SECOND_REMINDER' | translate }}</option>
+            <option value="THIRD_REMINDER">{{ 'fastAdminApp.DocumentInvoiceTextStatus.THIRD_REMINDER' | translate }}</option>
+            <option value="DEBT_COLLECTION">{{ 'fastAdminApp.DocumentInvoiceTextStatus.DEBT_COLLECTION' | translate }}</option>
+            <option value="RECEIPT">{{ 'fastAdminApp.DocumentInvoiceTextStatus.RECEIPT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentText.type"
+            for="field_type"
+            [ngbTooltip]="'fastAdminApp.documentText.help.type' | translate"
+            >Type</label
+          >
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentTextType.null' | translate }}</option>
+            <option value="DOCUMENT">{{ 'fastAdminApp.DocumentTextType.DOCUMENT' | translate }}</option>
+            <option value="EMAIL">{{ 'fastAdminApp.DocumentTextType.EMAIL' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            faTranslate="fastAdminApp.documentText.documentType"
+            for="field_documentType"
+            [ngbTooltip]="'fastAdminApp.documentText.help.documentType' | translate"
+            >Document Type</label
+          >
+          <select class="form-control" name="documentType" formControlName="documentType" id="field_documentType" data-cy="documentType">
+            <option [ngValue]="null">{{ 'fastAdminApp.DocumentTextDocumentType.null' | translate }}</option>
+            <option value="OFFER">{{ 'fastAdminApp.DocumentTextDocumentType.OFFER' | translate }}</option>
+            <option value="ORDER_CONFIRMATION">{{ 'fastAdminApp.DocumentTextDocumentType.ORDER_CONFIRMATION' | translate }}</option>
+            <option value="DELIVERY_NOTE">{{ 'fastAdminApp.DocumentTextDocumentType.DELIVERY_NOTE' | translate }}</option>
+            <option value="INVOICE">{{ 'fastAdminApp.DocumentTextDocumentType.INVOICE' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span faTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span faTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

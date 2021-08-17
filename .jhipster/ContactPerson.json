@@ -1,0 +1,155 @@
+{
+  "name": "ContactPerson",
+  "fields": [
+    {
+      "fieldName": "remoteId",
+      "fieldType": "Integer",
+      "javadoc": "id of a remote system",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "defaultPerson",
+      "fieldType": "Boolean",
+      "javadoc": "whether it is a default contact's person"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "javadoc": "the person first name"
+    },
+    {
+      "fieldName": "surname",
+      "fieldType": "String",
+      "javadoc": "the person surname"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "GenderType",
+      "javadoc": "gender of contact (required for P type); possible values: M - Male, F - Female, O - Other",
+      "fieldValues": "MALE (M),FEMALE (F),OTHER (O)"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "javadoc": "The person's eMail"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "javadoc": "the person's phone number"
+    },
+    {
+      "fieldName": "department",
+      "fieldType": "String",
+      "javadoc": "the person's department"
+    },
+    {
+      "fieldName": "salutation",
+      "fieldType": "String",
+      "javadoc": "e.g. Dear Mr. Jones"
+    },
+    {
+      "fieldName": "showTitle",
+      "fieldType": "Boolean",
+      "javadoc": "whether to show Mr/Ms before name"
+    },
+    {
+      "fieldName": "showDepartment",
+      "fieldType": "Boolean",
+      "javadoc": "whether to show department"
+    },
+    {
+      "fieldName": "wantsNewsletter",
+      "fieldType": "Boolean",
+      "javadoc": "whether person wishes to receive newsletter"
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "LocalDate",
+      "javadoc": "contact birthdate"
+    },
+    {
+      "fieldName": "birthPlace",
+      "fieldType": "String",
+      "javadoc": "contact birth place"
+    },
+    {
+      "fieldName": "placeOfOrigin",
+      "fieldType": "String",
+      "javadoc": "contact place of origin"
+    },
+    {
+      "fieldName": "citizenCountry1",
+      "fieldType": "String",
+      "javadoc": "citizen of country 1"
+    },
+    {
+      "fieldName": "citizenCountry2",
+      "fieldType": "String",
+      "javadoc": "citizen of country 1"
+    },
+    {
+      "fieldName": "socialSecurityNumber",
+      "fieldType": "String",
+      "javadoc": "the social security number"
+    },
+    {
+      "fieldName": "hobbies",
+      "fieldType": "String",
+      "javadoc": "hobbies and activities in freetime"
+    },
+    {
+      "fieldName": "dailyWork",
+      "fieldType": "String",
+      "javadoc": "day structure"
+    },
+    {
+      "fieldName": "contactAttribute01",
+      "fieldType": "String",
+      "javadoc": "attribute 1"
+    },
+    {
+      "fieldName": "avatar",
+      "fieldType": "byte[]",
+      "javadoc": "image of contact",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "imageType",
+      "fieldType": "String",
+      "javadoc": "image type"
+    },
+    {
+      "fieldName": "inactiv",
+      "fieldType": "Boolean",
+      "javadoc": "is not active anymore"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customFieldValue",
+      "otherEntityRelationshipName": "contactPerson",
+      "javadoc": "custom edit fields",
+      "relationshipName": "customFields"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "contactPerson",
+      "javadoc": "The contact relation",
+      "relationshipName": "contact"
+    }
+  ],
+  "javadoc": "A person of the contact",
+  "entityTableName": "contact_person",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817151534"
+}

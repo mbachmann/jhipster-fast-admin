@@ -1,0 +1,9 @@
+{
+  "fastAdminApp": {
+    "ContactType": {
+      "null": "",
+      "COMPANY": "M",
+      "PRIVATE": "F"
+    }
+  }
+}

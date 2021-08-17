@@ -1,0 +1,90 @@
+<div>
+  <h2 id="page-heading" data-cy="DocumentTextHeading">
+    <span faTranslate="fastAdminApp.documentText.home.title">Document Texts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.documentText.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-document-text"
+        [routerLink]="['/document-text/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.documentText.home.createLabel"> Create a new Document Text </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="documentTexts?.length === 0">
+    <span faTranslate="fastAdminApp.documentText.home.notFound">No documentTexts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="documentTexts && documentTexts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentText.defaultText">Default Text</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentText.text">Text</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentText.language">Language</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentText.usage">Usage</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentText.status">Status</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentText.type">Type</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.documentText.documentType">Document Type</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let documentText of documentTexts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/document-text', documentText.id, 'view']">{{ documentText.id }}</a>
+          </td>
+          <td>{{ documentText.defaultText }}</td>
+          <td>{{ documentText.text }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + documentText.language }}">{{ documentText.language }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentTextUsage.' + documentText.usage }}">{{ documentText.usage }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentInvoiceTextStatus.' + documentText.status }}">{{ documentText.status }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentTextType.' + documentText.type }}">{{ documentText.type }}</td>
+          <td faTranslate="{{ 'fastAdminApp.DocumentTextDocumentType.' + documentText.documentType }}">{{ documentText.documentType }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/document-text', documentText.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/document-text', documentText.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(documentText)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

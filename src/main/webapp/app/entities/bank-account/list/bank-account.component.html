@@ -1,0 +1,102 @@
+<div>
+  <h2 id="page-heading" data-cy="BankAccountHeading">
+    <span faTranslate="fastAdminApp.bankAccount.home.title">Bank Accounts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.bankAccount.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-bank-account"
+        [routerLink]="['/bank-account/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.bankAccount.home.createLabel"> Create a new Bank Account </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="bankAccounts?.length === 0">
+    <span faTranslate="fastAdminApp.bankAccount.home.notFound">No bankAccounts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="bankAccounts && bankAccounts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.remoteId">Remote Id</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.defaultBankAccount">Default Bank Account</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.description">Description</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.bankName">Bank Name</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.number">Number</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.iban">Iban</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.bic">Bic</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.postAccount">Post Account</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.autoSync">Auto Sync</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.autoSyncDirection">Auto Sync Direction</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.currency">Currency</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.bankAccount.inactiv">Inactiv</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bankAccount of bankAccounts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/bank-account', bankAccount.id, 'view']">{{ bankAccount.id }}</a>
+          </td>
+          <td>{{ bankAccount.remoteId }}</td>
+          <td>{{ bankAccount.defaultBankAccount }}</td>
+          <td>{{ bankAccount.description }}</td>
+          <td>{{ bankAccount.bankName }}</td>
+          <td>{{ bankAccount.number }}</td>
+          <td>{{ bankAccount.iban }}</td>
+          <td>{{ bankAccount.bic }}</td>
+          <td>{{ bankAccount.postAccount }}</td>
+          <td faTranslate="{{ 'fastAdminApp.AutoSynch.' + bankAccount.autoSync }}">{{ bankAccount.autoSync }}</td>
+          <td faTranslate="{{ 'fastAdminApp.AutoSynchDirection.' + bankAccount.autoSyncDirection }}">
+            {{ bankAccount.autoSyncDirection }}
+          </td>
+          <td faTranslate="{{ 'fastAdminApp.Currency.' + bankAccount.currency }}">{{ bankAccount.currency }}</td>
+          <td>{{ bankAccount.inactiv }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/bank-account', bankAccount.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/bank-account', bankAccount.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(bankAccount)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+{
+  "fastAdminApp": {
+    "catalogUnit": {
+      "home": {
+        "title": "CatalogUnits",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Catalog Unit",
+        "createOrEditLabel": "Créer ou éditer un Catalog Unit",
+        "notFound": "Aucun Catalog Unit trouvé"
+      },
+      "created": "Un nouveau Catalog Unit a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Catalog Unit avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Catalog Unit avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Catalog Unit {{ id }} ?"
+      },
+      "detail": {
+        "title": "Catalog Unit"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "name": "Name",
+      "nameDe": "Name De",
+      "nameEn": "Name En",
+      "nameFr": "Name Fr",
+      "nameIt": "Name It",
+      "scope": "Scope",
+      "custom": "Custom",
+      "inactiv": "Inactiv",
+      "help": {
+        "remoteId": "id of a remote system",
+        "name": "Name of the Unit",
+        "scope": "scope, one of: s - service, p - product, a - all",
+        "custom": "is unit a custom company unit (if not, it&#39;s a system unit)",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

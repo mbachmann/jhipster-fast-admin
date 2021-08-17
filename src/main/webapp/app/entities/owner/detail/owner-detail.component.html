@@ -1,0 +1,164 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="owner">
+      <h2 data-cy="ownerDetailsHeading"><span faTranslate="fastAdminApp.owner.detail.title">Owner</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ owner.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.remoteId" [ngbTooltip]="'fastAdminApp.owner.help.remoteId' | translate">Remote Id</span>
+        </dt>
+        <dd>
+          <span>{{ owner.remoteId }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.owner.name" [ngbTooltip]="'fastAdminApp.owner.help.name' | translate">Name</span></dt>
+        <dd>
+          <span>{{ owner.name }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.owner.surname" [ngbTooltip]="'fastAdminApp.owner.help.surname' | translate">Surname</span></dt>
+        <dd>
+          <span>{{ owner.surname }}</span>
+        </dd>
+        <dt><span faTranslate="fastAdminApp.owner.email" [ngbTooltip]="'fastAdminApp.owner.help.email' | translate">Email</span></dt>
+        <dd>
+          <span>{{ owner.email }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.language" [ngbTooltip]="'fastAdminApp.owner.help.language' | translate">Language</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.CompanyLanguage.' + owner.language }}">{{ owner.language }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyName" [ngbTooltip]="'fastAdminApp.owner.help.companyName' | translate"
+            >Company Name</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyName }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyAddition" [ngbTooltip]="'fastAdminApp.owner.help.companyAddition' | translate"
+            >Company Addition</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyAddition }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyCountry" [ngbTooltip]="'fastAdminApp.owner.help.companyCountry' | translate"
+            >Company Country</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.Country.' + owner.companyCountry }}">{{ owner.companyCountry }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyStreet" [ngbTooltip]="'fastAdminApp.owner.help.companyStreet' | translate"
+            >Company Street</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyStreet }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyStreetNo" [ngbTooltip]="'fastAdminApp.owner.help.companyStreetNo' | translate"
+            >Company Street No</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyStreetNo }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyStreet2" [ngbTooltip]="'fastAdminApp.owner.help.companyStreet2' | translate"
+            >Company Street 2</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyStreet2 }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyPostcode" [ngbTooltip]="'fastAdminApp.owner.help.companyPostcode' | translate"
+            >Company Postcode</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyPostcode }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyCity" [ngbTooltip]="'fastAdminApp.owner.help.companyCity' | translate"
+            >Company City</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyCity }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyPhone" [ngbTooltip]="'fastAdminApp.owner.help.companyPhone' | translate"
+            >Company Phone</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyPhone }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyFax" [ngbTooltip]="'fastAdminApp.owner.help.companyFax' | translate"
+            >Company Fax</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyFax }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyEmail" [ngbTooltip]="'fastAdminApp.owner.help.companyEmail' | translate"
+            >Company Email</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyEmail }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyWebsite" [ngbTooltip]="'fastAdminApp.owner.help.companyWebsite' | translate"
+            >Company Website</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyWebsite }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyVatId" [ngbTooltip]="'fastAdminApp.owner.help.companyVatId' | translate"
+            >Company Vat Id</span
+          >
+        </dt>
+        <dd>
+          <span>{{ owner.companyVatId }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.owner.companyCurrency" [ngbTooltip]="'fastAdminApp.owner.help.companyCurrency' | translate"
+            >Company Currency</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.CompanyCurrency.' + owner.companyCurrency }}">{{ owner.companyCurrency }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/owner', owner.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

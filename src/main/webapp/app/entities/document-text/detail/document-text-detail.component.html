@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="documentText">
+      <h2 data-cy="documentTextDetailsHeading"><span faTranslate="fastAdminApp.documentText.detail.title">Document Text</span></h2>
+
+      <hr />
+
+      <fa-alert-error></fa-alert-error>
+
+      <fa-alert></fa-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span faTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ documentText.id }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentText.defaultText" [ngbTooltip]="'fastAdminApp.documentText.help.defaultText' | translate"
+            >Default Text</span
+          >
+        </dt>
+        <dd>
+          <span>{{ documentText.defaultText }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentText.text" [ngbTooltip]="'fastAdminApp.documentText.help.text' | translate">Text</span>
+        </dt>
+        <dd>
+          <span>{{ documentText.text }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentText.language" [ngbTooltip]="'fastAdminApp.documentText.help.language' | translate"
+            >Language</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentLanguage.' + documentText.language }}">{{ documentText.language }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentText.usage" [ngbTooltip]="'fastAdminApp.documentText.help.usage' | translate">Usage</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentTextUsage.' + documentText.usage }}">{{ documentText.usage }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentText.status" [ngbTooltip]="'fastAdminApp.documentText.help.status' | translate"
+            >Status</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentInvoiceTextStatus.' + documentText.status }}">{{ documentText.status }}</span>
+        </dd>
+        <dt>
+          <span faTranslate="fastAdminApp.documentText.type" [ngbTooltip]="'fastAdminApp.documentText.help.type' | translate">Type</span>
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentTextType.' + documentText.type }}">{{ documentText.type }}</span>
+        </dd>
+        <dt>
+          <span
+            faTranslate="fastAdminApp.documentText.documentType"
+            [ngbTooltip]="'fastAdminApp.documentText.help.documentType' | translate"
+            >Document Type</span
+          >
+        </dt>
+        <dd>
+          <span faTranslate="{{ 'fastAdminApp.DocumentTextDocumentType.' + documentText.documentType }}">{{
+            documentText.documentType
+          }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span faTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/document-text', documentText.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span faTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

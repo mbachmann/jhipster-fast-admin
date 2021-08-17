@@ -1,0 +1,88 @@
+<div>
+  <h2 id="page-heading" data-cy="ExchangeRateHeading">
+    <span faTranslate="fastAdminApp.exchangeRate.home.title">Exchange Rates</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span faTranslate="fastAdminApp.exchangeRate.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-exchange-rate"
+        [routerLink]="['/exchange-rate/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span faTranslate="fastAdminApp.exchangeRate.home.createLabel"> Create a new Exchange Rate </span>
+      </button>
+    </div>
+  </h2>
+
+  <fa-alert-error></fa-alert-error>
+
+  <fa-alert></fa-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="exchangeRates?.length === 0">
+    <span faTranslate="fastAdminApp.exchangeRate.home.notFound">No exchangeRates found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="exchangeRates && exchangeRates.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span faTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.exchangeRate.remoteId">Remote Id</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.exchangeRate.currencyFrom">Currency From</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.exchangeRate.currencyTo">Currency To</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.exchangeRate.rate">Rate</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.exchangeRate.created">Created</span></th>
+          <th scope="col"><span faTranslate="fastAdminApp.exchangeRate.inactiv">Inactiv</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exchangeRate of exchangeRates; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/exchange-rate', exchangeRate.id, 'view']">{{ exchangeRate.id }}</a>
+          </td>
+          <td>{{ exchangeRate.remoteId }}</td>
+          <td faTranslate="{{ 'fastAdminApp.Currency.' + exchangeRate.currencyFrom }}">{{ exchangeRate.currencyFrom }}</td>
+          <td faTranslate="{{ 'fastAdminApp.Currency.' + exchangeRate.currencyTo }}">{{ exchangeRate.currencyTo }}</td>
+          <td>{{ exchangeRate.rate }}</td>
+          <td>{{ exchangeRate.created | formatMediumDatetime }}</td>
+          <td>{{ exchangeRate.inactiv }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/exchange-rate', exchangeRate.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/exchange-rate', exchangeRate.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(exchangeRate)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" faTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

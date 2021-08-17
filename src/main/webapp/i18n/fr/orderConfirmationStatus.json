@@ -1,0 +1,11 @@
+{
+  "fastAdminApp": {
+    "OrderConfirmationStatus": {
+      "null": "",
+      "DRAFT": "DR",
+      "SENT": "S",
+      "BILLED": "B",
+      "DELETED": "D"
+    }
+  }
+}

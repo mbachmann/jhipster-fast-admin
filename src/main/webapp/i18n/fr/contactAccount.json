@@ -1,0 +1,40 @@
+{
+  "fastAdminApp": {
+    "contactAccount": {
+      "home": {
+        "title": "ContactAccounts",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Contact Account",
+        "createOrEditLabel": "Créer ou éditer un Contact Account",
+        "notFound": "Aucun Contact Account trouvé"
+      },
+      "created": "Un nouveau Contact Account a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Contact Account avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Contact Account avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Contact Account {{ id }} ?"
+      },
+      "detail": {
+        "title": "Contact Account"
+      },
+      "id": "ID",
+      "remoteId": "Remote Id",
+      "defaultAccount": "Default Account",
+      "type": "Type",
+      "number": "Number",
+      "bic": "Bic",
+      "description": "Description",
+      "inactiv": "Inactiv",
+      "contact": "Contact",
+      "help": {
+        "remoteId": "id of a remote system",
+        "defaultAccount": "whether it is a default contact&#39;s account ,",
+        "type": "type (possible values: IBAN, ISR) ,",
+        "number": "IBAN or ISR number (depends on the type)",
+        "bic": "The BIC or SWIFT number",
+        "description": "internal description",
+        "inactiv": "is not active anymore"
+      }
+    }
+  }
+}

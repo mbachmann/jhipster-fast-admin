@@ -1,0 +1,60 @@
+{
+  "name": "ResourcePermission",
+  "fields": [
+    {
+      "fieldName": "add",
+      "fieldType": "PermissionType",
+      "javadoc": "the use can add a new resource",
+      "fieldValues": "NONE,OWN,ALL",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "edit",
+      "fieldType": "PermissionType",
+      "javadoc": "the use can edit a resource",
+      "fieldValues": "NONE,OWN,ALL",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "manage",
+      "fieldType": "PermissionType",
+      "javadoc": "the use can manage a resource",
+      "fieldValues": "NONE,OWN,ALL",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "domainArea",
+      "fieldType": "DomainArea",
+      "javadoc": "the permission is for the domain resource",
+      "fieldValues": "CONTACTS,LETTERS,PRODUCTS,SERVICES,OFFERS,PROJECTS,DELIVERY_NOTES,ORDER_CONFIRMATIONS,INVOICES,USERS,REPORTING",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "applicationRole",
+      "otherEntityRelationshipName": "resourcePermission",
+      "javadoc": "The permission definition is for the application role",
+      "relationshipName": "role"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "resourcePermission",
+      "javadoc": "The permission definition is for the user",
+      "relationshipName": "applicationUser"
+    }
+  ],
+  "javadoc": "actions that can be performed on an item (possible values: view, edit, manage) for own or all",
+  "entityTableName": "resource_permission",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["fastAdmin"],
+  "changelogDate": "20210817151607"
+}
